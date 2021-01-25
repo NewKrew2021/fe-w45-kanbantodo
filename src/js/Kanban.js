@@ -1,4 +1,4 @@
-class Kanban {
+export class Kanban {
   #id
   #columns
 

@@ -1,4 +1,4 @@
-class Task {
+export class Task {
   #id
   #title
   #subtasks
