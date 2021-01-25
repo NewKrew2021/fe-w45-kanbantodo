@@ -1,0 +1,17 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "title": "first",
+            "author": "authors",
+            "content": "hello!"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "name": "Kim",
+            "gender": "male"
+        }
+    ]
+}
