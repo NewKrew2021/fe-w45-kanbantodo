@@ -1,6 +1,8 @@
 $header-background : #000000
 $header-font-color : #ffffff
 $common-border-color :#b9b8b8
+$todo-background-color : #e0e0e0
+$todo-card-background : #ffffff
 
 .header
     font-size: 30px
@@ -20,3 +22,48 @@ $common-border-color :#b9b8b8
     border-radius: 10px
     height: 40px
     padding: 10px
+
+.todo-list
+    display: flex
+    margin-top: 10px
+    .todo-header
+        height: 25px
+        justify-content: space-between
+        margin-bottom: 20px
+        font-size: 20px
+        &--total-count
+            padding: 5px
+            float: left
+            text-align: center
+            height: 20px
+            width: 20px
+            margin-right: 10px
+            border-radius: 20px
+            background: $todo-card-background
+        &--title
+            float: left
+        &--add-button
+            float: right
+            margin-left: 10px
+        &--delete-button
+            float: right
+    .todo
+        box-sizing: border-box
+        width: 500px
+        height: 600px
+        border-radius: 10px
+        background: $todo-background-color
+        padding: 20px
+
+        .todo-card
+            position: relative
+            box-sizing: border-box
+            width: 100%
+            min-height: 100px
+            background: $todo-card-background
+            border-radius: 10px
+            padding: 20px
+            &--delete-button
+                position: absolute
+                top: 10px
+                right: 10px
