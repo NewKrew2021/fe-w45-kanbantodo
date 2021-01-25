@@ -1,5 +1,7 @@
+import { createNewElement } from "../common/utils";
+
 const TODO_TPL = {
-  todoHeader(totalCount, status) {
+  todoHeader(status, totalCount) {
     return `
       <div class="todo-header">
         <div class="todo-header--total-count">${totalCount}</div>
@@ -18,6 +20,17 @@ const TODO_TPL = {
   },
 };
 
-class TodoList {
+class Todo {
   constructor() {}
+
+  createTodo(cardList, status, totalCount) {
+    const newTodo = createNewElement("div", "todo", "");
+    newTodo.innerHTML =
+      TODO_TPL.todoHeader(status, totalCount) +
+      cardList.reduce((acc, { content, writer }) => {
+        return acc + todoCard(content, writer);
+      }, "");
+  }
 }
+
+export { TodoList };
