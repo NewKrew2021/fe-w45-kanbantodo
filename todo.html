@@ -28,16 +28,68 @@
                 </button>
             </div>
         </div>
+
         <!-- 컨텐츠 영역(카드) : 일단 형태만 -->
-        <div class="flex-left">
+        <div class="card-wrapper flex-left">
 
             <!-- 리스트뷰 1개 레이아웃 -->
             <div class="card">
                 <div class="card-header">
                     <p class="title bold">해야할일</p>
                     <button class="close-btn htop">
-                        <img src="/images/plus_btn.png">
-                        <img src="/images/close_btn.png">
+                        <img class="card-plus" data="0" src="/images/plus_btn.png">
+                        <img class="card-remove" data="0" src="/images/close_btn.png">
+                    </button>
+                </div>
+
+                <!-- list-wrapper > (add-list-view) > list-view -->
+                <div class="list-wrapper" data="0">
+                    <div class="add-list-view">
+                        <div class="list-input-wrapper">
+                            <textarea class="list-input" data="0" type="text" maxlength="500"
+                                placeholder="Enter a note"></textarea>
+                        </div>
+                        <button class="btn-add-list" data="0">Add</button>
+                        <button class="btn-cancel-list" data="0">Cancel</button>
+                    </div>
+
+                    <div class="list-view">
+                        <p class="title"><img src="/images/list_btn.png"> 테스트 제목</p>
+
+                        <!-- listView 하위 태스크 리스트-->
+                        <ul class="task sub-title font-15">
+                            <li>하위 태스크</li>
+                        </ul>
+
+                        <p class="author sub-title font-15">Added by abc</p>
+                        <button class="close-btn">
+                            <img src="/images/close_btn.png">
+                        </button>
+                    </div>
+                    <div class="list-view">
+                        <p class="title"><img src="/images/list_btn.png"> 테스트 제목</p>
+
+                        <!-- listView 하위 태스크 리스트-->
+                        <ul class="task sub-title font-15">
+                            <li>하위 태스크</li>
+                        </ul>
+
+                        <p class="author sub-title font-15">Added by abc</p>
+                        <button class="close-btn">
+                            <img src="/images/close_btn.png">
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 리스트뷰 1개 레이아웃 -->
+            <div class="card">
+                <div class="card-header">
+                    <p class="title bold">하는중</p>
+                    <button class="close-btn htop">
+                        <img class="card-plus" data="0" src="/images/plus_btn.png">
+                        <img class="card-remove" data="0" src="/images/close_btn.png">
                     </button>
                 </div>
 
@@ -57,16 +109,33 @@
                 </div>
             </div>
 
+            <!-- 리스트뷰 1개 레이아웃 -->
             <div class="card">
-                <div class="list-view">
+                <div class="card-header">
+                    <p class="title bold">다했어</p>
+                    <button class="close-btn htop">
+                        <img class="card-plus" data="0" src="/images/plus_btn.png">
+                        <img class="card-remove" data="0" src="/images/close_btn.png">
+                    </button>
+                </div>
 
+                <!-- listView -->
+                <div class="list-view">
+                    <p class="title"><img src="/images/list_btn.png"> 테스트 제목</p>
+
+                    <!-- listView 하위 태스크 리스트-->
+                    <ul class="task sub-title font-15">
+                        <li>하위 태스크</li>
+                    </ul>
+
+                    <p class="author sub-title font-15">Added by abc</p>
+                    <button class="close-btn">
+                        <img src="/images/close_btn.png">
+                    </button>
                 </div>
             </div>
-            <div class="card">
-                <div class="list-view">
 
-                </div>
-            </div>
+
         </div>
     </div>
 </body>

@@ -97,6 +97,46 @@ input {
   margin: 7px;
 }
 
+.add-list-view {
+  display: block;
+  margin-bottom: 3em;
+  text-align: center;
+}
+
+.list-input {
+  width: 95%;
+  min-height: 70px;
+  border-radius: 5px;
+  resize: vertical;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid #dddee2;
+}
+
+.list-input:focus-within {
+  border: 1px solid #0366d6;
+}
+
+.btn-add-list {
+  width: 48%;
+  float: left;
+  background-color: #34B370;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 0.5em;
+}
+
+.btn-cancel-list {
+  width: 48%;
+  float: right;
+  background-color: #ffffff;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 0.5em;
+}
+
 .list-view {
   background-color: #ffffff;
   border: 1px solid #dddee2;
@@ -139,6 +179,7 @@ input {
   top: 0;
 }
 
+/*   *******   */
 .pd-5 {
   padding: 5px;
 }
