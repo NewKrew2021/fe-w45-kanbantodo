@@ -1,0 +1,43 @@
+{
+  "name": "fe-w45-kanbantodo",
+  "version": "1.0.0",
+  "description": "## 할 일 / 한 일",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "api-server": "nodemon main"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puba5/fe-w45-kanbantodo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/puba5/fe-w45-kanbantodo/issues"
+  },
+  "homepage": "https://github.com/puba5/fe-w45-kanbantodo#readme",
+  "dependencies": {
+    "core-js": "^3.8.2",
+    "dotenv": "^8.2.0",
+    "koa": "^2.13.1",
+    "koa-router": "^10.0.0",
+    "koa-static": "^5.0.0",
+    "mongoose": "^5.11.13",
+    "webpack-cli": "^4.3.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.1",
+    "html-webpack-plugin": "^4.5.1",
+    "sass": "^1.32.4",
+    "sass-loader": "^10.1.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.15.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
