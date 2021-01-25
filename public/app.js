@@ -1,5 +1,5 @@
-import { initHome } from "./js/Home";
+import { initHeader } from "./js/Header";
 
 (function initApp() {
-    initHome();
+    initHeader();
 })();

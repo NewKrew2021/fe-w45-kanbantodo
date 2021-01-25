@@ -16,17 +16,17 @@
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_Home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/Home */ \"./public/js/Home.js\");\n\n\n(function initApp() {\n  (0,_js_Home__WEBPACK_IMPORTED_MODULE_0__.initHome)();\n})();\n\n//# sourceURL=webpack://fe-w45-shoppinghow/./public/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_Header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/Header */ \"./public/js/Header.js\");\n\n\n(function initApp() {\n  (0,_js_Header__WEBPACK_IMPORTED_MODULE_0__.initHeader)();\n})();\n\n//# sourceURL=webpack://fe-w45-shoppinghow/./public/app.js?");
 
 /***/ }),
 
-/***/ "./public/js/Home.js":
-/*!***************************!*\
-  !*** ./public/js/Home.js ***!
-  \***************************/
+/***/ "./public/js/Header.js":
+/*!*****************************!*\
+  !*** ./public/js/Header.js ***!
+  \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"initHome\": () => /* binding */ initHome\n/* harmony export */ });\nfunction initHome() {}\n\n//# sourceURL=webpack://fe-w45-shoppinghow/./public/js/Home.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"initHeader\": () => /* binding */ initHeader\n/* harmony export */ });\nfunction initHeader() {\n  var header = document.querySelector(\"header\");\n  header.innerHTML = \"\";\n}\n\n//# sourceURL=webpack://fe-w45-shoppinghow/./public/js/Header.js?");
 
 /***/ })
 
