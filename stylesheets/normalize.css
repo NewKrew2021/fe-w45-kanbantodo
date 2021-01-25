@@ -5,7 +5,7 @@ fieldset, form, legend, label, table, caption,
 thead, tbody, tfoot, tr, th, td, ul, ol, a,
 select, textarea {margin: 0; padding: 0; border: 0 none; }
 body{
-    background-color:#eee;
+    background-color:rgb(255, 255, 255);
 }
 button{
     border: 0;

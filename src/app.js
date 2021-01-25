@@ -1,5 +1,6 @@
 /*
     app.js
+    <entry point>
 */
 import test from '../views/InputView.js';
 

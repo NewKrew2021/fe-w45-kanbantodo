@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,49 @@
     <link rel="stylesheet" href="/stylesheets/todo.css">
     <title>Github todo Project</title>
 </head>
+
 <body>
-    
-    <p> test!!! </p>
+    <div id="root">
+        <!-- 상단 헤더 부분 -->
+        <div id="header">
+            <div class="bg-black">
+                <div class="float-left font-white mg-left-40">TODO 서비스</div>
+                <!-- menu(todo)-->
+                <div id="menu" class="float-right font-white mg-right-40">menu</div>
+            </div>
+        </div>
+        <!-- 검색창(Filter) 부분 -->
+        <div class="search-blank mg-10 block relative">
+            <div class="search-box">
+                <input class="search-input font-15" type="text" size="28" placeholder="Filter cards">
+                <button class="search-btn">
+                    <img src="/images/search_btn.png">
+                </button>
+            </div>
+        </div>
+        <!-- 컨텐츠 영역(카드) : 일단 형태만 -->
+        <div class="flex-left">
+            <div class="card">
+                <div class="list-view">
+                    <p class="title"><img src="/images/list_btn.png"> 테스트 제목</p>
+                    <p class="sub-title font-15">Added by abc</p>
+                    <button class="close-btn">
+                        <img src="/images/close_btn.png">
+                    </button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="list-view">
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="list-view">
+
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
