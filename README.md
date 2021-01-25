@@ -5,15 +5,17 @@
 ### Day1
 
 - 개발 환경 설정
-  - [ ] webpack
-  - [ ] Babel
+  - [x] webpack
+  - [x] Babel
 - 레이아웃 구현
-  - [ ] 헤더 구현
-  - [ ] TODO 탭 구현
+  - [x] 헤더 구현
+  - [x] TODO 탭 구현
   - [ ] 모달창 구현
 - API 생성
-  - [ ] 백앤드 환경 설정
-  - [ ] Mongo DB 설치
+  - [x] 백앤드 환경 설정
+  - [x] Mongo DB 설치
+- MVC 패턴 구현
+  - [x] TODO를 MVC 패턴으로 구현
 
 ### Day2
 
