@@ -4,7 +4,8 @@
   "description": "## 할 일 / 한 일",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "api-server": "nodemon main"
   },
   "repository": {
     "type": "git",
