@@ -9,6 +9,6 @@ const TODO_TPL = {
   },
 };
 
-class TodoCard {
+class TodoList {
   constructor() {}
 }
