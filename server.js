@@ -13,7 +13,7 @@ server.use(jsonServer.bodyParser)
 
 server.use(router)
 
-let port = 80;
+let port = 3000;
 server.listen(port, () => {
   console.log(`Mock Server is running, port(${port})`)
 })
