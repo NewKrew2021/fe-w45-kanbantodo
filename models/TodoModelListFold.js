@@ -1,3 +1,0 @@
-/*
-    TodoModelListFold.js
-*/
