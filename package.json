@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "proxy": "http://localhost:3000",
   "scripts": {
     "watch-sass": "sass --watch sass:public/css ",
     "watch-webpack": "webpack --watch",
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/pajh0509/fe-w45-kanbantodo#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "core-js": "^3.8.3",
     "express": "^4.17.1",
     "webpack": "^5.15.0"
