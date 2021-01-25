@@ -8,7 +8,7 @@ const port = process.env.PORT || PORT;
 
 const app = new Koa();
 
-app.use(serve(__dirname + "/public"));
+app.use(serve(__dirname + "/public/dist"));
 
 app.listen(port, () => {
   console.log(`Server is listening to port ${process.env.HOST}:${port}`);
