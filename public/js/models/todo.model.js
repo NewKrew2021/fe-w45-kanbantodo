@@ -9,6 +9,12 @@ class TodoModel {
     this.cardList = [];
     this.status = status;
   }
+  getCardData() {
+    this.cardList = CARD_LIST;
+  }
+  init() {
+    this.getCardData();
+  }
 }
 
 export { TodoModel };
