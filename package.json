@@ -24,6 +24,7 @@
     "koa": "^2.13.1",
     "koa-router": "^10.0.0",
     "koa-static": "^5.0.0",
+    "mongoose": "^5.11.13",
     "webpack-cli": "^4.3.1"
   },
   "devDependencies": {
