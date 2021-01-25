@@ -14,6 +14,7 @@ class TodoModel {
   }
   init() {
     this.getCardData();
+    return this;
   }
 }
 

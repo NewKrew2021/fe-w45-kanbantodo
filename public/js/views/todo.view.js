@@ -1,4 +1,4 @@
-import { createNewElement } from "../common/utils";
+import { $, createNewElement } from "../common/utils";
 
 const TODO_TPL = {
   todoHeader(status, totalCount) {
@@ -20,17 +20,28 @@ const TODO_TPL = {
   },
 };
 
-class Todo {
-  constructor() {}
+class TodoView {
+  constructor() {
+    this.element = createNewElement("div", "todo", "");
+  }
 
-  createTodo(cardList, status, totalCount) {
-    const newTodo = createNewElement("div", "todo", "");
-    newTodo.innerHTML =
-      TODO_TPL.todoHeader(status, totalCount) +
+  createTodo(cardList, status) {
+    return (
+      TODO_TPL.todoHeader(status, cardList.length) +
       cardList.reduce((acc, { content, writer }) => {
-        return acc + todoCard(content, writer);
-      }, "");
+        return acc + TODO_TPL.todoCard(content, writer);
+      }, "")
+    );
+  }
+
+  render(cardList, status) {
+    this.element.innerHTML = this.createTodo(cardList, status);
+  }
+
+  init() {
+    $(".todo-list").appendChild(this.element);
+    return this;
   }
 }
 
-export { TodoList };
+export { TodoView };

@@ -7,14 +7,11 @@ class TodoController {
     this.todoList = [...this.todoList, todo];
   }
 
-  notify(status, changedCardList) {
-    let changedTodo = this.todoList.filter((todo) => status === todo.status);
-
-    if (changedTodo) {
-      changedTodo.forEach((todo) => (todo.cardList = changedCardList));
-      return;
-    }
-
-    this.todoList = [...this.todoList, { status: status, cardList: changedCardList }];
+  notify(cardList, status) {
+    this.todoList.forEach(({ element, createTodo }) => {
+      element.innerHTML = createTodo(cardList, status);
+    });
   }
 }
+
+export { TodoController };
