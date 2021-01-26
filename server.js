@@ -21,10 +21,53 @@ server.listen(port, () => {
 
 /*
 
-fetch('http://localhost:3000/posts', {
-  method: 'POST', // or 'PUT'
+fetch('http://localhost:3000/posts/0', {
+  method: 'PUT', // or 'PUT'
   body: JSON.stringify({
-    title: "abc"
+    "id": 0,
+  "name": "해야할일",
+  "author": "chanhuiseok",
+  "data": [
+    {
+      "title": "페이지네이션",
+      "tasks": [
+        {
+          "id": 0,
+          "title": "task1"
+        },
+        {
+          "id": 1,
+          "title": "task2"
+        }
+      ]
+    },
+    {
+      "title": "공부하기",
+      "tasks": [
+        {
+          "id": 0,
+          "title": "task1"
+        },
+        {
+          "id": 1,
+          "title": "task2"
+        }
+      ]
+    },
+    {
+      "title": "공부하기333",
+      "tasks": [
+        {
+          "id": 0,
+          "title": "task1"
+        },
+        {
+          "id": 1,
+          "title": "task2"
+        }
+      ]
+    }
+  ]
   }), // data can be `string` or {object}!
   headers:{
     'Content-Type': 'application/json'

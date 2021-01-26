@@ -1,10 +1,10 @@
 
 export const domTpl = {
-    AddListView({ id, author, name, data }, eidx) {
-        `<div class="list-view" data=${id} data-idx=${eidx}>
-        <p class="title"><img class="mg-right-6" src="/images/list_btn.png">${element.title}</p>
+    AddListView({idx, eidx, author, title, tasks = ''}) {
+        return `<div class="list-view" data=${idx} data-idx=${eidx}>
+        <p class="title"><img class="mg-right-6" src="/images/list_btn.png">${title}</p>
         <ul class="task sub-title font-15">
-            ${element.tasks.map(element =>
+            ${tasks && tasks.map(element =>
                 `<li>${element.title}</li>`
             ).join('')}
         </ul>
@@ -36,18 +36,20 @@ export const domTpl = {
                 <button class="btn-add-list" data=${id}>Add</button>
                 <button class="btn-cancel-list" data=${id}>Cancel</button>
             </div>
+            <div class="list-view-wrapper" data=${idx}>
             ${data.map((element, eidx) =>
             `<div class="list-view" data=${idx} data-idx=${eidx}>
                 <p class="title"><img class="mg-right-6" src="/images/list_btn.png">${element.title}</p>
                 <ul class="task sub-title font-15">
-                ${element.tasks.map(element =>
-                `<li>${element.title}</li>`
-            ).join('')}
+                ${element.tasks && element.tasks.map(element =>
+                    `<li>${element.title}</li>`
+                ).join('')} 
                 </ul>
                     <p class="author sub-title font-14">Added by ${author}</p>
                     <button class="close-btn" data=${idx} data-idx=${eidx}><img src="/images/close_btn.png"></button>
                     </div>`
         ).join('')}
+            </div>
             </div>
             </div>
         `

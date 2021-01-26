@@ -2,7 +2,7 @@
     ListView.js : card에 존재하는 여러 개의 리스트 뷰들
     모델을 구독하는 Observer
     구독중인 모델의 어떤 상태가 변경되면 -> 화면의 변화 발생(렌더링)
-    데이터가 새롭게 추가되면 구독 중인 ListView가 감지한다.
+    데이터가 새롭게 추가되면, 구독 중인 ListView가 감지한다.
 */
 import { domTpl } from './template.js';
 import * as _dom from '../src/util.js';
@@ -16,9 +16,28 @@ class ListView{
 
     // update(모델에 데이터가 추가되면, 상태값을 토대로 리스트뷰 업데이트 하기)
     update(state){
+        this.addListView(state);
     }
 
     // event listener 정의
+
+    addListView(res){
+        // html 변경
+        const idx = res.index;
+        const title = res.added.title;
+        const tasks = res.added.tasks && res.added.tasks;
+        const eidx = res.state[0][idx].data.length - 1;
+        const author = res.state[0][idx].author;
+        const addData = domTpl['AddListView']({idx, eidx, author, title, tasks});
+        const listWrapper = _dom.queryAll('.list-view-wrapper');
+        listWrapper.forEach(e =>{
+            if(e.getAttribute('data') === idx){
+                _dom.addHTML(e, addData);
+            }
+        })
+
+        // post(put) 요청으로 데이터도 변경하기
+    }
 
     // template로 초기 html 넣기
     async render(){
