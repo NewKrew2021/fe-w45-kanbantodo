@@ -3,44 +3,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
-  entry: './webpack-entry.js',
+  entry: './webpack-entry.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'script.bundle.js'
   },
   module: {
     rules: [
-
-      // rule for js
+      // rule for .ts and .js
       {
-        test: /\.m?js$/,
+        test: /\.(js|ts)$/,
         exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              [
-                '@babel/preset-env',
-                {
-                  targets: '> 0.25%, not dead',
-                  useBuiltIns: 'usage',
-                  corejs: {
-                    version: 3,
-                    proposals: true
-                  },
-                }
-              ]
-            ],
-            plugins: [
-              '@babel/plugin-proposal-class-properties',
-              '@babel/plugin-proposal-private-methods',
-              '@babel/plugin-transform-modules-commonjs',
-            ]
-          }
-        }
+        use: [
+          { loader: 'babel-loader' },
+          { loader: 'ts-loader' }
+        ]
       },
 
-      // rule for css
+      // rule for .sass, .scss and .css
       {
         test: /\.s[ac]ss$/i,
         use: [
@@ -62,6 +42,9 @@ module.exports = {
         ]
       }
     ]
+  },
+  resolve: {
+    extensions: [ '.ts', '.js' ],
   },
   plugins: [
     new HtmlWebpackPlugin({
