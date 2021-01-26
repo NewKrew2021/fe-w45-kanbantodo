@@ -2,25 +2,69 @@
     "posts": [
         {
             "id": 1,
-            "title": "first",
+            "name": "해야할일",
             "author": "chanhuiseok",
-            "note": "페이지네이션",
-            "tasks": [
+            "data": [
                 {
-                    "id": 1,
-                    "title": "task1"
-                },{
-                    "id": 2,
-                    "title": "task2"
+                    "title": "페이지네이션",
+                    "tasks": [
+                        {
+                            "id": 1,
+                            "title": "task1"
+                        },
+                        {
+                            "id": 2,
+                            "title": "task2"
+                        }
+                    ]
+                },
+                {
+                    "title": "공부하기",
+                    "tasks": [
+                        {
+                            "id": 1,
+                            "title": "task1"
+                        },
+                        {
+                            "id": 2,
+                            "title": "task2"
+                        }
+                    ]
                 }
             ]
         },
         {
             "id": 2,
-            "title": "second",
+            "name": "하는중",
             "author": "chanhuiseok",
-            "note": "페이지네이션2",
-            "tasks": []
+            "data": [
+                {
+                    "title": "이번 주 기획리뷰",
+                    "tasks": [
+                        {
+                            "id": 1,
+                            "title": "task1"
+                        },
+                        {
+                            "id": 2,
+                            "title": "task2"
+                        }
+                    ]
+                },
+                {
+                    "title": "스켈레톤",
+                    "tasks": [
+                        {
+                            "id": 1,
+                            "title": "task1"
+                        },
+                        {
+                            "id": 2,
+                            "title": "task2"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

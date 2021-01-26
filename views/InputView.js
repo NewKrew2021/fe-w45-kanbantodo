@@ -9,7 +9,6 @@
 */
 
 /* TodoModel을 구독하는 Observer */
-
 class InputView{
     constructor(subject){
         this.subject = subject; // 생성 시 구독할 model을 주입받고 구독한다.
