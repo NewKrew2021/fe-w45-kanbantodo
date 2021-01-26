@@ -4,10 +4,14 @@
     width:100%;
     height:100%;
     justify-content:space-around;
-    .hidden{
+    .hide{
         display:none;
+    }.show{
+        display:block;
     }
     .section{
+        position:relative;
+
         font-size:16px;
         background-color: rgb(243,243,243);
         height: 700px;
@@ -15,7 +19,7 @@
         border-radius: 20px;
         padding : 10px;
         margin:0px 3px 0px 3px;
-        .section-add-btn{
+        .open-panel-btn{
             font-size:18px;
             position:absolute;
             top:7px;
@@ -27,50 +31,68 @@
             right:10px;
             border:none;
         }
-    }
-    .item{
-        position:relative;
-        font-size:14px;
-        height: 60px;
-        width: 95%;
-        border-radius: 20px;
-        background-color: white;
-        display: block;
-        margin:10px 0px 10px 0px;
-        padding : 5px 5px 5px 5px;
-        box-shadow: 1px 1px 1px 1px lightgray;
-        img{
-            position:absolute;
-            left:10px;
+        .add-panel{
+            width:95%;
+            position:relative;
+            margin:10px 0px 0px 0px;
+            left:7px;
+            textArea{
+                border-radius: 4px;
+                width:100%;
+            }
+            button{
+                height: 35px;
+                width: 48%;
+                border-radius: 5px;
+                border:0.5px solid lightgrey;
+            }
+            .add-item-btn{
+                background-color: lightgreen;
+            }
         }
-        .delete-btn{
-            position:absolute;
-            right:10px;
-            top:8px;
-            border-radius: 30px;
-            border:none;
-        }
-        .title{
-            position:absolute;
-            left:30px;
-            top:8px;
-        }
-        .author{
-            position:absolute;
-            left:30px;
-            bottom:20px;
-        }
-    }
-    
-    #todo-section{
-        position:relative;
-        #todo-list{
+        .item-list{
             position:absolute;
             display: block;
             left:50%;
             transform:translateX(-50%);
             height: 90%;
             width: 95%;
+            .item{
+                position:relative;
+                font-size:14px;
+                height: 60px;
+                width: 95%;
+                border-radius: 20px;
+                background-color: white;
+                display: block;
+                margin:10px 0px 10px 0px;
+                padding : 5px 5px 5px 5px;
+                box-shadow: 1px 1px 1px 1px lightgray;
+                img{
+                    position:absolute;
+                    left:10px;
+                }
+                .delete-btn{
+                    position:absolute;
+                    right:10px;
+                    top:8px;
+                    border-radius: 30px;
+                    border:none;
+                }
+                .title{
+                    position:absolute;
+                    left:30px;
+                    top:8px;
+                }
+                .author{
+                    position:absolute;
+                    left:30px;
+                    bottom:20px;
+                }
+            }
         }
     }
+    
+    
+    
 }

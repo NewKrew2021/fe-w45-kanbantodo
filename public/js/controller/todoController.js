@@ -17,12 +17,38 @@ export function initTotoController(){
         state.todoList=todoList;
     }
 
-    //insert
+    //insert including panel manipulation
     const todoSection=document.querySelector("#todo-section");
-    const addBtn=todoSection.querySelector("#todo-add-btn");
-    addBtn.addEventListener("click",()=>{
-        createTodo(handleTodoListChange,{title:"새 할 일",author:"crong"});
+    const openPanelBtn=todoSection.querySelector(".open-panel-btn");
+    openPanelBtn.addEventListener("click",handleAddPanel);
+    const addPanel=todoSection.querySelector(".add-panel");
+    function handleAddPanel({target}){
+        const section = target.closest(".section");
+        if(addPanel.className.includes("hide")){
+            addPanel.classList.remove("hide");
+            addPanel.classList.add("show");
+        }else if(addPanel.className.includes("show")){
+            addPanel.classList.remove("show");
+            addPanel.classList.add("hide");
+        }
+    }
+    const textArea = todoSection.querySelector("textArea");
+    const addItemBtn = todoSection.querySelector(".add-item-btn");
+    textArea.addEventListener("input",({target})=>{
+        if(target.value===""){
+            addItemBtn.disabled=true;
+        }else{
+            addItemBtn.disabled=false;
+        }
     });
+    //insert: call POST API
+    addItemBtn.addEventListener("click",()=>{
+        const newTitle=textArea.value;
+        createTodo(handleTodoListChange,{title:newTitle,author:"justin"});
+        textArea.value="";
+        addItemBtn.disabled=true;
+    });
+
     
     //inital data fetch
     fetchTodo(handleTodoListChange);

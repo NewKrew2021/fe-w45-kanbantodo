@@ -1,11 +1,18 @@
 import { createElementFromHTML } from "../util.js";
 function initTodoSection() {
     const container = document.querySelector("#container");
-    const todoSection = createElementFromHTML(`<div id="todo-section" class="section">
+    const todoSection = createElementFromHTML(
+    `<div id="todo-section" class="section">
         해야할 일
-        <button id="todo-add-btn" class="section-add-btn">+</button>
+        <button class="open-panel-btn">+</button>
         <button class="section-delete-btn">X</button>
-        <div id="todo-list"></div>
+        <div id="add-panel" class="add-panel hide">
+            <textArea></textArea>
+            <button class="add-item-btn" disabled>Add</button>
+            <button class="cancel-btn">Cancel</button>
+        </div>
+        <!-- id 없이 가능할까?-->
+        <div id="todo-list" class="item-list"></div>
     </div>`);
     container.appendChild(todoSection);
 

@@ -5,10 +5,14 @@
   height: 100%;
   justify-content: space-around;
 }
-#container .hidden {
+#container .hide {
   display: none;
 }
+#container .show {
+  display: block;
+}
 #container .section {
+  position: relative;
   font-size: 16px;
   background-color: #f3f3f3;
   height: 700px;
@@ -17,7 +21,7 @@
   padding: 10px;
   margin: 0px 3px 0px 3px;
 }
-#container .section .section-add-btn {
+#container .section .open-panel-btn {
   font-size: 18px;
   position: absolute;
   top: 7px;
@@ -29,7 +33,34 @@
   right: 10px;
   border: none;
 }
-#container .item {
+#container .section .add-panel {
+  width: 95%;
+  position: relative;
+  margin: 10px 0px 0px 0px;
+  left: 7px;
+}
+#container .section .add-panel textArea {
+  border-radius: 4px;
+  width: 100%;
+}
+#container .section .add-panel button {
+  height: 35px;
+  width: 48%;
+  border-radius: 5px;
+  border: 0.5px solid lightgrey;
+}
+#container .section .add-panel .add-item-btn {
+  background-color: lightgreen;
+}
+#container .section .item-list {
+  position: absolute;
+  display: block;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 90%;
+  width: 95%;
+}
+#container .section .item-list .item {
   position: relative;
   font-size: 14px;
   height: 60px;
@@ -41,37 +72,26 @@
   padding: 5px 5px 5px 5px;
   box-shadow: 1px 1px 1px 1px lightgray;
 }
-#container .item img {
+#container .section .item-list .item img {
   position: absolute;
   left: 10px;
 }
-#container .item .delete-btn {
+#container .section .item-list .item .delete-btn {
   position: absolute;
   right: 10px;
   top: 8px;
   border-radius: 30px;
   border: none;
 }
-#container .item .title {
+#container .section .item-list .item .title {
   position: absolute;
   left: 30px;
   top: 8px;
 }
-#container .item .author {
+#container .section .item-list .item .author {
   position: absolute;
   left: 30px;
   bottom: 20px;
-}
-#container #todo-section {
-  position: relative;
-}
-#container #todo-section #todo-list {
-  position: absolute;
-  display: block;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 90%;
-  width: 95%;
 }
 
 /*# sourceMappingURL=container.css.map */
