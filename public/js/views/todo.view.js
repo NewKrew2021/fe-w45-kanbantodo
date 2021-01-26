@@ -67,6 +67,7 @@ class TodoView {
       if (target.className === "todo-card--delete-button") {
         let deleteTarget = {
           id: target.closest(".todo-card").id,
+          status: this.status,
         };
         callback(deleteTarget);
       }
@@ -74,6 +75,7 @@ class TodoView {
   }
 
   render(cardList, status) {
+    console.log("card", cardList);
     this.element.innerHTML = this.createTodo(cardList, status);
   }
 

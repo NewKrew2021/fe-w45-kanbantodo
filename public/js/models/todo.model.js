@@ -1,9 +1,8 @@
 const TODO_API_HOST = "http://localhost:8000/api/todo";
 
 class TodoModel {
-  constructor(status = null) {
-    this.cardList = [];
-    this.status = status;
+  constructor() {
+    this.todoCardList = {};
   }
 
   async getCardData() {
@@ -14,18 +13,20 @@ class TodoModel {
   async addCard(cardData) {
     let res = await this.postCardData(cardData);
     let newCard = await res.json();
-    this.cardList = [...this.cardList, newCard];
-    return this.cardList;
+    console.log("added");
+    this.todoCardList[cardData.status] = [...this.todoCardList[cardData.status], newCard];
+
+    return this.todoCardList;
   }
 
   async deleteTodo(todoData) {
     await this.deleteCardData(todoData);
 
-    this.cardList = this.cardList.filter(({ _id }) => {
+    this.todoCardList[todoData.status] = this.todoCardList[todoData.status].filter(({ _id }) => {
       return _id !== todoData.id;
     });
 
-    return this.cardList;
+    return this.todoCardList;
   }
 
   postCardData(todoData) {
@@ -50,11 +51,21 @@ class TodoModel {
     });
   }
 
-  async initData() {
-    let cardList = await this.getCardData();
-    this.cardList = cardList;
+  clusterTodoData(todoData) {
+    for (let todo of todoData) {
+      if (this.todoCardList[todo.status]) {
+        this.todoCardList[todo.status] = [...this.todoCardList[todo.status], todo];
+        continue;
+      }
+      this.todoCardList[todo.status] = [todo];
+    }
+  }
 
-    return this.cardList;
+  async initData() {
+    let res = await this.getCardData();
+
+    this.clusterTodoData(res);
+    return this.todoCardList;
   }
 }
 

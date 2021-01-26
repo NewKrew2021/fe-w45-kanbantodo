@@ -9,7 +9,7 @@ class TodoController {
 
   notify(cardList, status) {
     this.todoList.forEach(({ render }) => {
-      render(cardList, status);
+      render(cardList[status], status);
     });
   }
 }

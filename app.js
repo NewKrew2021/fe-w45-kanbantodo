@@ -7,25 +7,25 @@ import { TodoModel } from "./public/js/models/todo.model";
 import { TodoView } from "./public/js/views/todo.view";
 
 document.addEventListener("DOMContentLoaded", async (event) => {
-  const todoModel = new TodoModel("할 일");
-  const todoView = new TodoView().init();
+  const todoModel = new TodoModel();
+  const todoView = new TodoView("할 일").init();
   const todoController = new TodoController();
 
-  let cardList = await todoModel.initData();
+  let todoCardList = await todoModel.initData();
 
   todoController.subscribe({
     render: todoView.render,
   });
 
-  todoController.notify(cardList, "할 일");
+  todoController.notify(todoCardList, "할 일");
 
   todoView.getNewTodoData(async (cardData) => {
     await todoModel.addCard(cardData);
-    todoController.notify(todoModel.cardList, "할 일");
+    todoController.notify(todoModel.todoCardList, "할 일");
   });
 
   todoView.deleteTodo(async (cardData) => {
     await todoModel.deleteTodo(cardData);
-    todoController.notify(todoModel.cardList, "할 일");
+    todoController.notify(todoModel.todoCardList, "할 일");
   });
 });
