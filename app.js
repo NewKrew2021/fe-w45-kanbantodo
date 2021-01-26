@@ -6,13 +6,15 @@ import { TodoController } from "./public/js/controllers/todo.controller";
 import { TodoModel } from "./public/js/models/todo.model";
 import { TodoView } from "./public/js/views/todo.view";
 
-document.addEventListener("DOMContentLoaded", (event) => {
-  const todoController = new TodoController();
-  const todoModel = new TodoModel("할 일").init();
+document.addEventListener("DOMContentLoaded", async (event) => {
+  const todoModel = new TodoModel("할 일");
   const todoView = new TodoView().init();
+  const todoController = new TodoController();
+
+  let cardList = await todoModel.initData();
 
   todoController.subscribe({
     render: todoView.render,
   });
-  todoController.notify(todoModel.cardList, "할 일");
+  todoController.notify(cardList, "할 일");
 });

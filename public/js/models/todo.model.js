@@ -1,8 +1,4 @@
-const CARD_LIST = [
-  { content: "PR 날리기", writer: "puba" },
-  { content: "PR 날리기", writer: "puba" },
-  { content: "PR 날리기", writer: "puba" },
-];
+const TODO_API_HOST = "http://localhost:8000/api/todo";
 
 class TodoModel {
   constructor(status = null) {
@@ -10,12 +6,13 @@ class TodoModel {
     this.status = status;
   }
 
-  getCardData() {
-    this.cardList = CARD_LIST;
+  async getCardData() {
+    let res = await fetch(TODO_API_HOST);
+    return await res.json();
   }
 
   addCardData(todoData) {
-    return fetch("http://localhost:8000/api/todo", {
+    return fetch(TODO_API_HOST, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -25,10 +22,10 @@ class TodoModel {
     });
   }
 
-  init() {
-    this.getCardData();
-    // this.addCardData({ content: "PR 날리기", writer: "puba", status: "할 일" });
-    return this;
+  async initData() {
+    let cardList = await this.getCardData();
+    this.cardList = cardList;
+    return this.cardList;
   }
 }
 
