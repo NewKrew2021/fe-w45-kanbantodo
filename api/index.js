@@ -15,4 +15,15 @@ api.get("/todo", async (ctx, next) => {
   ctx.body = todo;
 });
 
+api.post("/todo", async (ctx, next) => {
+  let newTodo;
+  try {
+    newTodo = postTodo(ctx.request.body);
+  } catch (e) {
+    return ctx.throw(500, e);
+  }
+
+  ctx.body = newTodo;
+});
+
 module.exports = api;

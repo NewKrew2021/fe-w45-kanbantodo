@@ -17,12 +17,17 @@ class TodoModel {
   addCardData(todoData) {
     return fetch("http://localhost:8000/api/todo", {
       method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(todoData),
     });
   }
 
   init() {
     this.getCardData();
+    // this.addCardData({ content: "PR 날리기", writer: "puba", status: "할 일" });
     return this;
   }
 }

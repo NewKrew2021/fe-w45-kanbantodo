@@ -19,28 +19,27 @@ const TodoSchema = new mongoose.Schema({
 
 const Todo = mongoose.model("Todo", TodoSchema);
 
-const test = new Todo({
-  content: "PR 날리기",
-  writer: "puba",
-  status: "할 일",
-});
-
 const getTodo = () => {
-  // return Todo.find().exec();
   return Todo.find({}, function (err, todo) {
     if (err) throw err;
     return todo;
   });
 };
 
-const postTodo = () => {
-  test
+const postTodo = ({ content, writer, status }) => {
+  const newTodo = new Todo({
+    content: content,
+    writer: writer,
+    status: status,
+  });
+
+  newTodo
     .save()
     .then(() => {
-      console.log(test);
+      return newTodo;
     })
     .catch((err) => {
-      console.log("Error : " + err);
+      return err;
     });
 };
 
