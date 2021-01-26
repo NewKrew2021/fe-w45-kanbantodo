@@ -22,9 +22,9 @@ const TODO_TPL = {
         <div class="todo-header--delete-button">-</div>
       </div>`;
   },
-  todoCard(content, writer) {
+  todoCard(content, writer, _id) {
     return `
-      <div class="todo-card">
+      <div class="todo-card" id="${_id}">
         <div class="todo-card--content">${content}</div>
         <div class="todo-card--writter">${writer}</div>
         <div class="todo-card--delete-button">x</div>
@@ -43,8 +43,8 @@ class TodoView {
     return (
       TODO_TPL.todoHeader(status, cardList.length) +
       TODO_TPL.addTodo() +
-      cardList.reduce((acc, { content, writer }) => {
-        return acc + TODO_TPL.todoCard(content, writer);
+      cardList.reduce((acc, { content, writer, _id }) => {
+        return acc + TODO_TPL.todoCard(content, writer, _id);
       }, "")
     );
   }
