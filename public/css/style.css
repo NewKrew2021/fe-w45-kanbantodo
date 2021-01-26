@@ -1,0 +1,22 @@
+.navbar {
+  width: 1792px;
+  height: 60px;
+  margin: -8px;
+  background-color: #000000;
+}
+
+.navbar-title {
+  float: left;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 13px 0px 0px 50px;
+}
+
+.navbar-menu {
+  float: left;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 13px 0px 0px 1450px;
+}
