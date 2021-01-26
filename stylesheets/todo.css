@@ -1,0 +1,450 @@
+input {
+  outline: none;
+  border: 0px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  line-height: 2;
+  margin-left: 1em;
+}
+
+#header {
+  width: 100%;
+  height: 50px;
+  background-color: black;
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 50px;
+  z-index: 200;
+}
+
+.search-blank {
+  position: relative;
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  width: 280px;
+  height: 32px;
+}
+
+.search-blank:focus-within {
+  border: 1px solid #0366d6;
+  display: block;
+  -webkit-box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
+          box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
+}
+
+.search-box {
+  position: relative;
+  width: 260px;
+  padding: 0 0 0 15px;
+}
+
+.search-input {
+  z-index: 205;
+}
+
+.block {
+  display: block;
+}
+
+.search-btn {
+  position: absolute;
+  top: 5px;
+  left: 0;
+}
+
+.search-btn > img {
+  width: 18px;
+  height: 18px;
+}
+
+.flex-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+/* Card, listView, inputView */
+.card {
+  background-color: #f6f8fa;
+  padding: 5px;
+  border: 1px solid #dddee2;
+  border-radius: 6px;
+  margin: 10px;
+  width: 355px;
+  min-height: 600px;
+}
+
+.card-header {
+  position: relative;
+  margin: 7px;
+}
+
+.card-count {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: lightgray;
+  text-align: center;
+  line-height: 25px;
+}
+
+.input-list-view {
+  display: block;
+  margin-bottom: 3em;
+  text-align: center;
+  margin: 0 7px 50px 7px;
+}
+
+.list-input {
+  width: 95%;
+  min-height: 70px;
+  border-radius: 5px;
+  resize: vertical;
+  padding: 0.5em;
+  border: 1px solid #dddee2;
+  font-size: 15px;
+}
+
+.list-input:focus-within {
+  border: 1px solid #0366d6;
+}
+
+.btn-add-list {
+  width: 48%;
+  float: left;
+  background-color: #34B370;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 0.5em;
+}
+
+.btn-cancel-list {
+  width: 48%;
+  float: right;
+  background-color: #ffffff;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 0.5em;
+}
+
+.list-view {
+  background-color: #ffffff;
+  border: 1px solid #dddee2;
+  margin: 7px;
+  border-radius: 6px;
+  padding: 10px;
+  position: relative;
+}
+
+.title {
+  margin-bottom: 0.7em;
+}
+
+.task {
+  margin-left: 1.5em;
+}
+
+.author {
+  margin-left: 1em;
+  margin-top: 0.7em;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+
+.search-btn > img {
+  width: 18px;
+  height: 18px;
+}
+
+.close-btn > img {
+  width: 14px;
+  height: 14px;
+}
+
+.htop {
+  top: 0;
+}
+
+.htop-add {
+  top: 0;
+  right: 25px;
+}
+
+.none {
+  display: none;
+}
+
+/*   *******   */
+.pd-5 {
+  padding: 5px;
+}
+
+.pd-top-2 {
+  padding-top: 2px;
+}
+
+.mg-2 {
+  margin: 2px;
+}
+
+.mg-left-2 {
+  margin-left: 2px;
+}
+
+.mg-right-2 {
+  margin-right: 2px;
+}
+
+.mg-top-2 {
+  margin-top: 2px;
+}
+
+.mg-bottom-2 {
+  margin-bottom: 2px;
+}
+
+.bd-radius-3 {
+  border-radius: 3px;
+}
+
+.font-15 {
+  font-size: 15px;
+}
+
+.pd-10 {
+  padding: 10px;
+}
+
+.pd-top-4 {
+  padding-top: 4px;
+}
+
+.mg-4 {
+  margin: 4px;
+}
+
+.mg-left-4 {
+  margin-left: 4px;
+}
+
+.mg-right-4 {
+  margin-right: 4px;
+}
+
+.mg-top-4 {
+  margin-top: 4px;
+}
+
+.mg-bottom-4 {
+  margin-bottom: 4px;
+}
+
+.bd-radius-6 {
+  border-radius: 6px;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+.pd-15 {
+  padding: 15px;
+}
+
+.pd-top-6 {
+  padding-top: 6px;
+}
+
+.mg-6 {
+  margin: 6px;
+}
+
+.mg-left-6 {
+  margin-left: 6px;
+}
+
+.mg-right-6 {
+  margin-right: 6px;
+}
+
+.mg-top-6 {
+  margin-top: 6px;
+}
+
+.mg-bottom-6 {
+  margin-bottom: 6px;
+}
+
+.bd-radius-9 {
+  border-radius: 9px;
+}
+
+.font-25 {
+  font-size: 25px;
+}
+
+.pd-20 {
+  padding: 20px;
+}
+
+.pd-top-8 {
+  padding-top: 8px;
+}
+
+.mg-8 {
+  margin: 8px;
+}
+
+.mg-left-8 {
+  margin-left: 8px;
+}
+
+.mg-right-8 {
+  margin-right: 8px;
+}
+
+.mg-top-8 {
+  margin-top: 8px;
+}
+
+.mg-bottom-8 {
+  margin-bottom: 8px;
+}
+
+.bd-radius-12 {
+  border-radius: 12px;
+}
+
+.font-30 {
+  font-size: 30px;
+}
+
+.pd-25 {
+  padding: 25px;
+}
+
+.pd-top-10 {
+  padding-top: 10px;
+}
+
+.mg-10 {
+  margin: 10px;
+}
+
+.mg-left-10 {
+  margin-left: 10px;
+}
+
+.mg-right-10 {
+  margin-right: 10px;
+}
+
+.mg-top-10 {
+  margin-top: 10px;
+}
+
+.mg-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.bd-radius-15 {
+  border-radius: 15px;
+}
+
+.font-35 {
+  font-size: 35px;
+}
+
+.font-12 {
+  font-size: 12px;
+}
+
+.font-14 {
+  font-size: 14px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.gray {
+  color: gray;
+}
+
+.mg-top-40 {
+  margin-top: 40px;
+}
+
+.mg-left-40 {
+  margin-left: 40px;
+}
+
+.mg-right-40 {
+  margin-right: 40px;
+}
+
+.mg-bottom-40 {
+  margin-bottom: 40px;
+}
+
+.mg-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.mg-top-210 {
+  margin-top: 210px;
+}
+
+.mg-top-30 {
+  margin-top: -30px;
+}
+
+.mg-top-20 {
+  margin-top: 20px;
+}
+
+.mg-left-20 {
+  margin-left: 20px;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.font-white {
+  color: white;
+}
+/*# sourceMappingURL=todo.css.map */
