@@ -1,6 +1,16 @@
 import { $, createNewElement } from "../common/utils";
 
 const TODO_TPL = {
+  addTodo() {
+    return `  
+    <div class="add-todo-card">
+      <input type="text" class="add-todo-card__input" placeholder="Enter a note" />
+        <div class="add-todo-card__button-list">
+          <button class="add-button">Add</button>
+          <button class="cancel-button">Cancel</button>
+      </div>
+    </div>`;
+  },
   todoHeader(status, totalCount) {
     return `
       <div class="todo-header">
@@ -29,6 +39,7 @@ class TodoView {
   createTodo(cardList, status) {
     return (
       TODO_TPL.todoHeader(status, cardList.length) +
+      TODO_TPL.addTodo() +
       cardList.reduce((acc, { content, writer }) => {
         return acc + TODO_TPL.todoCard(content, writer);
       }, "")
