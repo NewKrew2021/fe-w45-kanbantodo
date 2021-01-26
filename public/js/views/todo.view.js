@@ -1,5 +1,7 @@
 import { $, createNewElement } from "../common/utils";
 
+const USER = "puba";
+
 const TODO_TPL = {
   addTodo() {
     return `  
@@ -31,9 +33,10 @@ const TODO_TPL = {
 };
 
 class TodoView {
-  constructor() {
+  constructor(status = null) {
     this.element = createNewElement("div", "todo", "");
     this.render = this.render.bind(this);
+    this.status = status;
   }
 
   createTodo(cardList, status) {
@@ -44,6 +47,19 @@ class TodoView {
         return acc + TODO_TPL.todoCard(content, writer);
       }, "")
     );
+  }
+
+  getNewTodoData(callback) {
+    this.element.addEventListener("click", ({ target }) => {
+      if (target.className === "add-button") {
+        let newTodoData = {
+          content: $(".add-todo-card__input", this.element).value,
+          status: this.status,
+          writer: USER,
+        };
+        callback(newTodoData);
+      }
+    });
   }
 
   render(cardList, status) {
