@@ -15,7 +15,6 @@ class TodoModel extends Observable{
         super();
         this.todos = []; // state
         this.url = initialUrl; // 가져올 데이터의 요청 URL
-        //this.getInitialData();
     }
 
     // todo 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.

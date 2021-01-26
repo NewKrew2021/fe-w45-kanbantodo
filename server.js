@@ -18,3 +18,17 @@ let port = 3000;
 server.listen(port, () => {
   console.log(`Mock Server is running, port(${port})`)
 })
+
+/*
+
+fetch('http://localhost:3000/posts', {
+  method: 'POST', // or 'PUT'
+  body: JSON.stringify({
+    title: "abc"
+  }), // data can be `string` or {object}!
+  headers:{
+    'Content-Type': 'application/json'
+  }
+}).then(res => res.json())
+
+*/

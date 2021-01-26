@@ -190,6 +190,15 @@ input {
   top: 0;
 }
 
+.htop-add {
+  top: 0;
+  right: 25px;
+}
+
+.none {
+  display: none;
+}
+
 /*   *******   */
 .pd-5 {
   padding: 5px;
@@ -373,6 +382,10 @@ input {
 
 .font-12 {
   font-size: 12px;
+}
+
+.font-14 {
+  font-size: 14px;
 }
 
 .bold {

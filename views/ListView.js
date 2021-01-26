@@ -34,7 +34,7 @@ class ListView{
     }
 
     init(){
-
+        this.render();
     }
 }
 
