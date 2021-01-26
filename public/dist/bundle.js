@@ -16,7 +16,7 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_controller_todoController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/controller/todoController */ \"./public/js/controller/todoController.js\");\n/* harmony import */ var _js_view_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/view/Header */ \"./public/js/view/Header.js\");\n/* harmony import */ var _js_view_TodoSection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/view/TodoSection */ \"./public/js/view/TodoSection.js\");\n/* harmony import */ var _js_view_DoingSection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/view/DoingSection */ \"./public/js/view/DoingSection.js\");\n/* harmony import */ var _js_view_DoneSection__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/view/DoneSection */ \"./public/js/view/DoneSection.js\");\n\n\n\n\n\n\n(function initApp() {\n  (0,_js_view_Header__WEBPACK_IMPORTED_MODULE_1__.initHeader)();\n  (0,_js_view_TodoSection__WEBPACK_IMPORTED_MODULE_2__.initTodoSection)(); //view\n\n  (0,_js_controller_todoController__WEBPACK_IMPORTED_MODULE_0__.initTotoController)(); //controller\n\n  (0,_js_view_DoingSection__WEBPACK_IMPORTED_MODULE_3__.initDoingSection)();\n  (0,_js_view_DoneSection__WEBPACK_IMPORTED_MODULE_4__.initDoneSection)();\n})();\n\n//# sourceURL=webpack://fe-w45-shoppinghow/./public/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_controller_todoController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/controller/todoController */ \"./public/js/controller/todoController.js\");\n/* harmony import */ var _js_view_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/view/Header */ \"./public/js/view/Header.js\");\n/* harmony import */ var _js_view_TodoSection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/view/TodoSection */ \"./public/js/view/TodoSection.js\");\n/* harmony import */ var _js_view_DoingSection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/view/DoingSection */ \"./public/js/view/DoingSection.js\");\n/* harmony import */ var _js_view_DoneSection__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/view/DoneSection */ \"./public/js/view/DoneSection.js\");\n/* harmony import */ var _js_view_SearchBar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./js/view/SearchBar */ \"./public/js/view/SearchBar.js\");\n\n\n\n\n\n\n\n(function initApp() {\n  (0,_js_view_Header__WEBPACK_IMPORTED_MODULE_1__.initHeader)();\n  (0,_js_view_SearchBar__WEBPACK_IMPORTED_MODULE_5__.initSearchBar)();\n  (0,_js_view_TodoSection__WEBPACK_IMPORTED_MODULE_2__.initTodoSection)(); //view\n\n  (0,_js_controller_todoController__WEBPACK_IMPORTED_MODULE_0__.initTotoController)(); //controller\n\n  (0,_js_view_DoingSection__WEBPACK_IMPORTED_MODULE_3__.initDoingSection)();\n  (0,_js_view_DoneSection__WEBPACK_IMPORTED_MODULE_4__.initDoneSection)();\n})();\n\n//# sourceURL=webpack://fe-w45-shoppinghow/./public/app.js?");
 
 /***/ }),
 
@@ -83,6 +83,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"initHeader\": () => /* binding */ initHeader\n/* harmony export */ });\nfunction initHeader() {\n  var title = \"TODO 서비스\";\n  var header = document.querySelector(\"header\");\n  header.innerHTML = \"<nav>\\n        <span id=\\\"title\\\">\".concat(title, \"</span>\\n        <span id=\\\"menu\\\">menu</span>\\n    </nav>\");\n}\n\n//# sourceURL=webpack://fe-w45-shoppinghow/./public/js/view/Header.js?");
+
+/***/ }),
+
+/***/ "./public/js/view/SearchBar.js":
+/*!*************************************!*\
+  !*** ./public/js/view/SearchBar.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"initSearchBar\": () => /* binding */ initSearchBar\n/* harmony export */ });\n/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util.js */ \"./public/js/util.js\");\n\nfunction initSearchBar() {\n  var section = document.querySelector(\"#search-bar-section\");\n  var searchBarSectionHTML = \"<div>\\n        <input placeholder=\\\"Filter cards\\\"></input>\\n    </div>\";\n  var searchBar = (0,_util_js__WEBPACK_IMPORTED_MODULE_0__.createElementFromHTML)(searchBarSectionHTML);\n  section.appendChild(searchBar);\n}\n\n//# sourceURL=webpack://fe-w45-shoppinghow/./public/js/view/SearchBar.js?");
 
 /***/ }),
 
