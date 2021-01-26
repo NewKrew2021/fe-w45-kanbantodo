@@ -11,7 +11,14 @@ class TodoModel {
     return await res.json();
   }
 
-  addCardData(todoData) {
+  async addCard(cardData) {
+    let res = await this.postCardData(cardData);
+    let newCard = await res.json();
+    this.cardList = [...this.cardList, newCard];
+    return this.cardList;
+  }
+
+  postCardData(todoData) {
     return fetch(TODO_API_HOST, {
       method: "POST",
       headers: {
@@ -25,12 +32,7 @@ class TodoModel {
   async initData() {
     let cardList = await this.getCardData();
     this.cardList = cardList;
-    // this.addCardData({ content: "1", writer: "puba", status: "hal ill" })
-    //   .then((res) => {
-    //     console.log(res);
-    //     return res.json();
-    //   })
-    //   .then((res) => console.log(res));
+
     return this.cardList;
   }
 }

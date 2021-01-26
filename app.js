@@ -16,5 +16,11 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   todoController.subscribe({
     render: todoView.render,
   });
+
   todoController.notify(cardList, "할 일");
+
+  todoView.getNewTodoData(async (cardData) => {
+    await todoModel.addCard(cardData);
+    todoController.notify(todoModel.cardList, "할 일");
+  });
 });
