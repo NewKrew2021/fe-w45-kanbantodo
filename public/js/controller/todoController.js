@@ -19,7 +19,7 @@ export function initTotoController(){
 
     //insert
     const todoSection=document.querySelector("#todo-section");
-    const addBtn=todoSection.querySelector("#add-btn");
+    const addBtn=todoSection.querySelector("#todo-add-btn");
     addBtn.addEventListener("click",()=>{
         createTodo(handleTodoListChange,{title:"새 할 일",author:"crong"});
     });

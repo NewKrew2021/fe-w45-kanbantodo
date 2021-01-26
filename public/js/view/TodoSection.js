@@ -1,8 +1,10 @@
 import { createElementFromHTML } from "../util.js";
 function initTodoSection() {
     const container = document.querySelector("#container");
-    const todoSection = createElementFromHTML(`<div id="todo-section">
-        <button id="add-btn">+</button>
+    const todoSection = createElementFromHTML(`<div id="todo-section" class="section">
+        해야할 일
+        <button id="todo-add-btn" class="section-add-btn">+</button>
+        <button class="section-delete-btn">X</button>
         <div id="todo-list"></div>
     </div>`);
     container.appendChild(todoSection);
@@ -13,11 +15,12 @@ function initTodoSection() {
 function render(todosListData) {
     const todoListElement=document.querySelector("#todo-list");
     const todosHTML = todosListData.reduce((acc, { _id,title,author }) =>
-        acc + `<div class="todo-item" dbID=${_id}>
+        `<div class="todo-item item" dbID=${_id}>
+        <img src="/public/image/todo.png"></img>
         <button class="delete-btn">X</button>
-        <div>${title}</div>
-        <div>${author}</div>
-        </div>`
+        <div class="title">${title}</div>
+        <div class="author">added by ${author}</div>
+        </div>`+acc
         , "");
     todoListElement.innerHTML = todosHTML;
 }
