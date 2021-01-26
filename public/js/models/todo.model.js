@@ -29,6 +29,17 @@ class TodoModel {
     });
   }
 
+  deleteCardData(todoData) {
+    return fetch(TODO_API_HOST, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todoData),
+    });
+  }
+
   async initData() {
     let cardList = await this.getCardData();
     this.cardList = cardList;
