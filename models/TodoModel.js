@@ -23,6 +23,7 @@ class TodoModel extends Observable{
         const inputObj = {
             title : inpuData
         }
+        this.todos[0][idx].data.push(inputObj)
         this.notify({state : this.todos, index: idx, added: inputObj});
     }
 

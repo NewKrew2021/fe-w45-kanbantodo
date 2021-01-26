@@ -17,6 +17,7 @@ class ListView{
     // update(모델에 데이터가 추가되면, 상태값을 토대로 리스트뷰 업데이트 하기)
     update(state){
         this.addListView(state);
+        console.log(state);
     }
 
     // event listener 정의
@@ -33,6 +34,13 @@ class ListView{
         listWrapper.forEach(e =>{
             if(e.getAttribute('data') === idx){
                 _dom.addHTML(e, addData);
+            }
+        })
+
+        const itemCount = _dom.queryAll('.card-count');
+        itemCount.forEach(e =>{
+            if(e.getAttribute('data') === idx){
+                _dom.html(e, eidx + 1);
             }
         })
 
