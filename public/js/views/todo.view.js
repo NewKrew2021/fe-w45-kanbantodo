@@ -23,6 +23,7 @@ const TODO_TPL = {
 class TodoView {
   constructor() {
     this.element = createNewElement("div", "todo", "");
+    this.render = this.render.bind(this);
   }
 
   createTodo(cardList, status) {

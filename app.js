@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const todoModel = new TodoModel("할 일").init();
   const todoView = new TodoView().init();
 
-  todoController.subscribe({ element: todoView.element, createTodo: todoView.createTodo });
+  todoController.subscribe({
+    render: todoView.render,
+  });
   todoController.notify(todoModel.cardList, "할 일");
 });

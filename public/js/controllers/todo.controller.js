@@ -8,8 +8,8 @@ class TodoController {
   }
 
   notify(cardList, status) {
-    this.todoList.forEach(({ element, createTodo }) => {
-      element.innerHTML = createTodo(cardList, status);
+    this.todoList.forEach(({ render }) => {
+      render(cardList, status);
     });
   }
 }
