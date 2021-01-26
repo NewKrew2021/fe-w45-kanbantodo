@@ -2,7 +2,19 @@
     app.js
     <entry point>
 */
-import test from '../views/InputView.js';
+import ListView from '../views/ListView.js';
+import TodoModel from '../models/TodoModel.js';
+import * as _dom from './util.js';
 
-const tmp = test;
-console.log(tmp);
+// model, Subject
+const todoModel = new TodoModel('http://localhost:3000/posts');
+
+//debugger;
+const listview = new ListView(todoModel);
+listview.render();
+
+// Observer
+
+//debugger;
+const test = _dom.query('#header');
+console.log(test);

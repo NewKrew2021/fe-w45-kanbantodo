@@ -1,5 +1,5 @@
 /*
-    common.js
+    util.js
 */
 
 export function addHTML(node, text) {
@@ -16,7 +16,7 @@ function dfs_q(node, target) {
         if (element.matches(target))
             return element;
         if (element.hasChildNodes()) {
-            let result = dfs_q(element);
+            let result = dfs_q(element, target);
             if (result !== undefined)  /* 찾았을 경우 */
                 returnVal = result;
         }
@@ -29,7 +29,7 @@ function dfs_q_all(nodeList, node, target){
         if (element.matches(target))
             nodeList.push(element);
         if (element.hasChildNodes())
-            dfs_q_all(nodeList, element);
+            dfs_q_all(nodeList, element, target);
     }
     return nodeList;
 }

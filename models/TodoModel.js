@@ -15,19 +15,22 @@ class TodoModel extends Observable{
         super();
         this.todos = []; // state
         this.url = initialUrl; // 가져올 데이터의 요청 URL
+        //this.getInitialData();
     }
 
-    // todo 추가할 때마다 상태가 변화하고 그 때마다 Observer(view들)에게 알려 준다.
+    // todo 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
     addTodo(todo){
         this.todos = [...this.todos, todo];
         this.notify(this.todos);
     }
-    
-    // todo 데이터 가져오기
-    // get으로 json-server로부터 데이터를 가져올 수 있다.
-    getInitialData(){
-        fetch(this.url)
-            .then(res => res.json())
-            .then(data => console.log(data))
+
+    // todo 데이터 가져오기. json-server로부터 GET 요청으로 데이터를 가져올 수 있다.
+    async getInitialData(){
+        const res = await fetch(this.url);
+        const data = await res.json();
+        this.todos = [...this.todos, data];
+        return this.todos[0];
     }
 }
+
+export default TodoModel;

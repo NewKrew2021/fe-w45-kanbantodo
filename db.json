@@ -1,7 +1,7 @@
 {
   "posts": [
     {
-      "id": 1,
+      "id": 0,
       "name": "해야할일",
       "author": "chanhuiseok",
       "data": [
@@ -9,11 +9,11 @@
           "title": "페이지네이션",
           "tasks": [
             {
-              "id": 1,
+              "id": 0,
               "title": "task1"
             },
             {
-              "id": 2,
+              "id": 1,
               "title": "task2"
             }
           ]
@@ -22,11 +22,11 @@
           "title": "공부하기",
           "tasks": [
             {
-              "id": 1,
+              "id": 0,
               "title": "task1"
             },
             {
-              "id": 2,
+              "id": 1,
               "title": "task2"
             }
           ]
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": 1,
       "name": "하는중",
       "author": "chanhuiseok",
       "data": [
@@ -42,11 +42,11 @@
           "title": "이번 주 기획리뷰",
           "tasks": [
             {
-              "id": 1,
+              "id": 0,
               "title": "task1"
             },
             {
-              "id": 2,
+              "id": 1,
               "title": "task2"
             }
           ]
@@ -55,11 +55,11 @@
           "title": "스켈레톤",
           "tasks": [
             {
-              "id": 1,
+              "id": 0,
               "title": "task1"
             },
             {
-              "id": 2,
+              "id": 1,
               "title": "task2"
             }
           ]
