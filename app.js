@@ -1,5 +1,6 @@
 const express = require('express');
 let bodyParser = require('body-parser');
+const db = require('./db/mongoDB');
 const app = express();
 const port = 3000;
 
@@ -13,19 +14,19 @@ app.get('/', (req, res)=> {
     res.sendFile(path.join(__dirname + '/public/dist/index.html'));
 });
 
-//추후 mongo DB로 대체 예정
-const data = [{title:"기존 할 일"}];
 
-
-app.get('/todos', (req, res) =>{
+app.get('/todos', async(req, res) =>{
+    const data=await db.findAll();
     res.json({todos:data});
 });
 
-app.post('/todos', (req, res) =>{
-    //추후 몽고디비 insert로 변경 예정
+app.post('/todos',async (req, res) =>{
     const body=req.body;
     const title=body.title;
-    data.push({title:title});
+    const author=body.author;
+    await db.insert({title:title,author:author});
+
+    const data=await db.findAll();
     res.json({todos:data});
 });
 

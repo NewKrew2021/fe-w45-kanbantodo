@@ -5,8 +5,8 @@ function fetchTodo(handlechange) {
             handlechange(data.todos);
         }).catch((err) => console.log);
 }
-function createTodo(handleChange,{title}) {
-    const data = { title: title };
+function createTodo(handleChange,{title,author}) {
+    const data = { title: title,author:author };
     fetch("/todos", {
         method: 'POST',
         body: JSON.stringify(data),
