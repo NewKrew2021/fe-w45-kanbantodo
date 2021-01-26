@@ -19,6 +19,7 @@ const API = (function() {
             },
             body: JSON.stringify(data)
         }).then((res) => {
+            res.status(200)
             return res.json()
         })
     }

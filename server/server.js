@@ -51,6 +51,8 @@ app.post('/note/:colId', (req, res) => {
     db.get('todos')
       .find({id: colId}).get('notes')
       .push({id: Date.now(), title}).write();
+      res.status(200);
+      res.send();
   }
 })
 

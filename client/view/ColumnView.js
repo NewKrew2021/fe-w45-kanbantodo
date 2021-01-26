@@ -10,6 +10,7 @@ class ColumnView {
         this.noteNum = notes.length;
         this.columnEle = undefined;
         this.createNoteView = undefined;
+        this.updateNote = this.updateNote.bind(this);
     }
     
     async init() {
@@ -35,11 +36,15 @@ class ColumnView {
     
     async getUpdatedData () {   
         const {value} = this.columnEle.querySelector('.note-add textarea');
-        await API.createNewNote(this.id, {data: {title: value}});
+        try{
+            await API.createNewNote(this.id, {data: {title: value}});
+        } catch(err) {
+            console.log(err)
+        }
         const updatedNoteData = await API.getColumnData(this.id);
         console.log(updatedNoteData)
         // TODO: change to subscribe - notify
-        this.updateNote(updatedNoteData);
+        this.updateNote(updatedNoteData.data.notes);
     }
 
     onClickCreateNoteCancelButton() {
@@ -47,28 +52,30 @@ class ColumnView {
     }
 
     updateNote(noteData) {
-        debugger;
+        const noteNum = noteData.length;
+        this.columnEle.querySelector('.column__header__text > .number').innerText = noteNum;
         const currNotes = this.columnEle.querySelector('.column__note-container');
         this.columnEle.removeChild(currNotes);
         this.columnEle.appendChild(this.renderNotes(noteData));
     }
         
     render(noteData) {
+        const noteNum = noteData.length;
         this.columnEle = document.createElement('div');
         this.columnEle.className = "column";
         this.columnEle.id = this.id;
-        this.columnEle.appendChild(this.renderColumnHeader())
+        this.columnEle.appendChild(this.renderColumnHeader({noteNum, title: this.title}))
         this.columnEle.appendChild(this.renderCreateView())
         this.columnEle.appendChild(this.renderNotes(noteData));
         const container = document.querySelector('.container');
         container.appendChild(this.columnEle);
     }
 
-    renderColumnHeader() {
+    renderColumnHeader({noteNum, title}) {
         const ele = document.createElement('div');
         const innerHtml = `<div class="column__header__text">
-            <div class="number">${this.noteNum}</div>
-            <div class="title">${this.title}</div>
+            <div class="number">${noteNum}</div>
+            <div class="title">${title}</div>
         </div>
         <div class="column__header__buttons">
             <div class="add-button">✛</div>
