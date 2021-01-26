@@ -1,9 +1,11 @@
-export class Note {
-  #id
-  #title
-  #subtasks
+import Task from "./Task"
 
-  constructor({ id, title }) {
+export default class Note {
+  #id: String
+  #title: String
+  #subtasks: Array<Task>
+
+  constructor({ id, title }: { id: String, title: String }) {
     this.#id = id
     this.#title = title
   }
@@ -16,7 +18,7 @@ export class Note {
     `
   }
 
-  render(wrapper) {
+  render(wrapper: Element) {
     wrapper.innerHTML = this.toHtmlString()
   }
 }

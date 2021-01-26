@@ -1,9 +1,11 @@
-export class Column {
-  #id
-  #title
-  #notes
+import Note from "./Note"
 
-  constructor({ id, title }) {
+export default class Column {
+  #id: String
+  #title: String
+  #notes: Array<Note>
+
+  constructor({ id, title }: { id: String, title: String }) {
     this.#id = id
     this.#title = title
   }
@@ -17,7 +19,7 @@ export class Column {
     `
   }
 
-  render(wrapper) {
+  render(wrapper: Element) {
     wrapper.innerHTML = this.toHtmlString()
   }
 }

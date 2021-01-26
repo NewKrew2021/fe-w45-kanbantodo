@@ -1,9 +1,9 @@
-export class Task {
-  #id
-  #title
-  #subtasks
+export default class Task {
+  #id: String
+  #title: String
+  #subtasks: Array<Task>
 
-  constructor({ id, title }) {
+  constructor({ id, title }: { id: String, title: String }) {
     this.#id = id
     this.#title = title
   }
@@ -16,7 +16,7 @@ export class Task {
     `
   }
 
-  render(wrapper) {
+  render(wrapper: Element) {
     wrapper.innerHTML = this.toHtmlString()
   }
 }
