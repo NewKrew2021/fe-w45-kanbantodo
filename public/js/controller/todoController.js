@@ -59,6 +59,8 @@ export function initTotoController(){
     todoListElement.addEventListener("click",onDeleteBtnClick);
     function onDeleteBtnClick(e){
         if(!e.target.className.includes("delete-btn")) return ;
+        const result = window.confirm("정말 삭제하시겠습니까?");
+        if(!result) return;
         const todoItem=e.target.closest(".todo-item");
         const dbID=todoItem.attributes.dbID.value;
         deleteTodo(handleTodoListChange,dbID);
