@@ -1,22 +1,31 @@
-const jsonServer = require('json-server');
-const server = jsonServer.create();
-const router = jsonServer.router('db.json');
-const middlewares = jsonServer.defaults();
+const express = require('express');
+const app = express();
+const cors = require('cors')
+const port = 5000;
 
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('db.json');
 const db = low(adapter);
 
-server.use(middlewares);
+
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
 // Get todos
-server.get('/todos', (req, res) => {
+app.get('/todos', (req, res) => {
   res.send({data: db.get('todos').value()})
 })
 
+// Get column
+app.get('/column/:id', (req, res) => {
+  const {id} = req.params;
+  res.send({data:db.get('todos').find({id}).value()})
+})
+
 // Create new column
-server.post('/column', (req, res) => {
+app.post('/column', (req, res) =>{
   const {id, title} = req.body.data;
   if (db.get('todos').find({id})) {
     res.status(404).jsonp("Duplicated ID");
@@ -29,13 +38,29 @@ server.post('/column', (req, res) => {
 })
 
 // Delete column
-server.delete('/column/:id', (req, res) => {
+app.delete('/column/:id', (req, res) => {
   const {id} = req.params;
   db.get('todos').remove({ id }).write()
 })
 
-server.use(router);
+// Create new note
+app.post('/note/:colId', (req, res) => {
+  const {colId} = req.params;
+  const {title} = req.body.data;
+  if (db.get('todos').find({id: colId})) {
+    db.get('todos')
+      .find({id: colId}).get('notes')
+      .push({id: Date.now(), title}).write();
+  }
+})
 
-server.listen(5000, () => {
-  console.log('JSON Server is running')
+app.listen(port, function(){
+ console.log(`Server is running on ${port}port`);
 });
+
+
+// server.use(router);
+
+// server.listen(5000, () => {
+//   console.log('JSON Server is running')
+// });
