@@ -1,0 +1,110 @@
+.navbar {
+  width: 1792px;
+  height: 60px;
+  margin: -8px;
+  background-color: #000000;
+}
+
+.navbar-title {
+  float: left;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 13px 0px 0px 80px;
+}
+
+.navbar-menu {
+  float: left;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 13px 0px 0px 1400px;
+}
+
+.filter-contatiner {
+  width: 100%;
+  height: 60px;
+  margin: 10px 0 0 -8px;
+}
+
+.contents {
+  width: 100%;
+  height: 1000px;
+  margin: 0 0 0 140px;
+}
+
+.todo-container {
+  float: left;
+  width: 450px;
+  height: 700px;
+  margin: 5px 0 0 30px;
+  border-radius: 8px;
+  background-color: #dee3e9;
+}
+
+.todo-title {
+  width: 420px;
+  height: 30px;
+  margin: 20px 0 0 15px;
+}
+
+.todo-contents {
+  width: 420px;
+  margin: 5px 0 0 15px;
+}
+
+.todo-items {
+  width: 390px;
+  margin-top: 10px;
+  padding: 13px 0 0 30px;
+  border: 1px solid #cecece;
+  border-radius: 5px;
+  background-color: #fafafa;
+  color: #424242;
+  font-weight: 500;
+}
+
+.todo-author {
+  margin: 15px 0 13px 0;
+  font-size: 14px;
+  color: #979797;
+}
+
+.svg-class {
+  height:30px;
+  width:30px;
+}
+
+.title-li {
+  float: left;
+  margin-top: 2px;
+  position: absolute;
+}
+
+.title-number {
+  position: absolute;
+  margin: 7px 0 0 9px;
+  font-weight: 900;
+  color: #424242;
+}
+
+.title-text {
+  margin: 5px 0 0 50px;
+  font-size: large;
+  font-weight: 700;
+  color: #424242;
+}
+
+.title-add {
+  margin: -7px 0 0 360px;
+  font-size: 35px;
+  font-weight: 500;
+  color: #424242;
+}
+
+.title-delete {
+  margin: -6px 0 0 395px;
+  font-size: 30px;
+  font-weight: 500;
+  color: #424242;
+}

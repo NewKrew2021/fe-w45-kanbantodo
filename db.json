@@ -1,0 +1,55 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "To-Do",
+      "items": [{
+        "title": "페이지네이션 UI 리서치",
+        "contents": "",
+        "author": "kevin"
+      }, 
+      {
+        "title": "상세페이지 API 정리",
+        "contents": "",
+        "author": "kevin"
+      },
+      {
+        "title": "github 공부하기",
+        "contents": "",
+        "author": "kevin"
+      }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Doing",
+      "items": [{
+        "title": "이번주 기획리뷰",
+        "contents": "",
+        "author": "kevin"
+      }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Done",
+      "items": [{
+        "title": "설정파일 분리 리팩도링 작업",
+        "contents": "",
+        "author": "kevin"
+      }, 
+      {
+        "title": "상세페이지 API 정리",
+        "contents": "",
+        "author": "kevin"
+      },
+      {
+        "title": "github 공부하기",
+        "contents": "",
+        "author": "kevin"
+      }
+      ]
+    }
+  ]
+
+}
