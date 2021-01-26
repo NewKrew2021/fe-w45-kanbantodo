@@ -9,6 +9,7 @@ class Observable {
     this._observers = [...this._observers].filter(subscriber => subscriber !== observer);
   }
   notify(data) {
+    console.log(this._observers);
     this._observers.forEach(observer => observer(data));
   }
 }
