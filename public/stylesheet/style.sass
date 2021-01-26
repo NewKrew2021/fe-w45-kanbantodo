@@ -1,12 +1,14 @@
-$header-background : #000000
-$header-font-color : #ffffff
+$header-background : #fef01b
+$header-font-color :#000000
 $common-border-color :#b9b8b8
-$todo-background-color : #e0e0e0
+$todo-background-color : #9bbbd4
 $todo-card-background : #ffffff
-$add-button-background :  #3b9400
+$add-button-background : #fef01b
+$cancel-button-background :#000000bd
 
 .header
-    font-size: 30px
+    font-size: 40px
+    font-weight: bolder
     background: $header-background
     color: $header-font-color
     display: flex
@@ -92,6 +94,7 @@ $add-button-background :  #3b9400
         column-gap: 10px
 
         .cancel-button, .add-button
+            font-weight: bolder
             border: 1px solid $common-border-color
             border-radius: 5px
             box-sizing: border-box
@@ -99,5 +102,7 @@ $add-button-background :  #3b9400
             flex: 1 1 auto
             cursor: pointer
         .add-button
-            color : $header-font-color
             background: $add-button-background
+        .cancel-button
+            background: $cancel-button-background
+            color: $add-button-background
