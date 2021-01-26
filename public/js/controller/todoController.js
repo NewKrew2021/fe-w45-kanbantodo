@@ -73,6 +73,13 @@ export function initTotoController(){
         modal.classList.remove("modal-show");
         modal.classList.add("modal-hide");
     });
+    modalTextArea.addEventListener("input",({target})=>{
+        if(target.value===""){
+            submitBtn.disabled=true;
+        }else{
+            submitBtn.disabled=false;
+        }
+    });
     //UPDATE: call PUT API
     submitBtn.addEventListener("click",()=>{
         updateTodo(handleTodoListChange,{dbID:updateTargetID,title:modalTextArea.value});

@@ -7,7 +7,7 @@ function initTodoSection() {
         <button class="open-panel-btn">+</button>
         <button class="section-delete-btn">X</button>
         <div id="add-panel" class="add-panel hide">
-            <textArea></textArea>
+            <textArea rows=3 placeholder="Enter a note" maxlength="500"></textArea>
             <button class="add-item-btn" disabled>Add</button>
             <button class="cancel-btn">Cancel</button>
         </div>
@@ -17,7 +17,8 @@ function initTodoSection() {
             <div class="modal-overlay"></div>
             <div class="modal-content">
                 <div>Note</div>
-                <textArea class="title"></textArea>
+                <textArea rows=3 placeholder="Enter a note" 
+                class="title" maxlength="200"></textArea>
                 <button class="submit">Save note</button>
             </div>
         </div>
