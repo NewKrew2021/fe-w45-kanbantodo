@@ -9,9 +9,18 @@ class TodoModel {
     this.cardList = [];
     this.status = status;
   }
+
   getCardData() {
     this.cardList = CARD_LIST;
   }
+
+  addCardData(todoData) {
+    return fetch("http://localhost:8000/api/todo", {
+      method: "POST",
+      body: JSON.stringify(todoData),
+    });
+  }
+
   init() {
     this.getCardData();
     return this;
