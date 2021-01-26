@@ -39,14 +39,13 @@
   height: 700px;
   margin: 5px 0 0 30px;
   border-radius: 8px;
-  background-color: #dbdbdb;
+  background-color: #dee3e9;
 }
 
 .todo-title {
   width: 420px;
-  height: 50px;
-  margin: 0 0 0 15px;
-  background-color: aquamarine;
+  height: 30px;
+  margin: 20px 0 0 15px;
 }
 
 .todo-contents {
@@ -55,10 +54,57 @@
 }
 
 .todo-items {
-  width: 420px;
-  height: 70px;
+  width: 390px;
   margin-top: 10px;
-  border: 1px solid #b1b1b1;
+  padding: 13px 0 0 30px;
+  border: 1px solid #cecece;
   border-radius: 5px;
   background-color: #fafafa;
+  color: #424242;
+  font-weight: 500;
+}
+
+.todo-author {
+  margin: 15px 0 13px 0;
+  font-size: 14px;
+  color: #979797;
+}
+
+.svg-class {
+  height:30px;
+  width:30px;
+}
+
+.title-li {
+  float: left;
+  margin-top: 2px;
+  position: absolute;
+}
+
+.title-number {
+  position: absolute;
+  margin: 7px 0 0 9px;
+  font-weight: 900;
+  color: #424242;
+}
+
+.title-text {
+  margin: 5px 0 0 50px;
+  font-size: large;
+  font-weight: 700;
+  color: #424242;
+}
+
+.title-add {
+  margin: -7px 0 0 360px;
+  font-size: 35px;
+  font-weight: 500;
+  color: #424242;
+}
+
+.title-delete {
+  margin: -6px 0 0 395px;
+  font-size: 30px;
+  font-weight: 500;
+  color: #424242;
 }

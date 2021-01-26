@@ -9,12 +9,16 @@ const createTodoBoard = (todos) => {
   todos.forEach(todo => {
     contentsHtml += `
       <div class="todo-container">
-        <div class="todo-title">${todo}</div>
-        <div class="todo-contents">
-          <div class="todo-items">Todo 만들기</div>
-          <div class="todo-items">Todo 만들기</div>
-          <div class="todo-items">Todo 만들기</div>
-          <div class="todo-items">Todo 만들기</div>
+        <div class="todo-title">
+          <div class="title-li title-img">
+            <svg class="svg-class">
+              <circle cx="13" cy="13" r="13" fill="#c9cdd3" />
+            </svg>
+          </div>
+          <div class="title-li title-number">${todo.items.length}</div>
+          <div class="title-li title-text">${todo.title}</div>
+          <div class="title-li title-add">+</div>
+          <div class="title-li title-delete">x</div>
         </div>
       </div>
     `

@@ -1,4 +1,5 @@
 import {Observable} from "../common.js";
+import {URL} from "../utils/url.js"
 
 class TodoModel extends Observable {
   constructor() {
@@ -14,11 +15,9 @@ class TodoModel extends Observable {
     this.notify(this.todos);
   }
   getInitialData() {
-    this.saveInitTodo(["해야할일", "하는중", "다했어"]);
-    // fetch(this.url)
-    // .then(res => res.json())
-    // .then(data => this.saveInitTodo(data))
-    
+    fetch(URL+"/todos")
+    .then(res => res.json())
+    .then(data => this.saveInitTodo(data))
   }
   saveInitTodo(todo){
     this.todos = todo;
