@@ -18,6 +18,16 @@ class TodoModel {
     return this.cardList;
   }
 
+  async deleteTodo(todoData) {
+    await this.deleteCardData(todoData);
+
+    this.cardList = this.cardList.filter(({ _id }) => {
+      return _id !== todoData.id;
+    });
+
+    return this.cardList;
+  }
+
   postCardData(todoData) {
     return fetch(TODO_API_HOST, {
       method: "POST",

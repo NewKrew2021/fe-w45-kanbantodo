@@ -62,6 +62,17 @@ class TodoView {
     });
   }
 
+  deleteTodo(callback) {
+    this.element.addEventListener("click", ({ target }) => {
+      if (target.className === "todo-card--delete-button") {
+        let deleteTarget = {
+          id: target.closest(".todo-card").id,
+        };
+        callback(deleteTarget);
+      }
+    });
+  }
+
   render(cardList, status) {
     this.element.innerHTML = this.createTodo(cardList, status);
   }

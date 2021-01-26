@@ -23,4 +23,9 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     await todoModel.addCard(cardData);
     todoController.notify(todoModel.cardList, "할 일");
   });
+
+  todoView.deleteTodo(async (cardData) => {
+    await todoModel.deleteTodo(cardData);
+    todoController.notify(todoModel.cardList, "할 일");
+  });
 });
