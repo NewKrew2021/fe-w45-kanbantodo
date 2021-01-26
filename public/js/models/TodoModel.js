@@ -10,7 +10,7 @@ class TodoModel extends Observable {
     this.todos = [...this.todos, todo];
     this.notify(this.todos);
   }
-  removeTodo() {
+  removeTodo(todo) {
     
   }
   getInitialData() {
