@@ -1,0 +1,35 @@
+{
+  "todos": [
+    {
+      "id": "col1",
+      "title": "할일",
+      "notes": [
+        {
+          "id": "col1note1",
+          "title": "db 세팅하기",
+          "data": [
+            {
+              "title": "json server 깔기",
+              "data": [
+                {
+                  "title": "메롱"
+                },
+                {
+                  "title": "메롱"
+                },
+                {
+                  "title": "메롱"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "col1",
+      "title": "lowdb is awesome",
+      "notes": []
+    }
+  ]
+}
