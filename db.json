@@ -50,17 +50,20 @@
               "title": "task2"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "다했어",
+      "author": "chanhuiseok",
+      "data": [
         {
-          "title": "스켈레톤",
+          "title": "설정파일 분리 리팩토링 작업",
           "tasks": [
             {
               "id": 0,
               "title": "task1"
-            },
-            {
-              "id": 1,
-              "title": "task2"
             }
           ]
         }

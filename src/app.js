@@ -14,7 +14,3 @@ const listview = new ListView(todoModel);
 listview.render();
 
 // Observer
-
-//debugger;
-const test = _dom.query('#header');
-console.log(test);

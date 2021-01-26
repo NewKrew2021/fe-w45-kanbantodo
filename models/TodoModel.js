@@ -29,7 +29,7 @@ class TodoModel extends Observable{
         const res = await fetch(this.url);
         const data = await res.json();
         this.todos = [...this.todos, data];
-        return this.todos[0];
+        return this.todos;
     }
 }
 
