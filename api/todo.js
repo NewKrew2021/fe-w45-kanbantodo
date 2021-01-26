@@ -26,17 +26,17 @@ const getTodo = () => {
   });
 };
 
-const postTodo = ({ content, writer, status }) => {
+const postTodo = async ({ content, writer, status }) => {
   const newTodo = new Todo({
     content: content,
     writer: writer,
     status: status,
   });
 
-  newTodo
+  return newTodo
     .save()
-    .then(() => {
-      return newTodo;
+    .then((res) => {
+      return res;
     })
     .catch((err) => {
       return err;

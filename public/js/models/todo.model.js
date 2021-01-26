@@ -25,6 +25,12 @@ class TodoModel {
   async initData() {
     let cardList = await this.getCardData();
     this.cardList = cardList;
+    // this.addCardData({ content: "1", writer: "puba", status: "hal ill" })
+    //   .then((res) => {
+    //     console.log(res);
+    //     return res.json();
+    //   })
+    //   .then((res) => console.log(res));
     return this.cardList;
   }
 }

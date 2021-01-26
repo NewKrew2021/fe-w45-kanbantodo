@@ -18,7 +18,7 @@ api.get("/todo", async (ctx, next) => {
 api.post("/todo", async (ctx, next) => {
   let newTodo;
   try {
-    newTodo = postTodo(ctx.request.body);
+    newTodo = await postTodo(ctx.request.body);
   } catch (e) {
     return ctx.throw(500, e);
   }
