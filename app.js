@@ -9,6 +9,18 @@ import { TodoView } from "./public/js/views/todo.view";
 const TODO = "할 일";
 const DONE = "마친 일";
 
+const addButtonEvent = (model, view, controller, status) => {
+  view.getNewTodoData(async (cardData) => {
+    await model.addCard(cardData);
+    controller.notify(model.todoCardList, status);
+  });
+
+  view.deleteTodo(async (cardData) => {
+    await model.deleteTodo(cardData);
+    controller.notify(model.todoCardList, status);
+  });
+};
+
 document.addEventListener("DOMContentLoaded", async (event) => {
   const todoModel = new TodoModel();
   const todoView = new TodoView(TODO).init();
@@ -31,23 +43,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   todoController.notify(todoCardList, TODO);
   todoController.notify(todoCardList, DONE);
 
-  todoView.getNewTodoData(async (cardData) => {
-    await todoModel.addCard(cardData);
-    todoController.notify(todoModel.todoCardList, TODO);
-  });
-
-  doneView.getNewTodoData(async (cardData) => {
-    await todoModel.addCard(cardData);
-    todoController.notify(todoModel.todoCardList, DONE);
-  });
-
-  todoView.deleteTodo(async (cardData) => {
-    await todoModel.deleteTodo(cardData);
-    todoController.notify(todoModel.todoCardList, TODO);
-  });
-
-  doneView.deleteTodo(async (cardData) => {
-    await todoModel.deleteTodo(cardData);
-    todoController.notify(todoModel.todoCardList, DONE);
-  });
+  addButtonEvent(todoModel, todoView, todoController, TODO);
+  addButtonEvent(todoModel, doneView, todoController, DONE);
 });
