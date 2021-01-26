@@ -26,9 +26,10 @@ const test = new Todo({
 });
 
 const getTodo = () => {
-  Todo.find({}, function (err, todo) {
+  // return Todo.find().exec();
+  return Todo.find({}, function (err, todo) {
     if (err) throw err;
-    console.log(todo);
+    return todo;
   });
 };
 
@@ -43,4 +44,4 @@ const postTodo = () => {
     });
 };
 
-export { getTodo, postTodo };
+module.exports = { getTodo, postTodo };
