@@ -92,7 +92,51 @@
             }
         }
     }
-    
+    .modal-hide{
+            display: none;
+    }
+    .modal-show{
+        display: flex;
+    }
+    .modal{
+        
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        .modal-overlay {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.6);
+            width: 100%;
+            height: 100%;
+        }
+        .modal-content {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.6);
+            width: 100%;
+            height: 100%;
+        }
+        .modal-content{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            top: 0;
+            width: 40%;
+            height: 35%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+            0 6px 6px rgba(0, 0, 0, 0.23);
+        }
+    }
     
     
 }

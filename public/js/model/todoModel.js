@@ -34,5 +34,17 @@ function deleteTodo(handleChange, dbID){
         handleChange(data.todos);
     }).catch((err) => console.log);
 }
-
-export { fetchTodo, createTodo,deleteTodo };
+function updateTodo(handleChange,{dbID,title}){
+    fetch("/todos", {
+        method: 'PUT',
+        body: JSON.stringify({id:dbID,title:title}),
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        handleChange(data.todos);
+    }).catch((err) => console.log);
+}
+export { fetchTodo, createTodo,deleteTodo,updateTodo};

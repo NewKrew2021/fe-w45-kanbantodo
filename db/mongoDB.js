@@ -31,7 +31,7 @@ async function findAll() {
 }
 module.exports.findAll = findAll;
 
-async function insert({ title, author }) {
+async function insertTodo({ title, author }) {
     console.log("db:insert...");
 
     // create a document to be inserted
@@ -42,7 +42,19 @@ async function insert({ title, author }) {
     );
 
 }
-module.exports.insert = insert;
+module.exports.insertTodo = insertTodo;
+
+async function updateTodo({ id,title }) {
+    console.log("db:updating...");
+    const filter = { _id: new ObjectId(id) };
+    const updateDoc = {$set: {title:title}};
+    const result = await collection.updateOne(filter, updateDoc);
+    console.log(
+      `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`,
+    );
+
+}
+module.exports.updateTodo = updateTodo;
 
 async function deleteTodo(id){
 
