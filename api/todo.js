@@ -19,28 +19,42 @@ const TodoSchema = new mongoose.Schema({
 
 const Todo = mongoose.model("Todo", TodoSchema);
 
-const test = new Todo({
-  content: "PR 날리기",
-  writer: "puba",
-  status: "할 일",
-});
-
 const getTodo = () => {
-  Todo.find({}, function (err, todo) {
+  return Todo.find({}, function (err, todo) {
     if (err) throw err;
-    console.log(todo);
+    return todo;
   });
 };
 
-const postTodo = () => {
-  test
+const postTodo = async ({ content, writer, status }) => {
+  const newTodo = new Todo({
+    content: content,
+    writer: writer,
+    status: status,
+  });
+
+  return newTodo
     .save()
-    .then(() => {
-      console.log(test);
+    .then((res) => {
+      return res;
     })
     .catch((err) => {
-      console.log("Error : " + err);
+      return err;
     });
 };
 
-export { getTodo, postTodo };
+const deleteTodo = ({ id }) => {
+  return Todo.deleteOne({ _id: id }, (err, todo) => {
+    if (err) throw err;
+    return todo.deletedCount;
+  });
+};
+
+const updateTodo = async ({ id, status }) => {
+  return Todo.updateOne({ _id: id }, { $set: { status: status } }, (err, todo) => {
+    if (err) throw err;
+    return todo;
+  });
+};
+
+module.exports = { getTodo, postTodo, deleteTodo, updateTodo };
