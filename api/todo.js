@@ -50,4 +50,11 @@ const deleteTodo = ({ id }) => {
   });
 };
 
-module.exports = { getTodo, postTodo, deleteTodo };
+const updateTodo = async ({ id, status }) => {
+  return Todo.updateOne({ _id: id }, { $set: { status: status } }, (err, todo) => {
+    if (err) throw err;
+    return todo;
+  });
+};
+
+module.exports = { getTodo, postTodo, deleteTodo, updateTodo };
