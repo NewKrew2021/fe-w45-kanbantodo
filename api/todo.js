@@ -43,4 +43,11 @@ const postTodo = async ({ content, writer, status }) => {
     });
 };
 
-module.exports = { getTodo, postTodo };
+const deleteTodo = (id) => {
+  return Todo.deleteOne({ _id: id }, (err, todo) => {
+    if (err) throw err;
+    return todo.deletedCount;
+  });
+};
+
+module.exports = { getTodo, postTodo, deleteTodo };

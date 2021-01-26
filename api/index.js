@@ -1,7 +1,7 @@
 const Router = require("koa-router");
 
 const api = new Router();
-const { getTodo, postTodo } = require("./todo.js");
+const { getTodo, postTodo, deleteTodo } = require("./todo.js");
 
 api.get("/todo", async (ctx, next) => {
   let todo;
@@ -11,7 +11,6 @@ api.get("/todo", async (ctx, next) => {
   } catch (e) {
     return ctx.throw(500, e);
   }
-
   ctx.body = todo;
 });
 
