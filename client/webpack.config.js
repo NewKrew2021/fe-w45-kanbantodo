@@ -14,10 +14,15 @@ module.exports = {
         fallback: {
             fs: false,
             buffer: false,
-            http: false,
             net: false,
             crypto: false,
+            https: false,
+            http: false,
+            vm: false,
+            os: false,
+            constants: false,
             zlib: false,
+            assert: false,
         },
     },
     devServer: {
