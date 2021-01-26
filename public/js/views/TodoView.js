@@ -1,3 +1,27 @@
+class TodoView {
+  constructor(model){
+    this.model = model;
+  }
+
+  todoAddButton() {
+    const addButton = document.querySelectorAll("div.title-add");
+    console.log(addButton)
+    addButton.forEach( button => {
+      button.addEventListener("click", e => {
+        const parentEle = e.currentTarget.parentNode.parentNode;
+        console.log(parentEle.child)
+      })
+    })
+  }
+  
+  init() {
+    this.model.subscribe(displayTodoBoard);
+    this.model.subscribe(displayCard);
+    this.model.getInitialData()
+    .then(this.todoAddButton)
+  }
+}
+
 const displayTodoBoard = (todos) => {
   const contents = document.querySelector("div.contents");
   let contentHtml = ``;
@@ -40,27 +64,6 @@ const displayCard = (cards) => {
   }
 }
 
-class TodoView {
-  constructor(model){
-    this.model = model;
-  }
 
-  todoAddButton() {
-    const addButton = document.querySelectorAll("div.title-add");
-    console.log(addButton)
-    addButton.forEach( button => {
-      button.addEventListener("click", e => {
-        console.log(e.currentTarget.parentNode.parentNode);
-      })
-    })
-  }
-  
-  init() {
-    this.model.subscribe(displayTodoBoard);
-    this.model.subscribe(displayCard);
-    this.model.getInitialData()
-    .then(this.todoAddButton)
-  }
-}
 
 export {TodoView, displayTodoBoard};
