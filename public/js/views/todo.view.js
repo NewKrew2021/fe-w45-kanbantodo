@@ -75,7 +75,7 @@ class TodoView {
   }
 
   render(cardList, status) {
-    console.log("card", cardList);
+    if (!cardList) cardList = [];
     this.element.innerHTML = this.createTodo(cardList, status);
   }
 

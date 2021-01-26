@@ -13,7 +13,7 @@ class TodoModel {
   async addCard(cardData) {
     let res = await this.postCardData(cardData);
     let newCard = await res.json();
-    console.log("added");
+
     this.todoCardList[cardData.status] = [...this.todoCardList[cardData.status], newCard];
 
     return this.todoCardList;

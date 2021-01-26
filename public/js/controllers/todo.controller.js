@@ -7,10 +7,12 @@ class TodoController {
     this.todoList = [...this.todoList, todo];
   }
 
-  notify(cardList, status) {
-    this.todoList.forEach(({ render }) => {
-      render(cardList[status], status);
-    });
+  notify(todoCardList, status) {
+    this.todoList
+      .filter((todo) => todo.status === status)
+      .forEach(({ render }) => {
+        render(todoCardList[status], status);
+      });
   }
 }
 
