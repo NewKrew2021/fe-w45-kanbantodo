@@ -43,7 +43,7 @@ const postTodo = async ({ content, writer, status }) => {
     });
 };
 
-const deleteTodo = (id) => {
+const deleteTodo = ({ id }) => {
   return Todo.deleteOne({ _id: id }, (err, todo) => {
     if (err) throw err;
     return todo.deletedCount;

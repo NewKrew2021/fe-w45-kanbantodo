@@ -25,4 +25,15 @@ api.post("/todo", async (ctx, next) => {
   ctx.body = newTodo;
 });
 
+api.delete("/todo", async (ctx, next) => {
+  let deletedTodo;
+
+  try {
+    deletedTodo = await deleteTodo(ctx.request.body);
+  } catch (e) {
+    return ctx.throw(500, e);
+  }
+  ctx.body = deletedTodo;
+});
+
 module.exports = api;
