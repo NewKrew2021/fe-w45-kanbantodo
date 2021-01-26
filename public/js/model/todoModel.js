@@ -1,23 +1,23 @@
-function fetchTodo(todosList) {
-    return fetch("/todos", { method: 'GET', })
+function fetchTodo(handlechange) {
+    fetch("/todos", { method: 'GET', })
         .then((res) => res.json())
         .then((data) => {
-            return data.todos;
+            handlechange(data.todos);
         }).catch((err) => console.log);
 }
-function createTodo({ title }) {
+function createTodo(handleChange,{title}) {
     const data = { title: title };
-    return fetch("/todos", {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json",
-                }
-            })
-            .then((res) => res.json())
-            .then((data) => {
-                return data.todos;
-            }).catch((err) => console.log);
+    fetch("/todos", {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        handleChange(data.todos);
+    }).catch((err) => console.log);
 
 }
 
