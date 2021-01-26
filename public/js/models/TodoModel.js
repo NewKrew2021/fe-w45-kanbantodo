@@ -14,10 +14,10 @@ class TodoModel extends Observable {
     this.todos = [...this.todos].filter(todo => todo !== newTodo);
     this.notify(this.todos);
   }
-  getInitialData() {
-    fetch(URL+"/todos")
-    .then(res => res.json())
-    .then(data => this.saveInitTodo(data))
+  async getInitialData() {
+    const res = await fetch(URL+"/todos");
+    const data = await res.json();
+    this.saveInitTodo(data);
   }
   saveInitTodo(todo){
     this.todos = todo;

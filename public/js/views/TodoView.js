@@ -1,13 +1,8 @@
-class TodoView {
-  constructor(){}
-}
-
-const createTodoBoard = (todos) => {
-  console.log(todos);
+const displayTodoBoard = (todos) => {
   const contents = document.querySelector("div.contents");
-  let contentsHtml = ``;
+  let contentHtml = ``;
   todos.forEach(todo => {
-    contentsHtml += `
+    contentHtml += `
       <div class="todo-container">
         <div class="todo-title">
           <div class="title-li title-img">
@@ -23,7 +18,49 @@ const createTodoBoard = (todos) => {
       </div>
     `
   });
-  contents.innerHTML = contentsHtml;
+  contents.innerHTML = contentHtml;
 }
 
-export {TodoView, createTodoBoard};
+const displayCard = (cards) => {
+  const contents = document.querySelectorAll("div.todo-container");
+  for(let idx=0; idx<cards.length; idx++) {
+    let cardsHtml = ``;
+    cards[idx]["items"].forEach(card => {
+      // console.log(card)
+      cardsHtml += `
+        <div class="todo-contents">
+          <div class="todo-items">
+            ${card.title}
+            <div class="todo-author"> Added by ${card.author}</div>
+          </div>
+        </div>
+      `
+    });
+    contents[idx].innerHTML += cardsHtml;
+  }
+}
+
+class TodoView {
+  constructor(model){
+    this.model = model;
+  }
+
+  todoAddButton() {
+    const addButton = document.querySelectorAll("div.title-add");
+    console.log(addButton)
+    addButton.forEach( button => {
+      button.addEventListener("click", e => {
+        console.log(e.currentTarget.parentNode.parentNode);
+      })
+    })
+  }
+  
+  init() {
+    this.model.subscribe(displayTodoBoard);
+    this.model.subscribe(displayCard);
+    this.model.getInitialData()
+    .then(this.todoAddButton)
+  }
+}
+
+export {TodoView, displayTodoBoard};
