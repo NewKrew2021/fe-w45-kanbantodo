@@ -1,4 +1,4 @@
-const MongoClient = require('mongodb').MongoClient;
+const {MongoClient,ObjectId} = require('mongodb');
 const uri = "mongodb+srv://root:root@cluster0.bb0ip.mongodb.net/todoDB?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
@@ -23,8 +23,9 @@ async function findAll() {
         console.log("No documents found!");
     }
     const result = [];
-    await cursor.forEach((d) => { result.push({ title: d.title, author: d.author }); }); // map함수가 동작하지않음
-    console.log(result);
+    await cursor.forEach(({ _id, title, author }) => {
+        result.push({ _id: _id, title: title, author: author });
+    }); // map함수가 동작하지않음
     return result;
 
 }
@@ -42,3 +43,18 @@ async function insert({ title, author }) {
 
 }
 module.exports.insert = insert;
+
+async function deleteTodo(id){
+
+    // Query for a movie that has a title of type string
+    console.log("db:delete target:",id);
+    const query = { _id: new ObjectId(id) };
+    const result = await collection.deleteOne(query);
+    if (result.deletedCount === 1) {
+        console.dir("Successfully deleted one document.");
+    } else {
+        console.log("No documents matched the query. Deleted 0 documents.");
+    }
+
+}
+module.exports.deleteTodo = deleteTodo;

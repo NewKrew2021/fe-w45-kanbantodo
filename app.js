@@ -25,7 +25,14 @@ app.post('/todos',async (req, res) =>{
     const title=body.title;
     const author=body.author;
     await db.insert({title:title,author:author});
+    const data=await db.findAll();
+    res.json({todos:data});
+});
 
+app.delete('/todos',async (req, res) =>{
+    const body=req.body;
+    const id=body.id;
+    await db.deleteTodo(id);
     const data=await db.findAll();
     res.json({todos:data});
 });
