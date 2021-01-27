@@ -47,12 +47,25 @@ const API = (function() {
         })
     }
 
+    function createNewColumn(colName) {
+        return fetch(`${API_URL}/column`,{
+            "method":"post",
+            "headers":{
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({data: {title: colName}}),
+        }).then((res) => {
+            return res.status;
+        })
+    }
+
 
     return {
         getTodoData,
         createNewNote,
         getColumnData,
         deleteNote,
+        createNewColumn,
     };
 })();
 

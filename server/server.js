@@ -26,15 +26,11 @@ app.get('/column/:id', (req, res) => {
 
 // Create new column
 app.post('/column', (req, res) =>{
-  const {id, title} = req.body.data;
-  if (db.get('todos').find({id})) {
-    res.status(404).jsonp("Duplicated ID");
-  } else {
-    db.get('todos')
-      .push({ id, title, notes: []})
-      .write();
-    res.status(200).jsonp("Success");
-  }
+  const {title} = req.body.data;
+  db.get('todos')
+    .push({ id: Date.now().toString(), title, notes: []})
+    .write();
+  res.status(200).jsonp("Success");
 })
 
 // Delete column
