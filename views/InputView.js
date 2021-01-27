@@ -21,7 +21,6 @@ class InputView {
         const inputArea = _dom.queryAll('.list-input');
         inputBtn.forEach(element => {
             element.addEventListener('click', (e) => {
-                console.log("test");
                 const idx = e.target.getAttribute('data');
                 let inputData = '';
                 inputArea.forEach(element => {

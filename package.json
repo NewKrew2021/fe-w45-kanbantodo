@@ -24,6 +24,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.8.2",
     "express": "^4.17.1",
+    "lowdb": "^1.0.0",
     "mongoose": "^5.11.13"
   },
   "devDependencies": {
