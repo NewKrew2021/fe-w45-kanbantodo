@@ -1,3 +1,11 @@
+.display { 
+  display: block;
+}
+
+.non-display {
+  display: none;
+}
+
 .navbar {
   width: 1792px;
   height: 60px;
@@ -100,6 +108,7 @@
   font-size: 35px;
   font-weight: 500;
   color: #424242;
+  cursor: pointer;
 }
 
 .title-delete {
@@ -107,4 +116,44 @@
   font-size: 30px;
   font-weight: 500;
   color: #424242;
+}
+
+.todo-add {
+  width: 430px;
+  height: 130px;
+  margin: 10px 0 0 15px;
+}
+
+.add-input {
+  width: 408px;
+  height: 70px;
+  padding-left: 10px;
+  border: 1px solid #148aeb;
+  border-radius: 5px;
+  background-color: #fafafa;
+}
+
+.add-button {
+  width:206px;
+  height: 45px;
+  margin-top: 10px;
+  font-size: large;
+  font-weight: 700;
+  color: #ebebeb;
+  border: 1px solid #4da160;
+  border-radius: 5px;;
+  background-color: #4ebb66;
+  cursor: pointer;
+}
+
+.cancel-button {
+  width:206px;
+  height: 45px;
+  margin: 6px 0 0 5px;
+  font-size: large;
+  font-weight: 700;
+  color: #424242;
+  border: 1px solid #b4b4b4;
+  border-radius: 5px;
+  cursor: pointer;
 }

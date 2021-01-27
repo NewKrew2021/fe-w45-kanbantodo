@@ -9,7 +9,7 @@ class TodoView {
     addButton.forEach( button => {
       button.addEventListener("click", e => {
         const parentEle = e.currentTarget.parentNode.parentNode;
-        console.log(parentEle.child)
+        console.log(parentEle)
       })
     })
   }
@@ -38,6 +38,11 @@ const displayTodoBoard = (todos) => {
           <div class="title-li title-text">${todo.title}</div>
           <div class="title-li title-add">+</div>
           <div class="title-li title-delete">x</div>
+        </div>
+        <div class="todo-add non-display">
+          <input type="text" class="add-input"></input>
+          <button class="add-button" type="button">Add</button>
+          <button class="cancel-button" type="button">Cancel</button>
         </div>
       </div>
     `

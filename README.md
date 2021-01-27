@@ -17,4 +17,4 @@
   - todo view 구현
   - json-server 목서버 구축
   - 목서버에서 데이터 받아와서 화면에 보여주기
-      subscribe(todoBoard, card) -> get data(fetch) -> notify -> observer 실행
+      change state -> subscribe(todoBoard, card) -> get data(fetch) -> notify -> observer 실행 -> view
