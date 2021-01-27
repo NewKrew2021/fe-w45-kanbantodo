@@ -10,7 +10,14 @@ header{
     height: 50px;
     /* background-color: #ffd200; */
 }
-
+.add-column{
+    color: darkgray;
+    width: 300px;
+    border: 1px dashed darkgray;
+    border-radius: 10px;
+    text-align: center;
+    padding: 30px 10px;
+}
 .container {
     padding-top:20px;
     width: 900px;
