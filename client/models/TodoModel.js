@@ -9,6 +9,7 @@
         새롭게 입력되는 todo의 값
 */
 import Observable from './observable.js'
+import * as req from '../src/request.js';
 
 class TodoModel extends Observable{
     constructor(initialUrl){
@@ -17,14 +18,27 @@ class TodoModel extends Observable{
         this.url = initialUrl; // 가져올 데이터의 요청 URL
     }
 
-    // todo 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
-    addTodo(idx, inpuData){
+    // 리스트뷰(todo) 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
+    async addTodo({idx, inputData}){
+        const res = await req.getAllData();
+        const curlen = res[idx].data.length-1;
+        const listId = res[idx].data[curlen].id;
         // 받은 todo값을 적당히 가공하고 넣기
-        const inputObj = {
-            title : inpuData
-        }
-        this.todos[0][idx].data.push(inputObj)
-        this.notify({state : this.todos, index: idx, added: inputObj});
+        const inputObj = { input : {
+            cardId : parseInt(idx),
+            listId : listId,
+            title : inputData
+        }}
+        await req.addList(inputObj);
+
+        // 데이터에 추가 후 notify 한다.
+        this.todos = [...this.todos, res];
+        this.notify(this.todos);
+    }
+
+    // 리스트뷰(todo) 삭제, 상태 변화, Observer에게 알려 준다.
+    async removeTodo({cardId, id}){
+        await req.removeList({cardId, id});
     }
 
     // todo 데이터 가져오기. json-server로부터 GET 요청으로 데이터를 가져올 수 있다.
