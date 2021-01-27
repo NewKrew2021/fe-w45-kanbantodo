@@ -7,21 +7,23 @@
   <title>Kanban TODO</title>
 </head>
 
-<body>
+<body class="d-flex flex-column bg-bright">
   <!-- Header -->
-  <header>
+  <header class="header">
     <!-- Title Bar -->
-    <div>
-      <h1>TODO Service</h1>
-      <button>☰ Menu</button>
+    <div class="header-titlebar">
+      <h1 class="m-0">TODO Service</h1>
+      <button class="ml-auto light">☰ Menu</button>
     </div>
     <!-- Search Bar -->
-    <div>
-      <input type="text" name="input_search" id="input_search">
+    <div class="header-searchbar py-2">
+      <div class="container">
+        <input type="text" name="input_search" id="input_search" placeholder="Filter cards">
+      </div>
     </div>
   </header>
 
-  <div>
+  <div id="kanban_box" class="kanban-wrapper container flex-auto py-3">
     <!-- Kanban here -->
   </div>
 </body>
