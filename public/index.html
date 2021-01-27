@@ -4,6 +4,17 @@
     <meta charset="utf-8" />
   </head>
   <body>
+    <div class="pop-up">
+      <div class="pop-up__background"></div>
+      <div class="pop-up__content">
+        <div class="pop-up__title">New kanban board</div>
+        <input type="text" class="add-new-kanban__input" placeholder="new board name" />
+        <div class="add-new-kanban__button-list">
+          <button class="add-button">Add</button>
+          <button class="cancel-button">Cancel</button>
+        </div>
+      </div>
+    </div>
     <div class="header">
       <div class="header__title">TODO 서비스</div>
       <div class="header__menu-button">menu</div>
@@ -11,6 +22,7 @@
     <div class="kanban-board">
       <div class="kanban-board__header">
         <div class="search-box">Filter cards</div>
+        <div class="add-kanban-button">kanban board 추가</div>
       </div>
       <div class="todo-list">
         <div class="todo">
