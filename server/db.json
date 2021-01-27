@@ -33,9 +33,7 @@
         },
         {
           "title": "공부하기333",
-          "tasks": [
-           
-          ]
+          "tasks": []
         }
       ]
     },
@@ -74,6 +72,26 @@
           ]
         }
       ]
+    },
+    {
+      "name": "해야할일",
+      "author": "chanhuiseok",
+      "data": [
+        {
+          "title": "페이지ggggg",
+          "tasks": [
+            {
+              "id": 0,
+              "title": "task1"
+            },
+            {
+              "id": 1,
+              "title": "task2"
+            }
+          ]
+        }
+      ],
+      "id": 3
     }
   ]
 }
