@@ -1,3 +1,5 @@
+import { $ } from "../common/utils";
+
 class TodoController {
   constructor() {
     this.todoList = [];
@@ -14,6 +16,18 @@ class TodoController {
       .forEach(({ render }) => {
         render(todoCardList[status], status);
       });
+  }
+
+  handlePopUpEvent() {
+    let popUpElement = $(".pop-up");
+
+    $(".add-kanban-button").addEventListener("click", (event) => {
+      popUpElement.style.display = "flex";
+    });
+
+    $(".cancel-button", popUpElement).addEventListener("click", (event) => {
+      popUpElement.style.display = "none";
+    });
   }
 
   addButtonEvent(model, view, status) {
@@ -37,6 +51,7 @@ class TodoController {
         status: this.todoViewList[status].status,
       });
 
+      this.handlePopUpEvent();
       this.notify(todoCardList, status);
       this.addButtonEvent(todoModel, this.todoViewList[status], status);
     }
