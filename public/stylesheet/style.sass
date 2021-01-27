@@ -17,6 +17,18 @@ $cancel-button-background :#000000bd
 
 .kanban-board
     padding: 20px
+    &__header
+        display: flex
+        justify-content: space-between
+        align-items: center
+.add-kanban-button
+    font-size: 20px
+    font-weight: bolder
+    padding: 10px 20px
+    border-radius: 10px
+    color: $add-button-background
+    background: $cancel-button-background
+    cursor: pointer
 
 .search-box
     box-sizing: border-box
@@ -35,6 +47,7 @@ $cancel-button-background :#000000bd
         justify-content: space-between
         margin-bottom: 20px
         font-size: 20px
+
         &--total-count
             padding: 5px
             float: left
