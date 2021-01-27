@@ -19,8 +19,7 @@ const API = (function() {
             },
             body: JSON.stringify(data)
         }).then((res) => {
-            res.status(200)
-            return res.json()
+            return res.status
         })
     }
 
@@ -35,11 +34,25 @@ const API = (function() {
         });
     }
 
+    function deleteNote(colId, noteId) {
+        return fetch(`${API_URL}/note/${colId}/${noteId}`, {
+            "method": "delete",
+            "headers":{
+                "Content-Type": "application/json",
+            }
+        }).then((res) => {
+            console.log(res)
+            return res;
+            // return res.json();
+        })
+    }
+
 
     return {
         getTodoData,
         createNewNote,
-        getColumnData
+        getColumnData,
+        deleteNote,
     };
 })();
 

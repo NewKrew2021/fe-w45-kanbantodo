@@ -50,19 +50,31 @@ app.post('/note/:colId', (req, res) => {
   if (db.get('todos').find({id: colId})) {
     db.get('todos')
       .find({id: colId}).get('notes')
-      .push({id: Date.now(), title}).write();
+      .push({id: Date.now().toString(), title}).write();
       res.status(200);
       res.send();
   }
 })
 
+// Delete note
+app.delete('/note/:colId/:noteId', (req, res) => {
+  let {colId, noteId} = req.params;
+  console.log(noteId);
+  try{
+    console.log(db.get('todos')
+    .find({id: colId})
+    .get('notes').find({id: noteId}).value())
+    db.get('todos')
+      .find({id: colId})
+      .get('notes')
+      .remove({ id: noteId }).write();
+  } catch(err) {
+    console.log(err)
+  }
+  res.status(200)
+  res.send();
+})
+
 app.listen(port, function(){
- console.log(`Server is running on ${port}port`);
+ console.log(`Server is running on ${port}`);
 });
-
-
-// server.use(router);
-
-// server.listen(5000, () => {
-//   console.log('JSON Server is running')
-// });

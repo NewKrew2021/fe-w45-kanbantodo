@@ -15,39 +15,55 @@ class ColumnView {
     
     async init() {
         this.render(this.noteData);
-        const createNoteButton = this.columnEle.querySelector('.column__header .add-button');
-        createNoteButton.addEventListener('click', this.onClickCreateNoteButton.bind(this));
-        const createNoteAddButton = this.columnEle.querySelector('.note-add .add-button')
-        const createNoteCancelButton = this.columnEle.querySelector('.note-add .cancel-button')
-        createNoteAddButton.addEventListener('click', this.onClickCreateNoteAddButton.bind(this));
-        createNoteCancelButton.addEventListener('click', this.onClickCreateNoteCancelButton.bind(this));
+        const addButton = this.columnEle.querySelector('.column__header .add-button');
+        addButton.addEventListener('click', this.onClickAddButton.bind(this));
+        const noteAddButton = this.columnEle.querySelector('.note-add .add-button')
+        const noteCancelButton = this.columnEle.querySelector('.note-add .cancel-button')
+        noteAddButton.addEventListener('click', this.onClickNoteAddButton.bind(this));
+        noteCancelButton.addEventListener('click', this.onClickNoteCancelButton.bind(this));
     }
 
-    onClickCreateNoteButton () {
+    async onClickNoteDeleteButton(e) {
+        const button = e.target.closest('.delete-button')
+        console.log(button)
+        if (button) {
+            const deleteId = button.closest('li').id;
+            console.log(deleteId);
+            try{
+                await API.deleteNote(this.id, deleteId);
+                this.getUpdatedData();
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        
+    }
+
+    onClickAddButton () {
         if (this.createNoteView.classList.contains('hidden')) {
             this.createNoteView.classList.remove('hidden');
         }
     }
 
-    onClickCreateNoteAddButton() {
-        this.getUpdatedData();
-        this.createNoteView.classList.add('hidden')
-    }
-    
-    async getUpdatedData () {   
+    async onClickNoteAddButton() {
         const {value} = this.columnEle.querySelector('.note-add textarea');
         try{
             await API.createNewNote(this.id, {data: {title: value}});
         } catch(err) {
             console.log(err)
         }
+        this.getUpdatedData();
+        this.createNoteView.classList.add('hidden')
+    }
+    
+    async getUpdatedData () {   
         const updatedNoteData = await API.getColumnData(this.id);
         console.log(updatedNoteData)
         // TODO: change to subscribe - notify
         this.updateNote(updatedNoteData.data.notes);
     }
 
-    onClickCreateNoteCancelButton() {
+    onClickNoteCancelButton() {
         this.createNoteView.classList.add('hidden')
     }
 
@@ -57,8 +73,13 @@ class ColumnView {
         const currNotes = this.columnEle.querySelector('.column__note-container');
         this.columnEle.removeChild(currNotes);
         this.columnEle.appendChild(this.renderNotes(noteData));
+
     }
+
+    updateNumber() {
         
+    }
+    
     render(noteData) {
         const noteNum = noteData.length;
         this.columnEle = document.createElement('div');
@@ -109,6 +130,8 @@ class ColumnView {
             return acc + new NoteView(cur).render();
         }, '')
         ele.innerHTML = noteHtml;
+        ele.addEventListener('click', this.onClickNoteDeleteButton.bind(this))
+
         return ele;
     }
 }
