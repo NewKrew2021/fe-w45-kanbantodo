@@ -1,5 +1,6 @@
 
 import API from "../utils/api";
+import ModalView from "./ModalView";
 import NoteView from "./NoteView";
 
 class ColumnView {
@@ -25,18 +26,26 @@ class ColumnView {
 
     async onClickNoteDeleteButton(e) {
         const button = e.target.closest('.delete-button')
-        console.log(button)
-        if (button) {
+        if(button) {
             const deleteId = button.closest('li').id;
-            console.log(deleteId);
-            try{
-                await API.deleteNote(this.id, deleteId);
-                this.getUpdatedData();
-            } catch(err) {
-                console.log(err)
-            }
+            const modal = new ModalView({
+                id: 'deleteNote',
+                title: 'Really?',
+                buttonText: ['Delete'],
+                renderContent: () => {return '';},
+                onClickButton: [() => {this.deleteNote(deleteId)}]
+            });
+            modal.show();
         }
-        
+    }
+    
+    async deleteNote(deleteId) {
+        try{
+            await API.deleteNote(this.id, deleteId);
+            this.getUpdatedData();
+        } catch(err) {
+            console.log(err)
+        }
     }
 
     onClickAddButton () {
