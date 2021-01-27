@@ -5,6 +5,8 @@ $todo-background-color : #9bbbd4
 $todo-card-background : #ffffff
 $add-button-background : #fef01b
 $cancel-button-background :#000000bd
+$pop-up-background : #000000
+$pop-up-content : #ffffff
 
 .header
     font-size: 40px
@@ -14,6 +16,59 @@ $cancel-button-background :#000000bd
     display: flex
     justify-content: space-between
     padding: 20px 50px
+.pop-up
+    z-index: 1
+    position: fixed
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100vw
+    height: 100vh
+    &__background
+        position: fixed
+        width: 100vw
+        height: 100vh
+        background: $pop-up-background
+        opacity: 0.5
+    &__content
+        border-radius: 10px
+        padding: 30px 20px 10px 20px
+        z-index: 2
+        background: $pop-up-content
+        width: 500px
+        height: 200px
+    &__title
+        width: 100%
+        text-align: center
+        font-size: 30px
+        margin-bottom: 30px
+.add-new-kanban
+    &__input
+        box-sizing: border-box
+        width: 100%
+        height: 50px
+        padding: 10px
+        margin-bottom: 20px
+    &__button-list
+        box-sizing: border-box
+        width: 100%
+        display: flex
+        justify-content: space-between
+        column-gap: 10px
+
+.cancel-button, .add-button
+    font-weight: bolder
+    border: 1px solid $common-border-color
+    border-radius: 5px
+    box-sizing: border-box
+    height: 40px
+    flex: 1 1 auto
+    cursor: pointer
+.add-button
+    background: $add-button-background
+.cancel-button
+    background: $cancel-button-background
+    color: $add-button-background
 
 .kanban-board
     padding: 20px
@@ -21,6 +76,7 @@ $cancel-button-background :#000000bd
         display: flex
         justify-content: space-between
         align-items: center
+
 .add-kanban-button
     font-size: 20px
     font-weight: bolder
@@ -105,17 +161,3 @@ $cancel-button-background :#000000bd
         display: flex
         justify-content: space-between
         column-gap: 10px
-
-        .cancel-button, .add-button
-            font-weight: bolder
-            border: 1px solid $common-border-color
-            border-radius: 5px
-            box-sizing: border-box
-            height: 40px
-            flex: 1 1 auto
-            cursor: pointer
-        .add-button
-            background: $add-button-background
-        .cancel-button
-            background: $cancel-button-background
-            color: $add-button-background
