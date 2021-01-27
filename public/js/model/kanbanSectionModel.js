@@ -1,11 +1,11 @@
-function fetchTodo(handlechange) {
+function fetchTasks(handlechange) {
     fetch("/todos", { method: 'GET', })
         .then((res) => res.json())
         .then((data) => {
             handlechange(data.todos);
         }).catch((err) => console.log);
 }
-function createTodo(handleChange,{title,author}) {
+function createTask(handleChange,{title,author}) {
     const data = { title: title,author:author };
     fetch("/todos", {
         method: 'POST',
@@ -20,7 +20,7 @@ function createTodo(handleChange,{title,author}) {
     }).catch((err) => console.log);
 
 }
-function deleteTodo(handleChange, dbID){
+function deleteTask(handleChange, dbID){
 
     fetch("/todos", {
         method: 'DELETE',
@@ -34,7 +34,7 @@ function deleteTodo(handleChange, dbID){
         handleChange(data.todos);
     }).catch((err) => console.log);
 }
-function updateTodo(handleChange,{dbID,title}){
+function updateTask(handleChange,{dbID,title}){
     fetch("/todos", {
         method: 'PUT',
         body: JSON.stringify({id:dbID,title:title}),
@@ -47,4 +47,4 @@ function updateTodo(handleChange,{dbID,title}){
         handleChange(data.todos);
     }).catch((err) => console.log);
 }
-export { fetchTodo, createTodo,deleteTodo,updateTodo};
+export { fetchTasks , createTask,deleteTask ,updateTask };

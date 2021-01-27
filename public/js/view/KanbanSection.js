@@ -1,9 +1,9 @@
 import { createElementFromHTML } from "../util.js";
-function initTodoSection() {
-    const container = document.querySelector("#container");
-    const todoSection = createElementFromHTML(
-    `<div id="todo-section" class="section">
-        해야할 일
+function initKanbanSection({sectionID,title}) {
+    const container = document.querySelector("#kanban");
+    const Section = createElementFromHTML(
+    `<div id="${sectionID}-section" class="section">
+        ${title}
         <button class="open-panel-btn">+</button>
         <button class="section-delete-btn">X</button>
         <div class="add-panel hide">
@@ -22,22 +22,22 @@ function initTodoSection() {
             </div>
         </div>
     </div>`);
-    container.appendChild(todoSection);
+    container.appendChild(Section);
 
 }
 
 
-function render(todosListData) {
-    const todoSection=document.querySelector("#todo-section");
-    const todoListElement=todoSection.querySelector(".item-list");
-    const todosHTML = todosListData.reduce((acc, { _id,title,author }) =>
+function render({sectionID,taskListData}) {
+    const section=document.querySelector(`#${sectionID}-section`);
+    const ListElement=section.querySelector(".item-list");
+    const tasksHTML = taskListData.reduce((acc, { _id,title,author }) =>
         `<div class="item" dbid=${_id}>
-            <img src="/public/image/todo.png"></img>
+            <img src="/public/image/task.png"></img>
             <button class="delete-btn">X</button>
             <div class="title">${title}</div>
             <div class="author">added by ${author}</div>
         </div>`+acc
         , "");
-    todoListElement.innerHTML = todosHTML;
+    ListElement.innerHTML = tasksHTML;
 }
-export { initTodoSection, render };
+export { initKanbanSection, render };
