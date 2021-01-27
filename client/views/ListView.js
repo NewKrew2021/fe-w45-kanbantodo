@@ -23,13 +23,14 @@ class ListView{
     // 데이터를 가지고 view를 바로 렌더링하는 메서드
     updateListView(res){
         this.render();
+        this.removeListView();
     }
 
     // template로 초기 html 넣기
     async render(){
         const data = await this.model.getInitialData(); // 초기 데이터를 가져온다.
-        const createHTML = ({ data, type }) => data.reduce((acc, {id, name, author, data}, idx) =>{
-            return acc + domTpl[type]({id, name, author, data}, idx);
+        const createHTML = ({ data, type }) => data.reduce((acc, {id, name, author, data}) =>{
+            return acc + domTpl[type]({id, name, author, data});
         }, ``);
         data.forEach(element => {
             const allObj = { data: element, type: 'InitListView'};
@@ -52,7 +53,6 @@ class ListView{
             element.addEventListener('click', this.removeListHandler.bind(this));
         })
     }
-
 
     init(){
         this.render();

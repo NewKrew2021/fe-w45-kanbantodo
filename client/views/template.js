@@ -13,10 +13,9 @@ export const domTpl = {
         </div>`
     }
     ,
-    InitListView({ id, author, name, data }, idx) {
+    InitListView({ id, author, name, data }) {
         return `
-        <div class="card" data=${idx}>
-
+        <div class="card" data=${id}>
         <div class="card-header">
             <span class="card-count bold" data=${id}>${data.length}</span>
             <span class="title bold">${name}</span>
@@ -36,9 +35,9 @@ export const domTpl = {
                 <button class="btn-add-list" data=${id}>Add</button>
                 <button class="btn-cancel-list" data=${id}>Cancel</button>
             </div>
-            <div class="list-view-wrapper" data=${idx}>
-            ${data.map((element, eidx) =>
-            `<div class="list-view" data=${idx} data-idx=${eidx}>
+            <div class="list-view-wrapper" data=${id}>
+            ${data.map((element) =>
+            `<div class="list-view" data=${id} data-idx=${element.id}>
                 <p class="title"><img class="mg-right-6" src="/images/list_btn.png">${element.title}</p>
                 <ul class="task sub-title font-15">
                 ${element.tasks && element.tasks.map(element =>
@@ -46,7 +45,7 @@ export const domTpl = {
                 ).join('')} 
                 </ul>
                     <p class="author sub-title font-14"><span class="gray">Added by</span> ${author}</p>
-                    <button class="list-remove card-btn" data=${idx} data-idx=${eidx}><img src="/images/close_btn.png"></button>
+                    <button class="list-remove card-btn" data=${id} data-idx=${element.id}><img src="/images/close_btn.png"></button>
                     </div>`
         ).join('')}
             </div>
