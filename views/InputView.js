@@ -28,9 +28,19 @@ class InputView {
         })
     }
 
-    toggleEvtHandler(e){
+    removeInputHandler(e){
+        const inputArea = _dom.queryAll('.list-input');
         const idx = e.target.getAttribute('data');
+        inputArea.forEach(element => {
+            if (element.getAttribute('data') === idx) {
+                element.value = "";
+            }
+        })
+    }
+
+    toggleEvtHandler(e){
         const inputDiv = _dom.queryAll('.input-list-view');
+        const idx = e.target.getAttribute('data');
         inputDiv.forEach(element => {
             if (element.getAttribute('data') === idx) {
                 element.classList.toggle("none");
@@ -41,12 +51,16 @@ class InputView {
     async inputNoteData() {
         const { } = await this.model.getInitialData();
         const inputBtn = _dom.queryAll('.btn-add-list');
+        const cancelBtn = _dom.queryAll('.btn-cancel-list');
         inputBtn.forEach(element => {
             element.addEventListener('click', this.addInputHandler.bind(this));
         })
+        cancelBtn.forEach(element => {
+            element.addEventListener('click', this.removeInputHandler.bind(this));
+        })
     }
 
-    async setClickAddBtn() {
+    async setClickBtn() {
         const { } = await this.model.getInitialData();
         const cardBtn = _dom.queryAll('.card-btn.htop-add');
         cardBtn.forEach(element => {
@@ -55,10 +69,9 @@ class InputView {
     }
 
     init() {
-        this.setClickAddBtn();
+        this.setClickBtn();
         this.inputNoteData();
     }
-
 }
 
 export default InputView;

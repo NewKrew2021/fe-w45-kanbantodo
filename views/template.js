@@ -8,7 +8,7 @@ export const domTpl = {
                 `<li>${element.title}</li>`
             ).join('')}
         </ul>
-        <p class="author sub-title font-14"><span class="gray">Added by</span>${author}</p>
+        <p class="author sub-title font-14"><span class="gray">Added by </span>${author}</p>
         <button class="card-btn" data=${idx} data-idx=${eidx}><img src="/images/close_btn.png"></button>
         </div>`
     }
