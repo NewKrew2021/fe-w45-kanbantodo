@@ -59,6 +59,18 @@ const API = (function() {
         })
     }
 
+    function deleteColumn(colId) {
+        return fetch(`${API_URL}/column/${colId}`, {
+            "method": "delete",
+            "headers":{
+                "Content-Type": "application/json",
+            }
+        }).then((res) => {
+            console.log(res)
+            return res;
+            // return res.json();
+        })
+    }
 
     return {
         getTodoData,
@@ -66,6 +78,7 @@ const API = (function() {
         getColumnData,
         deleteNote,
         createNewColumn,
+        deleteColumn,
     };
 })();
 

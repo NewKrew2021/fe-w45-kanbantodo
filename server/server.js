@@ -36,7 +36,15 @@ app.post('/column', (req, res) =>{
 // Delete column
 app.delete('/column/:id', (req, res) => {
   const {id} = req.params;
-  db.get('todos').remove({ id }).write()
+  try{
+    db.get('todos').remove({ id }).write();
+    res.status(200)
+  } catch(err) {
+    console.log(err);
+    res.status(400)
+  }
+  res.send();
+
 })
 
 // Create new note
@@ -55,7 +63,6 @@ app.post('/note/:colId', (req, res) => {
 // Delete note
 app.delete('/note/:colId/:noteId', (req, res) => {
   let {colId, noteId} = req.params;
-  console.log(noteId);
   try{
     console.log(db.get('todos')
     .find({id: colId})
@@ -64,11 +71,12 @@ app.delete('/note/:colId/:noteId', (req, res) => {
       .find({id: colId})
       .get('notes')
       .remove({ id: noteId }).write();
-  } catch(err) {
-    console.log(err)
-  }
-  res.status(200)
-  res.send();
+      res.status(200)
+    } catch(err) {
+      console.log(err)
+      res.status(400);
+    }
+    res.send();
 })
 
 app.listen(port, function(){

@@ -22,14 +22,16 @@ class ColumnView {
         const noteCancelButton = this.columnEle.querySelector('.note-add .cancel-button')
         noteAddButton.addEventListener('click', this.onClickNoteAddButton.bind(this));
         noteCancelButton.addEventListener('click', this.onClickNoteCancelButton.bind(this));
+        const columnDeleteButton = this.columnEle.querySelector('.column__header__buttons > .remove-button')
+        columnDeleteButton.addEventListener('click', this.onClickColumnDeleteButton.bind(this));
     }
 
-    async onClickNoteDeleteButton(e) {
+    onClickNoteDeleteButton(e) {
         const button = e.target.closest('.delete-button')
         if(button) {
             const deleteId = button.closest('li').id;
             const modal = new ModalView({
-                id: 'deleteNote',
+                id: 'deleteNote'+deleteId.toString(),
                 title: 'Really?',
                 buttonText: ['Delete'],
                 renderContent: () => {return '';},
@@ -40,12 +42,29 @@ class ColumnView {
     }
     
     async deleteNote(deleteId) {
-        try{
+        try {
             await API.deleteNote(this.id, deleteId);
             this.getUpdatedData();
         } catch(err) {
             console.log(err)
         }
+    }
+
+    onClickColumnDeleteButton(e) {
+        const modal = new ModalView({
+            id: 'deleteColumn'+this.id.toString(),
+            title: 'Really?',
+            buttonText: ['Delete'],
+            renderContent: () => {return '';},
+            onClickButton: [() => {this.deleteColumn()}]
+        });
+        modal.show();
+        // update dom
+    }
+    
+    async deleteColumn() {
+        await API.deleteColumn(this.id);
+        this.columnEle.remove();
     }
 
     onClickAddButton () {
@@ -67,7 +86,6 @@ class ColumnView {
     
     async getUpdatedData () {   
         const updatedNoteData = await API.getColumnData(this.id);
-        console.log(updatedNoteData)
         // TODO: change to subscribe - notify
         this.updateNote(updatedNoteData.data.notes);
     }

@@ -49,8 +49,13 @@ class ModalView {
         this.ele = modalEle;
         modalEle.querySelector('.close-button').addEventListener('click', this.onClickCloseButton)
         modalEle.querySelector('.modal-buttons').firstElementChild.addEventListener('click', () => {
-            const value = modalEle.querySelector('input').value;
-            onClickButton[0](value);
+            const inputEle = modalEle.querySelector('input');
+            if (inputEle) {
+                const { value } = inputEle;
+                onClickButton[0](value);
+            } else {
+                onClickButton[0]();
+            }
             this.onClickCloseButton();
         })
     }

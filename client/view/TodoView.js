@@ -36,20 +36,22 @@ class TodoView {
         addColumnEle.className = 'add-column';
         container.appendChild(addColumnEle);
         addColumnEle.addEventListener('click', this.onClickAddColumn.bind(this));
-
     }
     
     onClickAddColumn() {
-        new ModalView({
-            id: "column-add-modal",
-            title:"Add new column",
-            buttonText:["Add column"],
-            showInputLabel: true,
-            labelName: 'Column name',
-            onClickButton: [async (value) => {
-                await API.createNewColumn(value);
-                this.update();}]
-        })
+        if (!this.columnAddModal) {
+            this.columnAddModal = new ModalView({
+                id: "column-add-modal",
+                title:"Add new column",
+                buttonText:["Add column"],
+                showInputLabel: true,
+                labelName: 'Column name',
+                onClickButton: [async (value) => {
+                    await API.createNewColumn(value);
+                    this.update();}]
+            })
+        }
+        this.columnAddModal.show();
         // API.createNewColumn('');
     }
 
