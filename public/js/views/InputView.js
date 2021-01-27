@@ -2,6 +2,27 @@ class InputView {
   constructor(model){
     this.model = model;
     this.inputValue = "";
+    this.cardview;
+  }
+
+  displayCard(cards) {
+    console.log(cards);
+    const contents = document.querySelectorAll("div.item-container");
+    for(let idx=0; idx<cards.length; idx++) {
+      let cardsHtml = ``;
+      cards[idx]["items"].forEach(card => {
+       
+        cardsHtml += `
+          <div class="todo-contents">
+            <div class="todo-items">
+              ${card.title}
+              <div class="todo-author"> Added by ${card.author}</div>
+            </div>
+          </div>
+        `
+      });
+      contents[idx].innerHTML = cardsHtml;
+    }
   }
 
   plusBtnEvent() {
@@ -9,21 +30,20 @@ class InputView {
     plusBtn.forEach( btn => {
       btn.addEventListener("click", e => {
         const parentEle = e.currentTarget.closest(".todo-container");
-        this.model.displayInputWindow(this.displayInputWindow, this.addCard, parentEle.childNodes[3]);
-        this.addBtnEvent();
-        this.cancelBtnEvent();
+        this.model.displayInputWindow(this.displayInputWindow, parentEle.childNodes[3]);
       })
     })
   }
 
   addBtnEvent() {
+    
     const addBtn = document.querySelectorAll("button.add-button");
-    addBtn.forEach( btn => {
+    addBtn.forEach( (btn, idx) => {
       btn.addEventListener("click", e => {
         const parentEle = e.currentTarget.closest(".todo-container");
         const inputValue = parentEle.querySelector("input.add-input").value;
         this.inputValue = inputValue;
-        this.model.addBtn(parentEle, inputValue);
+        this.model.addCards(idx, inputValue);
       })
     })
   }
@@ -35,51 +55,21 @@ class InputView {
         const parentEle = e.currentTarget.closest(".todo-add");
         parentEle.className = "todo-add non-display"
       })
-    })
-    
+    }) 
   }
-
-  addCard(element, inputValue) {
-    element.innerHTML += cardsHtml(inputValue);
-    console.log(element, inputValue);
-  }
-
 
   displayInputWindow(ele) {
     ele.className = "todo-add";
   }
   
   init() {
+    this.model.subscribe(this.displayCard);
+    this.model.getInitialData()
+    .then(this.plusBtnEvent.bind(this))
+    .then(this.addBtnEvent.bind(this))
+    .then(this.cancelBtnEvent.bind(this))
   }
 }
-
-const displayCard = (cards) => {
-  const contents = document.querySelectorAll("div.todo-container");
-  for(let idx=0; idx<cards.length; idx++) {
-    let cardsHtml = ``;
-    cards[idx]["items"].forEach(card => {
-      // console.log(card)
-      cardsHtml += `
-        <div class="todo-contents">
-          <div class="todo-items">
-            ${card.title}
-            <div class="todo-author"> Added by ${card.author}</div>
-          </div>
-        </div>
-      `
-    });
-    contents[idx].innerHTML += cardsHtml;
-  }
-}
-
-const cardsHtml = (title) => `
-        <div class="todo-contents">
-          <div class="todo-items">
-            ${title}
-            <div class="todo-author"> Added by kevin</div>
-          </div>
-        </div>
-      `
 
 
 

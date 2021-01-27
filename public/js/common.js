@@ -6,9 +6,10 @@ class Observable {
     this._observers.add(observer);
   }
   unSubscribe(observer) {
-    this._observers.delete(observer)
+    this._observers.delete(observer);
   }
   notify(...param) {
+    console.log(this._observers)
     this._observers.forEach(observer => observer(...param));
   }
 }

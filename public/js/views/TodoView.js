@@ -25,6 +25,7 @@ class TodoView {
             <button class="add-button" type="button">Add</button>
             <button class="cancel-button" type="button">Cancel</button>
           </div>
+          <div class="item-container"></div>
         </div>
       `
     });
@@ -33,9 +34,7 @@ class TodoView {
   
   init(inputView) {
     this.model.subscribe(this.displayTodoBoard);
-    this.model.subscribe(displayCard);
     this.model.getInitialData()
-    .then(inputView.plusBtnEvent.bind(inputView))
   }
 }
 
@@ -44,7 +43,6 @@ const displayCard = (cards) => {
   for(let idx=0; idx<cards.length; idx++) {
     let cardsHtml = ``;
     cards[idx]["items"].forEach(card => {
-      // console.log(card)
       cardsHtml += `
         <div class="todo-contents">
           <div class="todo-items">
@@ -54,7 +52,7 @@ const displayCard = (cards) => {
         </div>
       `
     });
-    contents[idx].innerHTML += cardsHtml;
+    contents[idx].innerHTML = cardsHtml;
   }
 }
 

@@ -3,6 +3,7 @@ import {TodoView} from "./views/TodoView.js"
 import {InputModel} from "./models/InputModel.js"
 import {InputView} from "./views/InputView.js"
 
+
 window.addEventListener("DOMContentLoaded", init)
 
 async function init() {
@@ -12,7 +13,7 @@ async function init() {
   const inputView =  new InputView(inputModel);
 
   
+
   todoView.init(inputView);
   inputView.init();
-  
 }
