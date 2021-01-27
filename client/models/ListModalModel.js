@@ -17,19 +17,6 @@ class ListModalModel extends Observable {
         this.todos = [];
         this.state = {}; // data state
     }
-
-    // 삭제버튼을 클릭한 Listview 아이템의 인덱스 정보
-    openModal({ cardId, id }) {
-        this.state = {...this.state, cardId: cardId, id: id};
-        this.notify(this.state);
-    }
-    
-    async getInitialData() {
-        const res = await fetch('http://localhost:5000/posts');
-        const data = await res.json();
-        this.todos = [...this.todos, data];
-        return this.todos;
-    }
 }
 
 export default ListModalModel;

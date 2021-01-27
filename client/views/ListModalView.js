@@ -11,31 +11,10 @@ class ListModalView {
     }
 
     update(state){
-        this.showListModal();
-    }
-
-    showListModal(){
-        const {cardId, id} = this.model.state;
-        console.log(cardId, id);
-    }
-
-    async removeBtnClick(){
-        const {} = await this.model.getInitialData();
-        const removeListBtn = _dom.queryAll('.list-remove');
-        console.log(removeListBtn);
-        removeListBtn.forEach(element => {
-            element.addEventListener('mouseenter', (e)=>{
-                let cardId = e.target.getAttribute('data');
-                let id = e.target.getAttribute('data-idx');
-                console.log(cardId, id);
-                this.model.openModal({cardId, id});
-            })
-        })
     }
 
     // Event handler
     init() {
-        this.removeBtnClick();
     }
 }
 

@@ -15,6 +15,7 @@ class TodoModel extends Observable {
     constructor(initialUrl) {
         super();
         this.todos = []; // data state
+        this.state = {}; 
         this.url = initialUrl; // 가져올 데이터의 요청 URL
     }
 
@@ -44,11 +45,17 @@ class TodoModel extends Observable {
     }
 
     // 리스트뷰(todo) 삭제, 상태 변화, Observer에게 알려 준다.
-    async removeTodo( cardId, id ) {
+    async removeTodo( {cardId, id} ) {
         await req.removeList({ cardId, id });
         const res = await req.getAllData();
         this.todos = [...this.todos, res];
         this.notify(this.todos);
+    }
+
+    async setModalState({cardId, id}){
+        const res = await req.getAllData();
+        this.state = {...this.state, cardId: cardId, id: id};
+        return this.state;
     }
 
     // todo 데이터 가져오기. json-server로부터 GET 요청으로 데이터를 가져올 수 있다.

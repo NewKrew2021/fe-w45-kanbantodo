@@ -77,13 +77,10 @@ app.post('/addtask', (req, res) => {
 // [-] 특정 카드 -> 리스트뷰 아이템을 삭제할 때
 app.delete('/list/remove/:cardId/:id', (req, res) => {
     const { cardId, id } = req.params;
-    const i_cardId = parseInt(cardId);
-    const i_id = parseInt(id);
-    console.log(i_cardId, i_id);
     db.get('posts')
-      .find({ id: i_cardId })
+      .find({ id: parseInt(cardId) })
       .get('data')
-      .remove({ id: i_id })
+      .remove({ id: parseInt(id) })
       .write()
     res.send('list removed successfully!');
 })
