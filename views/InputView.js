@@ -15,7 +15,7 @@ class InputView {
     update(state) {
     }
 
-    async addInput() {
+    async inputNoteData() {
         const { } = await this.model.getInitialData();
         const inputBtn = _dom.queryAll('.btn-add-list');
         const inputArea = _dom.queryAll('.list-input');
@@ -54,7 +54,7 @@ class InputView {
 
     init() {
         this.setAddBtn();
-        this.addInput();
+        this.inputNoteData();
     }
 
 }
