@@ -43,6 +43,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   todoController.notify(todoCardList, TODO);
   todoController.notify(todoCardList, DONE);
 
-  addButtonEvent(todoModel, todoView, todoController, TODO);
-  addButtonEvent(todoModel, doneView, todoController, DONE);
+  todoController.addButtonEvent(todoModel, todoView, TODO);
+  todoController.addButtonEvent(todoModel, doneView, DONE);
 });

@@ -14,6 +14,18 @@ class TodoController {
         render(todoCardList[status], status);
       });
   }
+
+  addButtonEvent(model, view, status) {
+    view.getNewTodoData(async (cardData) => {
+      await model.addCard(cardData);
+      this.notify(model.todoCardList, status);
+    });
+
+    view.deleteTodo(async (cardData) => {
+      await model.deleteTodo(cardData);
+      this.notify(model.todoCardList, status);
+    });
+  }
 }
 
 export { TodoController };
