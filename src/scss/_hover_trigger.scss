@@ -1,0 +1,15 @@
+.hover-popup {
+  background-color: #ffffff;
+  border: 1px solid #979797;
+  overflow: hidden;
+  padding: 1rem 1.5rem;
+  position: absolute;
+}
+
+.hover-popup-target:not(.show) {
+  display: none;
+}
+
+[data-hover-toggle-group]:not(.show) {
+  display: none;
+}
