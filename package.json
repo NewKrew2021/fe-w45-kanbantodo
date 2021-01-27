@@ -22,10 +22,13 @@
   "homepage": "https://github.com/ChanhuiSeok/fe-w23-shoppinghow#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
     "core-js": "^3.8.2",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "lowdb": "^1.0.0",
-    "mongoose": "^5.11.13"
+    "mongoose": "^5.11.13",
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",

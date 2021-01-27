@@ -13,6 +13,8 @@ class InputView {
 
     // update, todos 토대로 그리기
     update(state) {
+        this.setClickBtn();
+        this.inputNoteData();
     }
 
     // Event handler
@@ -23,7 +25,7 @@ class InputView {
         inputArea.forEach(element => {
             if (element.getAttribute('data') === idx) {
                 inputData = element.value;
-                this.model.addTodo(idx, inputData);
+                this.model.addTodo({idx, inputData});
             }
         })
     }

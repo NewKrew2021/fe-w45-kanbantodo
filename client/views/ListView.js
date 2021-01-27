@@ -6,6 +6,7 @@
 */
 import { domTpl } from './template.js';
 import * as _dom from '../src/util.js';
+import * as req from '../src/request.js';
 
 /* TodoModel을 구독하는 Observer */
 class ListView{
@@ -14,35 +15,14 @@ class ListView{
         this.model.subscribe(this.update.bind(this))
     }
 
-    // update(모델에 데이터가 추가되면, 상태값을 토대로 리스트뷰 업데이트 하기)
+    // update(모델의 상태값이 변화(데이터 추가 혹은 삭제)되면, 리스트뷰 업데이트 하기)
     update(state){
-        this.addListView(state);
+        this.updateListView(state);
     }
 
-    // event listener 정의
-    addListView(res){
-        // html 변경
-        const idx = res.index;
-        const title = res.added.title;
-        const tasks = res.added.tasks && res.added.tasks;
-        const eidx = res.state[0][idx].data.length - 1;
-        const author = res.state[0][idx].author;
-        const addData = domTpl['AddListView']({idx, eidx, author, title, tasks});
-        const listWrapper = _dom.queryAll('.list-view-wrapper');
-        listWrapper.forEach(e =>{
-            if(e.getAttribute('data') === idx){
-                _dom.addHTML(e, addData);
-            }
-        })
-
-        const itemCount = _dom.queryAll('.card-count');
-        itemCount.forEach(e =>{
-            if(e.getAttribute('data') === idx){
-                _dom.html(e, eidx + 1);
-            }
-        })
-
-        // post(put) 요청으로 데이터도 변경하기
+    // 데이터를 가지고 view를 바로 렌더링하는 메서드
+    updateListView(res){
+        this.render();
     }
 
     // template로 초기 html 넣기
@@ -52,14 +32,31 @@ class ListView{
             return acc + domTpl[type]({id, name, author, data}, idx);
         }, ``);
         data.forEach(element => {
-            const id = element.id;
             const allObj = { data: element, type: 'InitListView'};
-            _dom.addHTML(_dom.query('.card-wrapper'), createHTML(allObj));
+            _dom.html(_dom.query('.card-wrapper'), createHTML(allObj));
         });
     }
 
+    /* event handler */
+    removeListHandler(e){
+        const cardId = e.currentTarget.getAttribute('data');
+        const id = e.currentTarget.getAttribute('data-idx');
+        this.model.removeTodo({cardId, id});
+    }
+
+    // 리스트뷰의 X 클릭 시 삭제하는 메서드
+    async removeListView() {
+        const { } = await this.model.getInitialData();
+        const removeListBtn = _dom.queryAll('.list-remove');
+        removeListBtn.forEach(element => {
+            element.addEventListener('click', this.removeListHandler.bind(this));
+        })
+    }
+
+
     init(){
         this.render();
+        this.removeListView();
     }
 }
 

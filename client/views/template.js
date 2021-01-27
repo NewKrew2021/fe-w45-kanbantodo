@@ -9,7 +9,7 @@ export const domTpl = {
             ).join('')}
         </ul>
         <p class="author sub-title font-14"><span class="gray">Added by </span>${author}</p>
-        <button class="card-btn" data=${idx} data-idx=${eidx}><img src="/images/close_btn.png"></button>
+        <button class="list-remove card-btn" data=${idx} data-idx=${eidx}><img src="/images/close_btn.png"></button>
         </div>`
     }
     ,
@@ -46,7 +46,7 @@ export const domTpl = {
                 ).join('')} 
                 </ul>
                     <p class="author sub-title font-14"><span class="gray">Added by</span> ${author}</p>
-                    <button class="card-btn" data=${idx} data-idx=${eidx}><img src="/images/close_btn.png"></button>
+                    <button class="list-remove card-btn" data=${idx} data-idx=${eidx}><img src="/images/close_btn.png"></button>
                     </div>`
         ).join('')}
             </div>
