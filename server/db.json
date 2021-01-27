@@ -7,29 +7,41 @@
       "data": [
         {
           "id": 0,
-          "title": "abc",
+          "title": "add1",
           "tasks": []
         },
         {
           "id": 1,
-          "title": "2",
-          "tasks": []
-        },
-        {
-          "id": 2,
-          "title": "3",
+          "title": "add2",
           "tasks": []
         }
       ]
     },
     {
       "id": 1,
-      "name": "해야할일",
+      "name": "하는중",
       "author": "chanhuiseok",
       "data": [
         {
-          "id": 6,
-          "title": "33333adffsd",
+          "id": 0,
+          "title": "test1",
+          "tasks": []
+        },
+        {
+          "id": 1,
+          "title": "test2",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "다했어",
+      "author": "chanhuiseok",
+      "data": [
+        {
+          "id": 0,
+          "title": "test1",
           "tasks": []
         }
       ]

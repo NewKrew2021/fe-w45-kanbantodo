@@ -14,7 +14,7 @@ import * as req from '../src/request.js';
 class TodoModel extends Observable {
     constructor(initialUrl) {
         super();
-        this.todos = []; // state
+        this.todos = []; // data state
         this.url = initialUrl; // 가져올 데이터의 요청 URL
     }
 
@@ -44,7 +44,7 @@ class TodoModel extends Observable {
     }
 
     // 리스트뷰(todo) 삭제, 상태 변화, Observer에게 알려 준다.
-    async removeTodo({ cardId, id }) {
+    async removeTodo( cardId, id ) {
         await req.removeList({ cardId, id });
         const res = await req.getAllData();
         this.todos = [...this.todos, res];

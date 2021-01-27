@@ -79,6 +79,7 @@ app.delete('/list/remove/:cardId/:id', (req, res) => {
     const { cardId, id } = req.params;
     const i_cardId = parseInt(cardId);
     const i_id = parseInt(id);
+    console.log(i_cardId, i_id);
     db.get('posts')
       .find({ id: i_cardId })
       .get('data')

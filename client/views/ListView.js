@@ -11,6 +11,8 @@ import * as req from '../src/request.js';
 /* TodoModel을 구독하는 Observer */
 class ListView{
     constructor(model){
+        this.cardId = 0;
+        this.id = 0;
         this.model = model; // 생성 시 구독할 model(여기서는 TodoModel)을 주입받고 구독한다.
         this.model.subscribe(this.update.bind(this))
     }
@@ -40,9 +42,20 @@ class ListView{
 
     /* event handler */
     removeListHandler(e){
-        const cardId = e.currentTarget.getAttribute('data');
-        const id = e.currentTarget.getAttribute('data-idx');
-        this.model.removeTodo({cardId, id});
+        this.cardId = e.target.getAttribute('data');
+        this.id = e.target.getAttribute('data-idx');
+        const modal = _dom.query('.modal');
+        const acceptBtn = _dom.query('.btn-accept-modal');
+        const closeBtn = _dom.query('.btn-close-modal');
+
+        modal.classList.remove('none');
+        acceptBtn.addEventListener('click', function(){
+            this.model.removeTodo(this.cardId, this.id);
+            modal.classList.add('none');
+        }.bind(this))
+        closeBtn.addEventListener('click', function(){
+            modal.classList.add('none');
+        })
     }
 
     // 리스트뷰의 X 클릭 시 삭제하는 메서드
