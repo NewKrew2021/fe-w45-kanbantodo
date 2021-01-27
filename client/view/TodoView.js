@@ -20,6 +20,8 @@ class TodoView {
         addColumnEle.className = 'add-column';
         document.querySelector('.container').appendChild(addColumnEle);
         addColumnEle.addEventListener('click', this.onClickAddColumn.bind(this));
+        const filterEle = document.querySelector('.filter-cards > input');
+        filterEle.addEventListener('input', this.onAddFilter.bind(this));
     }
 
     async update() {
@@ -55,17 +57,22 @@ class TodoView {
         // API.createNewColumn('');
     }
 
-    onAddFilter() {
-        const filteredNoteData = this.colData.filter((data)=>{
-            data.notes.filter(({title})=>{
-                return title.contains(value);
+    /**
+     * input이 변할 때 
+     */
+    onAddFilter(e) {
+        const { value } = e.target;
+        const filteredNoteData = this.colData.data.map((data)=>{
+            const filteredNotes = data['notes'].filter(({title})=>{
+                return title.includes(value);
             });
-        })
+            return filteredNotes;
+        });
         filteredNoteData.forEach((data, idx)=>{
             this.columns[idx].updateNote(data);
-        })        
-    }
+        });
 
+    }
 }
 
 export default TodoView;
