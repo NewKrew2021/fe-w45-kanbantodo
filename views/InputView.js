@@ -38,8 +38,8 @@ class InputView {
     // event(hover)
     async setAddBtn() {
         const data = await this.model.getInitialData();
-        const addBtn = _dom.queryAll('.card-plus');
-        addBtn.forEach(element => {
+        const cardBtn = _dom.queryAll('.card-btn.htop-add');
+        cardBtn.forEach(element => {
             element.addEventListener('click', (e) => {
                 const idx = e.target.getAttribute('data');
                 const inputDiv = _dom.queryAll('.input-list-view');

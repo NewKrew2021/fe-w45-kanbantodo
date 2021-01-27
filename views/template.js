@@ -9,7 +9,7 @@ export const domTpl = {
             ).join('')}
         </ul>
         <p class="author sub-title font-14">Added by ${author}</p>
-        <button class="close-btn" data=${idx} data-idx=${eidx}><img src="/images/close_btn.png"></button>
+        <button class="card-btn" data=${idx} data-idx=${eidx}><img src="/images/close_btn.png"></button>
         </div>`
     }
     ,
@@ -20,10 +20,10 @@ export const domTpl = {
         <div class="card-header">
             <span class="card-count bold" data=${id}>${data.length}</span>
             <span class="title bold">${name}</span>
-                <button class="close-btn htop-add">
+                <button class="card-btn htop-add">
                 <img class="card-plus" data=${id} src="/images/plus_btn.png">
                 </button>
-                <button class="close-btn htop">
+                <button class="card-btn htop">
                 <img class="card-remove" data=${id} src="/images/close_btn.png">
                 </button>
         </div>
@@ -46,7 +46,7 @@ export const domTpl = {
                 ).join('')} 
                 </ul>
                     <p class="author sub-title font-14">Added by ${author}</p>
-                    <button class="close-btn" data=${idx} data-idx=${eidx}><img src="/images/close_btn.png"></button>
+                    <button class="card-btn" data=${idx} data-idx=${eidx}><img src="/images/close_btn.png"></button>
                     </div>`
         ).join('')}
             </div>
