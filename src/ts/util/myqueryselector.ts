@@ -35,7 +35,7 @@ function findElements(selector: Selector, findAll: boolean) {
 // find the first node that matches selector
 // return element or null
 export function findOne(selector: Selector) {
-  return findElements(selector, false)
+  return findElements(selector, false) as HTMLElement
 }
 export { findOne as myQuerySelector }
 
