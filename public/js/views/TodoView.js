@@ -3,51 +3,40 @@ class TodoView {
     this.model = model;
   }
 
-  todoAddButton() {
-    const addButton = document.querySelectorAll("div.title-add");
-    console.log(addButton)
-    addButton.forEach( button => {
-      button.addEventListener("click", e => {
-        const parentEle = e.currentTarget.parentNode.parentNode;
-        console.log(parentEle)
-      })
-    })
+  displayTodoBoard(todos) {
+    const contents = document.querySelector("div.contents");
+    let contentHtml = ``;
+    todos.forEach(todo => {
+      contentHtml += `
+        <div class="todo-container">
+          <div class="todo-title">
+            <div class="title-li title-img">
+              <svg class="svg-class">
+                <circle cx="13" cy="13" r="13" fill="#c9cdd3" />
+              </svg>
+            </div>
+            <div class="title-li title-number">${todo.items.length}</div>
+            <div class="title-li title-text">${todo.title}</div>
+            <div class="title-li title-add">+</div>
+            <div class="title-li title-delete">x</div>
+          </div>
+          <div class="todo-add non-display">
+            <input type="text" class="add-input"></input>
+            <button class="add-button" type="button">Add</button>
+            <button class="cancel-button" type="button">Cancel</button>
+          </div>
+        </div>
+      `
+    });
+    contents.innerHTML = contentHtml;
   }
   
-  init() {
-    this.model.subscribe(displayTodoBoard);
+  init(inputView) {
+    this.model.subscribe(this.displayTodoBoard);
     this.model.subscribe(displayCard);
     this.model.getInitialData()
-    .then(this.todoAddButton)
+    .then(inputView.plusBtnEvent.bind(inputView))
   }
-}
-
-const displayTodoBoard = (todos) => {
-  const contents = document.querySelector("div.contents");
-  let contentHtml = ``;
-  todos.forEach(todo => {
-    contentHtml += `
-      <div class="todo-container">
-        <div class="todo-title">
-          <div class="title-li title-img">
-            <svg class="svg-class">
-              <circle cx="13" cy="13" r="13" fill="#c9cdd3" />
-            </svg>
-          </div>
-          <div class="title-li title-number">${todo.items.length}</div>
-          <div class="title-li title-text">${todo.title}</div>
-          <div class="title-li title-add">+</div>
-          <div class="title-li title-delete">x</div>
-        </div>
-        <div class="todo-add non-display">
-          <input type="text" class="add-input"></input>
-          <button class="add-button" type="button">Add</button>
-          <button class="cancel-button" type="button">Cancel</button>
-        </div>
-      </div>
-    `
-  });
-  contents.innerHTML = contentHtml;
 }
 
 const displayCard = (cards) => {
@@ -71,4 +60,4 @@ const displayCard = (cards) => {
 
 
 
-export {TodoView, displayTodoBoard};
+export {TodoView};
