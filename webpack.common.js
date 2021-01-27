@@ -1,10 +1,9 @@
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: "./src/app.js", // 엔트리 포인트
+    entry: "./client/src/app.js", // 엔트리 포인트
     module: {
         rules: [
             {
@@ -28,16 +27,25 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './todo.html'
+            template: './client/todo.html'
         }),
         new copyWebpackPlugin({
             patterns: [
                 {
-                    from: "./stylesheets",
+                    from: "./client/stylesheets",
                     to: "stylesheets"
                 },{
-                    from: "./images",
+                    from: "./client/images",
                     to: "images"
+                },{
+                    from: "./client/models",
+                    to: "models"
+                },{
+                    from: "./client/src",
+                    to: "src"
+                },{
+                    from: "./client/views",
+                    to: "views"
                 }
             ],
         })
