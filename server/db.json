@@ -6,6 +6,7 @@
       "author": "chanhuiseok",
       "data": [
         {
+          "id": 0,
           "title": "페이지네이션",
           "tasks": [
             {
@@ -15,10 +16,15 @@
             {
               "id": 1,
               "title": "task2"
+            },
+            {
+              "id": 2,
+              "title": "todos~!!"
             }
           ]
         },
         {
+          "id": 1,
           "title": "공부하기",
           "tasks": [
             {
@@ -32,53 +38,25 @@
           ]
         },
         {
+          "id": 2,
           "title": "공부하기333",
+          "tasks": []
+        },
+        {
+          "id": 3,
+          "title": "새로운 아이템 추가",
           "tasks": []
         }
       ]
     },
     {
       "id": 1,
-      "name": "하는중",
-      "author": "chanhuiseok",
-      "data": [
-        {
-          "title": "이번 주 기획리뷰",
-          "tasks": [
-            {
-              "id": 0,
-              "title": "task1"
-            },
-            {
-              "id": 1,
-              "title": "task2"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "name": "다했어",
-      "author": "chanhuiseok",
-      "data": [
-        {
-          "title": "설정파일 분리 리팩토링 작업",
-          "tasks": [
-            {
-              "id": 0,
-              "title": "task1"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "해야할일",
       "author": "chanhuiseok",
       "data": [
         {
-          "title": "페이지ggggg",
+          "id": 0,
+          "title": "페이지네이션",
           "tasks": [
             {
               "id": 0,
@@ -89,9 +67,32 @@
               "title": "task2"
             }
           ]
+        },
+        {
+          "id": 1,
+          "title": "공부하기",
+          "tasks": [
+            {
+              "id": 0,
+              "title": "task1"
+            },
+            {
+              "id": 1,
+              "title": "task2"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "공부하기333",
+          "tasks": []
+        },
+        {
+          "id": 3,
+          "title": "여기에도 추가",
+          "tasks": []
         }
-      ],
-      "id": 3
+      ]
     }
   ]
 }
