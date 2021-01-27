@@ -72,6 +72,18 @@ const API = (function() {
         })
     }
 
+    function updateColumn(colId, title) {
+        return fetch(`${API_URL}/column/${colId}`,{
+            "method":"put",
+            "headers":{
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({data: {title}}),
+        }).then((res) => {
+            return res.status;
+        })
+    }
+
     return {
         getTodoData,
         createNewNote,
@@ -79,6 +91,7 @@ const API = (function() {
         deleteNote,
         createNewColumn,
         deleteColumn,
+        updateColumn
     };
 })();
 

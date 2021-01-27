@@ -79,6 +79,20 @@ app.delete('/note/:colId/:noteId', (req, res) => {
     res.send();
 })
 
+// Edit column
+app.put('/column/:colId', (req, res) =>{
+  const {colId} = req.params;
+  const {title} = req.body.data;
+  try {
+    db.get('todos').find({ id: colId }).assign({title}).write();
+    res.status(200);
+  } catch(err) {
+    console.log(err);
+    res.status(400);
+  }
+  res.send();
+})
+
 app.listen(port, function(){
  console.log(`Server is running on ${port}`);
 });

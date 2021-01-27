@@ -7,7 +7,7 @@ class NoteView {
     render(){
         const innerHtml = `<li class="note" id="${this.id}">
             <div class="title">${this.title}</div>
-            <div class="description">2</div>
+            <div class="description">Added by nina</div>
             <div class="delete-button">✕</div>
         </li>`;
         return innerHtml;

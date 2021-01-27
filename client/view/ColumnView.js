@@ -24,6 +24,24 @@ class ColumnView {
         noteCancelButton.addEventListener('click', this.onClickNoteCancelButton.bind(this));
         const columnDeleteButton = this.columnEle.querySelector('.column__header__buttons > .remove-button')
         columnDeleteButton.addEventListener('click', this.onClickColumnDeleteButton.bind(this));
+        const columnTitleEle = this.columnEle.querySelector('.column__header__text > .title');
+        columnTitleEle.addEventListener('dblclick', this.onDblclickColumnTitle.bind(this));
+    }
+
+    onDblclickColumnTitle(e) {
+        const modal = new ModalView({
+            id: 'edit-col-name'+ this.id.toString(),
+            title: 'Edit column title',
+            buttonText: ['Edit'],
+            showInputLabel: true,
+            labelName: 'Column name',
+            defaultValue: this.title,
+            onClickButton: [async (value) => {
+                await API.updateColumn(this.id, value);
+                this.updateColumnTitle(value);
+            }]
+        })
+
     }
 
     onClickNoteDeleteButton(e) {
@@ -31,10 +49,9 @@ class ColumnView {
         if(button) {
             const deleteId = button.closest('li').id;
             const modal = new ModalView({
-                id: 'deleteNote'+deleteId.toString(),
+                id: 'deleteNote' + deleteId.toString(),
                 title: 'Really?',
                 buttonText: ['Delete'],
-                renderContent: () => {return '';},
                 onClickButton: [() => {this.deleteNote(deleteId)}]
             });
             modal.show();
@@ -45,7 +62,7 @@ class ColumnView {
         try {
             await API.deleteNote(this.id, deleteId);
             this.getUpdatedData();
-        } catch(err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -81,9 +98,10 @@ class ColumnView {
             console.log(err)
         }
         this.getUpdatedData();
+        this.createNoteView.querySelector('textarea').value = '';
         this.createNoteView.classList.add('hidden')
     }
-    
+
     async getUpdatedData () {   
         const updatedNoteData = await API.getColumnData(this.id);
         // TODO: change to subscribe - notify
@@ -91,6 +109,7 @@ class ColumnView {
     }
 
     onClickNoteCancelButton() {
+        this.createNoteView.querySelector('textarea').value = '';
         this.createNoteView.classList.add('hidden')
     }
 
@@ -100,11 +119,10 @@ class ColumnView {
         const currNotes = this.columnEle.querySelector('.column__note-container');
         this.columnEle.removeChild(currNotes);
         this.columnEle.appendChild(this.renderNotes(noteData));
-
     }
 
-    updateNumber() {
-        
+    updateColumnTitle(title) {
+        this.columnEle.querySelector('.column__header__text > .title').innerText = title;
     }
     
     render(noteData) {
