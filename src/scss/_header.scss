@@ -1,0 +1,14 @@
+.header {
+  border-bottom: 1px solid $color-lightgray;
+}
+
+.header-titlebar {
+  background-color: $color-dark;
+  color: $color-light;
+  display: flex;
+  padding: 0.5em 1em;
+}
+
+.header-searchbar {
+  background-color: $color-white;
+}

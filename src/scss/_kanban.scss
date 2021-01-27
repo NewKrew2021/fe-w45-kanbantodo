@@ -1,0 +1,29 @@
+.kanban-wrapper {
+  overflow-x: scroll;
+  height: 100%;
+  width: 100%;
+}
+
+.kanban {
+  height: 100%;
+  display: inline-flex;
+
+  .column {
+    background-color: $color-light;
+    border: 1px solid $color-lightgray;
+    border-radius: 1em;
+
+    width: 24em;
+    height: 100%;
+
+    padding: 1em;
+    & + .column {
+      margin-left: 1em;
+    }
+
+    .note-wrapper {
+      height: 100%;
+      overflow: scroll;
+    }
+  }
+}

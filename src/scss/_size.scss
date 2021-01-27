@@ -1,0 +1,69 @@
+$spaces: (
+  "0": 0,
+  "1": 0.25rem,
+  "2": 0.5rem,
+  "3": 1rem,
+  "4": 1.5rem,
+  "5": 2rem,
+  "10p": 10%,
+  "auto": auto,
+);
+
+@each $k, $v in $spaces {
+  .p-#{$k} {
+    padding: $v;
+  }
+  .py-#{$k} {
+    padding-top: $v;
+    padding-bottom: $v;
+  }
+  .px-#{$k} {
+    padding-left: $v;
+    padding-right: $v;
+  }
+  .pt-#{$k} {
+    padding-top: $v;
+  }
+  .pb-#{$k} {
+    padding-bottom: $v;
+  }
+  .pl-#{$k} {
+    padding-left: $v;
+  }
+  .pr-#{$k} {
+    padding-right: $v;
+  }
+
+  .m-#{$k} {
+    margin: $v;
+  }
+  .my-#{$k} {
+    margin-top: $v;
+    margin-bottom: $v;
+  }
+  .mx-#{$k} {
+    margin-left: $v;
+    margin-right: $v;
+  }
+  .mt-#{$k} {
+    margin-top: $v;
+  }
+  .mb-#{$k} {
+    margin-bottom: $v;
+  }
+  .ml-#{$k} {
+    margin-left: $v;
+  }
+  .mr-#{$k} {
+    margin-right: $v;
+  }
+}
+
+@each $k, $v in $sizes {
+  .w-#{$k} {
+    width: $v;
+  }
+  .h-#{$k} {
+    height: $v;
+  }
+}

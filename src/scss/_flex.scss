@@ -1,0 +1,24 @@
+$flex-max: 5;
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-auto {
+  flex: auto;
+}
+
+@for $n from 1 to $flex-max {
+  .flex-#{$n} {
+    flex: $n;
+  }
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
