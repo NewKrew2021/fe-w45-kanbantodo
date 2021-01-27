@@ -5,11 +5,12 @@ class Observable {
   subscribe(observer) {
     this._observers.add(observer);
   }
-  unsubscribe(observer) {
-    this._observers = [...this._observers].filter(subscriber => subscriber !== observer);
+  unSubscribe(observer) {
+    this._observers.delete(observer);
   }
-  notify(data) {
-    this._observers.forEach(observer => observer(data));
+  notify(...param) {
+    console.log(this._observers)
+    this._observers.forEach(observer => observer(...param));
   }
 }
 
