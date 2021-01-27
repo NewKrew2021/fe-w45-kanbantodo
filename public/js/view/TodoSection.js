@@ -6,13 +6,12 @@ function initTodoSection() {
         해야할 일
         <button class="open-panel-btn">+</button>
         <button class="section-delete-btn">X</button>
-        <div id="add-panel" class="add-panel hide">
+        <div class="add-panel hide">
             <textArea rows=3 placeholder="Enter a note" maxlength="500"></textArea>
             <button class="add-item-btn" disabled>Add</button>
             <button class="cancel-btn">Cancel</button>
         </div>
-        <!-- id 없이 가능할까?-->
-        <div id="todo-list" class="item-list"></div>
+        <div class="item-list"></div>
         <div class="modal modal-hide">
             <div class="modal-overlay"></div>
             <div class="modal-content">
@@ -29,7 +28,8 @@ function initTodoSection() {
 
 
 function render(todosListData) {
-    const todoListElement=document.querySelector("#todo-list");
+    const todoSection=document.querySelector("#todo-section");
+    const todoListElement=todoSection.querySelector(".item-list");
     const todosHTML = todosListData.reduce((acc, { _id,title,author }) =>
         `<div class="item" dbid=${_id}>
             <img src="/public/image/todo.png"></img>

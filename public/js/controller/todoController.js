@@ -25,8 +25,7 @@ export function initTotoController(){
     const openPanelBtn=todoSection.querySelector(".open-panel-btn");
     openPanelBtn.addEventListener("click",handleAddPanel);
     const addPanel=todoSection.querySelector(".add-panel");
-    function handleAddPanel({target}){
-        const section = target.closest(".section");
+    function handleAddPanel(){
         if(addPanel.className.includes("hide")){
             addPanel.classList.remove("hide");
             addPanel.classList.add("show");
@@ -86,7 +85,7 @@ export function initTotoController(){
     });
 
     //DELETE
-    const todoListElement=todoSection.querySelector("#todo-list");
+    const todoListElement=todoSection.querySelector(".item-list");
     todoListElement.addEventListener("click",onDeleteBtnClick);
     function onDeleteBtnClick(e){
         if(!e.target.className.includes("delete-btn")) return ;
