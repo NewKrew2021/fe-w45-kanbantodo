@@ -15,44 +15,47 @@ class InputView {
     update(state) {
     }
 
-    async inputNoteData() {
-        const { } = await this.model.getInitialData();
-        const inputBtn = _dom.queryAll('.btn-add-list');
+    // Event handler
+    addInputHandler(e){
         const inputArea = _dom.queryAll('.list-input');
-        inputBtn.forEach(element => {
-            element.addEventListener('click', (e) => {
-                const idx = e.target.getAttribute('data');
-                let inputData = '';
-                inputArea.forEach(element => {
-                    if (element.getAttribute('data') === idx) {
-                        inputData = element.value;
-                        console.log(inputData);
-                        this.model.addTodo(idx, inputData);
-                    }
-                })
-            })
+        const idx = e.target.getAttribute('data');
+        let inputData = '';
+        inputArea.forEach(element => {
+            if (element.getAttribute('data') === idx) {
+                inputData = element.value;
+                this.model.addTodo(idx, inputData);
+            }
         })
     }
 
-    // event(hover)
-    async setAddBtn() {
-        const data = await this.model.getInitialData();
+    toggleEvtHandler(e){
+        const idx = e.target.getAttribute('data');
+        const inputDiv = _dom.queryAll('.input-list-view');
+        inputDiv.forEach(element => {
+            if (element.getAttribute('data') === idx) {
+                element.classList.toggle("none");
+            }
+        })
+    }
+
+    async inputNoteData() {
+        const { } = await this.model.getInitialData();
+        const inputBtn = _dom.queryAll('.btn-add-list');
+        inputBtn.forEach(element => {
+            element.addEventListener('click', this.addInputHandler.bind(this));
+        })
+    }
+
+    async setClickAddBtn() {
+        const { } = await this.model.getInitialData();
         const cardBtn = _dom.queryAll('.card-btn.htop-add');
         cardBtn.forEach(element => {
-            element.addEventListener('click', (e) => {
-                const idx = e.target.getAttribute('data');
-                const inputDiv = _dom.queryAll('.input-list-view');
-                inputDiv.forEach(element => {
-                    if (element.getAttribute('data') === idx) {
-                        element.classList.toggle("none");
-                    }
-                })
-            })
+            element.addEventListener('click', this.toggleEvtHandler.bind(this))
         });
     }
 
     init() {
-        this.setAddBtn();
+        this.setClickAddBtn();
         this.inputNoteData();
     }
 
