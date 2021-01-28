@@ -12,9 +12,17 @@ export default class ColumnView extends View {
     this.render()
   }
 
+  callAction(action: string) {
+    switch (action) {
+      case 'removeSelf':
+        this.removeSelf()
+        break
+    }
+  }
+
   addNote() {}
 
-  deleteSelf() {}
+  removeSelf() {}
 
   toHtmlString() {
     return `
@@ -22,7 +30,7 @@ export default class ColumnView extends View {
         <div class="d-flex mb-2">
           <strong class="mr-auto my-auto">${this.columnData.title}</strong>
           <button>+</button>
-          <button>×</button>
+          <button data-action="removeSelf">×</button>
         </div>
         <div class="children-wrapper">
           <!-- notes here -->

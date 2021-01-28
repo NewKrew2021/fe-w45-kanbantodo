@@ -13,6 +13,7 @@ export default class ColumnController extends Controller {
     this.columnData = columnData
 
     this.view = new ColumnView({ id, columnData })
+    this.view.removeSelf = this.removeSelf.bind(this)
   }
 
   updateSelf(title: String) {
@@ -24,9 +25,12 @@ export default class ColumnController extends Controller {
     this.notifyUpdate()
   }
 
-  deleteSelf() {
+  removeSelf() {
     // TODO: request to server
     // TODO: delete value
+
+    // remove view
+    this.view.remove()
 
     this.notifyDelete()
   }

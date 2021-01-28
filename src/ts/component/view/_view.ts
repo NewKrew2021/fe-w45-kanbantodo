@@ -72,4 +72,8 @@ export default class View {
 
   beforeRender() {}
   afterRender() {}
+
+  remove() {
+    this.element.remove()
+  }
 }
