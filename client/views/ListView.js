@@ -55,15 +55,13 @@ class ListView {
         const cardId = e.currentTarget.getAttribute('data');
         const copiedNode = e.currentTarget.cloneNode(true);
         copiedNode.style.opacity = 0.4;
-        
         _dom.queryAll('.list-view-wrapper').forEach(element =>{
             if(element.getAttribute('data') === cardId){
                 element.insertBefore(copiedNode, e.currentTarget);
             }
         })
-
-        let shiftX = e.clientX - e.target.getBoundingClientRect().left;
-        let shiftY = e.clientY - e.target.getBoundingClientRect().top;
+        let shiftX = e.screenX - e.currentTarget.getBoundingClientRect().left;
+        let shiftY = e.screenY - e.currentTarget.getBoundingClientRect().bottom;
         //console.log(shiftX, shiftY);
         e.target.style.position = 'absolute';
         e.target.style.zIndex = 1000;
