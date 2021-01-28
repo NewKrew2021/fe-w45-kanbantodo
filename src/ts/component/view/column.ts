@@ -9,6 +9,7 @@ export default class ColumnView extends View {
     super()
     this.id = id
     this.columnData = columnData
+    this.render()
   }
 
   addNote() {}
