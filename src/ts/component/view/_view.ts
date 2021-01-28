@@ -24,11 +24,11 @@ export default class View {
       }
 
       // call the action
-      this.clickListener(target.dataset.action)
+      this.callAction(target.dataset.action)
     })
   }
 
-  clickListener(action: string) {}
+  callAction(action: string) {}
 
   /*
 
