@@ -49,9 +49,11 @@ class TodoController {
       this.notify(model.todoCardList, status);
     });
   }
+
   createNewView(todoCardList, TodoView, todoModel, status) {
     this.todoViewList[status] = new TodoView(status).init();
 
+    this.todoViewList[status].HandleDragAndDrop(todoModel.updateCardStatus);
     this.subscribe({
       render: this.todoViewList[status].render,
       status: this.todoViewList[status].status,

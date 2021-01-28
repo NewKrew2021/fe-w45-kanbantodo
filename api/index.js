@@ -1,7 +1,7 @@
 const Router = require("koa-router");
 
 const api = new Router();
-const { getTodo, postTodo, deleteTodo } = require("./todo.js");
+const { getTodo, postTodo, deleteTodo, updateTodo } = require("./todo.js");
 
 api.get("/todo", async (ctx, next) => {
   let todo;

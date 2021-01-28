@@ -51,6 +51,7 @@ const deleteTodo = ({ id }) => {
 };
 
 const updateTodo = async ({ id, status }) => {
+  console.log(id, status);
   return Todo.updateOne({ _id: id }, { $set: { status: status } }, (err, todo) => {
     if (err) throw err;
     return todo;

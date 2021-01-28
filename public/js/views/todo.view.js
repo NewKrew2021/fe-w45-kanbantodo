@@ -74,7 +74,7 @@ class TodoView {
     });
   }
 
-  HandleDragAndDrop() {
+  HandleDragAndDrop(updateCardStatus) {
     this.element.addEventListener("mousedown", ({ target }) => {
       if (!["todo-card", "todo-card--content", "todo-card--writer"].includes(target.className))
         return;
@@ -108,6 +108,8 @@ class TodoView {
           movingElement.style = "";
           newTodoList.appendChild(movingElement);
           deleteElement(originalMovingElement);
+
+          updateCardStatus({ id: originalMovingElement.id, status: newTodoList.id });
         } else {
           deleteElement(movingElement);
           originalMovingElement.style = null;
@@ -119,13 +121,14 @@ class TodoView {
 
   render(cardList, status) {
     if (!cardList) cardList = [];
+    this.element.id = this.status;
     this.element.innerHTML = this.createTodo(cardList, status);
   }
 
   init() {
     $(".todo-list").appendChild(this.element);
     this.render([], this.status);
-    this.HandleDragAndDrop();
+
     return this;
   }
 }
