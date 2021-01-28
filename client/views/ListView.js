@@ -31,6 +31,7 @@ class ListView {
         this.render();
         this.removeListView();
         this.editListView();
+        this.dragAndDrop();
     }
 
     // template로 초기 html 넣기
@@ -154,6 +155,7 @@ class ListView {
         const cardId = e.currentTarget.getAttribute('data');
         const id = e.currentTarget.getAttribute('data-idx');
         const modalInput = _dom.query('.modal-input');
+        modalInput.value = '';
         await this.model.setModalState({ cardId, id });
         this.modal.classList.remove('none');
         this.editModal.classList.remove('none');

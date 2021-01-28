@@ -29,12 +29,12 @@
       "data": [
         {
           "id": 0,
-          "title": "1",
+          "title": "MVC 패턴 공부하기",
           "tasks": []
         },
         {
           "id": 1,
-          "title": "2",
+          "title": "드롭 부분 로직 구현",
           "tasks": []
         },
         {
