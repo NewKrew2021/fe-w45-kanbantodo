@@ -9,7 +9,7 @@ export const domTpl = {
             ).join('')}
         </ul>
         <p class="author sub-title font-14"><span class="gray">Added by </span>${author}</p>
-        <button class="list-remove card-btn" data=${idx} data-idx=${eidx}>&times;</button>
+        <button class="card-btn list-remove" data=${idx} data-idx=${eidx}>&times;</button>
         </div>`
     }
     ,
@@ -34,14 +34,14 @@ export const domTpl = {
             <div class="list-view-wrapper" data=${id}>
             ${data.map((element) =>
             `<div class="list-view" data=${id} data-idx=${element.id}>
-                <p class="title"><img class="mg-right-6" src="/images/list_btn.png">${element.title}</p>
+                <p class="title inline-block"><img class="mg-right-6" src="/images/list_btn.png">${element.title}</p>
                 <ul class="task sub-title font-15">
                 ${element.tasks && element.tasks.map(element =>
                     `<li>${element.title}</li>`
                 ).join('')} 
                 </ul>
                     <p class="author sub-title font-14"><span class="gray">Added by</span> ${author}</p>
-                    <button class="list-remove card-btn" data=${id} data-idx=${element.id}>&times;</button>
+                    <button class="card-btn list-remove" data=${id} data-idx=${element.id}>&times;</button>
                     </div>`
         ).join('')}
             </div>

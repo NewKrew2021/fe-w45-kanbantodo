@@ -231,6 +231,11 @@ input {
   border: 1px solid #0366d6;
 }
 
+.list-edit {
+  top: 0;
+  right: 25px;
+}
+
 .btn-add-list {
   width: 48%;
   float: left;
@@ -261,6 +266,7 @@ input {
   -webkit-box-shadow: 0px 1px 2px lightgray;
           box-shadow: 0px 1px 2px lightgray;
   cursor: pointer;
+  width: 320px;
 }
 
 .list-view:hover {
@@ -572,5 +578,9 @@ input {
 
 .font-white {
   color: white;
+}
+
+.inline-block {
+  display: inline-block;
 }
 /*# sourceMappingURL=todo.css.map */

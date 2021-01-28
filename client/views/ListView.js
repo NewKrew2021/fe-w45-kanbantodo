@@ -9,8 +9,8 @@ import * as _dom from '../src/util.js';
 import * as req from '../src/request.js';
 
 /* TodoModel을 구독하는 Observer */
-class ListView{
-    constructor(model){
+class ListView {
+    constructor(model) {
         this.modal = _dom.query('.modal');
         this.removeModal = _dom.query('.modal-remove');
         this.editModal = _dom.query('.modal-edit');
@@ -22,38 +22,87 @@ class ListView{
     }
 
     // update(모델의 상태값이 변화(데이터 추가 혹은 삭제)되면, 리스트뷰 업데이트 하기)
-    update(state){
+    update(state) {
         this.updateListView(state);
     }
 
     // 데이터를 가지고 view를 바로 렌더링하는 메서드
-    updateListView(res){
+    updateListView(res) {
         this.render();
         this.removeListView();
         this.editListView();
     }
 
     // template로 초기 html 넣기
-    async render(){
+    async render() {
         const data = await this.model.getInitialData(); // 초기 데이터를 가져온다.
-        const createHTML = ({ data, type }) => data.reduce((acc, {id, name, author, data}) =>{
-            return acc + domTpl[type]({id, name, author, data});
+        const createHTML = ({ data, type }) => data.reduce((acc, { id, name, author, data }) => {
+            return acc + domTpl[type]({ id, name, author, data });
         }, ``);
         data.forEach(element => {
-            const allObj = { data: element, type: 'InitListView'};
+            const allObj = { data: element, type: 'InitListView' };
             _dom.html(_dom.query('.card-wrapper'), createHTML(allObj));
         });
     }
 
+    /* drag and drop */
+    /* (1) mousedown - 움직이는 대상 준비
+       (2) mousemove - position:absolute, left-top 변경
+       (3) mouseup - 드래그 앤 드롭 완료 후 관련 작업 수행
+    */
+    async dragDownHandler(e) {
+        if (e.target !== e.currentTarget) return;
+        const cardId = e.currentTarget.getAttribute('data');
+        const copiedNode = e.currentTarget.cloneNode(true);
+        copiedNode.style.opacity = 0.4;
+        
+        _dom.queryAll('.list-view-wrapper').forEach(element =>{
+            if(element.getAttribute('data') === cardId){
+                element.insertBefore(copiedNode, e.currentTarget);
+            }
+        })
+
+        let shiftX = e.clientX - e.target.getBoundingClientRect().left;
+        let shiftY = e.clientY - e.target.getBoundingClientRect().top;
+        //console.log(shiftX, shiftY);
+        e.target.style.position = 'absolute';
+        e.target.style.zIndex = 1000;
+        document.body.append(e.target);
+
+        moveAt(e.pageX, e.pageY);
+        function moveAt(pageX, pageY) {
+            e.target.style.left = pageX - shiftX + 'px';
+            e.target.style.top = pageY - shiftY + 'px';
+        }
+        function onMouseMove(event) {
+            moveAt(event.pageX, event.pageY);
+        }
+        // mousemove -> 드래그하면서 움직이기
+        document.addEventListener('mousemove', onMouseMove);
+    }
+
+    async dragAndDrop() {
+        const { } = await this.model.getInitialData();
+        const note = _dom.queryAll('.list-view');
+        note.forEach(element => {
+            element.addEventListener('mousedown', this.dragDownHandler.bind(this));
+        })
+        note.forEach(element => {
+            element.addEventListener('mouseup', () => {
+               // document.removeEventListener('mousemove', onMouseMove);
+            });
+        })
+    }
+
     /* event handler */
-    async removeListHandler(e){
+    async removeListHandler(e) {
         const cardId = e.target.getAttribute('data');
         const id = e.target.getAttribute('data-idx');
         await this.model.setModalState({ cardId, id });
         this.modal.classList.remove('none');
         this.removeModal.classList.remove('none');
 
-        this.modalAcceptBtn.addEventListener('click', function(){
+        this.modalAcceptBtn.addEventListener('click', function () {
             this.model.removeTodo(this.model.state);
             this.modal.classList.add('none');
             this.removeModal.classList.add('none');
@@ -72,41 +121,43 @@ class ListView{
         })
     }
 
-    async editListHandler(e){
+    /* event handler */
+    async editListHandler(e) {
         const cardId = e.currentTarget.getAttribute('data');
         const id = e.currentTarget.getAttribute('data-idx');
         const modalInput = _dom.query('.modal-input');
         await this.model.setModalState({ cardId, id });
         this.modal.classList.remove('none');
         this.editModal.classList.remove('none');
-        
-        this.modalSaveBtn.addEventListener('click', function(){
+
+        this.modalSaveBtn.addEventListener('click', function () {
             const newTitle = modalInput.value;
-            const input = { input: { title : newTitle }};
-            this.model.editTodo({...this.model.state, input});
+            const input = { input: { title: newTitle } };
+            this.model.editTodo({ ...this.model.state, input });
             this.modal.classList.add('none');
             this.editModal.classList.add('none');
-        }.bind(this))   
+        }.bind(this))
     }
 
     // 리스트뷰(note item) 더블 클릭 시 타이틀을 수정하는 메서드
-    async editListView(){
+    async editListView() {
         const { } = await this.model.getInitialData();
         const note = _dom.queryAll('.list-view');
         const closeBtn = _dom.query('.btn-edit-close-modal');
         note.forEach(element => {
             element.addEventListener('dblclick', this.editListHandler.bind(this));
         })
-        closeBtn.addEventListener('click', ()=>{
+        closeBtn.addEventListener('click', () => {
             this.modal.classList.add('none');
             this.editModal.classList.add('none');
         })
     }
 
-    init(){
+    init() {
         this.render();
         this.removeListView();
         this.editListView();
+        this.dragAndDrop();
     }
 }
 

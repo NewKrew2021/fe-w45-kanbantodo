@@ -11,7 +11,7 @@ export function addList(input) {
         headers: {
             'Content-Type': 'application/json',
         }
-    }).then((res) => { return res.json() })
+    }).then((res) => { return res })
 }
 
 // 리스트뷰 아이템 타이틀 수정
@@ -22,7 +22,7 @@ export function editList({cardId, id, input}){
         headers :{
             "Content-Type": "application/json",
         }
-    }).then((res) => { return res.json() })
+    }).then((res) => { return res })
 }
 
 // cardId의 id 리스트뷰 삭제
@@ -32,7 +32,7 @@ export function removeList({cardId, id}){
         headers :{
             "Content-Type": "application/json",
         }
-    }).then((res) => { return res.json() })
+    }).then((res) => { return res })
 }
 
 export function getAllData() {
