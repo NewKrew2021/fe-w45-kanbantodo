@@ -52,12 +52,13 @@ class ListView {
     */
     async dragDownHandler(e) {
         if (e.target !== e.currentTarget) return;
+        let curTarget = e.currentTarget;
         const cardId = e.currentTarget.getAttribute('data');
         const copiedNode = e.currentTarget.cloneNode(true);
         copiedNode.style.opacity = 0.4;
-        _dom.queryAll('.list-view-wrapper').forEach(element =>{
-            if(element.getAttribute('data') === cardId){
-                element.insertBefore(copiedNode, e.currentTarget);
+        _dom.queryAll('.list-view-wrapper').forEach(element => {
+            if (element.getAttribute('data') === cardId) {
+                element.insertBefore(copiedNode, curTarget);
             }
         })
         let shiftX = e.screenX - e.currentTarget.getBoundingClientRect().left;
@@ -74,6 +75,30 @@ class ListView {
         }
         function onMouseMove(event) {
             moveAt(event.pageX, event.pageY);
+            curTarget.hidden = true;
+            let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+            curTarget.hidden = false;
+            if (!elemBelow) return;
+
+            // 드랍 가능한 요소를 droppable 클래스로 지정
+            let currentDroppable = null;
+            let droppableBelow = elemBelow.closest('.droppable');
+            if (currentDroppable != droppableBelow) {
+                if (currentDroppable) {
+                    console.log("test");
+                    leaveDroppable(currentDroppable);
+                }
+                currentDroppable = droppableBelow;
+                if (currentDroppable) {
+                    enterDroppable(currentDroppable);
+                }
+            }
+        }
+        function enterDroppable(elem) {
+            elem.style.background = '#EDF5F9'
+        }
+        function leaveDroppable(elem) {
+            elem.style.background = '';
         }
         // mousemove -> 드래그하면서 움직이기
         document.addEventListener('mousemove', onMouseMove);
@@ -87,7 +112,7 @@ class ListView {
         })
         note.forEach(element => {
             element.addEventListener('mouseup', () => {
-               // document.removeEventListener('mousemove', onMouseMove);
+                // document.removeEventListener('mousemove', onMouseMove);
             });
         })
     }
