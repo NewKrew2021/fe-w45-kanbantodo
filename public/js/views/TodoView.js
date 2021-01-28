@@ -15,10 +15,10 @@ class TodoView {
                 <circle cx="13" cy="13" r="13" fill="#c9cdd3" />
               </svg>
             </div>
-            <div class="title-li title-number">${todo.items.length}</div>
+            <div class="title-li title-number">${todo.cards.length}</div>
             <div class="title-li title-text">${todo.title}</div>
             <div class="title-li title-add">+</div>
-            <div class="title-li title-delete">x</div>
+            <div class="title-li title-delete">✕</div>
           </div>
           <div class="todo-add non-display">
             <input type="text" class="add-input"></input>
@@ -32,30 +32,10 @@ class TodoView {
     contents.innerHTML = contentHtml;
   }
   
-  init(inputView) {
+  init() {
     this.model.subscribe(this.displayTodoBoard);
     this.model.getInitialData()
   }
 }
-
-const displayCard = (cards) => {
-  const contents = document.querySelectorAll("div.todo-container");
-  for(let idx=0; idx<cards.length; idx++) {
-    let cardsHtml = ``;
-    cards[idx]["items"].forEach(card => {
-      cardsHtml += `
-        <div class="todo-contents">
-          <div class="todo-items">
-            ${card.title}
-            <div class="todo-author"> Added by ${card.author}</div>
-          </div>
-        </div>
-      `
-    });
-    contents[idx].innerHTML = cardsHtml;
-  }
-}
-
-
 
 export {TodoView};

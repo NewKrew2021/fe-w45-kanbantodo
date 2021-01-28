@@ -9,7 +9,6 @@ class Observable {
     this._observers.delete(observer);
   }
   notify(...param) {
-    console.log(this._observers)
     this._observers.forEach(observer => observer(...param));
   }
 }

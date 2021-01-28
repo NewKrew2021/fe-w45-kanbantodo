@@ -1,4 +1,4 @@
-class InputView {
+class CardView {
   constructor(model){
     this.model = model;
     this.inputValue = "";
@@ -6,16 +6,17 @@ class InputView {
   }
 
   displayCard(cards) {
-    console.log(cards);
+    // console.log(cards);
     const contents = document.querySelectorAll("div.item-container");
+    // console.log(contents);
     for(let idx=0; idx<cards.length; idx++) {
       let cardsHtml = ``;
-      cards[idx]["items"].forEach(card => {
-       
+      cards[idx]["cards"].forEach(card => {
         cardsHtml += `
           <div class="todo-contents">
             <div class="todo-items">
-              ${card.title}
+              <div class="card-title">${card.title}</div>
+              <div class="remove-card">✕</div>
               <div class="todo-author"> Added by ${card.author}</div>
             </div>
           </div>
@@ -64,7 +65,7 @@ class InputView {
   
   init() {
     this.model.subscribe(this.displayCard);
-    this.model.getInitialData()
+    this.model.getCardData()
     .then(this.plusBtnEvent.bind(this))
     .then(this.addBtnEvent.bind(this))
     .then(this.cancelBtnEvent.bind(this))
@@ -74,4 +75,4 @@ class InputView {
 
 
 
-export {InputView};
+export {CardView};
