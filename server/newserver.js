@@ -16,7 +16,6 @@ const db = low(adapter);
 // listview item 1개 추가
 app.post('/add', (req, res) => {
     const data = req.body.data;
-    console.log(data);
     db.get('posts')
         .push(data)
         .write();
@@ -47,7 +46,6 @@ app.post('/addcard', (req, res)=>{
 // input : {cardId:_, listId:_, title:_} 형태의 data 받고 추가
 app.post('/addlist', (req, res) => {
     const { cardId, listId, title } = req.body.input;
-    console.log(req.body.input);
     if(db.get('posts').find({ id: cardId })){
         db.get('posts')
           .find({ id: cardId })
@@ -79,15 +77,26 @@ app.post('/addtask', (req, res) => {
 // [-] 특정 카드 -> 리스트뷰 아이템을 삭제할 때
 app.delete('/list/remove/:cardId/:id', (req, res) => {
     const { cardId, id } = req.params;
-    console.log(cardId, id);
     db.get('posts')
-      .find({ id: cardId })
+      .find({ id: parseInt(cardId) })
       .get('data')
-      .remove({ id: id })
-      .write();
+      .remove({ id: parseInt(id) })
+      .write()
     res.send('list removed successfully!');
 })
 
+// [*] 특정 카드 -> 리스트뷰 아이템을 수정할 때
+app.put('/list/edit/:cardId/:id', (req, res) => {
+    const { cardId, id } = req.params;
+    const { title } = req.body.input;
+    db.get('posts')
+      .find({ id: parseInt(cardId) })
+      .get('data')
+      .find({ id: parseInt(id) })
+      .assign({ title : title })
+      .write()
+    res.send('list removed successfully!');
+})
 
 app.listen(port, () => {
     console.log(`DB Server is running on ${port}`);

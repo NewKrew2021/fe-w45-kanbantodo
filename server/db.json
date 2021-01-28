@@ -3,123 +3,65 @@
     {
       "id": 0,
       "name": "해야할일",
-      "author": "chanhuiseok",
+      "author": "roddy.chan",
       "data": [
         {
           "id": 0,
-          "title": "페이지네이션",
-          "tasks": [
-            {
-              "id": 0,
-              "title": "task1"
-            },
-            {
-              "id": 1,
-              "title": "task2"
-            },
-            {
-              "id": 2,
-              "title": "todos~!!"
-            }
-          ]
+          "title": "검색 필터 기능 구현해야 함",
+          "tasks": []
         },
         {
           "id": 1,
-          "title": "공부하기",
-          "tasks": [
-            {
-              "id": 0,
-              "title": "task1"
-            },
-            {
-              "id": 1,
-              "title": "task2"
-            }
-          ]
+          "title": "추가적인 모델 만들어야 하는지 살펴보기",
+          "tasks": []
         },
         {
           "id": 2,
-          "title": "공부하기333",
-          "tasks": []
-        },
-        {
-          "id": 3,
-          "title": "새로운 아이템 추가",
-          "tasks": []
-        },
-        {
-          "id": 4,
-          "title": "asdffasd",
-          "tasks": []
-        },
-        {
-          "id": 5,
-          "title": "fasdasfdasfdasfdasfd",
-          "tasks": []
-        },
-        {
-          "id": 6,
-          "title": "afsdfsadasfdsfdafsd",
-          "tasks": []
-        },
-        {
-          "id": 7,
-          "title": "asdfafdsafds",
-          "tasks": []
-        },
-        {
-          "id": 8,
-          "title": "asdffasdafsdasfd",
+          "title": "수정하기 투투",
           "tasks": []
         }
       ]
     },
     {
       "id": 1,
-      "name": "해야할일",
-      "author": "chanhuiseok",
+      "name": "하는중",
+      "author": "roddy.chan",
+      "data": [
+        {
+          "id": 6,
+          "title": "모델-뷰 다시 학습하기",
+          "tasks": []
+        },
+        {
+          "id": 7,
+          "title": "제목 수정",
+          "tasks": []
+        },
+        {
+          "id": 8,
+          "title": "드래그",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "다했어",
+      "author": "roddy.chan",
       "data": [
         {
           "id": 0,
-          "title": "페이지네이션",
-          "tasks": [
-            {
-              "id": 0,
-              "title": "task1"
-            },
-            {
-              "id": 1,
-              "title": "task2"
-            }
-          ]
+          "title": "옵저버 패턴 구성하기",
+          "tasks": []
         },
         {
           "id": 1,
-          "title": "공부하기",
-          "tasks": [
-            {
-              "id": 0,
-              "title": "task1"
-            },
-            {
-              "id": 1,
-              "title": "task2"
-            }
-          ]
+          "title": "webpack dev/prod로 구분해서 설정하기",
+          "tasks": []
         },
         {
           "id": 2,
-          "title": "공부하기333",
-          "tasks": []
-        },
-        {
-          "id": 3,
-          "title": "여기에도 추가",
-          "tasks": []
-        },
-        {
-          "id": 3,
-          "title": "afsdasdfafsd",
+          "title": "express & lowdb로 db 구성하기",
           "tasks": []
         }
       ]
