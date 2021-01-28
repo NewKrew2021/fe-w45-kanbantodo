@@ -51,10 +51,10 @@ class TodoController {
         status: this.todoViewList[status].status,
       });
 
-      this.handlePopUpEvent();
       this.notify(todoCardList, status);
       this.addButtonEvent(todoModel, this.todoViewList[status], status);
     }
+    this.handlePopUpEvent();
 
     return this;
   }
