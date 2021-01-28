@@ -12,10 +12,23 @@ export default class View {
   */
 
   addEventListenerToWrapper(wrapper: HTMLElement) {
-    wrapper.addEventListener('click', this.clickListener.bind(this))
+    // click event
+    wrapper.addEventListener('click', event => {
+      // find out the target
+      let target: HTMLElement = <HTMLElement>event.target
+      while (!target.dataset.action) {
+        // if no action, do nothing
+        if (target === this.element) return
+        // else, go to parents
+        target = target.parentElement
+      }
+
+      // call the action
+      this.clickListener(target.dataset.action)
+    })
   }
 
-  clickListener(event: MouseEvent) {}
+  clickListener(action: string) {}
 
   /*
 

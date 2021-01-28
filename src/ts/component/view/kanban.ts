@@ -12,21 +12,8 @@ export default class KanbanView extends View {
     this.render()
   }
 
-  clickListener(event: MouseEvent) {
-    let target: HTMLElement = <HTMLElement>event.target
-
-    // find out the target
-    while (!target.dataset.action) {
-      if (target === this.element) {
-        // no action
-        return
-      }
-
-      // go to parents
-      target = target.parentElement
-    }
-
-    switch (target.dataset.action) {
+  clickListener(action: string) {
+    switch (action) {
       case 'addColumn':
         this.addColumn()
         break
