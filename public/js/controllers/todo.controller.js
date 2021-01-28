@@ -18,11 +18,29 @@ class TodoController {
       });
   }
 
-  handlePopUpEvent() {
+  handlePopUpEvent(todoCardList, TodoView, todoModel) {
     let popUpElement = $(".pop-up");
 
     $(".add-kanban-button").addEventListener("click", (event) => {
       popUpElement.style.display = "flex";
+    });
+
+    $(".add-button", popUpElement).addEventListener("click", (event) => {
+      console.log("hello");
+      let status = $(".add-new-kanban__input", popUpElement).value;
+
+      this.todoViewList[status] = new TodoView(status).init();
+
+      this.subscribe({
+        render: this.todoViewList[status].render,
+        status: this.todoViewList[status].status,
+      });
+
+      todoModel.todoCardList[status] = [];
+
+      this.notify(todoCardList, status);
+      this.addButtonEvent(todoModel, this.todoViewList[status], status);
+      popUpElement.style.display = "none";
     });
 
     $(".cancel-button", popUpElement).addEventListener("click", (event) => {
@@ -54,7 +72,7 @@ class TodoController {
       this.notify(todoCardList, status);
       this.addButtonEvent(todoModel, this.todoViewList[status], status);
     }
-    this.handlePopUpEvent();
+    this.handlePopUpEvent(todoCardList, TodoView, todoModel);
 
     return this;
   }

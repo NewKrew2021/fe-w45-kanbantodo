@@ -119,6 +119,7 @@ class TodoView {
 
   init() {
     $(".todo-list").appendChild(this.element);
+    this.render([], this.status);
     this.HandleDragAndDrop();
     return this;
   }
