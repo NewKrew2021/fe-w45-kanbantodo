@@ -85,6 +85,19 @@ app.delete('/list/remove/:cardId/:id', (req, res) => {
     res.send('list removed successfully!');
 })
 
+// [*] 특정 카드 -> 리스트뷰 아이템을 수정할 때
+app.put('/list/edit/:cardId/:id', (req, res) => {
+    const { cardId, id } = req.params;
+    const { title } = req.body.input;
+    db.get('posts')
+      .find({ id: parseInt(cardId) })
+      .get('data')
+      .find({ id: parseInt(id) })
+      .assign({ title : title })
+      .write()
+    res.send('list removed successfully!');
+})
+
 app.listen(port, () => {
     console.log(`DB Server is running on ${port}`);
 });
