@@ -1,19 +1,17 @@
 import {TodoModel} from "./models/TodoModel.js"
 import {TodoView} from "./views/TodoView.js"
-import {InputModel} from "./models/InputModel.js"
-import {InputView} from "./views/InputView.js"
+import {CardModel} from "./models/CardModel.js"
+import {CardView} from "./views/CardView.js"
 
 
 window.addEventListener("DOMContentLoaded", init)
 
 async function init() {
   const todoModel = new TodoModel();
-  const inputModel = new InputModel();
+  const cardModel = new CardModel();
   const todoView =  new TodoView(todoModel);
-  const inputView =  new InputView(inputModel);
+  const cardView =  new CardView(cardModel);
 
-  
-
-  todoView.init(inputView);
-  inputView.init();
+  todoView.init();
+  cardView.init();
 }

@@ -15,7 +15,9 @@ class TodoModel extends Observable {
     this.notify(this.todos);
   }
   async getInitialData() {
-    const res = await fetch(URL+"/todos");
+    const res = await fetch(URL+"/cards",{
+      method: "GET",
+    });
     const data = await res.json();
     this.saveInitTodo(data);
   }
