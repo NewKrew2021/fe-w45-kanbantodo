@@ -8,34 +8,34 @@ let collection;
 async function init() {
     await client.connect();
     database = client.db("todoDB");
-    collection = database.collection("todoCollection");
+    collection= database.collection("taskCollection");
 };
 init();
 
-async function findAll() {
-    console.log("db:findAll...");
+async function findAll(sectionID) {
+    console.log("db:findAll...",sectionID);
 
     // query for movies that have a runtime less than 15 minutes
-    const query = {};
-    const cursor = collection.find();
+    const query={type:sectionID}
+    const cursor = collection.find(query);
     // print a message if no documents were found
     if ((await cursor.count()) === 0) {
         console.log("No documents found!");
     }
     const result = [];
-    await cursor.forEach(({ _id, title, author }) => {
-        result.push({ _id: _id, title: title, author: author });
+    await cursor.forEach(({ _id, title, author,type }) => {
+        result.push({ _id, title, author,type });
     }); // map함수가 동작하지않음
     return result;
 
 }
 module.exports.findAll = findAll;
 
-async function insertTodo({ title, author }) {
+async function insertTodo({ sectionID,title, author }) {
     console.log("db:insert...");
 
     // create a document to be inserted
-    const doc = { title: title, author: author };
+    const doc = { type:sectionID, title, author};
     const result = await collection.insertOne(doc);
     console.log(
         `${result.insertedCount} documents were inserted with the _id: ${result.insertedId}`,

@@ -1,12 +1,8 @@
-import { initTotoController } from "./js/controller/todoController";
 import { initHeader } from "./js/view/Header";
-import { initTodoSection } from "./js/view/TodoSection";
-import { initDoingSection } from "./js/view/DoingSection";
-import { initDoneSection } from "./js/view/DoneSection";
+import { initKanban } from "./js/view/Kanban";
+import { initSearchBar } from "./js/view/SearchBar";
 (function initApp() {
     initHeader();
-    initTodoSection();//view
-    initTotoController();//controller
-    initDoingSection();
-    initDoneSection();
+    initSearchBar();
+    initKanban();
 })();
