@@ -5,27 +5,7 @@
       "title": "To-Do",
       "cards": [
         {
-          "title": "페이지네이션 UI 리서치",
-          "author": "kevin"
-        },
-        {
-          "title": "상세페이지 API 정리",
-          "author": "kevin"
-        },
-        {
-          "title": "github 공부하기",
-          "author": "kevin"
-        },
-        {
-          "title": "github 공부하기",
-          "author": "kevin"
-        },
-        {
-          "title": "asd",
-          "author": "kevin"
-        },
-        {
-          "title": "공부하기",
+          "title": "asdfdgdf",
           "author": "kevin"
         }
       ]
@@ -33,12 +13,7 @@
     {
       "id": 2,
       "title": "Doing",
-      "cards": [
-        {
-          "title": "이번주 기획리뷰",
-          "author": "kevin"
-        }
-      ]
+      "cards": []
     },
     {
       "id": 3,

@@ -12,8 +12,6 @@ async function init() {
   const todoView =  new TodoView(todoModel);
   const cardView =  new CardView(cardModel);
 
-  
-
   todoView.init();
   cardView.init();
 }

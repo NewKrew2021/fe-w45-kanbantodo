@@ -23,7 +23,9 @@ class CardModel extends Observable {
   }
 
   async getCardData() {
-    const res = await fetch(URL+"/todos");
+    const res = await fetch(URL+"/cards",{
+      method: "GET",
+    });
     const data = await res.json();
     this.saveCard(data);
   }
@@ -33,11 +35,11 @@ class CardModel extends Observable {
       method: "PUT",
     });
     const data = await res.json();
-    console.log(data);
     this.saveCard(data);
   }
 
   async deleteCardData(idx, newCard) {
+    console.log(idx, newCard);
     const res = await fetch( URL + `/cards?id=${idx+1}&title=${newCard}`, {
       method: "DELETE",
     });
@@ -47,13 +49,11 @@ class CardModel extends Observable {
 
   addCards(idx, newCard) {
     console.log(this.cards);
-    
-    // this.cards[idx].cards.push({title:newCard, author: "kevin"});
     this.putCardData(idx, newCard);
     this.notify(this.cards);
   }
-  deleteCard(newCard) {
-    this.todos = [...this.cards].filter(card => card !== newCard);
+  deleteCard(idx, newCard) {
+    this.deleteCardData(idx, newCard)
     this.notify(this.cards);
   }
 

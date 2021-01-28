@@ -8,13 +8,13 @@ class CardView {
   displayCard(cards) {
     // console.log(cards);
     const contents = document.querySelectorAll("div.item-container");
-    // console.log(contents);
+    // (contents);
     for(let idx=0; idx<cards.length; idx++) {
       let cardsHtml = ``;
       cards[idx]["cards"].forEach(card => {
         cardsHtml += `
           <div class="todo-contents">
-            <div class="todo-items">
+            <div class="todo-cards">
               <div class="card-title">${card.title}</div>
               <div class="remove-card">✕</div>
               <div class="todo-author"> Added by ${card.author}</div>
@@ -24,6 +24,7 @@ class CardView {
       });
       contents[idx].innerHTML = cardsHtml;
     }
+    this.removeCardBtnEvent();
   }
 
   plusBtnEvent() {
@@ -37,7 +38,6 @@ class CardView {
   }
 
   addBtnEvent() {
-    
     const addBtn = document.querySelectorAll("button.add-button");
     addBtn.forEach( (btn, idx) => {
       btn.addEventListener("click", e => {
@@ -52,11 +52,27 @@ class CardView {
   cancelBtnEvent() {
     const cancelBtn = document.querySelectorAll("button.cancel-button");
     cancelBtn.forEach( btn => {
-      btn.addEventListener("click", e=> {
+      btn.addEventListener("click", e => {
         const parentEle = e.currentTarget.closest(".todo-add");
         parentEle.className = "todo-add non-display"
       })
     }) 
+  }
+
+  removeCardBtnEvent() {
+    const removeCardBtn = document.querySelectorAll("div.remove-card");
+    // console.log(removeCardBtn);
+    removeCardBtn.forEach(btn => {
+      btn.addEventListener("click", e => {
+        const todoEle = e.currentTarget.closest(".item-container");
+        const cardEle = e.currentTarget.closest(".todo-cards");
+        const cardTitle = cardEle.querySelector("div.card-title").innerHTML;
+        const elements = document.querySelectorAll("div.item-container");
+        let idx = 0;
+        elements.forEach( (ele, index) => { if(ele === todoEle) idx=index} );
+        this.model.deleteCard(idx, cardTitle);
+      })
+    })
   }
 
   displayInputWindow(ele) {
@@ -64,14 +80,14 @@ class CardView {
   }
   
   init() {
-    this.model.subscribe(this.displayCard);
+    this.model.subscribe(this.displayCard.bind(this));
     this.model.getCardData()
     .then(this.plusBtnEvent.bind(this))
     .then(this.addBtnEvent.bind(this))
     .then(this.cancelBtnEvent.bind(this))
+    .then(this.removeCardBtnEvent.bind(this));
   }
 }
-
 
 
 
