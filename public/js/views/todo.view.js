@@ -74,6 +74,32 @@ class TodoView {
     });
   }
 
+  HandleDragAndDrop() {
+    this.element.addEventListener("mousedown", (event) => {
+      let movingElement = event.target.closest(".todo-card").cloneNode(true);
+
+      movingElement.style.position = "absolute";
+      movingElement.style.zIndex = 1000;
+
+      document.body.append(movingElement);
+
+      const moveAt = (pageX, pageY) => {
+        movingElement.style.left = `${pageX - movingElement.offsetWidth / 2}px`;
+        movingElement.style.top = `${pageY - movingElement.offsetHeight / 2}px`;
+      };
+
+      const onMouseMove = (event) => {
+        moveAt(event.pageX, event.pageY);
+      };
+
+      document.addEventListener("mousemove", onMouseMove);
+
+      movingElement.addEventListener("mouseup", () => {
+        document.removeEventListener("mousemove", onMouseMove);
+      });
+    });
+  }
+
   render(cardList, status) {
     if (!cardList) cardList = [];
     this.element.innerHTML = this.createTodo(cardList, status);
@@ -81,6 +107,7 @@ class TodoView {
 
   init() {
     $(".todo-list").appendChild(this.element);
+    this.HandleDragAndDrop();
     return this;
   }
 }
