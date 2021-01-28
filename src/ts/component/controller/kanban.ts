@@ -6,13 +6,11 @@ import ColumnData from '../../type/column'
 
 export default class KanbanController extends Controller {
   private kanbanData: KanbanData
-  private columns: Array<ColumnController>
   private view: KanbanView
 
   constructor({ id, kanbanData }: { id: String, kanbanData: KanbanData }) {
     super()
     this.kanbanData = kanbanData
-    this.columns = []
     this.view = new KanbanView({ id, kanbanData })
     this.view.addColumn = this.addColumnWithData.bind(this)
   }
@@ -23,7 +21,6 @@ export default class KanbanController extends Controller {
 
   addColumnWithData(columnData: ColumnData = { title: 'new column' }) {
     const columnController = new ColumnController({ id: '', columnData })
-    this.columns.push(columnController)
 
     // re-render
     columnController.setWrapper(this.view.getChildrenWrapper())

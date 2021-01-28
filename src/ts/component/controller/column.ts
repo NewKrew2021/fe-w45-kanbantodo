@@ -5,13 +5,11 @@ import ColumnView from '../view/column'
 
 export default class ColumnController extends Controller {
   private columnData: ColumnData
-  // private notes: Array<NoteController>
   private view: ColumnView
 
   constructor({ id, columnData }: { id: String, columnData: ColumnData }) {
     super()
     this.columnData = columnData
-
     this.view = new ColumnView({ id, columnData })
     this.view.removeSelf = this.removeSelf.bind(this)
   }
@@ -35,7 +33,8 @@ export default class ColumnController extends Controller {
     this.notifyDelete()
   }
 
-  addNote(note: NoteController) {
+  addNote() {
+    
   }
 
   removeNote(note: NoteController) {

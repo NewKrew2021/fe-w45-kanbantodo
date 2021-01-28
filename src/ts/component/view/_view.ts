@@ -43,7 +43,6 @@ export default class View {
   render(wrapper: HTMLElement = this.element.parentElement) {
     // detach from parent
     this.element.parentElement?.removeChild(this.element)
-    console.log(this.element)
 
     // TODO: FEATURE: support multiple children wrapper
     // detach children wrapper to preserve children
