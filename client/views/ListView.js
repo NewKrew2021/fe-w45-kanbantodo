@@ -17,6 +17,9 @@ class ListView {
         this.modalSaveBtn = _dom.query('.btn-save-modal');
         this.modalAcceptBtn = _dom.query('.btn-accept-modal');
         this.modalCloseBtn = _dom.query('.btn-close-modal');
+        this.onMouseMoveHandler;
+        this.curTarget;
+        this.copiedNode;
         this.model = model; // 생성 시 구독할 model(여기서는 TodoModel)을 주입받고 구독한다.
         this.model.subscribe(this.update.bind(this))
     }
@@ -54,19 +57,18 @@ class ListView {
     async dragDownHandler(e) {
         if (e.target !== e.currentTarget) return;
         let curTarget = e.currentTarget;
-        const cardId = e.currentTarget.getAttribute('data');
         const copiedNode = e.currentTarget.cloneNode(true);
         copiedNode.style.opacity = 0.4;
-        _dom.queryAll('.list-view-wrapper').forEach(element => {
-            if (element.getAttribute('data') === cardId) {
-                element.insertBefore(copiedNode, curTarget);
-            }
-        })
+        curTarget.parentNode.insertBefore(copiedNode, curTarget); // 기존 자리 잔상
+
+        this.curTarget = curTarget;
+        this.copiedNode = copiedNode;
         let shiftX = e.screenX - e.currentTarget.getBoundingClientRect().left;
         let shiftY = e.screenY - e.currentTarget.getBoundingClientRect().bottom;
         //console.log(shiftX, shiftY);
         e.target.style.position = 'absolute';
         e.target.style.zIndex = 1000;
+        e.target.style.opacity = 0.7;
         document.body.append(e.target);
 
         moveAt(e.pageX, e.pageY);
@@ -107,7 +109,17 @@ class ListView {
             elem.style.background = '';
         }
         // mousemove -> 드래그하면서 움직이기
-        document.addEventListener('mousemove', onMouseMove);
+        this.onMouseMoveHandler = onMouseMove;
+        document.addEventListener('mousemove', this.onMouseMoveHandler);
+    }
+
+    dropUpHandler(e){
+        this.curTarget.remove();
+        this.copiedNode.style.opacity = "1.0";
+        document.removeEventListener('mousemove', this.onMouseMoveHandler);
+        this.copiedNode.addEventListener('mousedown', this.dragDownHandler.bind(this));
+        this.copiedNode.addEventListener('mouseup', this.dropUpHandler.bind(this));
+        this.updateEvent(this.copiedNode);
     }
 
     async dragAndDrop() {
@@ -115,11 +127,15 @@ class ListView {
         const note = _dom.queryAll('.list-view');
         note.forEach(element => {
             element.addEventListener('mousedown', this.dragDownHandler.bind(this));
+            element.addEventListener('mouseup', this.dropUpHandler.bind(this));
         })
-        note.forEach(element => {
-            element.addEventListener('mouseup', () => {
-                // document.removeEventListener('mousemove', onMouseMove);
-            });
+    }
+
+    updateEvent(element){
+        element.addEventListener('dblclick', this.editListHandler.bind(this));
+        const removeListBtn = _dom.queryAll('.list-remove');
+        removeListBtn.forEach(element => {
+            element.addEventListener('click', this.removeListHandler.bind(this));
         })
     }
 
