@@ -78,8 +78,9 @@ class TodoView {
     this.element.addEventListener("mousedown", ({ target }) => {
       if (!["todo-card", "todo-card--content", "todo-card--writer"].includes(target.className))
         return;
-
-      let movingElement = target.closest(".todo-card").cloneNode(true);
+      let originalMovingElement = target.closest(".todo-card");
+      let movingElement = originalMovingElement.cloneNode(true);
+      originalMovingElement.style.opacity = 0.5;
 
       movingElement.style.position = "absolute";
       movingElement.style.zIndex = 1000;
@@ -106,6 +107,10 @@ class TodoView {
         if (newTodoList) {
           movingElement.style = "";
           newTodoList.appendChild(movingElement);
+          originalMovingElement.parentNode.removeChild(originalMovingElement);
+        } else {
+          movingElement.parentNode.removeChild(movingElement);
+          originalMovingElement.style = null;
         }
         document.removeEventListener("mousemove", onMouseMove);
       });
