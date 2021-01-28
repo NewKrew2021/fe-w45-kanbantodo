@@ -26,21 +26,25 @@ app.get('/column/:id', (req, res) => {
 
 // Create new column
 app.post('/column', (req, res) =>{
-  const {id, title} = req.body.data;
-  if (db.get('todos').find({id})) {
-    res.status(404).jsonp("Duplicated ID");
-  } else {
-    db.get('todos')
-      .push({ id, title, notes: []})
-      .write();
-    res.status(200).jsonp("Success");
-  }
+  const {title} = req.body.data;
+  db.get('todos')
+    .push({ id: Date.now().toString(), title, notes: []})
+    .write();
+  res.status(200).jsonp("Success");
 })
 
 // Delete column
 app.delete('/column/:id', (req, res) => {
   const {id} = req.params;
-  db.get('todos').remove({ id }).write()
+  try{
+    db.get('todos').remove({ id }).write();
+    res.status(200)
+  } catch(err) {
+    console.log(err);
+    res.status(400)
+  }
+  res.send();
+
 })
 
 // Create new note
@@ -59,19 +63,30 @@ app.post('/note/:colId', (req, res) => {
 // Delete note
 app.delete('/note/:colId/:noteId', (req, res) => {
   let {colId, noteId} = req.params;
-  console.log(noteId);
   try{
-    console.log(db.get('todos')
-    .find({id: colId})
-    .get('notes').find({id: noteId}).value())
     db.get('todos')
       .find({id: colId})
       .get('notes')
       .remove({ id: noteId }).write();
+      res.status(200)
+    } catch(err) {
+      console.log(err)
+      res.status(400);
+    }
+    res.send();
+})
+
+// Edit column
+app.put('/column/:colId', (req, res) =>{
+  const {colId} = req.params;
+  const {title} = req.body.data;
+  try {
+    db.get('todos').find({ id: colId }).assign({title}).write();
+    res.status(200);
   } catch(err) {
-    console.log(err)
+    console.log(err);
+    res.status(400);
   }
-  res.status(200)
   res.send();
 })
 

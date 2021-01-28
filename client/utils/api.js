@@ -47,12 +47,51 @@ const API = (function() {
         })
     }
 
+    function createNewColumn(colName) {
+        return fetch(`${API_URL}/column`,{
+            "method":"post",
+            "headers":{
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({data: {title: colName}}),
+        }).then((res) => {
+            return res.status;
+        })
+    }
+
+    function deleteColumn(colId) {
+        return fetch(`${API_URL}/column/${colId}`, {
+            "method": "delete",
+            "headers":{
+                "Content-Type": "application/json",
+            }
+        }).then((res) => {
+            console.log(res)
+            return res;
+            // return res.json();
+        })
+    }
+
+    function updateColumn(colId, title) {
+        return fetch(`${API_URL}/column/${colId}`,{
+            "method":"put",
+            "headers":{
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({data: {title}}),
+        }).then((res) => {
+            return res.status;
+        })
+    }
 
     return {
         getTodoData,
         createNewNote,
         getColumnData,
         deleteNote,
+        createNewColumn,
+        deleteColumn,
+        updateColumn
     };
 })();
 

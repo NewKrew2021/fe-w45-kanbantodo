@@ -1,9 +1,10 @@
 import './normalize.css';
 import './index.css';
-import TodoView from './view/TodoView';
+import TodoController from './controller/TodoController';
 
 function initProject() {
-    new TodoView().init();
+    const todoController = new TodoController();
+    todoController.init();
 }
 
 initProject();
