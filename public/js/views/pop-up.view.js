@@ -1,3 +1,5 @@
+import { $ } from "../common/utils";
+
 const POP_UP_TEMPLATE = {
   popUp(title) {
     return `
@@ -19,16 +21,29 @@ class PopUpView {
     this.popUpElement = $(".pop-up");
   }
 
-  handlePopUpEvent() {
+  handlePopUpEvent(todoCardList, TodoView, todoModel) {
+    const popUpElement = $(".pop-up");
+
     $(".add-kanban-button").addEventListener("click", (event) => {
-      this.popUpElement.style.display = "flex";
+      popUpElement.style.display = "flex";
+    });
+
+    $(".add-button", popUpElement).addEventListener("click", (event) => {
+      let status = $(".add-new-kanban__input", popUpElement).value;
+      todoModel.todoCardList[status] = [];
+      this.createNewView(todoCardList, TodoView, todoModel, status);
+
+      popUpElement.style.display = "none";
     });
 
     $(".cancel-button", popUpElement).addEventListener("click", (event) => {
-      this.popUpElement.style.display = "none";
+      popUpElement.style.display = "none";
     });
   }
+
   render() {
     this.popUpElement.innerHTML = POP_UP_TEMPLATE.popUp("New kanban board");
   }
 }
+
+export { PopUpView };
