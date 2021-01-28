@@ -114,6 +114,7 @@ class ListView {
     }
 
     dropUpHandler(e){
+        if(this.curTarget === undefined) return;
         this.curTarget.remove();
         this.copiedNode.style.opacity = "1.0";
         document.removeEventListener('mousemove', this.onMouseMoveHandler);
