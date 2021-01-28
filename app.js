@@ -17,28 +17,28 @@ app.get('/', (req, res)=> {
 
 app.get('/kanban', async(req, res) =>{
     const data=await db.findAll(req.query.sectionID);
-    res.json({todos:data});
+    res.json({tasks:data});
 });
 
 app.post('/kanban',async (req, res) =>{
     const {sectionID,title,author}=req.body;
     await db.insertTodo({sectionID,title,author});
     const data=await db.findAll(sectionID);
-    res.json({todos:data});
+    res.json({tasks:data});
 });
 
 app.put('/kanban',async (req, res) =>{
     const {sectionID,id,title}=req.body;
     await db.updateTodo({sectionID,id,title});
     const data=await db.findAll(sectionID);
-    res.json({todos:data});
+    res.json({tasks:data});
 });
 
 app.delete('/kanban',async (req, res) =>{
     const {sectionID,id}=req.body;    
     await db.deleteTodo(id);
     const data=await db.findAll(sectionID);
-    res.json({todos:data});
+    res.json({tasks:data});
 });
 
 

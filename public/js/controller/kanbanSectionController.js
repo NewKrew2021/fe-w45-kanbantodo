@@ -1,24 +1,9 @@
-import { render } from "../view/KanbanSection";
 import {fetchTasks,createTask,deleteTask,updateTask} from"../model/kanbanSectionModel";
 
 export function initSectionController({sectionID}){
 
-    let s = {};
-    let state = new Proxy(s, {
-        set: function (target, key, value) { 
-            target[key] = value;
-            render({sectionID:sectionID,taskListData:target[key]});
-            return true;
-        }
-    });
-    state.taskList = [];
-
-    function handleTaskListChange(taskList){
-        state.taskList=taskList;
-    }
-
     //SELECT
-    fetchTasks(sectionID,handleTaskListChange);
+    fetchTasks(sectionID);
 
     //INSERT logic including panel manipulation
     const section=document.querySelector(`#${sectionID}-section`);
@@ -46,7 +31,7 @@ export function initSectionController({sectionID}){
     //INSERT: call POST API
     addItemBtn.addEventListener("click",()=>{
         const newTitle=textArea.value;
-        createTask(sectionID,handleTaskListChange,{title:newTitle,author:"justin"});
+        createTask(sectionID,{title:newTitle,author:"justin"});
         textArea.value="";
         addItemBtn.disabled=true;
     });
@@ -81,7 +66,7 @@ export function initSectionController({sectionID}){
     });
     //UPDATE: call PUT API
     submitBtn.addEventListener("click",()=>{
-        updateTask(sectionID,handleTaskListChange,{dbID:updateTargetID,title:modalTextArea.value});
+        updateTask(sectionID,{dbID:updateTargetID,title:modalTextArea.value});
     });
 
     //DELETE
@@ -93,7 +78,7 @@ export function initSectionController({sectionID}){
         if(!result) return;
         const taskItem=e.target.closest(".item");
         const dbID=taskItem.attributes.dbID.value;
-        deleteTask(sectionID,handleTaskListChange,dbID);
+        deleteTask(sectionID,dbID);
     }
 
 }

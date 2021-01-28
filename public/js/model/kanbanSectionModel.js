@@ -1,14 +1,18 @@
-function fetchTasks(sectionID,handlechange) {
+import {render}from "../view/KanbanSection";
+let taskList=[];
+
+function fetchTasks(sectionID) {
     const data = { sectionID };
     fetch(`/kanban?`+new URLSearchParams({
         sectionID,
     }), { method: 'GET', })
         .then((res) => res.json())
         .then((data) => {
-            handlechange(data.todos);
-        }).catch(console.log);
+            taskList=data.tasks;
+            render({sectionID,taskListData:taskList});
+    }).catch(console.log);
 }
-function createTask(sectionID,handleChange,{title,author}) {
+function createTask(sectionID,{title,author}) {
     const data = { sectionID,title,author };
     fetch(`/kanban`, {
         method: 'POST',
@@ -19,11 +23,12 @@ function createTask(sectionID,handleChange,{title,author}) {
     })
     .then((res) => res.json())
     .then((data) => {
-        handleChange(data.todos);
+        taskList=data.tasks;
+        render({sectionID,taskListData:taskList});
     }).catch(console.log);
 
 }
-function deleteTask(sectionID,handleChange, dbID){
+function deleteTask(sectionID, dbID){
 
     fetch(`/kanban`, {
         method: 'DELETE',
@@ -34,10 +39,11 @@ function deleteTask(sectionID,handleChange, dbID){
     })
     .then((res) => res.json())
     .then((data) => {
-        handleChange(data.todos);
+        taskList=data.tasks;
+        render({sectionID,taskListData:taskList});
     }).catch(console.log);
 }
-function updateTask(sectionID,handleChange,{dbID,title}){
+function updateTask(sectionID,{dbID,title}){
     fetch(`/kanban`, {
         method: 'PUT',
         body: JSON.stringify({sectionID,id:dbID,title:title}),
@@ -47,7 +53,8 @@ function updateTask(sectionID,handleChange,{dbID,title}){
     })
     .then((res) => res.json())
     .then((data) => {
-        handleChange(data.todos);
+        taskList=data.tasks;
+        render({sectionID,taskListData:taskList});
     }).catch(console.log);
 }
-export { fetchTasks , createTask,deleteTask ,updateTask };
+export { fetchTasks , createTask, deleteTask ,updateTask };
