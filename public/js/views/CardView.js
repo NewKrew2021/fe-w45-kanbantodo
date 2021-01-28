@@ -2,13 +2,10 @@ class CardView {
   constructor(model){
     this.model = model;
     this.inputValue = "";
-    this.cardview;
   }
 
   displayCard(cards) {
-    // console.log(cards);
     const contents = document.querySelectorAll("div.item-container");
-    // (contents);
     for(let idx=0; idx<cards.length; idx++) {
       let cardsHtml = ``;
       cards[idx]["cards"].forEach(card => {
@@ -25,6 +22,7 @@ class CardView {
       contents[idx].innerHTML = cardsHtml;
     }
     this.removeCardBtnEvent();
+    this.moveCardEvent();
   }
 
   plusBtnEvent() {
@@ -61,7 +59,6 @@ class CardView {
 
   removeCardBtnEvent() {
     const removeCardBtn = document.querySelectorAll("div.remove-card");
-    // console.log(removeCardBtn);
     removeCardBtn.forEach(btn => {
       btn.addEventListener("click", e => {
         const todoEle = e.currentTarget.closest(".item-container");
@@ -71,6 +68,24 @@ class CardView {
         let idx = 0;
         elements.forEach( (ele, index) => { if(ele === todoEle) idx=index} );
         this.model.deleteCard(idx, cardTitle);
+      })
+    })
+  }
+
+  moveCardEvent() {
+    const removeCardBtn = document.querySelectorAll("div.todo-cards");
+    let gapX, gapY, isMoveCard = false;
+    removeCardBtn.forEach(btn => {
+      btn.addEventListener("mousedown", (event) => {
+        isMoveCard = true;
+        gapX = event.clientX - btn.getBoundingClientRect().left;
+        gapY = event.clientY - btn.getBoundingClientRect().top;
+      });
+      btn.addEventListener("mouseup", () => {isMoveCard = false});
+      btn.addEventListener("mousemove", event => {
+        if(isMoveCard){
+          btn.style = `position: fixed; left: ${event.clientX-gapX}px; top: ${event.clientY-gapY}px;`
+        }
       })
     })
   }

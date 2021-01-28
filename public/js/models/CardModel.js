@@ -39,7 +39,6 @@ class CardModel extends Observable {
   }
 
   async deleteCardData(idx, newCard) {
-    console.log(idx, newCard);
     const res = await fetch( URL + `/cards?id=${idx+1}&title=${newCard}`, {
       method: "DELETE",
     });
@@ -48,7 +47,6 @@ class CardModel extends Observable {
   }
 
   addCards(idx, newCard) {
-    console.log(this.cards);
     this.putCardData(idx, newCard);
     this.notify(this.cards);
   }
