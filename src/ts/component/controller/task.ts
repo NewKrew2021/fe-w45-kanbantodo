@@ -1,10 +1,10 @@
-import TaskData from '../type/task'
-import Component from './_component'
+import TaskData from '../../type/task'
+import Controller from './_controller'
 
-export default class Task extends Component {
+export default class TaskController extends Controller {
   protected id: String
   protected taskData: TaskData
-  protected subtasks: Array<Task>
+  protected subtasks: Array<TaskController>
 
   constructor({ id, taskData }: { id: String, taskData: TaskData }) {
     super()
@@ -33,13 +33,13 @@ export default class Task extends Component {
     this.notifyDelete()
   }
 
-  addTask(task: Task) {
+  addTask(task: TaskController) {
     this.subtasks.push(task)
     task.addDeleteListener(this.removeTask)
     task.addUpdateListener(this.notifyUpdate)
   }
 
-  removeTask(task: Task) {
+  removeTask(task: TaskController) {
     // pop from this.columns
     this.subtasks = this.subtasks.filter(t => t != task)
 

@@ -1,4 +1,4 @@
-export default class Component {
+export default class Controller {
   private updateListeners: Array<Function>
   private deleteListeners: Array<Function>
 
@@ -21,13 +21,5 @@ export default class Component {
 
   protected notifyDelete() {
     this.deleteListeners.forEach(listener => listener(this))
-  }
-
-  toHtmlString() {
-    return ''
-  }
-
-  render(wrapper: HTMLElement) {
-    wrapper.innerHTML = this.toHtmlString()
   }
 }
