@@ -1,4 +1,4 @@
-import { $, createNewElement } from "../common/utils";
+import { $, createNewElement, deleteElement } from "../common/utils";
 
 const USER = "puba";
 
@@ -107,9 +107,9 @@ class TodoView {
         if (newTodoList) {
           movingElement.style = "";
           newTodoList.appendChild(movingElement);
-          originalMovingElement.parentNode.removeChild(originalMovingElement);
+          deleteElement(originalMovingElement);
         } else {
-          movingElement.parentNode.removeChild(movingElement);
+          deleteElement(movingElement);
           originalMovingElement.style = null;
         }
         document.removeEventListener("mousemove", onMouseMove);
