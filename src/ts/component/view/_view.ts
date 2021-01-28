@@ -36,6 +36,10 @@ export default class View {
 
   */
 
+  getChildrenWrapper(wrapperType: string) {
+    return <HTMLElement>this.element.querySelector(`.children-wrapper[data-wrapper-type="${wrapperType}"]`)
+  }
+
   toHtmlString() {
     return ''
   }
@@ -44,21 +48,25 @@ export default class View {
     // detach from parent
     this.element.parentElement?.removeChild(this.element)
 
-    // TODO: FEATURE: support multiple children wrapper
     // detach children wrapper to preserve children
-    const oldChildrenWrapper = this.element.querySelector('.children-wrapper')
-    oldChildrenWrapper?.parentElement.removeChild(oldChildrenWrapper)
+    // support multiple children wrapper
+    const oldChildrenWrappers = this.element.querySelectorAll('.children-wrapper[data-wrapper-type]')
+    oldChildrenWrappers.forEach(oldChildrenWrapper => {
+      oldChildrenWrapper.parentElement.removeChild(oldChildrenWrapper)
+    })
+    console.log(oldChildrenWrappers)
 
     // make new element
     this.element.innerHTML = this.toHtmlString()
     this.element = <HTMLElement>this.element.firstElementChild
 
-    // re-attach children
-    if (oldChildrenWrapper) {
-      const newChildrenWrapper = this.element.querySelector('.children-wrapper')
-      newChildrenWrapper.insertAdjacentElement('afterend', oldChildrenWrapper)
-      newChildrenWrapper.remove()
-    }
+    // re-attach children wrapper
+    oldChildrenWrappers.forEach(oldChildrenWrapper => {
+      const { wrapperType } = (<HTMLElement>oldChildrenWrapper).dataset
+      const newChildrenWrapper = this.element.querySelector(`.children-wrapper[data-wrapper-type="${wrapperType}"]`)
+      newChildrenWrapper?.insertAdjacentElement('afterend', oldChildrenWrapper)
+      newChildrenWrapper?.remove()
+    })
 
     // attach this to wrapper
     if (wrapper) {

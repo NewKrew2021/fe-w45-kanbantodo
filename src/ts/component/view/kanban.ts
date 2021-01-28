@@ -22,14 +22,10 @@ export default class KanbanView extends View {
 
   addColumn() {}
 
-  getChildrenWrapper() {
-    return <HTMLElement>this.element.querySelector('.children-wrapper')
-  }
-
   toHtmlString() {
     return `
       <div id="${this.id}" class="kanban">
-        <div class="children-wrapper">
+        <div class="children-wrapper" data-wrapper-type="column">
           <!-- columns here -->
         </div>
         <button class="column gray" data-action="addColumn">Add column</button>

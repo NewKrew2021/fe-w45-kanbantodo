@@ -32,7 +32,7 @@ export default class ColumnView extends View {
           <button>+</button>
           <button data-action="removeSelf">×</button>
         </div>
-        <div class="children-wrapper">
+        <div class="children-wrapper" data-wrapper-type="form">
           <!-- notes here -->
         </div>
       </div>

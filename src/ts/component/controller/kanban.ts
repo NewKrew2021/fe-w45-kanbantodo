@@ -23,7 +23,7 @@ export default class KanbanController extends Controller {
     const columnController = new ColumnController({ id: '', columnData })
 
     // re-render
-    columnController.setWrapper(this.view.getChildrenWrapper())
+    columnController.setWrapper(this.view.getChildrenWrapper('column'))
     this.view.render()
 
     return columnController
