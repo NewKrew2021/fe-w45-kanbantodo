@@ -85,17 +85,22 @@ class ListView {
             let droppableBelow = elemBelow.closest('.droppable');
             if (currentDroppable != droppableBelow) {
                 if (currentDroppable) {
-                    console.log("test");
                     leaveDroppable(currentDroppable);
                 }
                 currentDroppable = droppableBelow;
                 if (currentDroppable) {
-                    enterDroppable(currentDroppable);
+                    enterDroppable(currentDroppable, elemBelow, copiedNode);
                 }
             }
         }
-        function enterDroppable(elem) {
-            elem.style.background = '#EDF5F9'
+        // elem은 가장 많이 겹치는 노드
+        function enterDroppable(elem, elemBelow, copiedNode) {
+            if (!!elem.nextSibling && !elem.parentNode.classList.contains('card-wrapper')){
+                elem.parentNode.insertBefore(copiedNode, elem);
+            }
+            if (elemBelow.classList.contains('card')){
+                elemBelow.children[1].children[1].appendChild(copiedNode);
+            }
         }
         function leaveDroppable(elem) {
             elem.style.background = '';
