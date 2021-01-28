@@ -5,7 +5,7 @@
       "title": "To-Do",
       "cards": [
         {
-          "title": "asdasd",
+          "title": "12",
           "author": "kevin"
         }
       ]
@@ -13,22 +13,27 @@
     {
       "id": 2,
       "title": "Doing",
-      "cards": []
+      "cards": [
+        {
+          "title": "1",
+          "author": "kevin"
+        },
+        {
+          "title": "123",
+          "author": "kevin"
+        }
+      ]
     },
     {
       "id": 3,
       "title": "Done",
       "cards": [
         {
-          "title": "설정파일 분리 리팩도링 작업",
-          "author": "kevin"
-        },
-        {
           "title": "상세페이지 API 정리하기",
           "author": "kevin"
         },
         {
-          "title": "github 공부",
+          "title": "1234",
           "author": "kevin"
         }
       ]

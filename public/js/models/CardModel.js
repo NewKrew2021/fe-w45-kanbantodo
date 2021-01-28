@@ -46,18 +46,28 @@ class CardModel extends Observable {
     this.saveCard(data);
   }
 
-  addCards(idx, newCard) {
-    this.putCardData(idx, newCard);
-    this.notify(this.cards);
+  async getCardInit() {
+    await this.getCardData();
+    await this.notify(this.cards);
   }
-  deleteCard(idx, newCard) {
-    this.deleteCardData(idx, newCard)
-    this.notify(this.cards);
+
+  async addCards(idx, newCard) {
+    await this.putCardData(idx, newCard);
+    await this.notify(this.cards);
+  }
+  async deleteCard(idx, card) {
+    await this.deleteCardData(idx, card)
+    await this.notify(this.cards);
+  }
+  async moveCards(prevIdx, curIdx, card){
+    await this.deleteCardData(prevIdx, card);
+    await this.putCardData(curIdx, card);
+    console.log(this.cards);
+    await this.notify(this.cards);
   }
 
   saveCard(data){
     this.cards = data;
-    this.notify(this.cards);
   }
 
 }

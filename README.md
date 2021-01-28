@@ -26,9 +26,10 @@
     - 카드 상태 -> 변경될때마다 렌더링 
 
 ## 2021-1-28
-  - 목업 서버 구축
+  - DB 서버 구축
     - GET, PUT, DELETE card
   - 카드 추가, 삭제 기능
     - putCard or deleteCard -> subscribe(display card) -> get data(fetch) -> change state -> notify -> view
   - Drag and drop(미완)
     - 카드 mousedown 상태일때 마우스 위치에 따라 이동
+    - 카드 mouseup 되면 현재 마우스가 위치에 있는 보드의 맨끝으로 이동(이전 보드에서는 삭제)

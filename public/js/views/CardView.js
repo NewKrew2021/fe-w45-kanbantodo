@@ -1,17 +1,16 @@
 class CardView {
   constructor(model){
     this.model = model;
-    this.inputValue = "";
   }
 
   displayCard(cards) {
-    const contents = document.querySelectorAll("div.item-container");
+    const itemContainerEle = document.querySelectorAll("div.item-container");
     for(let idx=0; idx<cards.length; idx++) {
       let cardsHtml = ``;
       cards[idx]["cards"].forEach(card => {
         cardsHtml += `
           <div class="todo-contents">
-            <div class="todo-cards">
+            <div class="todo-cards" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
               <div class="card-title">${card.title}</div>
               <div class="remove-card">✕</div>
               <div class="todo-author"> Added by ${card.author}</div>
@@ -19,7 +18,7 @@ class CardView {
           </div>
         `
       });
-      contents[idx].innerHTML = cardsHtml;
+      itemContainerEle[idx].innerHTML = cardsHtml;
     }
     this.removeCardBtnEvent();
     this.moveCardEvent();
@@ -41,7 +40,6 @@ class CardView {
       btn.addEventListener("click", e => {
         const parentEle = e.currentTarget.closest(".todo-container");
         const inputValue = parentEle.querySelector("input.add-input").value;
-        this.inputValue = inputValue;
         this.model.addCards(idx, inputValue);
       })
     })
@@ -73,15 +71,40 @@ class CardView {
   }
 
   moveCardEvent() {
-    const removeCardBtn = document.querySelectorAll("div.todo-cards");
-    let gapX, gapY, isMoveCard = false;
-    removeCardBtn.forEach(btn => {
-      btn.addEventListener("mousedown", (event) => {
+    let prevEle, prevIdx, elePos = [];
+    const moveCardBtn = document.querySelectorAll("div.todo-cards");
+    const todoContainerEle = document.querySelectorAll("div.todo-container");
+    moveCardBtn.forEach(btn => {
+      let gapX, gapY, isMoveCard = false;
+      btn.addEventListener("mousedown", event => {
+        if(event.target.className === "remove-card"){
+          isMoveCard = false;
+          return ;
+        } 
         isMoveCard = true;
         gapX = event.clientX - btn.getBoundingClientRect().left;
         gapY = event.clientY - btn.getBoundingClientRect().top;
+        prevEle = event.target.closest(".todo-container");
       });
-      btn.addEventListener("mouseup", () => {isMoveCard = false});
+      btn.addEventListener("mouseup", event => {
+        if(event.target.className === "remove-card"){
+          isMoveCard = false;
+          return ;
+        } 
+        isMoveCard = false;
+        todoContainerEle.forEach((todo, index) => {
+          const pos = todo.getBoundingClientRect();
+          elePos.push({left:pos.left, right:pos.right, top:pos.top, bottom:pos.bottom, idx:index})
+          if(todo === prevEle) prevIdx=index;
+        })
+        elePos.forEach( pos => {
+          if(event.clientX >= pos.left && event.clientX <= pos.right &&
+            event.clientY >= pos.top && event.clientY <= pos.bottom){
+              const card = event.currentTarget.querySelector("div.card-title").innerHTML
+              this.model.moveCards(prevIdx, pos.idx, card);
+          }
+        })
+      });
       btn.addEventListener("mousemove", event => {
         if(isMoveCard){
           btn.style = `position: fixed; left: ${event.clientX-gapX}px; top: ${event.clientY-gapY}px;`
@@ -96,7 +119,7 @@ class CardView {
   
   init() {
     this.model.subscribe(this.displayCard.bind(this));
-    this.model.getCardData()
+    this.model.getCardInit()
     .then(this.plusBtnEvent.bind(this))
     .then(this.addBtnEvent.bind(this))
     .then(this.cancelBtnEvent.bind(this))
