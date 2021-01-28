@@ -3,6 +3,7 @@ $--color-focus-shadow: rgba(3,102,214,0.3)
 $--color-main-gray: #dddee2
 $--color-main-green: #34B370
 $--color-main-blue: #3495DD
+$--color-soft-blue: #EFF8FD
 
 input
     outline: none
@@ -31,14 +32,66 @@ input
   overflow: auto
   background-color: rgb(0,0,0)
   background-color: rgba(0,0,0,0.3)
-  
-.modal-content
+
+.modal-header
+    background-color: $--color-main-blue
+    padding: 20px
+    border-radius: 10px 10px 0 0
+
+.modal-header-title
+    color: white
+    font-size: 25px
+    font-weight: 700
+
+.modal-remove
     background-color: #fefefe
     margin: auto
     padding: 20px
     border-radius: 7px
     width: 20%
     text-align: center
+
+.modal-edit
+    background-color: #fefefe
+    margin: auto
+    border-radius: 10px
+    width: 50%
+    max-width: 600px
+    min-height: 300px
+
+.modal-input-wrapper
+    padding: 10px
+    text-align: center
+    border-bottom: 1px solid lightgray
+
+.modal-save-wrapper
+    padding: 1em
+
+.modal-input
+    width: 90%
+    min-height: 100px
+    border-radius: 5px
+    resize: vertical
+    padding: 0.5em
+    border: 1px solid $--color-main-gray
+    font-size: 18px
+
+.btn-edit-close-modal
+    float: right
+    color: white
+    font-size: 35px
+
+.btn-edit-close-modal:hover
+    color: yellow
+
+.btn-save-modal
+    width: 170px
+    float: left
+    background-color: $--color-main-green
+    border-radius: 10px
+    color: #ffffff
+    font-size: 20px
+    padding: 0.7em
 
 .btn-close-modal
     width: 25%
@@ -110,16 +163,17 @@ input
 
 .card-header
     position: relative
-    margin: 7px
+    margin: 10px 7px 15px 7px
 
 .card-count
     width: 25px
     height: 25px
     display: inline-block
     border-radius: 50%
-    background-color: lightgray
+    background-color: $--color-main-blue
+    color: white
     text-align: center
-    line-height: 25px
+    line-height: 27px
 
 .input-list-view
     display: block
@@ -138,10 +192,6 @@ input
 
 .list-input:focus-within
     border: 1px solid #0366d6
-
-.list-view:focus-within
-    border: 1px solid #0366d6
-    box-shadow: 0 0 0 3px $--color-focus-shadow
 
 .btn-add-list
     width: 48%
@@ -169,6 +219,17 @@ input
     padding: 10px
     position: relative
     box-shadow: 0px 1px 2px lightgray
+    cursor: pointer
+
+.list-view:hover
+    border: 1px solid #0366d6
+    box-shadow: 0 0 0 3px $--color-focus-shadow
+    background-color: $--color-soft-blue
+
+.list-view:focus-within
+    border: 1px solid #0366d6
+    box-shadow: 0 0 0 3px $--color-focus-shadow
+    background-color: $--color-soft-blue  
 
 .title
     margin-bottom: 0.7em
@@ -183,15 +244,17 @@ input
 
 .card-btn
     position: absolute
-    font-size: 20px
+    font-size: 22px
     top: 10px
     right: 5px
+.card-btn:hover
+    color: $--color-main-blue
+.card-btn:focus
+    color: $--color-main-blue    
+
 .search-btn>img
     width: 18px
     height: 18px
-.card-btn>img
-    width: 14px
-    height: 14px
 .htop
     top: 0
 .htop-add
@@ -238,6 +301,7 @@ $i: 1
 .font-14
     font-size: 14px
 .bold
+    font-size: 19px
     font-weight: 700
 .gray
     color: gray

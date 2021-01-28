@@ -12,6 +12,9 @@ import * as req from '../src/request.js';
 class ListView{
     constructor(model){
         this.modal = _dom.query('.modal');
+        this.removeModal = _dom.query('.modal-remove');
+        this.editModal = _dom.query('.modal-edit');
+        this.modalSaveBtn = _dom.query('.btn-save-modal');
         this.modalAcceptBtn = _dom.query('.btn-accept-modal');
         this.modalCloseBtn = _dom.query('.btn-close-modal');
         this.model = model; // 생성 시 구독할 model(여기서는 TodoModel)을 주입받고 구독한다.
@@ -27,6 +30,7 @@ class ListView{
     updateListView(res){
         this.render();
         this.removeListView();
+        this.editListView();
     }
 
     // template로 초기 html 넣기
@@ -46,17 +50,19 @@ class ListView{
         const cardId = e.target.getAttribute('data');
         const id = e.target.getAttribute('data-idx');
         await this.model.setModalState({ cardId, id });
-
         this.modal.classList.remove('none');
+        this.removeModal.classList.remove('none');
+
         this.modalAcceptBtn.addEventListener('click', function(){
             this.model.removeTodo(this.model.state);
             this.modal.classList.add('none');
+            this.removeModal.classList.add('none');
         }.bind(this))
         this.modalCloseBtn.addEventListener('click', () => {
             this.modal.classList.add('none');
+            this.removeModal.classList.add('none');
         })
     }
-
     // 리스트뷰의 X 클릭 시 삭제하는 메서드
     async removeListView() {
         const { } = await this.model.getInitialData();
@@ -66,9 +72,42 @@ class ListView{
         })
     }
 
+    async editListHandler(e){
+        const cardId = e.currentTarget.getAttribute('data');
+        const id = e.currentTarget.getAttribute('data-idx');
+        console.log(cardId, id);
+        const modalInput = _dom.query('.modal-input');
+        await this.model.setModalState({ cardId, id });
+        this.modal.classList.remove('none');
+        this.editModal.classList.remove('none');
+        
+        this.modalSaveBtn.addEventListener('click', function(){
+            const newTitle = modalInput.value;
+            const input = { input: { title : newTitle }};
+            this.model.editTodo({cardId, id, input});
+            this.modal.classList.add('none');
+            this.editModal.classList.add('none');
+        }.bind(this))   
+    }
+
+    // 리스트뷰(note item) 더블 클릭 시 타이틀을 수정하는 메서드
+    async editListView(){
+        const { } = await this.model.getInitialData();
+        const note = _dom.queryAll('.list-view');
+        const closeBtn = _dom.query('.btn-edit-close-modal');
+        note.forEach(element => {
+            element.addEventListener('dblclick', this.editListHandler.bind(this));
+        })
+        closeBtn.addEventListener('click', ()=>{
+            this.modal.classList.add('none');
+            this.editModal.classList.add('none');
+        })
+    }
+
     init(){
         this.render();
         this.removeListView();
+        this.editListView();
     }
 }
 

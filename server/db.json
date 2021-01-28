@@ -7,12 +7,7 @@
       "data": [
         {
           "id": 0,
-          "title": "add1",
-          "tasks": []
-        },
-        {
-          "id": 2,
-          "title": "ㅁㄴㅇㄹㅇㄴㅁㄴㅁㄹㅇ",
+          "title": "검색 필터 기능 구현해야 함",
           "tasks": []
         }
       ]
@@ -24,17 +19,17 @@
       "data": [
         {
           "id": 6,
-          "title": "수정할 제목",
+          "title": "모델-뷰, 옵저버 패턴 개념 공부하기",
           "tasks": []
         },
         {
           "id": 7,
-          "title": "ㅁㄴㄹㅇㄹㅇㄴㅁ",
+          "title": "뷰에서 좀 더 줄일 만한 부분을 찾아보기",
           "tasks": []
         },
         {
           "id": 8,
-          "title": "333",
+          "title": "드래그 앤 드롭 구현하기",
           "tasks": []
         }
       ]
@@ -45,18 +40,18 @@
       "author": "roddy.chan",
       "data": [
         {
+          "id": 0,
+          "title": "옵저버 패턴 대략적으로 구성하기",
+          "tasks": []
+        },
+        {
           "id": 1,
-          "title": "abc",
+          "title": "webpack dev/prod로 구분해서 설정하기",
           "tasks": []
         },
         {
-          "id": 4,
-          "title": "수정한 제목",
-          "tasks": []
-        },
-        {
-          "id": 5,
-          "title": "3번째",
+          "id": 2,
+          "title": "express & lowdb로 db 구성하기",
           "tasks": []
         }
       ]

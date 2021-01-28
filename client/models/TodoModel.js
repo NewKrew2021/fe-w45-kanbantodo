@@ -38,15 +38,22 @@ class TodoModel extends Observable {
             }
         }
         await req.addList(inputObj);
-
         // 데이터에 추가 후 notify 한다.
         this.todos = [...this.todos, res];
         this.notify(this.todos);
     }
 
-    // 리스트뷰(todo) 삭제, 상태 변화, Observer에게 알려 준다.
+    // 리스트뷰(note item) 삭제, 상태 변화, Observer에게 알려 준다.
     async removeTodo( {cardId, id} ) {
         await req.removeList({ cardId, id });
+        const res = await req.getAllData();
+        this.todos = [...this.todos, res];
+        this.notify(this.todos);
+    }
+
+    // 리스트뷰(note item)의 타이틀 수정
+    async editTodo(input){
+        await req.editList(input);
         const res = await req.getAllData();
         this.todos = [...this.todos, res];
         this.notify(this.todos);
@@ -60,8 +67,7 @@ class TodoModel extends Observable {
 
     // todo 데이터 가져오기. json-server로부터 GET 요청으로 데이터를 가져올 수 있다.
     async getInitialData() {
-        const res = await fetch(this.url);
-        const data = await res.json();
+        const data = await req.getAllData();
         this.todos = [...this.todos, data];
         return this.todos;
     }

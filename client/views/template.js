@@ -19,12 +19,8 @@ export const domTpl = {
         <div class="card-header">
             <span class="card-count bold" data=${id}>${data.length}</span>
             <span class="title bold">${name}</span>
-                <button class="card-btn htop-add">
-                <img class="card-plus" data=${id} src="/images/plus_btn.png">
-                </button>
-                <button class="card-btn htop">
-                <img class="card-remove" data=${id} src="/images/close_btn.png">
-                </button>
+                <button class="card-btn htop-add" data=${id}>&#43;</button>
+                <button class="card-btn htop" data=${id}>&times;</button>
         </div>
         <div class="list-wrapper" data=${id}>
             <div class="input-list-view none" data=${id}>
