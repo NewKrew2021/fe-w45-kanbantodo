@@ -1,3 +1,14 @@
+class InputView {
+    constructor({onChange, defaultValue = '', placeholder = '', showLabel = false, label = ''}) {
+
+    }
+
+    render() {
+        showInputLabel? `<label>${labelName}</label><input type="text" placeholder="이름을 입력하세요." value="${defaultValue?defaultValue:''}"></input>`:``
+    }
+}
+
+
 const defaultConfig = {
     id:"modal",
     title:"",
@@ -10,23 +21,43 @@ const defaultConfig = {
 
 class ModalView {
     constructor (config = defaultConfig) {
-        this.config = config
-        this.render();
+        this.onClickCloseButton = this.onClickCloseButton.bind(this);
+        this.removeModal = this.removeModal.bind(this);
+        this.config = config;
+    }
     
-    }
-    onClickCloseButton() {
-        const modalEle = document.querySelector('.modal-container');
-        modalEle.classList.add('hidden');
-    }
-    show() {
-        const modalEle = document.querySelector('.modal-container');
-        modalEle.classList.remove('hidden');
+    init() {
+        this.render(this.config);
     }
 
-    render() {
-        const {id, title, buttonText, showInputLabel, labelName, onClickButton, defaultValue} = this.config;
+    /**
+     * DOM에서 모달 삭제
+     */
+    removeModal() {
         const modalEle = document.querySelector('.modal-container');
+        modalEle.remove()
+    }
+
+    onClickCloseButton() {
+        this.removeModal();
+    }
+
+    onClickButton(value) {
+        this.config.onClickButton[0](value);
+        this.removeModal();
+    }
+
+    renderModalBackground() {
+        const modalBackgroundEle = document.createElement('div');
+        modalBackgroundEle.className = "modal-background";
+        return modalBackgroundEle;
+    }
+
+    render({id, title, buttonText, showInputLabel, labelName, onClickButton, defaultValue}) {
+        const modalEle = document.createElement('div');
+        modalEle.className = 'modal-container'
         modalEle.id = id;
+        modalEle.appendChild(this.renderModalBackground());
         const innerHtml = `<div class="modal-background"></div>
             <div class="modal">
                 <div class="modal-header">
@@ -38,7 +69,7 @@ class ModalView {
                     </div>
                 </div>
                 <div class="modal-content">
-                    ${showInputLabel? `<label>${labelName}</label><input type="text" placeholder="이름을 입력하세요." value="${defaultValue?defaultValue:''}"></input>`:``}
+                ${showInputLabel? `<label>${labelName}</label><input type="text" placeholder="이름을 입력하세요." value="${defaultValue?defaultValue:''}"></input>`:``}
                 </div>
                 <div class="modal-buttons">
                     <button class="modal-button">
@@ -59,6 +90,7 @@ class ModalView {
             }
             this.onClickCloseButton();
         })
+        document.querySelector('body').appendChild(modalEle);
     }
 }
 

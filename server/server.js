@@ -64,9 +64,6 @@ app.post('/note/:colId', (req, res) => {
 app.delete('/note/:colId/:noteId', (req, res) => {
   let {colId, noteId} = req.params;
   try{
-    console.log(db.get('todos')
-    .find({id: colId})
-    .get('notes').find({id: noteId}).value())
     db.get('todos')
       .find({id: colId})
       .get('notes')
