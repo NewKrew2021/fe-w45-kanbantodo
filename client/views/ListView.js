@@ -75,7 +75,6 @@ class ListView{
     async editListHandler(e){
         const cardId = e.currentTarget.getAttribute('data');
         const id = e.currentTarget.getAttribute('data-idx');
-        console.log(cardId, id);
         const modalInput = _dom.query('.modal-input');
         await this.model.setModalState({ cardId, id });
         this.modal.classList.remove('none');
@@ -84,7 +83,7 @@ class ListView{
         this.modalSaveBtn.addEventListener('click', function(){
             const newTitle = modalInput.value;
             const input = { input: { title : newTitle }};
-            this.model.editTodo({cardId, id, input});
+            this.model.editTodo({...this.model.state, input});
             this.modal.classList.add('none');
             this.editModal.classList.add('none');
         }.bind(this))   
