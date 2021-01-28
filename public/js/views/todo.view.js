@@ -1,4 +1,4 @@
-import { $, createNewElement } from "../common/utils";
+import { $, createNewElement, deleteElement } from "../common/utils";
 
 const USER = "puba";
 
@@ -18,8 +18,8 @@ const TODO_TPL = {
       <div class="todo-header">
         <div class="todo-header--total-count">${totalCount}</div>
         <div class="todo-header--title">${status}</div>
-        <div class="todo-header--add-button">+</div>
-        <div class="todo-header--delete-button">-</div>
+        <div class="todo-header--add-button">✛</div>
+        <div class="todo-header--delete-button">✕</div>
       </div>`;
   },
   todoCard(content, writer, _id) {
@@ -74,13 +74,61 @@ class TodoView {
     });
   }
 
+  HandleDragAndDrop(updateCardStatus) {
+    this.element.addEventListener("mousedown", ({ target }) => {
+      if (!["todo-card", "todo-card--content", "todo-card--writer"].includes(target.className))
+        return;
+      let originalMovingElement = target.closest(".todo-card");
+      let movingElement = originalMovingElement.cloneNode(true);
+      originalMovingElement.style.opacity = 0.5;
+
+      movingElement.style.position = "absolute";
+      movingElement.style.zIndex = 1000;
+
+      document.body.append(movingElement);
+      let newTodoList = null;
+
+      const moveAt = (pageX, pageY) => {
+        movingElement.style.left = `${pageX - movingElement.offsetWidth / 2}px`;
+        movingElement.style.top = `${pageY - movingElement.offsetHeight / 2}px`;
+      };
+
+      const onMouseMove = (event) => {
+        movingElement.hidden = true;
+        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+        newTodoList = elemBelow.closest(".todo");
+        movingElement.hidden = false;
+        moveAt(event.pageX, event.pageY);
+      };
+
+      document.addEventListener("mousemove", onMouseMove);
+
+      movingElement.addEventListener("mouseup", () => {
+        if (newTodoList) {
+          movingElement.style = "";
+          newTodoList.appendChild(movingElement);
+          deleteElement(originalMovingElement);
+
+          updateCardStatus({ id: originalMovingElement.id, status: newTodoList.id });
+        } else {
+          deleteElement(movingElement);
+          originalMovingElement.style = null;
+        }
+        document.removeEventListener("mousemove", onMouseMove);
+      });
+    });
+  }
+
   render(cardList, status) {
     if (!cardList) cardList = [];
+    this.element.id = this.status;
     this.element.innerHTML = this.createTodo(cardList, status);
   }
 
   init() {
     $(".todo-list").appendChild(this.element);
+    this.render([], this.status);
+
     return this;
   }
 }

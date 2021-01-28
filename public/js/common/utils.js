@@ -13,6 +13,10 @@ const deleteClassFromElement = (element, className) => {
   element.classList.remove(className);
 };
 
+const deleteElement = (element) => {
+  element.parentNode.removeChild(element);
+};
+
 const _addBubbledEventListener = (eventType, eventDelegatedElement, selector, callback) => {
   eventDelegatedElement.addEventListener(eventType, (event) => {
     if (event.taget === selector) callback(event);
@@ -30,4 +34,4 @@ const getIndexFromParent = (element) => {
   return elementIndex;
 };
 
-export { $, createNewElement, deleteClassFromElement, getIndexFromParent };
+export { $, createNewElement, deleteClassFromElement, getIndexFromParent, deleteElement };

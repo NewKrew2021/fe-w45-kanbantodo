@@ -3,6 +3,7 @@ const TODO_API_HOST = "http://localhost:8000/api/todo";
 class TodoModel {
   constructor() {
     this.todoCardList = {};
+    this.updateCardStatus = this.updateCardStatus.bind(this);
   }
 
   async getCardData() {
@@ -29,6 +30,14 @@ class TodoModel {
     return this.todoCardList;
   }
 
+  async updateCardStatus({ id, status }) {
+    await this.updateCardData({ id, status });
+
+    this.todoCardList = await this.getCardData();
+
+    return this.todoCardList;
+  }
+
   postCardData(todoData) {
     return fetch(TODO_API_HOST, {
       method: "POST",
@@ -43,6 +52,17 @@ class TodoModel {
   deleteCardData(todoData) {
     return fetch(TODO_API_HOST, {
       method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todoData),
+    });
+  }
+
+  updateCardData(todoData) {
+    return fetch(TODO_API_HOST, {
+      method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
