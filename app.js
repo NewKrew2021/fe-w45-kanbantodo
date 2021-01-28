@@ -15,34 +15,29 @@ app.get('/', (req, res)=> {
 });
 
 
-app.get('/todos', async(req, res) =>{
-    const data=await db.findAll();
+app.get('/kanban', async(req, res) =>{
+    const data=await db.findAll(req.query.sectionID);
     res.json({todos:data});
 });
 
-app.post('/todos',async (req, res) =>{
-    const body=req.body;
-    const title=body.title;
-    const author=body.author;
-    await db.insertTodo({title:title,author:author});
-    const data=await db.findAll();
+app.post('/kanban',async (req, res) =>{
+    const {sectionID,title,author}=req.body;
+    await db.insertTodo({sectionID,title,author});
+    const data=await db.findAll(sectionID);
     res.json({todos:data});
 });
 
-app.put('/todos',async (req, res) =>{
-    const body=req.body;
-    const title=body.title;
-    const id=body.id;
-    await db.updateTodo({id:id,title:title});
-    const data=await db.findAll();
+app.put('/kanban',async (req, res) =>{
+    const {sectionID,id,title}=req.body;
+    await db.updateTodo({sectionID,id,title});
+    const data=await db.findAll(sectionID);
     res.json({todos:data});
 });
 
-app.delete('/todos',async (req, res) =>{
-    const body=req.body;
-    const id=body.id;
+app.delete('/kanban',async (req, res) =>{
+    const {sectionID,id}=req.body;    
     await db.deleteTodo(id);
-    const data=await db.findAll();
+    const data=await db.findAll(sectionID);
     res.json({todos:data});
 });
 

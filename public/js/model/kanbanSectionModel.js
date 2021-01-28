@@ -1,13 +1,16 @@
-function fetchTasks(handlechange) {
-    fetch("/todos", { method: 'GET', })
+function fetchTasks(sectionID,handlechange) {
+    const data = { sectionID };
+    fetch(`/kanban?`+new URLSearchParams({
+        sectionID,
+    }), { method: 'GET', })
         .then((res) => res.json())
         .then((data) => {
             handlechange(data.todos);
-        }).catch((err) => console.log);
+        }).catch(console.log);
 }
-function createTask(handleChange,{title,author}) {
-    const data = { title: title,author:author };
-    fetch("/todos", {
+function createTask(sectionID,handleChange,{title,author}) {
+    const data = { sectionID,title,author };
+    fetch(`/kanban`, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
@@ -17,14 +20,14 @@ function createTask(handleChange,{title,author}) {
     .then((res) => res.json())
     .then((data) => {
         handleChange(data.todos);
-    }).catch((err) => console.log);
+    }).catch(console.log);
 
 }
-function deleteTask(handleChange, dbID){
+function deleteTask(sectionID,handleChange, dbID){
 
-    fetch("/todos", {
+    fetch(`/kanban`, {
         method: 'DELETE',
-        body: JSON.stringify({id:dbID}),
+        body: JSON.stringify({sectionID,id:dbID}),
         headers: {
             "Content-Type": "application/json",
         }
@@ -32,12 +35,12 @@ function deleteTask(handleChange, dbID){
     .then((res) => res.json())
     .then((data) => {
         handleChange(data.todos);
-    }).catch((err) => console.log);
+    }).catch(console.log);
 }
-function updateTask(handleChange,{dbID,title}){
-    fetch("/todos", {
+function updateTask(sectionID,handleChange,{dbID,title}){
+    fetch(`/kanban`, {
         method: 'PUT',
-        body: JSON.stringify({id:dbID,title:title}),
+        body: JSON.stringify({sectionID,id:dbID,title:title}),
         headers: {
             "Content-Type": "application/json",
         }
@@ -45,6 +48,6 @@ function updateTask(handleChange,{dbID,title}){
     .then((res) => res.json())
     .then((data) => {
         handleChange(data.todos);
-    }).catch((err) => console.log);
+    }).catch(console.log);
 }
 export { fetchTasks , createTask,deleteTask ,updateTask };

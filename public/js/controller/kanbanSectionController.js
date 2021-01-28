@@ -18,7 +18,7 @@ export function initSectionController({sectionID}){
     }
 
     //SELECT
-    fetchTasks(handleTaskListChange);
+    fetchTasks(sectionID,handleTaskListChange);
 
     //INSERT logic including panel manipulation
     const section=document.querySelector(`#${sectionID}-section`);
@@ -46,7 +46,7 @@ export function initSectionController({sectionID}){
     //INSERT: call POST API
     addItemBtn.addEventListener("click",()=>{
         const newTitle=textArea.value;
-        createTask(handleTaskListChange,{title:newTitle,author:"justin"});
+        createTask(sectionID,handleTaskListChange,{title:newTitle,author:"justin"});
         textArea.value="";
         addItemBtn.disabled=true;
     });
@@ -81,7 +81,7 @@ export function initSectionController({sectionID}){
     });
     //UPDATE: call PUT API
     submitBtn.addEventListener("click",()=>{
-        updateTask(handleTaskListChange,{dbID:updateTargetID,title:modalTextArea.value});
+        updateTask(sectionID,handleTaskListChange,{dbID:updateTargetID,title:modalTextArea.value});
     });
 
     //DELETE
@@ -93,7 +93,7 @@ export function initSectionController({sectionID}){
         if(!result) return;
         const taskItem=e.target.closest(".item");
         const dbID=taskItem.attributes.dbID.value;
-        deleteTask(handleTaskListChange,dbID);
+        deleteTask(sectionID,handleTaskListChange,dbID);
     }
 
 }

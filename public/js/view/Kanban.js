@@ -11,6 +11,8 @@ export function initKanban(){
     initKanbanSection({sectionID:"doing",title:"하는 중"});
     initKanbanSection({sectionID:"done",title:"다했어"});
     initSectionController({sectionID:"todo"});
+    initSectionController({sectionID:"doing"});
+    initSectionController({sectionID:"done"});
 
 
 }
