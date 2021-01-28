@@ -19,27 +19,17 @@ class TodoController {
   }
 
   handlePopUpEvent(todoCardList, TodoView, todoModel) {
-    let popUpElement = $(".pop-up");
+    const popUpElement = $(".pop-up");
 
     $(".add-kanban-button").addEventListener("click", (event) => {
       popUpElement.style.display = "flex";
     });
 
     $(".add-button", popUpElement).addEventListener("click", (event) => {
-      console.log("hello");
       let status = $(".add-new-kanban__input", popUpElement).value;
-
-      this.todoViewList[status] = new TodoView(status).init();
-
-      this.subscribe({
-        render: this.todoViewList[status].render,
-        status: this.todoViewList[status].status,
-      });
-
       todoModel.todoCardList[status] = [];
+      this.createNewView(todoCardList, TodoView, todoModel, status);
 
-      this.notify(todoCardList, status);
-      this.addButtonEvent(todoModel, this.todoViewList[status], status);
       popUpElement.style.display = "none";
     });
 
@@ -59,18 +49,21 @@ class TodoController {
       this.notify(model.todoCardList, status);
     });
   }
+  createNewView(todoCardList, TodoView, todoModel, status) {
+    this.todoViewList[status] = new TodoView(status).init();
+
+    this.subscribe({
+      render: this.todoViewList[status].render,
+      status: this.todoViewList[status].status,
+    });
+
+    this.notify(todoCardList, status);
+    this.addButtonEvent(todoModel, this.todoViewList[status], status);
+  }
 
   init(todoCardList, TodoView, todoModel) {
     for (let status in todoCardList) {
-      this.todoViewList[status] = new TodoView(status).init();
-
-      this.subscribe({
-        render: this.todoViewList[status].render,
-        status: this.todoViewList[status].status,
-      });
-
-      this.notify(todoCardList, status);
-      this.addButtonEvent(todoModel, this.todoViewList[status], status);
+      this.createNewView(todoCardList, TodoView, todoModel, status);
     }
     this.handlePopUpEvent(todoCardList, TodoView, todoModel);
 
