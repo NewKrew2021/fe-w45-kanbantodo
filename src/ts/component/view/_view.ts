@@ -14,6 +14,8 @@ export default class View {
   addEventListenerToWrapper(wrapper: HTMLElement) {
     // click event
     wrapper.addEventListener('click', event => {
+      event.stopPropagation()
+
       // find out the target
       let target: HTMLElement = <HTMLElement>event.target
       while (!target.dataset.clickAction) {
