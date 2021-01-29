@@ -4,6 +4,7 @@ class CardView {
   }
 
   displayCard(cards) {
+    const cardCnt = document.querySelectorAll("div.title-number");
     const itemContainerEle = document.querySelectorAll("div.item-container");
     for(let idx=0; idx<cards.length; idx++) {
       let cardsHtml = ``;
@@ -19,6 +20,7 @@ class CardView {
         `
       });
       itemContainerEle[idx].innerHTML = cardsHtml;
+      cardCnt[idx].innerHTML = cards[idx]["cards"].length;
     }
     this.removeCardBtnEvent();
     this.moveCardEvent();
@@ -29,7 +31,8 @@ class CardView {
     plusBtn.forEach( btn => {
       btn.addEventListener("click", e => {
         const parentEle = e.currentTarget.closest(".todo-container");
-        this.model.displayInputWindow(this.displayInputWindow, parentEle.childNodes[3]);
+        const todoAdd = parentEle.querySelector("div.todo-add");
+        this.model.displayInputWindow(this.displayInputWindow, todoAdd);
       })
     })
   }
@@ -39,7 +42,9 @@ class CardView {
     addBtn.forEach( (btn, idx) => {
       btn.addEventListener("click", e => {
         const parentEle = e.currentTarget.closest(".todo-container");
-        const inputValue = parentEle.querySelector("input.add-input").value;
+        const inputEle = parentEle.querySelector("input.add-input");
+        const inputValue = inputEle.value;
+        inputEle.value = "";
         this.model.addCards(idx, inputValue);
       })
     })
@@ -71,21 +76,30 @@ class CardView {
   }
 
   moveCardEvent() {
-    let prevEle, prevIdx, elePos = [];
+    let prevEle, prevIdx, curIdx, elePos = [];
     const moveCardBtn = document.querySelectorAll("div.todo-cards");
     const todoContainerEle = document.querySelectorAll("div.todo-container");
+    todoContainerEle.forEach((todo, index) => {
+      const pos = todo.getBoundingClientRect();
+      elePos.push({left:pos.left, right:pos.right, top:pos.top, bottom:pos.bottom, idx:index})
+    })
     moveCardBtn.forEach(btn => {
       let gapX, gapY, isMoveCard = false;
       btn.addEventListener("mousedown", event => {
         if(event.target.className === "remove-card"){
           isMoveCard = false;
           return ;
-        } 
+        }
         isMoveCard = true;
         gapX = event.clientX - btn.getBoundingClientRect().left;
         gapY = event.clientY - btn.getBoundingClientRect().top;
         prevEle = event.target.closest(".todo-container");
+        todoContainerEle.forEach((todo, index) => {
+          if(todo === prevEle) curIdx=index;
+        })
       });
+
+
       btn.addEventListener("mouseup", event => {
         if(event.target.className === "remove-card"){
           isMoveCard = false;
@@ -93,8 +107,6 @@ class CardView {
         } 
         isMoveCard = false;
         todoContainerEle.forEach((todo, index) => {
-          const pos = todo.getBoundingClientRect();
-          elePos.push({left:pos.left, right:pos.right, top:pos.top, bottom:pos.bottom, idx:index})
           if(todo === prevEle) prevIdx=index;
         })
         elePos.forEach( pos => {
@@ -105,9 +117,24 @@ class CardView {
           }
         })
       });
-      btn.addEventListener("mousemove", event => {
+
+
+      document.addEventListener("mousemove", event => {
         if(isMoveCard){
           btn.style = `position: fixed; left: ${event.clientX-gapX}px; top: ${event.clientY-gapY}px;`
+          elePos.forEach( pos => {
+            if(event.clientX >= pos.left && event.clientX <= pos.right &&
+              event.clientY >= pos.top && event.clientY <= pos.bottom){
+                if(curIdx !== pos.idx){
+                  // 위치 변경
+                  // const card = event.currentTarget.querySelector("div.card-title").innerHTML
+                  // this.model.moveCards(curIdx, pos.idx, card);
+                  // curIdx = pos.idx;
+                  
+                } 
+                
+            }
+          })
         }
       })
     })
