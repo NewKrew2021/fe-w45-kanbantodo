@@ -16,7 +16,7 @@ export default class View {
     wrapper.addEventListener('click', event => {
       // find out the target
       let target: HTMLElement = <HTMLElement>event.target
-      while (!target.dataset.action) {
+      while (!target.dataset.clickAction) {
         // if no action, do nothing
         if (target === this.element) return
         // else, go to parents
@@ -24,7 +24,22 @@ export default class View {
       }
 
       // call the action
-      this.callAction(target.dataset.action)
+      this.callAction(target.dataset.clickAction)
+    })
+
+    // submit event
+    wrapper.addEventListener('submit', event => {
+      event.stopPropagation()
+      event.preventDefault()
+
+      // find out the target
+      const target: HTMLElement = <HTMLElement>event.target
+
+      // get form data and convert to an object
+      const formDataObject = Object.fromEntries((new FormData(<HTMLFormElement>target)).entries())
+
+      // call the action with form data
+      this.callAction(target.dataset.submitAction, formDataObject)
     })
   }
 

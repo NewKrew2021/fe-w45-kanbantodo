@@ -30,7 +30,7 @@ export default class ColumnView extends View {
         <div class="d-flex mb-2">
           <strong class="mr-auto my-auto">${this.columnData.title}</strong>
           <button>+</button>
-          <button data-action="removeSelf">×</button>
+          <button data-click-action="removeSelf">×</button>
         </div>
         <div class="children-wrapper" data-wrapper-type="form">
           <!-- notes here -->

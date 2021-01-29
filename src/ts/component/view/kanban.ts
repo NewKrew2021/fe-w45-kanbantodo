@@ -28,7 +28,7 @@ export default class KanbanView extends View {
         <div class="children-wrapper" data-wrapper-type="column">
           <!-- columns here -->
         </div>
-        <button class="column gray" data-action="addColumn">Add column</button>
+        <button class="column gray" data-click-action="addColumn">Add column</button>
       </div>
     `
   }
