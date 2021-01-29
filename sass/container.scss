@@ -51,6 +51,8 @@
                 background-color: lightgreen;
             }
         }
+
+        
         .item-list{
             position:absolute;
             display: block;
@@ -58,39 +60,23 @@
             transform:translateX(-50%);
             height: 90%;
             width: 95%;
-            .item{
-                position:relative;
-                font-size:14px;
+            .dumy-hide{
+                display:none;
+                background-color: white;
+                border-radius: 20px;
                 height: 60px;
                 width: 95%;
-                border-radius: 20px;
-                background-color: white;
-                display: block;
-                margin:10px 0px 10px 0px;
-                padding : 5px 5px 5px 5px;
-                box-shadow: 1px 1px 1px 1px lightgray;
-                img{
-                    position:absolute;
-                    left:10px;
-                }
-                .delete-btn{
-                    position:absolute;
-                    right:10px;
-                    top:8px;
-                    border-radius: 30px;
-                    border:none;
-                }
-                .title{
-                    position:absolute;
-                    left:30px;
-                    top:8px;
-                }
-                .author{
-                    position:absolute;
-                    left:30px;
-                    bottom:20px;
-                }
             }
+            .dumy-show{
+                position:fixed;
+                left:0px;
+                top:0px;
+                background-color: white;
+                border-radius: 20px;
+                height: 60px;
+                width: 95%;
+            }
+    
         }
     }
     .modal-hide{
@@ -145,4 +131,42 @@
     }
     
     
+}
+.item{
+    position:relative;
+    font-size:14px;
+
+    height: 60px;
+    width:280px;
+
+    // height: 60px;
+    // width: 95%;
+    border-radius: 5px;
+    background-color: white;
+    display: block;
+    margin:10px 0px 10px 0px;
+    padding : 5px 5px 5px 5px;
+    box-shadow: 1px 1px 1px 1px lightgray;
+    
+    img{
+        position:absolute;
+        left:10px;
+    }
+    .delete-btn{
+        position:absolute;
+        right:10px;
+        top:8px;
+        border-radius: 30px;
+        border:none;
+    }
+    .title{
+        position:absolute;
+        left:30px;
+        top:8px;
+    }
+    .author{
+        position:absolute;
+        left:30px;
+        bottom:20px;
+    }
 }

@@ -81,4 +81,37 @@ export function initSectionController({sectionID}){
         deleteTask(sectionID,dbID);
     }
 
+    //카드 옮기기 
+    taskList.addEventListener("mousedown",(e)=>{
+        const target=e.target;
+        const width=target.offsetWidth;
+        const height=target.offsetHeight
+        target.style.position='absolute';
+        target.style.zIndex=1000;
+
+        document.body.append(target);
+
+        function moveAt(pageX,pageY){
+            //console.log(pageX,pageY);
+            target.style.left=pageX- target.offsetWidth / 2+'px';
+            target.style.top=pageY- target.offsetHeight / 2+'px';
+        }
+
+        moveAt(e.pageX,e.pageY);
+
+        function onMouseMove(e){
+            moveAt(e.pageX,e.pageY);
+        }
+
+        document.addEventListener('mousemove',onMouseMove);
+
+        target.onmouseup=function(){
+            document.removeEventListener('mousemove',onMouseMove);
+            target.onmouseup=null;
+        }
+
+    });
+    // taskList.addEventListener("mouseup",()=>{
+
+    // })
 }
