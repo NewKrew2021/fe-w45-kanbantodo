@@ -10,6 +10,17 @@ export default class NoteController extends Controller {
     super()
     this.noteData = noteData
     this.view = new NoteView({ id, noteData })
+    this.view.removeSelf = this.removeSelf.bind(this)
+  }
+
+  removeSelf() {
+    // TODO: request to server
+    // TODO: delete value
+
+    // remove view
+    this.view.remove()
+
+    this.notifyDelete()
   }
 
   setWrapper(wrapper: HTMLElement) {
