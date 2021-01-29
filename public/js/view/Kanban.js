@@ -7,12 +7,18 @@ export function initKanban(){
     const kanbanHTML=`<div id="kanban"></div>`;
     const kanban=createElementFromHTML(kanbanHTML);
     container.appendChild(kanban);
-    initKanbanSection({sectionID:"todo",title:"해야할 일"});
-    initKanbanSection({sectionID:"doing",title:"하는 중"});
-    initKanbanSection({sectionID:"done",title:"다했어"});
-    initSectionController({sectionID:"todo"});
-    initSectionController({sectionID:"doing"});
-    initSectionController({sectionID:"done"});
 
+
+    const kanbanInitData = [
+        {sectionID:"todo",title:"해야할 일"},
+        {sectionID:"doing",title:"하는 중"},
+        {sectionID:"done",title:"다했어"}
+        ]
+    
+
+    kanbanInitData.forEach(({sectionID,title}) => {
+        initKanbanSection({sectionID,title});
+        initSectionController({sectionID});
+    });
 
 }

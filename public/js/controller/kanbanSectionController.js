@@ -21,8 +21,8 @@ export function initSectionController({sectionID}){
     }
     const textArea = section.querySelector("textArea");
     const addItemBtn = section.querySelector(".add-item-btn");
-    textArea.addEventListener("input",({target})=>{
-        if(target.value===""){
+    textArea.addEventListener("input",({target:{value}})=>{
+        if(value===""){
             addItemBtn.disabled=true;
         }else{
             addItemBtn.disabled=false;
@@ -84,6 +84,7 @@ export function initSectionController({sectionID}){
     //카드 옮기기 
     taskList.addEventListener("mousedown",(e)=>{
         const target=e.target;
+        if(!target.className.includes("item"))return;
         const width=target.offsetWidth;
         const height=target.offsetHeight
         target.style.position='absolute';
@@ -92,7 +93,6 @@ export function initSectionController({sectionID}){
         document.body.append(target);
 
         function moveAt(pageX,pageY){
-            //console.log(pageX,pageY);
             target.style.left=pageX- target.offsetWidth / 2+'px';
             target.style.top=pageY- target.offsetHeight / 2+'px';
         }
