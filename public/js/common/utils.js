@@ -19,7 +19,7 @@ const deleteElement = (element) => {
 
 const _addBubbledEventListener = (eventType, eventDelegatedElement, selector, callback) => {
   eventDelegatedElement.addEventListener(eventType, (event) => {
-    if (event.taget === selector) callback(event);
+    if (event.target === selector) callback(event);
   });
 };
 
