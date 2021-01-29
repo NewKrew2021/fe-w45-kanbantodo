@@ -63,7 +63,7 @@ class ListView {
 
         this.curTarget = curTarget;
         this.copiedNode = copiedNode;
-        let shiftX = e.screenX - e.currentTarget.getBoundingClientRect().left;
+        let shiftX = e.clientX - e.currentTarget.getBoundingClientRect().left;
         let shiftY = e.screenY - e.currentTarget.getBoundingClientRect().bottom;
         //console.log(shiftX, shiftY);
         e.target.style.position = 'absolute';

@@ -17,7 +17,7 @@
         },
         {
           "id": 2,
-          "title": "수정하기 투투",
+          "title": "수정하기 3",
           "tasks": []
         }
       ]
@@ -28,13 +28,8 @@
       "author": "roddy.chan",
       "data": [
         {
-          "id": 0,
-          "title": "MVC 패턴 공부하기",
-          "tasks": []
-        },
-        {
           "id": 2,
-          "title": "제목 수정하기",
+          "title": "수정하기",
           "tasks": []
         }
       ]
