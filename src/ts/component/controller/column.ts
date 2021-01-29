@@ -2,6 +2,7 @@ import ColumnData from '../../type/column'
 import Controller from './_controller'
 import NoteController from './note'
 import ColumnView from '../view/column'
+import NoteData from '../../type/note'
 
 export default class ColumnController extends Controller {
   private columnData: ColumnData
@@ -35,6 +36,12 @@ export default class ColumnController extends Controller {
   }
 
   addNote(noteData: NoteData) {
+    const noteController = new NoteController({ id: '', noteData })
+
+    // re-render
+    noteController.setWrapper(this.view.getChildrenWrapper('note'))
+
+    return noteController
   }
 
   removeNote(note: NoteController) {
