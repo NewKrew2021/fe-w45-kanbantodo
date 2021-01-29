@@ -54,7 +54,7 @@ class ListView {
        (2) mousemove - position:absolute, left-top 변경
        (3) mouseup - 드래그 앤 드롭 완료 후 관련 작업 수행
     */
-    async dragDownHandler(e) {
+    dragDownHandler(e) {
         if (e.target !== e.currentTarget) return;
         let curTarget = e.currentTarget;
         const copiedNode = e.currentTarget.cloneNode(true);
