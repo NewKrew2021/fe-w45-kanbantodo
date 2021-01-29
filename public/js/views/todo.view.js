@@ -83,8 +83,7 @@ class TodoView {
 
   HandleDragAndDrop(updateCardStatus, notify) {
     this.element.addEventListener("mousedown", ({ target }) => {
-      if (!["todo-card", "todo-card--content", "todo-card--writer"].includes(target.className))
-        return;
+      if (!DRAGGABLE_ELEMENTS.includes(target.className)) return;
       let originalMovingElement = target.closest(".todo-card");
       this.movingElement = originalMovingElement.cloneNode(true);
       originalMovingElement.style.opacity = 0.5;
