@@ -11,6 +11,7 @@ export default class ColumnController extends Controller {
     super()
     this.columnData = columnData
     this.view = new ColumnView({ id, columnData })
+    this.view.addNote = this.addNote.bind(this)
     this.view.removeSelf = this.removeSelf.bind(this)
   }
 
@@ -33,8 +34,7 @@ export default class ColumnController extends Controller {
     this.notifyDelete()
   }
 
-  addNote() {
-    
+  addNote(noteData: NoteData) {
   }
 
   removeNote(note: NoteController) {

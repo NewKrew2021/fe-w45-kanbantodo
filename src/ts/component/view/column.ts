@@ -32,7 +32,14 @@ export default class ColumnView extends View {
           <button>+</button>
           <button data-click-action="removeSelf">×</button>
         </div>
-        <div class="children-wrapper" data-wrapper-type="form">
+        <form data-submit-action="addNote">
+          <textarea name="title" class="fix-horizontal"></textarea>
+          <div class="d-flex mt-2">
+            <button type="submit" class="form-component flex-1 mr-1 bg-green white">Add</button>
+            <button type="button" class="form-component flex-1 ml-1 bg-white">Cancel</button>
+          </div>
+        </form>
+        <div class="children-wrapper" data-wrapper-type="note">
           <!-- notes here -->
         </div>
       </div>
