@@ -75,7 +75,7 @@ class TodoController {
     this.addButtonEvent(todoModel, this.todoViewList[status], status);
   }
 
-  init(todoCardList, TodoView, todoModel, handlePopUpEvent) {
+  init(todoCardList, TodoView, todoModel) {
     for (let status in todoCardList) {
       this.createNewView(todoCardList, TodoView, todoModel, status);
     }
