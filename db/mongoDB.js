@@ -13,6 +13,7 @@ async function init() {
 init();
 
 async function findAll(sectionID) {
+    if(typeof collection === 'undefined') return;
     console.log("db:findAll...",sectionID);
 
     // query for movies that have a runtime less than 15 minutes

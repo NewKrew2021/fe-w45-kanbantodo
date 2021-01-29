@@ -61,38 +61,21 @@
   height: 90%;
   width: 95%;
 }
-#kanban .section .item-list .item {
-  position: relative;
-  font-size: 14px;
+#kanban .section .item-list .dumy-hide {
+  display: none;
+  background-color: white;
+  border-radius: 20px;
   height: 60px;
   width: 95%;
-  border-radius: 20px;
+}
+#kanban .section .item-list .dumy-show {
+  position: fixed;
+  left: 0px;
+  top: 0px;
   background-color: white;
-  display: block;
-  margin: 10px 0px 10px 0px;
-  padding: 5px 5px 5px 5px;
-  box-shadow: 1px 1px 1px 1px lightgray;
-}
-#kanban .section .item-list .item img {
-  position: absolute;
-  left: 10px;
-}
-#kanban .section .item-list .item .delete-btn {
-  position: absolute;
-  right: 10px;
-  top: 8px;
-  border-radius: 30px;
-  border: none;
-}
-#kanban .section .item-list .item .title {
-  position: absolute;
-  left: 30px;
-  top: 8px;
-}
-#kanban .section .item-list .item .author {
-  position: absolute;
-  left: 30px;
-  bottom: 20px;
+  border-radius: 20px;
+  height: 60px;
+  width: 95%;
 }
 #kanban .modal-hide {
   display: none;
@@ -141,6 +124,40 @@
   width: 120px;
   border-radius: 5px;
   border: 0.5px solid lightgrey;
+}
+
+.item {
+  position: relative;
+  font-size: 14px;
+  height: 60px;
+  width: 280px;
+  border-radius: 5px;
+  background-color: white;
+  display: block;
+  margin: 10px 0px 10px 0px;
+  padding: 5px 5px 5px 5px;
+  box-shadow: 1px 1px 1px 1px lightgray;
+}
+.item img {
+  position: absolute;
+  left: 10px;
+}
+.item .delete-btn {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  border-radius: 30px;
+  border: none;
+}
+.item .title {
+  position: absolute;
+  left: 30px;
+  top: 8px;
+}
+.item .author {
+  position: absolute;
+  left: 30px;
+  bottom: 20px;
 }
 
 /*# sourceMappingURL=container.css.map */
