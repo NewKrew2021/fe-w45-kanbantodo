@@ -24,7 +24,6 @@ export default class KanbanController extends Controller {
 
     // re-render
     columnController.setWrapper(this.view.getChildrenWrapper('column'))
-    this.view.render()
 
     return columnController
   }
