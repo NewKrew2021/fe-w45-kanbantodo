@@ -46,21 +46,16 @@ class TodoModel extends Observable {
     // 리스트뷰(note item) 삭제, 상태 변화, Observer에게 알려 준다.
     async removeTodo( {cardId, id} ) {
         await req.removeList({ cardId, id });
-        const res = await req.getAllData();
-        this.todos = [...this.todos, res];
         this.notify(this.todos);
     }
 
     // 리스트뷰(note item)의 타이틀 수정
-    async editTodo(input){
+    async editTodoTitle(input){
         await req.editList(input);
-        const res = await req.getAllData();
-        this.todos = [...this.todos, res];
         this.notify(this.todos);
     }
 
-    async setModalState({cardId, id}){
-        const res = await req.getAllData();
+    setModalState({cardId, id}){
         this.state = {...this.state, cardId: cardId, id: id};
         return this.state;
     }
