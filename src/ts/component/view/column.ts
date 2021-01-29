@@ -12,7 +12,7 @@ export default class ColumnView extends View {
     this.render()
   }
 
-  callAction(action: string) {
+  callAction(action: string, arg?: any) {
     switch (action) {
       case 'removeSelf':
         this.removeSelf()

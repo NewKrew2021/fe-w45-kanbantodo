@@ -12,7 +12,7 @@ export default class KanbanView extends View {
     this.render()
   }
 
-  callAction(action: string) {
+  callAction(action: string, arg?: any) {
     switch (action) {
       case 'addColumn':
         this.addColumn()

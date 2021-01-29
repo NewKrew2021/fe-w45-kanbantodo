@@ -28,7 +28,7 @@ export default class View {
     })
   }
 
-  callAction(action: string) {}
+  callAction(action: string, arg?: any) {}
 
   /*
 
