@@ -12,14 +12,6 @@ export default class KanbanView extends View {
     this.render()
   }
 
-  callAction(action: string, arg?: any) {
-    switch (action) {
-      case 'addColumn':
-        this.addColumn()
-        break
-    }
-  }
-
   addColumn() {}
 
   toHtmlString() {

@@ -43,7 +43,12 @@ export default class View {
     })
   }
 
-  callAction(action: string, arg?: any) {}
+  callAction(action: string, arg?: any) {
+    const targetAction = (<any>this)[action]
+    if (typeof targetAction === 'function') {
+      targetAction(arg)
+    }
+  }
 
   /*
 
