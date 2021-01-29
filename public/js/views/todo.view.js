@@ -1,6 +1,7 @@
 import { $, createNewElement, deleteElement } from "../common/utils";
 
 const USER = "puba";
+const DRAGGABLE_ELEMENTS = ["todo-card", "todo-card--content", "todo-card--writer"];
 
 const TODO_TPL = {
   addTodo() {
@@ -74,7 +75,7 @@ class TodoView {
     });
   }
 
-  HandleDragAndDrop(updateCardStatus) {
+  HandleDragAndDrop(updateCardStatus, notify) {
     this.element.addEventListener("mousedown", ({ target }) => {
       if (!["todo-card", "todo-card--content", "todo-card--writer"].includes(target.className))
         return;
@@ -109,7 +110,7 @@ class TodoView {
           newTodoList.appendChild(movingElement);
           deleteElement(originalMovingElement);
 
-          updateCardStatus({ id: originalMovingElement.id, status: newTodoList.id });
+          notify(updateCardStatus({ id: originalMovingElement.id, status: newTodoList.id }));
         } else {
           deleteElement(movingElement);
           originalMovingElement.style = null;
