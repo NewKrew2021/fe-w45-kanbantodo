@@ -63,9 +63,9 @@ class ListView {
 
         this.curTarget = curTarget;
         this.copiedNode = copiedNode;
-        let shiftX = e.clientX - e.currentTarget.getBoundingClientRect().left;
-        let shiftY = e.screenY - e.currentTarget.getBoundingClientRect().bottom;
-        //console.log(shiftX, shiftY);
+        const eleInfo = e.currentTarget.getBoundingClientRect();
+        let shiftX = e.clientX - eleInfo.left;
+        let shiftY = e.screenY - eleInfo.bottom;
         e.target.style.position = 'absolute';
         e.target.style.zIndex = 1000;
         e.target.style.opacity = 0.7;
@@ -180,7 +180,7 @@ class ListView {
         this.modalSaveBtn.addEventListener('click', function () {
             const newTitle = modalInput.value;
             const input = { input: { title: newTitle } };
-            this.model.editTodo({ ...this.model.state, input });
+            this.model.editTodoTitle({ ...this.model.state, input });
             this.modal.classList.add('none');
             this.editModal.classList.add('none');
         }.bind(this))

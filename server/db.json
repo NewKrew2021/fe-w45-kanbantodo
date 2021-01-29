@@ -14,11 +14,6 @@
           "id": 1,
           "title": "추가적인 모델 만들어야 하는지 살펴보기",
           "tasks": []
-        },
-        {
-          "id": 2,
-          "title": "수정하기 3",
-          "tasks": []
         }
       ]
     },
@@ -29,7 +24,7 @@
       "data": [
         {
           "id": 2,
-          "title": "수정하기",
+          "title": "설정하기",
           "tasks": []
         },
         {
@@ -51,12 +46,7 @@
         },
         {
           "id": 1,
-          "title": "webpack dev/prod로 구분해서 설정하기",
-          "tasks": []
-        },
-        {
-          "id": 2,
-          "title": "express & lowdb로 db 구성하기",
+          "title": "설정",
           "tasks": []
         }
       ]
