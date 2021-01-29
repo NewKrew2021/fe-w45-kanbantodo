@@ -1,6 +1,7 @@
 import { $, createNewElement, deleteElement } from "../common/utils";
 
 const USER = "puba";
+const DRAGGABLE_ELEMENTS = ["todo-card", "todo-card--content", "todo-card--writer"];
 
 const TODO_TPL = {
   addTodo() {
@@ -37,6 +38,7 @@ class TodoView {
     this.element = createNewElement("div", "todo", "");
     this.render = this.render.bind(this);
     this.status = status;
+    this.movingElement = null;
   }
 
   createTodo(cardList, status) {
@@ -74,44 +76,43 @@ class TodoView {
     });
   }
 
-  HandleDragAndDrop(updateCardStatus) {
+  moveAt(pageX, pageY) {
+    this.movingElement.style.left = `${pageX - this.movingElement.offsetWidth / 2}px`;
+    this.movingElement.style.top = `${pageY - this.movingElement.offsetHeight / 2}px`;
+  }
+
+  HandleDragAndDrop(updateCardStatus, notify) {
     this.element.addEventListener("mousedown", ({ target }) => {
-      if (!["todo-card", "todo-card--content", "todo-card--writer"].includes(target.className))
-        return;
+      if (!DRAGGABLE_ELEMENTS.includes(target.className)) return;
       let originalMovingElement = target.closest(".todo-card");
-      let movingElement = originalMovingElement.cloneNode(true);
+      this.movingElement = originalMovingElement.cloneNode(true);
       originalMovingElement.style.opacity = 0.5;
 
-      movingElement.style.position = "absolute";
-      movingElement.style.zIndex = 1000;
+      this.movingElement.style.position = "absolute";
+      this.movingElement.style.zIndex = 1000;
 
-      document.body.append(movingElement);
+      document.body.append(this.movingElement);
       let newTodoList = null;
 
-      const moveAt = (pageX, pageY) => {
-        movingElement.style.left = `${pageX - movingElement.offsetWidth / 2}px`;
-        movingElement.style.top = `${pageY - movingElement.offsetHeight / 2}px`;
-      };
-
       const onMouseMove = (event) => {
-        movingElement.hidden = true;
+        this.movingElement.hidden = true;
         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
         newTodoList = elemBelow.closest(".todo");
-        movingElement.hidden = false;
-        moveAt(event.pageX, event.pageY);
+        this.movingElement.hidden = false;
+        this.moveAt(event.pageX, event.pageY);
       };
 
       document.addEventListener("mousemove", onMouseMove);
 
-      movingElement.addEventListener("mouseup", () => {
+      this.movingElement.addEventListener("mouseup", () => {
         if (newTodoList) {
-          movingElement.style = "";
-          newTodoList.appendChild(movingElement);
+          this.movingElement.style = "";
+          newTodoList.appendChild(this.movingElement);
           deleteElement(originalMovingElement);
 
-          updateCardStatus({ id: originalMovingElement.id, status: newTodoList.id });
+          notify(updateCardStatus({ id: originalMovingElement.id, status: newTodoList.id }));
         } else {
-          deleteElement(movingElement);
+          deleteElement(this.movingElement);
           originalMovingElement.style = null;
         }
         document.removeEventListener("mousemove", onMouseMove);

@@ -1,3 +1,5 @@
+import { $ } from "../common/utils";
+
 class TodoController {
   constructor() {
     this.todoList = [];
@@ -27,11 +29,30 @@ class TodoController {
       this.notify(model.todoCardList, status);
     });
   }
+  handlePopUpEvent(todoCardList, TodoView, todoModel) {
+    const popUpElement = $(".pop-up");
+
+    $(".add-kanban-button").addEventListener("click", (event) => {
+      popUpElement.style.display = "flex";
+    });
+
+    $(".add-button", popUpElement).addEventListener("click", (event) => {
+      let status = $(".add-new-kanban__input", popUpElement).value;
+      todoModel.todoCardList[status] = [];
+      this.createNewView(todoCardList, TodoView, todoModel, status);
+
+      popUpElement.style.display = "none";
+    });
+
+    $(".cancel-button", popUpElement).addEventListener("click", (event) => {
+      popUpElement.style.display = "none";
+    });
+  }
 
   createNewView(todoCardList, TodoView, todoModel, status) {
     this.todoViewList[status] = new TodoView(status).init();
 
-    this.todoViewList[status].HandleDragAndDrop(todoModel.updateCardStatus);
+    this.todoViewList[status].HandleDragAndDrop(todoModel.updateCardStatus, this.notify.bind(this));
     this.subscribe({
       render: this.todoViewList[status].render,
       status: this.todoViewList[status].status,
@@ -41,11 +62,11 @@ class TodoController {
     this.addButtonEvent(todoModel, this.todoViewList[status], status);
   }
 
-  init(todoCardList, TodoView, todoModel, handlePopUpEvent) {
+  init(todoCardList, TodoView, todoModel) {
     for (let status in todoCardList) {
       this.createNewView(todoCardList, TodoView, todoModel, status);
     }
-    handlePopUpEvent(todoCardList, TodoView, todoModel);
+    this.handlePopUpEvent(todoCardList, TodoView, todoModel);
 
     return this;
   }
