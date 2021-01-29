@@ -12,27 +12,15 @@ export default class KanbanView extends View {
     this.render()
   }
 
-  callAction(action: string) {
-    switch (action) {
-      case 'addColumn':
-        this.addColumn()
-        break
-    }
-  }
-
   addColumn() {}
-
-  getChildrenWrapper() {
-    return <HTMLElement>this.element.querySelector('.children-wrapper')
-  }
 
   toHtmlString() {
     return `
       <div id="${this.id}" class="kanban">
-        <div class="children-wrapper">
+        <div class="children-wrapper" data-wrapper-type="column">
           <!-- columns here -->
         </div>
-        <button class="column gray" data-action="addColumn">Add column</button>
+        <button class="column gray ml-3 flex-center" data-click-action="addColumn">Add column</button>
       </div>
     `
   }

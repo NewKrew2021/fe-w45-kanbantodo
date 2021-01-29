@@ -2,17 +2,18 @@ import ColumnData from '../../type/column'
 import Controller from './_controller'
 import NoteController from './note'
 import ColumnView from '../view/column'
+import NoteData from '../../type/note'
 
 export default class ColumnController extends Controller {
   private columnData: ColumnData
-  // private notes: Array<NoteController>
   private view: ColumnView
 
   constructor({ id, columnData }: { id: String, columnData: ColumnData }) {
     super()
     this.columnData = columnData
-
     this.view = new ColumnView({ id, columnData })
+    this.view.addNote = this.addNote.bind(this)
+    this.view.removeSelf = this.removeSelf.bind(this)
   }
 
   updateSelf(title: String) {
@@ -24,14 +25,23 @@ export default class ColumnController extends Controller {
     this.notifyUpdate()
   }
 
-  deleteSelf() {
+  removeSelf() {
     // TODO: request to server
     // TODO: delete value
+
+    // remove view
+    this.view.remove()
 
     this.notifyDelete()
   }
 
-  addNote(note: NoteController) {
+  addNote(noteData: NoteData) {
+    const noteController = new NoteController({ id: '', noteData })
+
+    // re-render
+    noteController.setWrapper(this.view.getChildrenWrapper('note'))
+
+    return noteController
   }
 
   removeNote(note: NoteController) {

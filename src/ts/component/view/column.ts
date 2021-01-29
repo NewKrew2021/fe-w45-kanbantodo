@@ -14,7 +14,7 @@ export default class ColumnView extends View {
 
   addNote() {}
 
-  deleteSelf() {}
+  removeSelf() {}
 
   toHtmlString() {
     return `
@@ -22,9 +22,16 @@ export default class ColumnView extends View {
         <div class="d-flex mb-2">
           <strong class="mr-auto my-auto">${this.columnData.title}</strong>
           <button>+</button>
-          <button>×</button>
+          <button data-click-action="removeSelf">×</button>
         </div>
-        <div class="children-wrapper">
+        <form class="mb-2" data-submit-action="addNote">
+          <textarea name="title" class="fix-horizontal"></textarea>
+          <div class="d-flex mt-2">
+            <button type="submit" class="form-component flex-1 mr-1 bg-green white">Add</button>
+            <button type="button" class="form-component flex-1 ml-1 bg-white">Cancel</button>
+          </div>
+        </form>
+        <div class="children-wrapper" data-wrapper-type="note">
           <!-- notes here -->
         </div>
       </div>

@@ -26,11 +26,14 @@ $color-lightgray: #BFBFBF;
 $color-gray: #999999;
 $color-dark: #242526;
 $color-orangered: #f95139;
+$color-green: #0bbb4e;
 $colors: (
   "white": $color-white,
   "bright": $color-bright,
   "light": $color-light,
+  "lightgray": $color-lightgray,
   "gray": $color-gray,
   "dark": $color-dark,
   "orangered": $color-orangered,
+  "green": $color-green,
 );

@@ -1,20 +1,29 @@
-import TaskController from './task'
+import NoteData from '../../type/note'
+import Controller from './_controller'
+import NoteView from '../view/note'
 
-export default class NoteController extends TaskController {
-  toHtmlString() {
-    // get HTML string for every subtask
-    const subtaskHtmlString: string = this.subtasks.reduce((htmlString, subtask) =>
-      htmlString + subtask.toHtmlString(), '')
+export default class NoteController extends Controller {
+  private noteData: NoteData
+  private view: NoteView
 
-      return `
-      <div id="${this.id}" class="note" role="button">
-        <div class="d-flex mb-2">
-          <strong class="mr-auto my-auto">${this.taskData.title}</strong>
-          <button>×</button>
-        </div>
-        <p class="text-small my-1 gray">Added by</p>
-        <!-- ${subtaskHtmlString} -->
-      </div>
-    `
+  constructor({ id, noteData }: { id: String, noteData: NoteData }) {
+    super()
+    this.noteData = noteData
+    this.view = new NoteView({ id, noteData })
+    this.view.removeSelf = this.removeSelf.bind(this)
+  }
+
+  removeSelf() {
+    // TODO: request to server
+    // TODO: delete value
+
+    // remove view
+    this.view.remove()
+
+    this.notifyDelete()
+  }
+
+  setWrapper(wrapper: HTMLElement) {
+    this.view.render(wrapper)
   }
 }

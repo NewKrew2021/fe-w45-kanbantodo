@@ -1,8 +1,8 @@
-input {
-  border-radius: 0.75rem;
-  border: 1px solid #dadada;
-  padding: 0.5rem 1rem;
+input, textarea, .form-component {
+  border-radius: 0.5rem;
+  border: 1px solid $color-lightgray;
   outline: none;
+  padding: 0.5rem 1rem;
 
   &.highlight:focus {
     border-color: $color-orangered;
@@ -23,4 +23,10 @@ input {
 
 input:focus + .input-focus-show {
   display: initial;
+}
+
+textarea.fix-horizontal {
+  display: block;
+  resize: vertical;
+  width: 100%;
 }
