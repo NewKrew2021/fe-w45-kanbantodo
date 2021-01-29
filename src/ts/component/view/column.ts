@@ -24,7 +24,7 @@ export default class ColumnView extends View {
           <button>+</button>
           <button data-click-action="removeSelf">×</button>
         </div>
-        <form data-submit-action="addNote">
+        <form class="mb-2" data-submit-action="addNote">
           <textarea name="title" class="fix-horizontal"></textarea>
           <div class="d-flex mt-2">
             <button type="submit" class="form-component flex-1 mr-1 bg-green white">Add</button>
