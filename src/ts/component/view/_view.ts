@@ -68,25 +68,40 @@ export default class View {
     // detach from parent
     this.element.parentElement?.removeChild(this.element)
 
+    // make new temporary element
+    const newElement = document.createElement('div')
+    newElement.innerHTML = this.toHtmlString()
+
+    // find all wrappers from the {newElement}
+    const wrappers = newElement.querySelectorAll('.children-wrapper[data-wrapper-type]')
+    const wrapperTypes = Array.from(wrappers).map(wrapper => (<HTMLElement>wrapper).dataset.wrapperType)
+
     // detach children wrapper to preserve children
-    // support multiple children wrapper
-    const oldChildrenWrappers = this.element.querySelectorAll('.children-wrapper[data-wrapper-type]')
-    oldChildrenWrappers.forEach(oldChildrenWrapper => {
-      oldChildrenWrapper.parentElement.removeChild(oldChildrenWrapper)
+    // NOTE: support multiple children wrapper but not nested
+    const oldWrappers: Array<Element> = []
+    wrapperTypes.forEach(wrapperType => {
+      const oldWrapper = this.element.querySelector(`.children-wrapper[data-wrapper-type="${wrapperType}"]`)
+      if (oldWrapper) {
+        oldWrapper.parentElement.removeChild(oldWrapper)
+        oldWrappers.push(oldWrapper)
+      }
     })
-    console.log(oldChildrenWrappers)
 
     // make new element
     this.element.innerHTML = this.toHtmlString()
     this.element = <HTMLElement>this.element.firstElementChild
+    this.element.parentElement.removeChild(this.element)
 
     // re-attach children wrapper
-    oldChildrenWrappers.forEach(oldChildrenWrapper => {
-      const { wrapperType } = (<HTMLElement>oldChildrenWrapper).dataset
-      const newChildrenWrapper = this.element.querySelector(`.children-wrapper[data-wrapper-type="${wrapperType}"]`)
-      newChildrenWrapper?.insertAdjacentElement('afterend', oldChildrenWrapper)
-      newChildrenWrapper?.remove()
+    oldWrappers.forEach(oldWrapper => {
+      const { wrapperType } = (<HTMLElement>oldWrapper).dataset
+      const newWrapper = this.element.querySelector(`.children-wrapper[data-wrapper-type="${wrapperType}"]`)
+      newWrapper?.insertAdjacentElement('afterend', oldWrapper)
+      newWrapper?.remove()
     })
+
+    // delete temporary element
+    newElement.remove()
 
     // attach this to wrapper
     if (wrapper) {
