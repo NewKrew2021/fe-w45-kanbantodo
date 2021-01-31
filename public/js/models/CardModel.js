@@ -8,18 +8,14 @@ class CardModel extends Observable {
     this.isDisplay = false;
     this.cards = [];
   }
-  displayInputWindow(displayFunc, element) {
+  displayInputWindow(element) {
     this.isDisplay = true;
-    this.subscribe(displayFunc);
     this.notify(element);
-    this.unSubscribe(displayFunc);
   }
 
-  cancelBtn(nonDisplayFunc, element){
+  cancelBtn(element){
     this.isDisplay = false;
-    this.subscribe(nonDisplayFunc);
     this.notify(element);
-    this.unSubscribe(nonDisplayFunc);
   }
 
   async getCardData() {

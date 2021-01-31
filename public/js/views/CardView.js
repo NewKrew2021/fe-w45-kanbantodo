@@ -32,7 +32,9 @@ class CardView {
       btn.addEventListener("click", e => {
         const parentEle = e.currentTarget.closest(".todo-container");
         const todoAdd = parentEle.querySelector("div.todo-add");
-        this.model.displayInputWindow(this.displayInputWindow, todoAdd);
+        this.model.subscribe(this.displayInputWindow);
+        this.model.displayInputWindow(todoAdd);
+        this.model.unSubscribe(this.displayInputWindow);
       })
     })
   }
@@ -55,7 +57,9 @@ class CardView {
     cancelBtn.forEach( btn => {
       btn.addEventListener("click", e => {
         const parentEle = e.currentTarget.closest(".todo-add");
-        parentEle.className = "todo-add non-display"
+        this.model.subscribe(this.nonDisplayInputWindow);
+        this.model.cancelBtn(parentEle);
+        this.model.unSubscribe(this.nonDisplayInputWindow);
       })
     }) 
   }
@@ -130,9 +134,7 @@ class CardView {
                   // const card = event.currentTarget.querySelector("div.card-title").innerHTML
                   // this.model.moveCards(curIdx, pos.idx, card);
                   // curIdx = pos.idx;
-                  
                 } 
-                
             }
           })
         }
@@ -142,6 +144,9 @@ class CardView {
 
   displayInputWindow(ele) {
     ele.className = "todo-add";
+  }
+  nonDisplayInputWindow(ele) {
+    ele.className = "todo-add non-display";
   }
   
   init() {

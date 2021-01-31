@@ -3,17 +3,48 @@
     {
       "id": 1,
       "title": "To-Do",
-      "cards": []
+      "cards": [
+        {
+          "title": "4",
+          "author": "kevin"
+        },
+        {
+          "title": "12",
+          "author": "kevin"
+        },
+        {
+          "title": "asd",
+          "author": "kevin"
+        }
+      ]
     },
     {
       "id": 2,
       "title": "Doing",
-      "cards": []
+      "cards": [
+        {
+          "title": "3",
+          "author": "kevin"
+        },
+        {
+          "title": "1",
+          "author": "kevin"
+        },
+        {
+          "title": "5",
+          "author": "kevin"
+        }
+      ]
     },
     {
       "id": 3,
       "title": "Done",
-      "cards": []
+      "cards": [
+        {
+          "title": "2",
+          "author": "kevin"
+        }
+      ]
     }
   ]
 }
