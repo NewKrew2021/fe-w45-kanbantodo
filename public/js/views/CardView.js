@@ -23,7 +23,6 @@ class CardView {
       cardCnt[idx].innerHTML = cards[idx]["cards"].length;
     }
     this.removeCardBtnEvent();
-    this.moveCardEvent();
   }
 
   plusBtnEvent() {
@@ -81,33 +80,29 @@ class CardView {
 
   moveCardEvent() {
     let prevEle, prevIdx, curIdx, elePos = [];
-    const moveCardBtn = document.querySelectorAll("div.todo-cards");
     const todoContainerEle = document.querySelectorAll("div.todo-container");
     todoContainerEle.forEach((todo, index) => {
       const pos = todo.getBoundingClientRect();
       elePos.push({left:pos.left, right:pos.right, top:pos.top, bottom:pos.bottom, idx:index})
     })
-    moveCardBtn.forEach(btn => {
-      let gapX, gapY, isMoveCard = false;
-      btn.addEventListener("mousedown", event => {
-        if(event.target.className === "remove-card"){
-          isMoveCard = false;
-          return ;
-        }
-        isMoveCard = true;
-        gapX = event.clientX - btn.getBoundingClientRect().left;
-        gapY = event.clientY - btn.getBoundingClientRect().top;
+    let gapX, gapY, isMoveCard = false;
+    document.addEventListener("mousedown", event => {
+      const card = event.target.className;
+      if(card==="todo-cards" || card==="todo-author" || card==="card-title"){
+        const btnEle = event.target.closest("div.todo-cards");
         prevEle = event.target.closest(".todo-container");
+        isMoveCard = true;
+        gapX = event.clientX - btnEle.getBoundingClientRect().left;
+        gapY = event.clientY - btnEle.getBoundingClientRect().top;
         todoContainerEle.forEach((todo, index) => {
           if(todo === prevEle) curIdx=index;
         })
-      });
+      }
+    })
 
-      btn.addEventListener("mouseup", event => {
-        if(event.target.className === "remove-card"){
-          isMoveCard = false;
-          return ;
-        } 
+    document.addEventListener("mouseup", event => {
+      const card = event.target.className;
+      if(card==="todo-cards" || card==="todo-author" || card==="card-title"){
         isMoveCard = false;
         todoContainerEle.forEach((todo, index) => {
           if(todo === prevEle) prevIdx=index;
@@ -115,29 +110,21 @@ class CardView {
         elePos.forEach( pos => {
           if(event.clientX >= pos.left && event.clientX <= pos.right &&
             event.clientY >= pos.top && event.clientY <= pos.bottom){
-              const card = event.currentTarget.querySelector("div.card-title").innerHTML
+              const btnEle = event.target.closest("div.todo-cards");
+              const card = btnEle.querySelector("div.card-title").innerHTML;
               this.model.moveCards(prevIdx, pos.idx, card);
           }
         })
-      });
-
-      document.addEventListener("mousemove", event => {
-        if(isMoveCard){
-          btn.style = `position: fixed; left: ${event.clientX-gapX}px; top: ${event.clientY-gapY}px;`
-          elePos.forEach( pos => {
-            if(event.clientX >= pos.left && event.clientX <= pos.right &&
-              event.clientY >= pos.top && event.clientY <= pos.bottom){
-                if(curIdx !== pos.idx){
-                  // 위치 변경
-                  // const card = event.currentTarget.querySelector("div.card-title").innerHTML
-                  // this.model.moveCards(curIdx, pos.idx, card);
-                  // curIdx = pos.idx;
-                } 
-            }
-          })
-        }
-      })
+      }
     })
+
+    document.addEventListener("mousemove", event => {
+      if(isMoveCard){
+        const btnEle = event.target.closest("div.todo-cards");
+        btnEle.style = `position: fixed; left: ${event.clientX-gapX}px; top: ${event.clientY-gapY}px;`
+      }
+    })
+
   }
 
   displayInputWindow(ele) {
@@ -153,7 +140,8 @@ class CardView {
     .then(this.plusBtnEvent.bind(this))
     .then(this.addBtnEvent.bind(this))
     .then(this.cancelBtnEvent.bind(this))
-    .then(this.removeCardBtnEvent.bind(this));
+    .then(this.removeCardBtnEvent.bind(this))
+    .then(this.moveCardEvent.bind(this));
   }
 }
 

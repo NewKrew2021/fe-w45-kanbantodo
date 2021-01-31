@@ -70,7 +70,6 @@ class CardModel extends Observable {
   async moveCards(prevIdx, curIdx, card){
     await this.deleteCardData(prevIdx, card);
     await this.putCardData(curIdx, card);
-    console.log(this.cards);
     await this.notify(this.cards);
   }
 
