@@ -7,18 +7,18 @@ class CardView {
     const cardCnt = document.querySelectorAll("div.title-number");
     const itemContainerEle = document.querySelectorAll("div.item-container");
     for(let idx=0; idx<cards.length; idx++) {
-      let cardsHtml = ``;
-      cards[idx]["cards"].forEach(card => {
-        cardsHtml += `
-          <div class="todo-contents">
-            <div class="todo-cards" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
-              <div class="card-title">${card.title}</div>
-              <div class="remove-card">✕</div>
-              <div class="todo-author"> Added by ${card.author}</div>
-            </div>
+      const initHtml = ``;
+      const cardsHtml = cards[idx]["cards"].reduce((initHtml, card) => {
+        return initHtml += `
+        <div class="todo-contents">
+          <div class="todo-cards" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+            <div class="card-title">${card.title}</div>
+            <div class="remove-card">✕</div>
+            <div class="todo-author"> Added by ${card.author}</div>
           </div>
-        `
-      });
+        </div>
+      `
+      }, initHtml)
       itemContainerEle[idx].innerHTML = cardsHtml;
       cardCnt[idx].innerHTML = cards[idx]["cards"].length;
     }
@@ -103,7 +103,6 @@ class CardView {
         })
       });
 
-
       btn.addEventListener("mouseup", event => {
         if(event.target.className === "remove-card"){
           isMoveCard = false;
@@ -121,7 +120,6 @@ class CardView {
           }
         })
       });
-
 
       document.addEventListener("mousemove", event => {
         if(isMoveCard){
@@ -143,10 +141,10 @@ class CardView {
   }
 
   displayInputWindow(ele) {
-    ele.className = "todo-add";
+    ele.classList.remove("non-display");
   }
   nonDisplayInputWindow(ele) {
-    ele.className = "todo-add non-display";
+    ele.classList.add("non-display");
   }
   
   init() {

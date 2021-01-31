@@ -5,15 +5,7 @@
       "title": "To-Do",
       "cards": [
         {
-          "title": "4",
-          "author": "kevin"
-        },
-        {
           "title": "12",
-          "author": "kevin"
-        },
-        {
-          "title": "asd",
           "author": "kevin"
         }
       ]
@@ -27,11 +19,11 @@
           "author": "kevin"
         },
         {
-          "title": "1",
+          "title": "5",
           "author": "kevin"
         },
         {
-          "title": "5",
+          "title": "asd",
           "author": "kevin"
         }
       ]

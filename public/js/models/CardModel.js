@@ -19,27 +19,39 @@ class CardModel extends Observable {
   }
 
   async getCardData() {
-    const res = await fetch(URL+"/cards",{
-      method: "GET",
-    });
-    const data = await res.json();
-    this.saveCard(data);
+    try {
+      const res = await fetch(URL+"/cards",{
+        method: "GET",
+      });
+      const data = await res.json();
+      this.saveCard(data);
+    } catch(err) {
+      throw err;
+    }
   }
 
   async putCardData(idx, newCard) {
-    const res = await fetch( URL + `/cards?id=${idx+1}&title=${newCard}`, {
-      method: "PUT",
-    });
-    const data = await res.json();
-    this.saveCard(data);
+    try {
+      const res = await fetch( URL + `/cards?id=${idx+1}&title=${newCard}`, {
+        method: "PUT",
+      });
+      const data = await res.json();
+      this.saveCard(data);
+    } catch(err) {
+      throw err;
+    }
   }
 
   async deleteCardData(idx, newCard) {
-    const res = await fetch( URL + `/cards?id=${idx+1}&title=${newCard}`, {
-      method: "DELETE",
-    });
-    const data = await res.json();
-    this.saveCard(data);
+    try {
+      const res = await fetch( URL + `/cards?id=${idx+1}&title=${newCard}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      this.saveCard(data);
+    } catch(err) {
+      throw err;
+    }
   }
 
   async getCardInit() {
