@@ -16,7 +16,7 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_view_Header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/view/Header */ \"./public/js/view/Header.js\");\n/* harmony import */ var _js_view_Kanban__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/view/Kanban */ \"./public/js/view/Kanban.js\");\n/* harmony import */ var _js_view_SearchBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/view/SearchBar */ \"./public/js/view/SearchBar.js\");\n\n\n\n\n(function initApp() {\n  (0,_js_view_Header__WEBPACK_IMPORTED_MODULE_0__.initHeader)();\n  (0,_js_view_SearchBar__WEBPACK_IMPORTED_MODULE_2__.initSearchBar)();\n  (0,_js_view_Kanban__WEBPACK_IMPORTED_MODULE_1__.initKanban)();\n})();\n\n//# sourceURL=webpack://fe-w45-shoppinghow/./public/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_view_Header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/view/Header */ \"./public/js/view/Header.js\");\n/* harmony import */ var _js_view_Kanban__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/view/Kanban */ \"./public/js/view/Kanban.js\");\n/* harmony import */ var _js_view_SearchBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/view/SearchBar */ \"./public/js/view/SearchBar.js\");\n/* harmony import */ var _js_view_menu_ts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/view/menu.ts */ \"./public/js/view/menu.ts\");\n\n\n\n\n\n(function initApp() {\n  (0,_js_view_Header__WEBPACK_IMPORTED_MODULE_0__.initHeader)();\n  (0,_js_view_menu_ts__WEBPACK_IMPORTED_MODULE_3__.initMenu)();\n  (0,_js_view_SearchBar__WEBPACK_IMPORTED_MODULE_2__.initSearchBar)();\n  (0,_js_view_Kanban__WEBPACK_IMPORTED_MODULE_1__.initKanban)();\n})();\n\n//# sourceURL=webpack://fe-w45-shoppinghow/./public/app.js?");
 
 /***/ }),
 
@@ -94,6 +94,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"initSearchBar\": () => /* binding */ initSearchBar\n/* harmony export */ });\n/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util.js */ \"./public/js/util.js\");\n\nfunction initSearchBar() {\n  var section = document.querySelector(\"#search-bar-section\");\n  var searchBarSectionHTML = \"<div>\\n        <input placeholder=\\\"Filter cards\\\"></input>\\n    </div>\";\n  var searchBar = (0,_util_js__WEBPACK_IMPORTED_MODULE_0__.createElementFromHTML)(searchBarSectionHTML);\n  section.appendChild(searchBar);\n}\n\n//# sourceURL=webpack://fe-w45-shoppinghow/./public/js/view/SearchBar.js?");
+
+/***/ }),
+
+/***/ "./public/js/view/menu.ts":
+/*!********************************!*\
+  !*** ./public/js/view/menu.ts ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"initMenu\": () => /* binding */ initMenu\n/* harmony export */ });\nfunction initMenu() {\n  var header = document.querySelector(\"header\");\n  var menuBtn = document.querySelector(\"#menu\");\n}\n\n//# sourceURL=webpack://fe-w45-shoppinghow/./public/js/view/menu.ts?");
 
 /***/ }),
 
