@@ -3,7 +3,8 @@ class ActivityView {
     this.model = model;
   }
 
-  displayActivityBoard(activities) {
+  showActivityBoard(activities) {
+    console.log(activities);
     // let contentHtml = ``;
     // todos.forEach(todo => {
     //   contentHtml += `
@@ -32,7 +33,8 @@ class ActivityView {
   }
   
   init() {
-    this.model.subscribe(this.displayActivityBoard);
+    console.log(this.model);
+    this.model.subscribe(this.showActivityBoard);
     this.model.getData();
   }
 }

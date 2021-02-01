@@ -34,6 +34,10 @@ server.delete('/cards', (req, res) => {
   res.send(db.get('todos').value());
 })
 
+server.get('/activity', (req, res) => {
+  res.send(db.get('activity').value());
+})
+
 server.put('/activity', (req, res) => {
   db.get('activity')
   .push({

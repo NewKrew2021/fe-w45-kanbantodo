@@ -7,17 +7,18 @@
         {
           "title": "34521",
           "author": "kevin"
-        },
-        {
-          "title": "1234",
-          "author": "kevin"
         }
       ]
     },
     {
       "id": 2,
       "title": "Doing",
-      "cards": []
+      "cards": [
+        {
+          "title": "1234",
+          "author": "kevin"
+        }
+      ]
     },
     {
       "id": 3,
@@ -193,6 +194,14 @@
       "text": "1234",
       "author": "kevin",
       "time": "Mon Feb 01 2021 12:10:01 GMT 0900 (대한민국 표준시)"
+    },
+    {
+      "type": "moved",
+      "from": "To-Do",
+      "to": "Doing",
+      "text": "1234",
+      "author": "kevin",
+      "time": "Mon Feb 01 2021 17:02:16 GMT 0900 (대한민국 표준시)"
     }
   ]
 }
