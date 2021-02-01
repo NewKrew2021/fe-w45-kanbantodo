@@ -69,7 +69,6 @@ class CardView {
     const removeCardBtn = document.querySelectorAll("div.remove-card");
     removeCardBtn.forEach(btn => {
       btn.addEventListener("click", e => {
-        console.log(1234);
         const todoEle = e.currentTarget.closest(".todo-container");
         const titleText = todoEle.querySelector("div.title-text").innerHTML;
         const cardEle = e.currentTarget.closest(".todo-cards");
