@@ -182,14 +182,18 @@ class ListView {
         const cardId = e.currentTarget.getAttribute('data');
         const id = e.currentTarget.getAttribute('data-idx');
         const modalHeader = _dom.query('.modal-header-title');
-
-        let mode = '';
         const modalInput = _dom.query('.modal-input');
+        let mode = '';
         modalInput.value = '';
-        this.modal.classList.remove('none');
-        this.editModal.classList.remove('none');
-        this.modalSaveBtn.classList.remove('none');
-        this.modalWriteBtn.classList.add('none');
+        
+        _dom.addClass({
+            node: [this.modalWriteBtn],
+            className : "none"
+        });
+        _dom.removeClass({
+            node: [this.modal, this.editModal, this.modalSaveBtn],
+            className: "none"
+        });
 
         if (id == -1) {
             mode = 'card';

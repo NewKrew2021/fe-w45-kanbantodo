@@ -25,3 +25,4 @@ const columnview = new ColumnView(todoModel);
 columnview.init();
 
 const listmodalview = new ListModalView(todoModel);
+listmodalview.init();

@@ -13,6 +13,20 @@ export function create({type, className}){
     res.classList.add(...className);
     return res;
 }
+export function getAttr({node, attr}){
+    return node.getAttribute(attr);
+}
+
+export function addClass({ node, className }){
+    node.forEach(element =>{
+        element.classList.add(className);
+    })
+}
+export function removeClass({ node, className }){
+    node.forEach(element => {
+        element.classList.remove(className);
+    });
+}
 
 function dfs_q(node, target) {
     let returnVal;
