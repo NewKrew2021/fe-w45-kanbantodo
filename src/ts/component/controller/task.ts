@@ -17,7 +17,7 @@ export default class TaskController extends Controller {
     return this.taskData
   }
 
-  updateSelf(title: String) {
+  updateSelf(title: string) {
     // TODO: request to server
 
     // TODO: update value

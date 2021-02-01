@@ -1,5 +1,5 @@
 type TaskData = {
-  title: String
+  title: string
 }
 
 export default TaskData

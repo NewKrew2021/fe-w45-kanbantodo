@@ -1,5 +1,5 @@
 type ColumnData = {
-  title: String,
+  title: string,
   nNote: number // number of notes
 }
 

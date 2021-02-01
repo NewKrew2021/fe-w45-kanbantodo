@@ -25,7 +25,7 @@ export default class ColumnController extends Controller {
     return this.columnData
   }
 
-  updateSelf(title: String) {
+  updateSelf(title: string) {
     // TODO: request to server
 
     // TODO: update value
