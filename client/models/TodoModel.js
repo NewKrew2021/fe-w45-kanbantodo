@@ -50,8 +50,14 @@ class TodoModel extends Observable {
     }
 
     // 리스트뷰(note item)의 타이틀 수정
-    async editTodoTitle(input){
-        await req.editList(input);
+    async editTodo(input, mode){
+        if (mode === 'list'){
+            await req.editList(input);
+        }
+        else if (mode === 'card'){
+            console.log('test');
+            await req.editCardTitle(input);
+        }
         this.notify(this.todos);
     }
 

@@ -16,9 +16,9 @@ export const domTpl = {
     InitListView({ id, author, name, data }) {
         return `
         <div class="card droppable" data=${id}>
-        <div class="card-header">
+        <div class="card-header" data=${id} data-idx=-1>
             <span class="card-count bold" data=${id}>${data.length}</span>
-            <span class="title bold">${name}</span>
+            <span class="title bold" data=${id} data-idx=-1>${name}</span>
                 <button class="card-btn htop-add" data=${id}>&#43;</button>
                 <button class="card-btn htop" data=${id}>&times;</button>
         </div>

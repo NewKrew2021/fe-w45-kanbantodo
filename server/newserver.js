@@ -85,6 +85,18 @@ app.delete('/list/remove/:cardId/:id', (req, res) => {
     res.send('list removed successfully!');
 })
 
+// [*] 특정 카드 타이틀을 수정할 때
+app.put('/list/edit/:cardId', (req, res)=>{
+    const { cardId } = req.params;
+    const { title } = req.body.input;
+    console.log(title);
+    db.get('posts')
+      .find({ id: parseInt(cardId)})
+      .assign( { name : title })
+      .write()
+    res.send('list removed successfully!'); 
+})
+
 // [*] 특정 카드 -> 리스트뷰 아이템을 수정할 때
 app.put('/list/edit/:cardId/:id', (req, res) => {
     const { cardId, id } = req.params;

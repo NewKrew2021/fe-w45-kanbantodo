@@ -175,16 +175,20 @@ class ListView {
     async editListHandler(e) {
         const cardId = e.currentTarget.getAttribute('data');
         const id = e.currentTarget.getAttribute('data-idx');
+        let mode = '';
+
         const modalInput = _dom.query('.modal-input');
         modalInput.value = '';
         await this.model.setModalState({ cardId, id });
         this.modal.classList.remove('none');
         this.editModal.classList.remove('none');
 
+        if (id == -1) mode = 'card';
+        else mode = 'list';
         this.modalSaveBtn.addEventListener('click', function () {
             const newTitle = modalInput.value;
             const input = { input: { title: newTitle } };
-            this.model.editTodoTitle({ ...this.model.state, input });
+            this.model.editTodo({ ...this.model.state, input }, mode);
             this.modal.classList.add('none');
             this.editModal.classList.add('none');
         }.bind(this))
@@ -193,9 +197,13 @@ class ListView {
     // 리스트뷰(note item) 더블 클릭 시 타이틀을 수정하는 메서드
     async editListView() {
         const { } = await this.model.getInitialData();
+        const card = _dom.queryAll('.card-header');
         const note = _dom.queryAll('.list-view');
         const closeBtn = _dom.query('.btn-edit-close-modal');
         note.forEach(element => {
+            element.addEventListener('dblclick', this.editListHandler.bind(this));
+        })
+        card.forEach(element =>{
             element.addEventListener('dblclick', this.editListHandler.bind(this));
         })
         closeBtn.addEventListener('click', () => {

@@ -25,6 +25,17 @@ export function editList({cardId, id, input}){
     }).then((res) => { return res })
 }
 
+// 카드 타이틀 수정
+export function editCardTitle({cardId, input}){
+    return fetch(`http://localhost:5000/list/edit/${cardId}`, {
+        method: "put",
+        body: JSON.stringify(input),
+        headers :{
+            "Content-Type": "application/json",
+        }
+    }).then((res) => { return res })
+}
+
 // cardId의 id 리스트뷰 삭제
 export function removeList({cardId, id}){
     return fetch(`http://localhost:5000/list/remove/${cardId}/${id}`, {
