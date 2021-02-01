@@ -2,14 +2,8 @@ import ColumnData from '../../type/column'
 import View from './_view'
 
 export default class ColumnView extends View {
-  private id: String
-  private columnData: ColumnData
-
-  constructor({ id, columnData }: { id: String, columnData: ColumnData }) {
+  constructor() {
     super()
-    this.id = id
-    this.columnData = columnData
-    this.render()
   }
 
   addNote() {}
@@ -17,10 +11,14 @@ export default class ColumnView extends View {
   removeSelf() {}
 
   toHtmlString() {
+    const id = this.getID()
+    const { title }: ColumnData = this.getData()
+
     return `
-      <div id="${this.id}" class="column">
-        <div class="d-flex mb-2">
-          <strong class="mr-auto my-auto">${this.columnData.title}</strong>
+      <div id="${id}" class="column">
+        <div class="d-flex flex-center mb-2">
+          <span class="badge">7</span>
+          <strong class="ml-2 mr-auto">${title}</strong>
           <button>+</button>
           <button data-click-action="removeSelf">×</button>
         </div>

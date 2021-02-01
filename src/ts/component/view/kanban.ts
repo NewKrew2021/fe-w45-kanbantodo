@@ -1,22 +1,17 @@
-import KanbanData from '../../type/kanban'
 import View from './_view'
 
 export default class KanbanView extends View {
-  private id: String
-  private kanbanData: KanbanData
-
-  constructor({ id, kanbanData }: { id: String, kanbanData: KanbanData }) {
+  constructor() {
     super()
-    this.id = id
-    this.kanbanData = kanbanData
-    this.render()
   }
 
   addColumn() {}
 
   toHtmlString() {
+    const id = this.getID()
+
     return `
-      <div id="${this.id}" class="kanban">
+      <div id="${id}" class="kanban">
         <div class="children-wrapper" data-wrapper-type="column">
           <!-- columns here -->
         </div>

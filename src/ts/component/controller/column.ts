@@ -6,14 +6,23 @@ import NoteData from '../../type/note'
 
 export default class ColumnController extends Controller {
   private columnData: ColumnData
-  private view: ColumnView
 
-  constructor({ id, columnData }: { id: String, columnData: ColumnData }) {
+  constructor({ id, columnData }: { id: string, columnData: ColumnData }) {
     super()
+    this.id = id
     this.columnData = columnData
-    this.view = new ColumnView({ id, columnData })
-    this.view.addNote = this.addNote.bind(this)
-    this.view.removeSelf = this.removeSelf.bind(this)
+    this.view = new ColumnView()
+    this.bindMethods([
+      'getID',
+      'getData',
+      'addNote',
+      'removeSelf',
+    ])
+    this.view.render()
+  }
+
+  getData() {
+    return this.columnData
   }
 
   updateSelf(title: String) {
@@ -45,9 +54,5 @@ export default class ColumnController extends Controller {
   }
 
   removeNote(note: NoteController) {
-  }
-
-  setWrapper(wrapper: HTMLElement) {
-    this.view.render(wrapper)
   }
 }

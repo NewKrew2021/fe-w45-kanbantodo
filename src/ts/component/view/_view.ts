@@ -5,6 +5,12 @@ export default class View {
     this.element = document.createElement('div')
   }
 
+  // get data from controller to render itself
+  getID():string {
+    return ''
+  }
+  getData():any {}
+
   /*
 
     event handling
