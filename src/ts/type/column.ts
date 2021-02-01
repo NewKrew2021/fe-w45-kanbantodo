@@ -1,6 +1,5 @@
 type ColumnData = {
-  title: string,
-  nNote: number // number of notes
+  title: string
 }
 
 export default ColumnData
