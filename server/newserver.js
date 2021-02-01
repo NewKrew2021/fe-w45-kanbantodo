@@ -74,6 +74,15 @@ app.post('/addtask', (req, res) => {
     res.send('Task registered successfully!')
 })
 
+// [-] 특정 카드를 삭제할 때
+app.delete('/list/remove/:cardId', (req, res) => {
+    const { cardId } = req.params;
+    db.get('posts')
+      .remove({ id: parseInt(cardId) })
+      .write()
+    res.send('list removed successfully!');
+})
+
 // [-] 특정 카드 -> 리스트뷰 아이템을 삭제할 때
 app.delete('/list/remove/:cardId/:id', (req, res) => {
     const { cardId, id } = req.params;

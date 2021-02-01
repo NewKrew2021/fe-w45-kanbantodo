@@ -10,7 +10,7 @@ export const domTpl = {
             <span class="card-count bold" data=${id}>${data.length}</span>
             <span class="title bold" data=${id} data-idx=-1>${name}</span>
                 <button class="card-btn htop-add" data=${id}>&#43;</button>
-                <button class="card-btn htop" data=${id}>&times;</button>
+                <button class="card-btn htop-remove" data=${id}>&times;</button>
         </div>
         <div class="list-wrapper" data=${id}>
             <div class="input-list-view none" data=${id}>

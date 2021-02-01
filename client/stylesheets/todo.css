@@ -51,6 +51,15 @@ input {
   text-align: center;
 }
 
+.modal-card-remove {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border-radius: 7px;
+  width: 20%;
+  text-align: center;
+}
+
 .modal-edit {
   background-color: #fefefe;
   margin: auto;
@@ -110,7 +119,7 @@ input {
   padding: 0.7em;
 }
 
-.btn-close-modal {
+.btn-close-modal, .btn-card-close {
   width: 25%;
   background-color: #dddee2;
   border-radius: 5px;
@@ -119,7 +128,7 @@ input {
   padding: 0.5em;
 }
 
-.btn-accept-modal {
+.btn-accept-modal, .btn-card-accept {
   width: 25%;
   background-color: #3495DD;
   border-radius: 5px;
@@ -347,7 +356,7 @@ input {
   height: 18px;
 }
 
-.htop {
+.htop-remove {
   top: 0;
 }
 

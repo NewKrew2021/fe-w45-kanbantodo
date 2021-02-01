@@ -35,6 +35,11 @@ class TodoModel extends Observable {
         this.notify(this.todos);
     }
 
+    async removeCard({ cardId }){
+        await req.removeCard({ cardId });
+        this.notify(this.todo);
+    }
+
     // 리스트뷰(todo) 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
     async addTodo({ idx, inputData }) {
         const res = await req.getAllData();

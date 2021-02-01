@@ -77,36 +77,6 @@
           "tasks": []
         }
       ]
-    },
-    {
-      "id": 4,
-      "name": "수정 컬럼",
-      "author": "roddy.chan",
-      "data": [
-        {
-          "id": 0,
-          "title": "추가하기",
-          "tasks": []
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "name": "더 추가하기",
-      "author": "roddy.chan",
-      "data": [
-        {
-          "id": 0,
-          "title": "추가 리스트 노트",
-          "tasks": []
-        }
-      ]
-    },
-    {
-      "id": 6,
-      "name": "추가 테스트",
-      "author": "roddy.chan",
-      "data": []
     }
   ]
 }

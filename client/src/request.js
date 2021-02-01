@@ -47,6 +47,16 @@ export function editCardTitle({ cardId, input }) {
     }).then((res) => { return res })
 }
 
+// cardId의 카드 삭제
+export function removeCard({ cardId }){
+    return fetch(`http://localhost:5000/list/remove/${cardId}`, {
+        method: "delete",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    }).then((res) => { return res })
+}
+
 // cardId의 id 리스트뷰 삭제
 export function removeList({ cardId, id }) {
     return fetch(`http://localhost:5000/list/remove/${cardId}/${id}`, {
