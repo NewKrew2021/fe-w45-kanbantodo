@@ -80,9 +80,15 @@
     },
     {
       "id": 4,
-      "name": "더 추가한 컬럼",
+      "name": "수정 컬럼",
       "author": "roddy.chan",
-      "data": []
+      "data": [
+        {
+          "id": 0,
+          "title": "추가하기",
+          "tasks": []
+        }
+      ]
     },
     {
       "id": 5,

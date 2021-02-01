@@ -79,6 +79,7 @@ class TodoModel extends Observable {
 
     setModalState({cardId, id, mode}){
         this.state = {...this.state, cardId: cardId, id: id, mode: mode};
+        this.notify(this.state);
         return this.state;
     }
 
