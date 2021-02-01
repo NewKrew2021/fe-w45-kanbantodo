@@ -1,5 +1,5 @@
 /*
-    InputView.js : [+] 에 마우스를 가져다 댈 때 나오는 input-view
+    InputView.js : [+]를 누를 때 나오는 input-view
     - 모델 객체를 주입받고 구독하는 [Observer] 이다.
 */
 import * as _dom from '../src/util.js';
@@ -10,7 +10,7 @@ class InputView {
         this.model = model; // 생성 시 구독할 model(여기서는 TodoModel)을 주입받고 구독한다.
         this.model.subscribe(this.update.bind(this))
     }
-    
+
     onEvents() {
         this.setClickBtn();
         this.inputNoteData();

@@ -7,7 +7,7 @@
       "data": [
         {
           "id": 0,
-          "title": "검색 필터 기능 구현해야 함",
+          "title": "검색 필터 기능",
           "tasks": []
         },
         {
@@ -21,29 +21,19 @@
       "id": 2,
       "name": "하는중",
       "author": "roddy.chan",
-      "data": [
-        {
-          "id": 1,
-          "title": "노트 제목 수정 구현",
-          "tasks": []
-        },
-        {
-          "id": 2,
-          "title": "검색기능 구현",
-          "tasks": []
-        },
-        {
-          "id": 0,
-          "title": "구현",
-          "tasks": []
-        }
-      ]
+      "data": []
     },
     {
       "id": 3,
       "name": "다했음",
       "author": "roddy.chan",
-      "data": []
+      "data": [
+        {
+          "id": 0,
+          "title": "abcd",
+          "tasks": []
+        }
+      ]
     }
   ]
 }

@@ -1,7 +1,9 @@
 import * as _dom from '../src/util.js';
 
-/* 모달 뷰 */
-/* 모달과 관련된 이벤트, 핸들러 등록 */
+/*
+    ModalView.js
+    모달이 표시되어야 하는 뷰와 관련된 이벤트, 핸들러 등록
+*/
 
 class ModalView {
     constructor(model) {

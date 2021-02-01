@@ -43,18 +43,33 @@ class TodoModel extends Observable {
     // 리스트뷰(todo) 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
     async addTodo({ idx, inputData }) {
         const res = await req.getAllData();
-        const curlen = res[idx].data.length - 1;
-        let listId;
-        if (res[idx].data.length === 0)
+        let curlen, listId;
+        console.log(res);
+        res.forEach(function(e, i){
+            if(parseInt(e.id) === parseInt(idx)){
+                if (res[i].data.length !== 0){
+                    curlen = res[i].data.length - 1;
+                    listId = res[i].data[curlen].id + 1;
+                }
+                if (res[i].data.length === 0){
+                    listId = 0;
+                }
+            }
+        }.bind(this));
+
+        /*
+        if (res[idx].data.length == 0)
             listId = 0;
-        else
+        else{
+            curlen = res[idx].data.length - 1;
             listId = res[idx].data[curlen].id + 1;
+        }*/
         
         // 받은 todo값을 적당히 가공하고 넣기
         const inputObj = {
             input: {
                 cardId: parseInt(idx),
-                listId: listId,
+                listId: parseInt(listId),
                 title: inputData
             }
         }
