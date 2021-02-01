@@ -1,12 +1,19 @@
-$header-background :#000000 
-$header-font-color : #fef01b
-$common-border-color :#b9b8b8
-$todo-background-color : #9bbbd4
-$todo-card-background : #ffffff
-$add-button-background : #fef01b
-$cancel-button-background :#000000bd
-$pop-up-background : #000000
-$pop-up-content : #ffffff
+$header-background:#000000 
+$header-font-color:#fef01b
+$common-border-color:#b9b8b8
+$todo-background-color:#9bbbd4
+$todo-card-background:#ffffff
+$add-button-background:#fef01b
+$cancel-button-background:#000000bd
+$pop-up-background:#000000
+$pop-up-content:#ffffff
+$menu-pop-up-width:300px
+$menu-background:#ffffff
+
+ul,li
+    padding: 0
+    margin: 0
+    list-style: none
 
 .header
     font-size: 40px
@@ -16,6 +23,38 @@ $pop-up-content : #ffffff
     display: flex
     justify-content: space-between
     padding: 20px 50px
+    &__menu-button
+        cursor: pointer
+
+.menu-pop-up
+    box-sizing: border-box
+    position: fixed
+    z-index: 1
+    right: 0
+    height: 100vh
+    width: $menu-pop-up-width
+    border: 1px $common-border-color solid
+    transform: translateX($menu-pop-up-width)
+    transition-duration: 0.5s
+    background: $menu-background
+    &__header
+        box-sizing: border-box
+        width: 100%
+        padding: 10px
+        border: 1px $common-border-color solid
+        display: flex
+        justify-content: space-between
+    &__close-button
+        cursor: pointer
+.menu-detail
+    box-sizing: border-box
+    &__header
+        padding: 10px
+    &__item
+        box-sizing: border-box
+        border: 1px $common-border-color solid
+        padding: 10px
+
 .pop-up
     z-index: 1
     position: fixed
