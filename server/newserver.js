@@ -31,7 +31,7 @@ app.get('/posts', (req, res) => {
 // input : { id:_, name:_, author:_} 형태의 data 받고 추가
 app.post('/addcard', (req, res)=>{
     const {id, name, author} = req.body.input;
-    if(db.get('posts').find(id)){
+    if(db.get('posts').find({id : id}).value()){
         res.send('Card registration failed')
     } else {
         db.get('posts')
@@ -46,7 +46,7 @@ app.post('/addcard', (req, res)=>{
 // input : {cardId:_, listId:_, title:_} 형태의 data 받고 추가
 app.post('/addlist', (req, res) => {
     const { cardId, listId, title } = req.body.input;
-    if(db.get('posts').find({ id: cardId })){
+    if(db.get('posts').find({ id: cardId }).value()){
         db.get('posts')
           .find({ id: cardId })
           .get('data')
@@ -89,7 +89,6 @@ app.delete('/list/remove/:cardId/:id', (req, res) => {
 app.put('/list/edit/:cardId', (req, res)=>{
     const { cardId } = req.params;
     const { title } = req.body.input;
-    console.log(title);
     db.get('posts')
       .find({ id: parseInt(cardId)})
       .assign( { name : title })

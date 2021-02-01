@@ -46,17 +46,52 @@
     },
     {
       "id": 2,
-      "name": "다했어",
+      "name": "더 추가하기",
       "author": "roddy.chan",
       "data": [
         {
           "id": 1,
-          "title": "카드 제목 수정기능 구현하기",
+          "title": "노트 제목 수정 구현",
           "tasks": []
         },
         {
           "id": 2,
-          "title": "검색 기능 구현하기",
+          "title": "검색기능 구현",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "추가한 컬럼 수정",
+      "author": "roddy.chan",
+      "data": [
+        {
+          "id": 0,
+          "title": "추가하기 수정2",
+          "tasks": []
+        },
+        {
+          "id": 1,
+          "title": "추가 아이템",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "더 추가한 컬럼",
+      "author": "roddy.chan",
+      "data": []
+    },
+    {
+      "id": 5,
+      "name": "더 추가하기",
+      "author": "roddy.chan",
+      "data": [
+        {
+          "id": 0,
+          "title": "추가 리스트 노트",
           "tasks": []
         }
       ]

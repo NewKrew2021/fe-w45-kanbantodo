@@ -8,6 +8,7 @@ import * as _dom from './util.js';
 import InputView from '../views/InputView.js';
 import ListModalView from '../views/listModalView.js';
 import ListModalModel from '../models/ListModalModel.js';
+import ColumnView from '../views/columnView.js';
 
 // model, Subject
 const todoModel = new TodoModel('http://localhost:5000/posts');
@@ -25,3 +26,6 @@ inputview.init();
 //listModalModel
 const listmodalview = new ListModalView(listmodalModel);
 listmodalview.init();
+
+const columnview = new ColumnView(todoModel);
+columnview.init();

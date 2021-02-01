@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./server/newserver.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack serve --open --config webpack.dev.js",
+    "dev": "webpack serve --watch --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "watch": "webpack --watch"
   },

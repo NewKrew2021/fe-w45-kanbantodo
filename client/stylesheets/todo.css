@@ -100,6 +100,16 @@ input {
   padding: 0.7em;
 }
 
+.btn-write-modal {
+  width: 170px;
+  float: left;
+  background-color: #34B370;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 0.7em;
+}
+
 .btn-close-modal {
   width: 25%;
   background-color: #dddee2;
@@ -169,6 +179,8 @@ input {
   -webkit-box-pack: left;
       -ms-flex-pack: left;
           justify-content: left;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .flex {
@@ -201,9 +213,9 @@ input {
   border-radius: 6px;
   margin: 10px;
   width: 355px;
-  height: 180px;
+  height: 150px;
   text-align: center;
-  line-height: 180px;
+  line-height: 150px;
   cursor: pointer;
 }
 

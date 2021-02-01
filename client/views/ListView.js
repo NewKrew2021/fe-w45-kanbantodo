@@ -15,6 +15,7 @@ class ListView {
         this.removeModal = _dom.query('.modal-remove');
         this.editModal = _dom.query('.modal-edit');
         this.modalSaveBtn = _dom.query('.btn-save-modal');
+        this.modalWriteBtn = _dom.query('.btn-write-modal');
         this.modalAcceptBtn = _dom.query('.btn-accept-modal');
         this.modalCloseBtn = _dom.query('.btn-close-modal');
         this.cardsTitle = _dom.queryAll('.list-title')
@@ -104,10 +105,10 @@ class ListView {
         }
         // elem은 가장 많이 겹치는 노드
         function enterDroppable(elem, elemBelow, copiedNode) {
-            if (!!elem.nextSibling && !elem.parentNode.classList.contains('card-wrapper')){
+            if (!!elem.nextSibling && !elem.parentNode.classList.contains('card-wrapper')) {
                 elem.parentNode.insertBefore(copiedNode, elem);
             }
-            if (elemBelow.classList.contains('card')){
+            if (elemBelow.classList.contains('card')) {
                 elemBelow.children[1].children[1].appendChild(copiedNode);
             }
         }
@@ -119,8 +120,8 @@ class ListView {
         document.addEventListener('mousemove', this.onMouseMoveHandler);
     }
 
-    dropUpHandler(e){
-        if(this.curTarget === undefined) return;
+    dropUpHandler(e) {
+        if (this.curTarget === undefined) return;
         this.curTarget.remove();
         this.copiedNode.style.opacity = "1.0";
         document.removeEventListener('mousemove', this.onMouseMoveHandler);
@@ -139,7 +140,7 @@ class ListView {
         })
     }
 
-    updateEvent(element){
+    updateEvent(element) {
         element.addEventListener('dblclick', this.editListHandler.bind(this));
         const removeListBtn = _dom.queryAll('.list-remove');
         removeListBtn.forEach(element => {
@@ -147,7 +148,7 @@ class ListView {
         })
     }
 
-    /* event handler */
+    // remove note handler
     async removeListHandler(e) {
         const cardId = e.target.getAttribute('data');
         const id = e.target.getAttribute('data-idx');
@@ -165,7 +166,7 @@ class ListView {
             this.removeModal.classList.add('none');
         })
     }
-    // 리스트뷰의 X 클릭 시 삭제하는 메서드
+    // remove note
     async removeListView() {
         const { } = await this.model.getInitialData();
         const removeListBtn = _dom.queryAll('.list-remove');
@@ -174,19 +175,28 @@ class ListView {
         })
     }
 
-    /* event handler */
+    // edit note title handler
     async editListHandler(e) {
         const cardId = e.currentTarget.getAttribute('data');
         const id = e.currentTarget.getAttribute('data-idx');
-        let mode = '';
+        const modalHeader = _dom.query('.modal-header-title');
 
+        let mode = '';
         const modalInput = _dom.query('.modal-input');
         modalInput.value = '';
         this.modal.classList.remove('none');
         this.editModal.classList.remove('none');
+        this.modalSaveBtn.classList.remove('none');
+        this.modalWriteBtn.classList.add('none');
 
-        if (id == -1) mode = 'card';
-        else mode = 'list';
+        if (id == -1) {
+            mode = 'card';
+            _dom.html(modalHeader, '카드 제목 수정하기');
+        }
+        else {
+            mode = 'list';
+            _dom.html(modalHeader, '노트 제목 수정하기');
+        }
         await this.model.setModalState({ cardId, id, mode });
 
         this.modalSaveBtn.addEventListener('click', function () {
@@ -198,7 +208,7 @@ class ListView {
         }.bind(this))
     }
 
-    // 리스트뷰(note item) 더블 클릭 시 타이틀을 수정하는 메서드
+    // edit note title
     async editListView() {
         const { } = await this.model.getInitialData();
         const card = _dom.queryAll('.card-header');
@@ -207,7 +217,7 @@ class ListView {
         note.forEach(element => {
             element.addEventListener('dblclick', this.editListHandler.bind(this));
         })
-        card.forEach(element =>{
+        card.forEach(element => {
             element.addEventListener('dblclick', this.editListHandler.bind(this));
         })
         closeBtn.addEventListener('click', () => {
@@ -216,29 +226,30 @@ class ListView {
         })
     }
 
-    async findListsHandler(e){
+    // filter cards
+    async findListsHandler(e) {
         const { } = await this.model.getInitialData();
         const value = e.target.value;
-        const cardsTitleArr = this.cardsTitle.reduce((acc, item, idx)=>{
+        const cardsTitleArr = this.cardsTitle.reduce((acc, item, idx) => {
             let obj = {};
             obj[idx] = {
-                current : item,
-                title : item.textContent
+                current: item,
+                title: item.textContent
             }
             acc = [...acc, obj];
             return acc;
         }, []);
-        cardsTitleArr.forEach((item, idx)=>{
-            if (!item[idx].title.match(value)){
+        cardsTitleArr.forEach((item, idx) => {
+            if (!item[idx].title.match(value)) {
                 item[idx].current.parentNode.classList.add('none');
-            } else{
+            } else {
                 item[idx].current.parentNode.classList.remove('none');
             }
         })
     }
 
     // 검색으로 리스트를 찾기
-    findListView(){
+    findListView() {
         const searchBox = _dom.query('.search-input');
         searchBox.addEventListener('input', this.findListsHandler.bind(this));
     }

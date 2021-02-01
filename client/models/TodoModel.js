@@ -19,6 +19,22 @@ class TodoModel extends Observable {
         this.url = initialUrl; // 가져올 데이터의 요청 URL
     }
 
+    //{ id:_, name:_, author:_}
+    async addCard({ name, author }){
+        const res = await req.getAllData();
+        let cardId = res[res.length - 1].id + 1;
+        const inputObj = {
+            input : {
+                id: cardId,
+                name: name,
+                author: author
+            }
+        }
+        await req.addCard(inputObj);
+        this.todos = [...this.todos, res];
+        this.notify(this.todos);
+    }
+
     // 리스트뷰(todo) 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
     async addTodo({ idx, inputData }) {
         const res = await req.getAllData();
