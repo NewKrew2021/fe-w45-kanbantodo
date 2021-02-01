@@ -1,0 +1,33 @@
+#side-bar {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 30%;
+  z-index: 1000;
+  left: 100%;
+  background-color: white;
+}
+#side-bar #title {
+  padding: 10px;
+  background-color: white;
+}
+#side-bar #sub {
+  padding: 10px;
+  background-color: white;
+}
+#side-bar #close-btn {
+  position: absolute;
+  right: 10px;
+}
+
+.sb-close {
+  transition: 500ms;
+  transform: translateX(100%);
+}
+
+.sb-open {
+  transition: 500ms;
+  transform: translateX(-100%);
+}
+
+/*# sourceMappingURL=sideBar.css.map */
