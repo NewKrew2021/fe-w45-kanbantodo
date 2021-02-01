@@ -200,11 +200,38 @@ class ListView {
         })
     }
 
+    // 검색으로 리스트를 찾기
+    async findLists(){
+        const { } = await this.model.getInitialData();
+        const searchBox = _dom.query('.search-input');
+        const cardsTitle = _dom.queryAll('.list-title');
+        const cardsTitleArr = cardsTitle.reduce((acc, item, idx)=>{
+            let obj = {};
+            obj[idx] = {
+                parent : item.parentNode,
+                title : item.textContent
+            }
+            acc = [...acc, obj];
+            return acc;
+        }, []);
+        searchBox.addEventListener('input', function(e){
+            const value = e.target.value;
+            cardsTitleArr.forEach((item, idx)=>{
+                if (!item[idx].title.match(value)){
+                    item[idx].parent.classList.add('none');
+                } else{
+                    item[idx].parent.classList.remove('none');
+                }
+            })
+        })
+    }
+
     init() {
         this.render();
         this.removeListView();
         this.editListView();
         this.dragAndDrop();
+        this.findLists();
     }
 }
 

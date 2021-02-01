@@ -2,7 +2,7 @@
 export const domTpl = {
     AddListView({idx, eidx, author, title, tasks = ''}) {
         return `<div class="list-view droppable" data=${idx} data-idx=${eidx}>
-        <p class="title"><img class="mg-right-6" src="/images/list_btn.png">${title}</p>
+        <p class="title list-title"><img class="mg-right-6" src="/images/list_btn.png">${title}</p>
         <ul class="task sub-title font-15">
             ${tasks && tasks.map(element =>
                 `<li>${element.title}</li>`
@@ -34,7 +34,7 @@ export const domTpl = {
             <div class="list-view-wrapper" data=${id}>
             ${data.map((element) =>
             `<div class="list-view droppable" data=${id} data-idx=${element.id}>
-                <p class="title inline-block"><img class="mg-right-6" src="/images/list_btn.png">${element.title}</p>
+                <p class="title list-title inline-block"><img class="mg-right-6" src="/images/list_btn.png">${element.title}</p>
                 <ul class="task sub-title font-15">
                 ${element.tasks && element.tasks.map(element =>
                     `<li>${element.title}</li>`
