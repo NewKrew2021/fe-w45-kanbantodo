@@ -179,16 +179,17 @@ class ListView {
 
         const modalInput = _dom.query('.modal-input');
         modalInput.value = '';
-        await this.model.setModalState({ cardId, id });
         this.modal.classList.remove('none');
         this.editModal.classList.remove('none');
 
         if (id == -1) mode = 'card';
         else mode = 'list';
+        await this.model.setModalState({ cardId, id, mode });
+
         this.modalSaveBtn.addEventListener('click', function () {
             const newTitle = modalInput.value;
             const input = { input: { title: newTitle } };
-            this.model.editTodo({ ...this.model.state, input }, mode);
+            this.model.editTodo({ ...this.model.state, input }, this.model.state.mode);
             this.modal.classList.add('none');
             this.editModal.classList.add('none');
         }.bind(this))

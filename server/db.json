@@ -24,24 +24,24 @@
       "data": [
         {
           "id": 2,
-          "title": "수정하기2",
+          "title": "수정하기5",
           "tasks": []
         }
       ]
     },
     {
       "id": 2,
-      "name": "다했어",
+      "name": "다했어2",
       "author": "roddy.chan",
       "data": [
         {
           "id": 0,
-          "title": "옵저버 패턴 구성하기",
+          "title": "구성하기",
           "tasks": []
         },
         {
           "id": 1,
-          "title": "설정",
+          "title": "구성하기4",
           "tasks": []
         }
       ]

@@ -53,16 +53,17 @@ class TodoModel extends Observable {
     async editTodo(input, mode){
         if (mode === 'list'){
             await req.editList(input);
+            this.notify(this.todos);
         }
         else if (mode === 'card'){
-            console.log('test');
+            console.log(mode);
             await req.editCardTitle(input);
+            this.notify(this.todos);
         }
-        this.notify(this.todos);
     }
 
-    setModalState({cardId, id}){
-        this.state = {...this.state, cardId: cardId, id: id};
+    setModalState({cardId, id, mode}){
+        this.state = {...this.state, cardId: cardId, id: id, mode: mode};
         return this.state;
     }
 
