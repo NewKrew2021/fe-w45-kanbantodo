@@ -75,9 +75,19 @@ export default class View {
     return ''
   }
 
-  render(wrapper: HTMLElement = this.element.parentElement) {
-    // detach from parent
-    this.element.parentElement?.removeChild(this.element)
+  render(wrapper: HTMLElement = this.element.parentElement, index?: number) {
+    const parent = this.element.parentElement
+
+    // if parent exist
+    if (parent) {
+      // set index
+      if (index === undefined) {
+        index = Array.from(parent.children).indexOf(this.element)
+      }
+
+      // detach from parent
+      parent?.removeChild(this.element)
+    }
 
     // make new temporary element
     const newElement = document.createElement('div')
@@ -117,7 +127,7 @@ export default class View {
     // attach this to wrapper
     if (wrapper) {
       this.beforeRender()
-      wrapper.appendChild(this.element)
+      wrapper.insertBefore(this.element, wrapper.children[index]);
       this.addEventListenerToWrapper(this.element)
       this.afterRender()
     }

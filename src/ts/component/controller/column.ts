@@ -51,8 +51,8 @@ export default class ColumnController extends Controller {
     const noteController = new NoteController({ id: '', noteData })
     noteController.addDeleteListener(this.removeNote.bind(this))
 
-    // re-render
-    noteController.setWrapper(this.view.getChildrenWrapper('note'))
+    // prepend note to the column
+    noteController.setWrapper(this.view.getChildrenWrapper('note'), 0)
 
     return noteController
   }

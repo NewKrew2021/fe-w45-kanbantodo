@@ -31,8 +31,8 @@ export default class Controller {
     this.deleteListeners.forEach(listener => listener(this))
   }
 
-  setWrapper(wrapper: HTMLElement) {
-    this.view.render(wrapper)
+  setWrapper(wrapper: HTMLElement, index?: number) {
+    this.view.render(wrapper, index)
   }
 
   bindMethods(methods: Array<string>) {
