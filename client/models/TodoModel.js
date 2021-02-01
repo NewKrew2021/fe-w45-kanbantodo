@@ -19,21 +19,49 @@ class TodoModel extends Observable {
         this.url = initialUrl; // 가져올 데이터의 요청 URL
     }
 
+    //{ id:_, name:_, author:_}
+    async addCard({ name, author }){
+        const res = await req.getAllData();
+        let cardId = res[res.length - 1].id + 1;
+        const inputObj = {
+            input : {
+                id: cardId,
+                name: name,
+                author: author
+            }
+        }
+        await req.addCard(inputObj);
+        this.todos = [...this.todos, res];
+        this.notify(this.todos);
+    }
+
+    async removeCard({ cardId }){
+        await req.removeCard({ cardId });
+        this.notify(this.todo);
+    }
+
     // 리스트뷰(todo) 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
     async addTodo({ idx, inputData }) {
         const res = await req.getAllData();
-        const curlen = res[idx].data.length - 1;
-        let listId;
-        if (res[idx].data.length === 0)
-            listId = 0;
-        else
-            listId = res[idx].data[curlen].id + 1;
-        
+        let curlen, listId;
+        console.log(res);
+        res.forEach(function(e, i){
+            if(parseInt(e.id) === parseInt(idx)){
+                if (res[i].data.length !== 0){
+                    curlen = res[i].data.length - 1;
+                    listId = res[i].data[curlen].id + 1;
+                }
+                if (res[i].data.length === 0){
+                    listId = 0;
+                }
+            }
+        }.bind(this));
+
         // 받은 todo값을 적당히 가공하고 넣기
         const inputObj = {
             input: {
                 cardId: parseInt(idx),
-                listId: listId,
+                listId: parseInt(listId),
                 title: inputData
             }
         }
@@ -50,13 +78,20 @@ class TodoModel extends Observable {
     }
 
     // 리스트뷰(note item)의 타이틀 수정
-    async editTodoTitle(input){
-        await req.editList(input);
-        this.notify(this.todos);
+    async editTodo(input, mode){
+        if (mode === 'list'){
+            await req.editList(input);
+            this.notify(this.todos);
+        }
+        else if (mode === 'card'){
+            await req.editCardTitle(input);
+            this.notify(this.todos);
+        }
     }
 
-    setModalState({cardId, id}){
-        this.state = {...this.state, cardId: cardId, id: id};
+    setModalState({cardId, id, mode}){
+        this.state = {...this.state, cardId: cardId, id: id, mode: mode};
+        this.notify(this.state);
         return this.state;
     }
 

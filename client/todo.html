@@ -14,22 +14,28 @@
 
         <!-- Modal (hidden) -->
         <div id="list-modal" class="modal none">
+            <div class="modal-card-remove none">
+                <p class="mg-bottom-10">선택하신 <b>카드를</b> 삭제하시겠습니까?</p>
+                <button class="btn-card-accept">예</button>
+                <button class="btn-card-close">아니오</button>
+            </div>
             <div class="modal-remove none">
-                <p class="mg-bottom-10">선택하신 카드를 삭제하시겠습니까?</p>
+                <p class="mg-bottom-10">선택하신 <b>노트를</b> 삭제하시겠습니까?</p>
                 <button class="btn-accept-modal">예</button>
                 <button class="btn-close-modal">아니오</button>
             </div>
             <div class="modal-edit none">
                 <div class="modal-header">
-                    <span class="modal-header-title">Edit note</span>
+                    <span class="modal-header-title"></span>
                     <button class="btn-edit-close-modal">&times;</button>
                 </div>
                 <div class="modal-input-wrapper">
                     <textarea class="modal-input" maxlength="500"
-                    placeholder="수정할 제목을 입력하세요."></textarea>
+                    placeholder="제목을 입력하세요."></textarea>
                 </div>
                 <div class="modal-save-wrapper">
-                    <button class="btn-save-modal">Save note</button>
+                    <button class="btn-save-modal">저장하기</button>
+                    <button class="btn-write-modal none">추가하기</button>
                 </div>
             </div>
         </div>

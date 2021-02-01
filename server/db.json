@@ -7,7 +7,7 @@
       "data": [
         {
           "id": 0,
-          "title": "검색 필터 기능 구현해야 함",
+          "title": "검색 필터 기능",
           "tasks": []
         },
         {
@@ -18,35 +18,35 @@
       ]
     },
     {
-      "id": 1,
-      "name": "하는중",
+      "id": 3,
+      "name": "다했음",
       "author": "roddy.chan",
       "data": [
         {
-          "id": 2,
-          "title": "설정하기",
+          "id": 0,
+          "title": "abcd",
           "tasks": []
         },
         {
-          "id": 3,
+          "id": 1,
           "title": "추가하기",
           "tasks": []
         }
       ]
     },
     {
-      "id": 2,
-      "name": "다했어",
+      "id": 4,
+      "name": "새 카드 추가",
       "author": "roddy.chan",
       "data": [
         {
           "id": 0,
-          "title": "옵저버 패턴 구성하기",
+          "title": "아이템 추가",
           "tasks": []
         },
         {
           "id": 1,
-          "title": "설정",
+          "title": "두번째 추가",
           "tasks": []
         }
       ]

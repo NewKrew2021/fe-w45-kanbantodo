@@ -22,6 +22,13 @@ module.exports = {
             {
                 test: /\.(jpg|png|gif|svg)$/,
                 use: ['file-loader'],
+            },
+            {
+                test: /\.(js|ts)x?$/,
+                exclude: /node_modules/,
+                use: {
+                  loader : 'babel-loader'
+                }
             }
         ]
     },

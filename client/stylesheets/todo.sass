@@ -51,6 +51,14 @@ input
     width: 20%
     text-align: center
 
+.modal-card-remove
+    background-color: #fefefe
+    margin: auto
+    padding: 20px
+    border-radius: 7px
+    width: 20%
+    text-align: center
+
 .modal-edit
     background-color: #fefefe
     margin: auto
@@ -93,7 +101,16 @@ input
     font-size: 20px
     padding: 0.7em
 
-.btn-close-modal
+.btn-write-modal
+    width: 170px
+    float: left
+    background-color: $--color-main-green
+    border-radius: 10px
+    color: #ffffff
+    font-size: 20px
+    padding: 0.7em
+
+.btn-close-modal, .btn-card-close
     width: 25%
     background-color: $--color-main-gray
     border-radius: 5px
@@ -101,7 +118,7 @@ input
     font-weight: 600
     padding: 0.5em
 
-.btn-accept-modal
+.btn-accept-modal, .btn-card-accept
     width: 25%
     background-color: $--color-main-blue
     border-radius: 5px
@@ -145,6 +162,7 @@ input
     display: flex
     align-items: flex-start
     justify-content: left
+    flex-wrap: wrap
 
 .flex
     display: flex
@@ -159,7 +177,23 @@ input
     border-radius: 6px
     margin: 10px
     width: 355px
-    min-height: 600px
+    min-height: 500px
+
+.card-new
+    background-color: #ffffff
+    padding: 5px
+    border: 1px dashed gray
+    border-radius: 6px
+    margin: 10px
+    width: 355px
+    height: 150px
+    text-align: center
+    line-height: 150px
+    cursor: pointer
+
+.card-new:hover
+    border: 1px dashed #0366d6
+    box-shadow: 0 0 0 3px $--color-focus-shadow
 
 .card-header
     position: relative
@@ -259,7 +293,7 @@ input
 .search-btn>img
     width: 18px
     height: 18px
-.htop
+.htop-remove
     top: 0
 .htop-add
     top: 0

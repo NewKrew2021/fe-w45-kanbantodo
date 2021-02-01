@@ -51,6 +51,15 @@ input {
   text-align: center;
 }
 
+.modal-card-remove {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border-radius: 7px;
+  width: 20%;
+  text-align: center;
+}
+
 .modal-edit {
   background-color: #fefefe;
   margin: auto;
@@ -100,7 +109,17 @@ input {
   padding: 0.7em;
 }
 
-.btn-close-modal {
+.btn-write-modal {
+  width: 170px;
+  float: left;
+  background-color: #34B370;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 0.7em;
+}
+
+.btn-close-modal, .btn-card-close {
   width: 25%;
   background-color: #dddee2;
   border-radius: 5px;
@@ -109,7 +128,7 @@ input {
   padding: 0.5em;
 }
 
-.btn-accept-modal {
+.btn-accept-modal, .btn-card-accept {
   width: 25%;
   background-color: #3495DD;
   border-radius: 5px;
@@ -169,6 +188,8 @@ input {
   -webkit-box-pack: left;
       -ms-flex-pack: left;
           justify-content: left;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .flex {
@@ -191,7 +212,26 @@ input {
   border-radius: 6px;
   margin: 10px;
   width: 355px;
-  min-height: 600px;
+  min-height: 500px;
+}
+
+.card-new {
+  background-color: #ffffff;
+  padding: 5px;
+  border: 1px dashed gray;
+  border-radius: 6px;
+  margin: 10px;
+  width: 355px;
+  height: 150px;
+  text-align: center;
+  line-height: 150px;
+  cursor: pointer;
+}
+
+.card-new:hover {
+  border: 1px dashed #0366d6;
+  -webkit-box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
+          box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
 }
 
 .card-header {
@@ -316,7 +356,7 @@ input {
   height: 18px;
 }
 
-.htop {
+.htop-remove {
   top: 0;
 }
 
