@@ -52,6 +52,12 @@ server.put('/activity', (req, res) => {
   res.send(db.get('activity').value());
 })
 
+server.delete('/activity', (req, res) => {
+  db.get('activity')
+  .remove()
+  .write();
+  res.send(db.get('activity').value());
+})
 
 server.use(router);
 

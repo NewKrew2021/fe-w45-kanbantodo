@@ -237,6 +237,11 @@
   cursor: pointer;
 }
 
+.activity-clear {
+  margin-left: 328px;
+  cursor: pointer;
+}
+
 .activity-item {
   width: 100%;
   border-bottom: 1px solid #cecece;

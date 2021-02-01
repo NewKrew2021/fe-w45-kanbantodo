@@ -5,11 +5,7 @@
       "title": "To-Do",
       "cards": [
         {
-          "title": "1234",
-          "author": "kevin"
-        },
-        {
-          "title": "타입스크립트 공부하기",
+          "title": "123",
           "author": "kevin"
         }
       ]
@@ -22,110 +18,41 @@
     {
       "id": 3,
       "title": "Done",
-      "cards": [
-        {
-          "title": "123",
-          "author": "kevin"
-        }
-      ]
+      "cards": []
     }
   ],
   "activity": [
     {
-      "type": "deleted",
-      "from": "Doing",
-      "to": "none",
-      "text": "34521",
-      "author": "kevin",
-      "time": "1612168294038"
-    },
-    {
-      "type": "added",
-      "from": "none",
+      "type": "moved",
+      "from": "To-Do",
       "to": "Doing",
       "text": "123",
       "author": "kevin",
-      "time": "1612168295984"
-    },
-    {
-      "type": "added",
-      "from": "none",
-      "to": "To-Do",
-      "text": "1234",
-      "author": "kevin",
-      "time": "1612168297976"
+      "time": "1612176930165"
     },
     {
       "type": "moved",
       "from": "Doing",
-      "to": "Done",
+      "to": "To-Do",
       "text": "123",
       "author": "kevin",
-      "time": "1612168764518"
-    },
-    {
-      "type": "added",
-      "from": "none",
-      "to": "To-Do",
-      "text": "타입스크립트 공부",
-      "author": "kevin",
-      "time": "1612168927514"
+      "time": "1612176932774"
     },
     {
       "type": "moved",
       "from": "To-Do",
       "to": "Doing",
-      "text": "타입스크립트 공부",
-      "author": "kevin",
-      "time": "1612169873707"
-    },
-    {
-      "type": "moved",
-      "from": "Done",
-      "to": "Doing",
       "text": "123",
       "author": "kevin",
-      "time": "1612174721401"
+      "time": "1612176933866"
     },
     {
       "type": "moved",
       "from": "Doing",
       "to": "To-Do",
-      "text": "타입스크립트 공부",
-      "author": "kevin",
-      "time": "1612174722919"
-    },
-    {
-      "type": "moved",
-      "from": "Doing",
-      "to": "Done",
       "text": "123",
       "author": "kevin",
-      "time": "1612174726914"
-    },
-    {
-      "type": "moved",
-      "from": "Doing",
-      "to": "To-Do",
-      "text": "타입스크립트 공부하기",
-      "author": "kevin",
-      "time": "1612174741213"
-    },
-    {
-      "type": "moved",
-      "from": "To-Do",
-      "to": "Doing",
-      "text": "타입스크립트 공부",
-      "author": "kevin",
-      "time": "1612174742338"
-    },
-    {
-      "type": "deleted",
-      "from": "Doing",
-      "to": "none",
-      "text": "타입스크립트 공부",
-      "author": "kevin",
-      "time": "1612174743576"
+      "time": "1612176935317"
     }
   ]
 }

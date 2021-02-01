@@ -13,7 +13,7 @@ async function init() {
   const cardModel = new CardModel();
   const activityModel = new ActivityModel();
   const todoView =  new TodoView(todoModel);
-  const cardView =  new CardView(cardModel);
+  const cardView =  new CardView(cardModel, activityModel);
   const activityView = new ActivityView(activityModel);
 
   todoView.init();

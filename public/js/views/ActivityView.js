@@ -81,6 +81,13 @@ class ActivityView {
     })
   }
 
+  clearEventHandler() {
+    const clearBtn = document.querySelector("span.activity-clear");
+    clearBtn.addEventListener("click", e => {
+      this.model.clearActivity();
+    })
+  }
+
   displayActivityBoard(ele) {
     ele.classList.remove("non-display");
     ele.classList.remove("activity-out");
@@ -96,9 +103,9 @@ class ActivityView {
     this.model.subscribe(this.showActivityBoard);
     this.model.getData()
     .then(() => {
-      this.model.unSubscribe(this.showActivityBoard);
       this.menuEventHandler();
       this.cancelEventHandler();
+      this.clearEventHandler();
     });
   }
 }
