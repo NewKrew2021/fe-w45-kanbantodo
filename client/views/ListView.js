@@ -17,6 +17,7 @@ class ListView {
         this.modalSaveBtn = _dom.query('.btn-save-modal');
         this.modalAcceptBtn = _dom.query('.btn-accept-modal');
         this.modalCloseBtn = _dom.query('.btn-close-modal');
+        this.cardsTitle = _dom.queryAll('.list-title')
         this.onMouseMoveHandler;
         this.curTarget;
         this.copiedNode;
@@ -35,6 +36,7 @@ class ListView {
         this.removeListView();
         this.editListView();
         this.dragAndDrop();
+        this.findLists();
     }
 
     // template로 초기 html 넣기
@@ -47,6 +49,7 @@ class ListView {
             const allObj = { data: element, type: 'InitListView' };
             _dom.html(_dom.query('.card-wrapper'), createHTML(allObj));
         });
+        this.cardsTitle = _dom.queryAll('.list-title')
     }
 
     /* drag and drop */
@@ -121,6 +124,7 @@ class ListView {
         this.copiedNode.addEventListener('mousedown', this.dragDownHandler.bind(this));
         this.copiedNode.addEventListener('mouseup', this.dropUpHandler.bind(this));
         this.updateEvent(this.copiedNode);
+        this.cardsTitle = _dom.queryAll('.list-title');
     }
 
     async dragAndDrop() {
@@ -200,30 +204,31 @@ class ListView {
         })
     }
 
-    // 검색으로 리스트를 찾기
-    async findLists(){
+    async findListsHandler(e){
         const { } = await this.model.getInitialData();
-        const searchBox = _dom.query('.search-input');
-        const cardsTitle = _dom.queryAll('.list-title');
-        const cardsTitleArr = cardsTitle.reduce((acc, item, idx)=>{
+        const value = e.target.value;
+        const cardsTitleArr = this.cardsTitle.reduce((acc, item, idx)=>{
             let obj = {};
             obj[idx] = {
-                parent : item.parentNode,
+                current : item,
                 title : item.textContent
             }
             acc = [...acc, obj];
             return acc;
         }, []);
-        searchBox.addEventListener('input', function(e){
-            const value = e.target.value;
-            cardsTitleArr.forEach((item, idx)=>{
-                if (!item[idx].title.match(value)){
-                    item[idx].parent.classList.add('none');
-                } else{
-                    item[idx].parent.classList.remove('none');
-                }
-            })
+        cardsTitleArr.forEach((item, idx)=>{
+            if (!item[idx].title.match(value)){
+                item[idx].current.parentNode.classList.add('none');
+            } else{
+                item[idx].current.parentNode.classList.remove('none');
+            }
         })
+    }
+
+    // 검색으로 리스트를 찾기
+    findLists(){
+        const searchBox = _dom.query('.search-input');
+        searchBox.addEventListener('input', this.findListsHandler.bind(this));
     }
 
     init() {
