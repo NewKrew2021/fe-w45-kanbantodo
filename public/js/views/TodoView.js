@@ -5,9 +5,9 @@ class TodoView {
 
   displayTodoBoard(todos) {
     const contents = document.querySelector("div.contents");
-    let contentHtml = ``;
-    todos.forEach(todo => {
-      contentHtml += `
+    let initHtml = ``;
+    const contentHtml = todos.reduce((initHtml, todo) => {
+      return initHtml += `
         <div class="todo-container">
           <div class="todo-title">
             <div class="title-li title-img">
@@ -28,7 +28,7 @@ class TodoView {
           <div class="item-container"></div>
         </div>
       `
-    });
+    }, initHtml);
     contents.innerHTML = contentHtml;
   }
   

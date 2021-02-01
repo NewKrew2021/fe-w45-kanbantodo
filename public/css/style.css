@@ -27,6 +27,7 @@
   font-size: 30px;
   font-weight: bold;
   padding: 13px 0px 0px 1400px;
+  cursor: pointer;
 }
 
 .filter-contatiner {
@@ -37,7 +38,7 @@
 
 .contents {
   width: 100%;
-  height: 1000px;
+  height: 100%;
   margin: 0 0 0 140px;
 }
 
@@ -171,4 +172,102 @@
   border: 1px solid #b4b4b4;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.activity-in {
+  position: fixed;
+  margin-left: 1342px;
+  width: 450px;
+  height: 100%;
+  background-color: #fafafa;
+  z-index: 1;
+  border: 1px solid #b4b4b4;
+  overflow:scroll;
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-name: slidein;
+}
+
+@-webkit-keyframes slidein {
+  from {
+      margin-left: 1800px;
+      width: 450px;
+  }
+  to {
+      margin-left: 1342px;
+      width: 450px;
+  }
+}
+
+.activity-out {
+  position: fixed;
+  margin-left: 1800px;
+  width: 450px;
+  height: 100%;
+  background-color: #fafafa;
+  z-index: 1;
+  border: 1px solid #b4b4b4;
+  overflow:scroll;
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-name: slideout;
+}
+
+@-webkit-keyframes slideout {
+  from {
+    margin-left: 1392px;
+    width:400px;
+  }
+  to {
+    margin-left: 1800px;
+    width: 400px;
+
+  }
+}
+
+.activity-title {
+  padding: 12px 0 0 20px;
+  width: 100%;
+  height: 26px;
+  font-weight: 600;
+  background-color: #dee3e9;
+  border-bottom: 1px solid #cecece;
+}
+
+.activity-close {
+  margin-left: 360px;
+  cursor: pointer;
+}
+
+.activity-clear {
+  margin-left: 328px;
+  cursor: pointer;
+}
+
+.activity-item {
+  width: 100%;
+  border-bottom: 1px solid #cecece;
+}
+
+.item-title {
+  margin: 20px 0 0 70px;
+  width:80%;
+  font-weight: 500;
+}
+
+.item-timelog {
+  margin: 5px 0 20px 70px;
+  width: 80%;
+  font-size: 14px;
+  color:#646464;
+}
+
+.item-bold {
+  color: #1380da;
+  font-weight: 700;
+}
+
+.user-img {
+  float: left;
+  width: 35px;
+  margin-left: 20px;
+  border-radius: 5px;
 }

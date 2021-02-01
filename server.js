@@ -5,6 +5,7 @@ const middlewares = jsonServer.defaults();
 
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
+const { DllPlugin } = require('webpack');
 const adapter = new FileSync('db.json');
 const db = low(adapter);
 
@@ -33,6 +34,30 @@ server.delete('/cards', (req, res) => {
   res.send(db.get('todos').value());
 })
 
+server.get('/activity', (req, res) => {
+  res.send(db.get('activity').value());
+})
+
+server.put('/activity', (req, res) => {
+  db.get('activity')
+  .push({
+          type: req.query.type,
+          from: req.query.from,
+          to: req.query.to,
+          text: req.query.text,
+          author: req.query.author,
+          time: req.query.time
+        })
+  .write();
+  res.send(db.get('activity').value());
+})
+
+server.delete('/activity', (req, res) => {
+  db.get('activity')
+  .remove()
+  .write();
+  res.send(db.get('activity').value());
+})
 
 server.use(router);
 
