@@ -57,14 +57,6 @@ class TodoModel extends Observable {
             }
         }.bind(this));
 
-        /*
-        if (res[idx].data.length == 0)
-            listId = 0;
-        else{
-            curlen = res[idx].data.length - 1;
-            listId = res[idx].data[curlen].id + 1;
-        }*/
-        
         // 받은 todo값을 적당히 가공하고 넣기
         const inputObj = {
             input: {
