@@ -11,13 +11,6 @@ import * as req from '../src/request.js';
 /* TodoModel을 구독하는 Observer */
 class ListView {
     constructor(model) {
-        this.modal = _dom.query('.modal');
-        this.removeModal = _dom.query('.modal-remove');
-        this.editModal = _dom.query('.modal-edit');
-        this.modalSaveBtn = _dom.query('.btn-save-modal');
-        this.modalWriteBtn = _dom.query('.btn-write-modal');
-        this.modalAcceptBtn = _dom.query('.btn-accept-modal');
-        this.modalCloseBtn = _dom.query('.btn-close-modal');
         this.cardsTitle = _dom.queryAll('.list-title')
         this.onMouseMoveHandler;
         this.curTarget;
@@ -34,8 +27,6 @@ class ListView {
     // 데이터를 가지고 view를 바로 렌더링하는 메서드
     updateListView(res) {
         this.render();
-        this.removeListView();
-        this.editListView();
         this.dragAndDrop();
         this.findListView();
     }
@@ -129,7 +120,7 @@ class ListView {
         document.removeEventListener('mousemove', this.onMouseMoveHandler);
         this.copiedNode.addEventListener('mousedown', this.dragDownHandler.bind(this));
         this.copiedNode.addEventListener('mouseup', this.dropUpHandler.bind(this));
-        this.updateEvent(this.copiedNode);
+        //this.updateEvent(this.copiedNode); // 보류
         this.cardsTitle = _dom.queryAll('.list-title');
     }
 
@@ -142,95 +133,14 @@ class ListView {
         })
     }
 
+    /*
     updateEvent(element) {
         element.addEventListener('dblclick', this.editListHandler.bind(this));
         const removeListBtn = _dom.queryAll('.list-remove');
         removeListBtn.forEach(element => {
             element.addEventListener('click', this.removeListHandler.bind(this));
         })
-    }
-
-    // remove note handler
-    async removeListHandler(e) {
-        const cardId = e.target.getAttribute('data');
-        const id = e.target.getAttribute('data-idx');
-        await this.model.setModalState({ cardId, id });
-        this.modal.classList.remove('none');
-        this.removeModal.classList.remove('none');
-
-        this.modalAcceptBtn.addEventListener('click', function () {
-            this.model.removeTodo(this.model.state);
-            this.modal.classList.add('none');
-            this.removeModal.classList.add('none');
-        }.bind(this))
-        this.modalCloseBtn.addEventListener('click', () => {
-            this.modal.classList.add('none');
-            this.removeModal.classList.add('none');
-        })
-    }
-    // remove note
-    async removeListView() {
-        const { } = await this.model.getInitialData();
-        const removeListBtn = _dom.queryAll('.list-remove');
-        removeListBtn.forEach(element => {
-            element.addEventListener('click', this.removeListHandler.bind(this));
-        })
-    }
-
-    // edit note title handler
-    async editListHandler(e) {
-        const cardId = e.currentTarget.getAttribute('data');
-        const id = e.currentTarget.getAttribute('data-idx');
-        const modalHeader = _dom.query('.modal-header-title');
-        const modalInput = _dom.query('.modal-input');
-        let mode = '';
-        modalInput.value = '';
-        
-        _dom.addClass({
-            node: [this.modalWriteBtn],
-            className : "none"
-        });
-        _dom.removeClass({
-            node: [this.modal, this.editModal, this.modalSaveBtn],
-            className: "none"
-        });
-
-        if (id == -1) {
-            mode = 'card';
-            _dom.html(modalHeader, '카드 제목 수정하기');
-        }
-        else {
-            mode = 'list';
-            _dom.html(modalHeader, '노트 제목 수정하기');
-        }
-        await this.model.setModalState({ cardId, id, mode });
-
-        this.modalSaveBtn.addEventListener('click', function () {
-            const newTitle = modalInput.value;
-            const input = { input: { title: newTitle } };
-            this.model.editTodo({ ...this.model.state, input }, this.model.state.mode);
-            this.modal.classList.add('none');
-            this.editModal.classList.add('none');
-        }.bind(this))
-    }
-
-    // edit note title
-    async editListView() {
-        const { } = await this.model.getInitialData();
-        const card = _dom.queryAll('.card-header');
-        const note = _dom.queryAll('.list-view');
-        const closeBtn = _dom.query('.btn-edit-close-modal');
-        note.forEach(element => {
-            element.addEventListener('dblclick', this.editListHandler.bind(this));
-        })
-        card.forEach(element => {
-            element.addEventListener('dblclick', this.editListHandler.bind(this));
-        })
-        closeBtn.addEventListener('click', () => {
-            this.modal.classList.add('none');
-            this.editModal.classList.add('none');
-        })
-    }
+    }*/
 
     // filter cards
     async findListsHandler(e) {
@@ -239,8 +149,7 @@ class ListView {
         const cardsTitleArr = this.cardsTitle.reduce((acc, item, idx) => {
             let obj = {};
             obj[idx] = {
-                current: item,
-                title: item.textContent
+                current: item, title: item.textContent
             }
             acc = [...acc, obj];
             return acc;
@@ -263,8 +172,6 @@ class ListView {
 
     init() {
         this.render();
-        this.removeListView();
-        this.editListView();
         this.dragAndDrop();
         this.findListView();
     }
