@@ -54,6 +54,19 @@ class CardModel extends Observable {
     }
   }
 
+  async putActivity(type, from, to, text, author, time) {
+    try{
+      const res = await fetch( URL + `/activity?type=${type}&from=${from}&to=${to}&text=${text}&author=${author}&time=${time}`, {
+        method: "PUT",
+      });
+      const data = await res.json();
+      // Activity
+    } catch(err) {
+      throw err;
+    }
+
+  }
+
   async getCardInit() {
     await this.getCardData();
     await this.notify(this.cards);

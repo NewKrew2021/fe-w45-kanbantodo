@@ -43,10 +43,12 @@ class CardView {
     addBtn.forEach( (btn, idx) => {
       btn.addEventListener("click", e => {
         const parentEle = e.currentTarget.closest(".todo-container");
+        const titleText = parentEle.querySelector("div.title-text").innerHTML;
         const inputEle = parentEle.querySelector("input.add-input");
         const inputValue = inputEle.value;
         inputEle.value = "";
         this.model.addCards(idx, inputValue);
+        this.model.putActivity("added", "none", titleText, inputValue, "kevin", new Date());
       })
     })
   }
@@ -67,13 +69,16 @@ class CardView {
     const removeCardBtn = document.querySelectorAll("div.remove-card");
     removeCardBtn.forEach(btn => {
       btn.addEventListener("click", e => {
-        const todoEle = e.currentTarget.closest(".item-container");
+        console.log(1234);
+        const todoEle = e.currentTarget.closest(".todo-container");
+        const titleText = todoEle.querySelector("div.title-text").innerHTML;
         const cardEle = e.currentTarget.closest(".todo-cards");
         const cardTitle = cardEle.querySelector("div.card-title").innerHTML;
-        const elements = document.querySelectorAll("div.item-container");
+        const elements = document.querySelectorAll("div.todo-container");
         let idx = 0;
         elements.forEach( (ele, index) => { if(ele === todoEle) idx=index} );
         this.model.deleteCard(idx, cardTitle);
+        this.model.putActivity("deleted", titleText, "none", cardTitle, "kevin", new Date());
       })
     })
   }
@@ -112,7 +117,10 @@ class CardView {
             event.clientY >= pos.top && event.clientY <= pos.bottom){
               const btnEle = event.target.closest("div.todo-cards");
               const card = btnEle.querySelector("div.card-title").innerHTML;
+              const prevTitle = todoContainerEle[prevIdx].querySelector("div.title-text").innerHTML;
+              const curTitle = todoContainerEle[pos.idx].querySelector("div.title-text").innerHTML;
               this.model.moveCards(prevIdx, pos.idx, card);
+              this.model.putActivity("moved", prevTitle, curTitle, card, "kevin", new Date());
           }
         })
       }
@@ -124,7 +132,6 @@ class CardView {
         btnEle.style = `position: fixed; left: ${event.clientX-gapX}px; top: ${event.clientY-gapY}px;`
       }
     })
-
   }
 
   displayInputWindow(ele) {
@@ -140,11 +147,8 @@ class CardView {
     .then(this.plusBtnEvent.bind(this))
     .then(this.addBtnEvent.bind(this))
     .then(this.cancelBtnEvent.bind(this))
-    .then(this.removeCardBtnEvent.bind(this))
     .then(this.moveCardEvent.bind(this));
   }
 }
-
-
 
 export {CardView};

@@ -40,9 +40,11 @@ server.put('/activity', (req, res) => {
           type: req.query.type,
           from: req.query.from,
           to: req.query.to,
+          text: req.query.text,
           author: req.query.author,
           time: req.query.time
-        });
+        })
+  .write();
   res.send(db.get('activity').value());
 })
 
