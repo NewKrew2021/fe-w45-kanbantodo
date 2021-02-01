@@ -7,7 +7,7 @@ class ActivityView {
     const activityContainer = document.querySelector("div.activity-contents");
     const initHtml = ``;
     
-    const activitiesHtml = activities.reduce( (initHtml, activity) => {
+    const activitiesHtml = activities.reduceRight( (initHtml, activity) => {
       let activityHtml = `        
           <div class="activity-item">
           <img class="user-img" src="https://avatars.githubusercontent.com/u/26708382?s=460&u=60d666fedabd8d2e0cb2a589c0dec79bf1363fb3&v=4"></img>
