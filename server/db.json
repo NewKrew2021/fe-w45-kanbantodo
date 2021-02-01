@@ -38,7 +38,18 @@
       "id": 4,
       "name": "새 카드 추가",
       "author": "roddy.chan",
-      "data": []
+      "data": [
+        {
+          "id": 0,
+          "title": "아이템 추가",
+          "tasks": []
+        },
+        {
+          "id": 1,
+          "title": "두번째 추가",
+          "tasks": []
+        }
+      ]
     }
   ]
 }
