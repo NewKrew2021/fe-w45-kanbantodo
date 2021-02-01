@@ -1,11 +1,7 @@
 
 export const domTpl = {
     NewColumn(){
-        return `
-            <div class="card-new bold">
-                <p>&#43; Add column</p>
-            </div>
-        `
+        return `<p>&#43; Add column</p>`
     },
     InitListView({ id, author, name, data }) {
         return `

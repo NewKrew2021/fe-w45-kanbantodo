@@ -53,7 +53,9 @@ class ListView {
         this.cardsTitle = _dom.queryAll('.list-title')
 
         // 맨 끝에 컬럼 추가기능 area 구현하기
-        _dom.addHTML(_dom.query('.card-wrapper'), domTpl['NewColumn']())
+        const addNewCard = _dom.create({type: 'div', className: ['card-new', 'bold']});
+        _dom.html(addNewCard, domTpl['NewColumn']());
+        _dom.query('.card-wrapper').appendChild(addNewCard);
     }
 
     /* drag and drop */
@@ -242,6 +244,7 @@ class ListView {
         cardsTitleArr.forEach((item, idx) => {
             if (!item[idx].title.match(value)) {
                 item[idx].current.parentNode.classList.add('none');
+                console.log(item[idx].current.parentNode);
             } else {
                 item[idx].current.parentNode.classList.remove('none');
             }

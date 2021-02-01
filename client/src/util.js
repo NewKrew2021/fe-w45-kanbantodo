@@ -8,6 +8,11 @@ export function addHTML(node, text) {
 export function html(node, text) {
     node.innerHTML = text;
 }
+export function create({type, className}){
+    const res = document.createElement(type);
+    res.classList.add(...className);
+    return res;
+}
 
 function dfs_q(node, target) {
     let returnVal;
