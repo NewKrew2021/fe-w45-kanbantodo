@@ -1,12 +1,13 @@
-$header-background :#000000 
-$header-font-color : #fef01b
-$common-border-color :#b9b8b8
-$todo-background-color : #9bbbd4
-$todo-card-background : #ffffff
-$add-button-background : #fef01b
-$cancel-button-background :#000000bd
-$pop-up-background : #000000
-$pop-up-content : #ffffff
+$header-background:#000000 
+$header-font-color:#fef01b
+$common-border-color:#b9b8b8
+$todo-background-color:#9bbbd4
+$todo-card-background:#ffffff
+$add-button-background:#fef01b
+$cancel-button-background:#000000bd
+$pop-up-background:#000000
+$pop-up-content:#ffffff
+$menu-pop-up-width:300px
 
 .header
     font-size: 40px
@@ -16,6 +17,17 @@ $pop-up-content : #ffffff
     display: flex
     justify-content: space-between
     padding: 20px 50px
+    &__menu-button
+        cursor: pointer
+
+.menu-pop-up
+    position: fixed
+    z-index: 1
+    right: 0
+    height: 100vh
+    width: $menu-pop-up-width
+    border: 1px $common-border-color solid
+    transform: translateX($menu-pop-up-width)
 .pop-up
     z-index: 1
     position: fixed
