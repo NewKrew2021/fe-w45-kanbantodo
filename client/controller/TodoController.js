@@ -1,36 +1,37 @@
-import TodoModel from "../model/TodoModel";
-import TodoView from "../view/TodoView";
+import ColumnModel from "../model/ColumnModel";
+import ColumnView from "../view/ColumnView";
+import ColumnController from '../controller/ColumnController';
 
 class TodoController {
-    constructor(){
-        this.model = new TodoModel();
-        this.view = new TodoView();
-        this.manageFilter = this.manageFilter.bind(this)
+    constructor(view, model){
+        this.view = view;
+        this.model = model;
     }
     
     init() {
-        this.model.subscribe(async (data) => {
+        this.model.subscribe((data) => {
             this.view.render(data);
-            this.manageColumnAdd();
-            this.manageColumnDelete();
-            this.manageFilter();
+            const addColumnEle = document.querySelector('.add-column')
+            const filterEle = document.querySelector('.filter-cards > input');
+            filterEle.addEventListener('input', this.model.onChangeFilter);
+            addColumnEle.addEventListener('click', this.model.showAddColumnModal);
         });
+        // 하위 모델이 상위 모델을 subscribe 한다.
+        this.model.subscribe((data) => {
+            data.forEach((colData) => {
+                const columnView = new ColumnView();
+                const columnModel = new ColumnModel(colData);
+                const columnController = new ColumnController(columnView, columnModel);
+                columnController.init();
+                columnModel.notify(colData);
+
+                const columnEle = document.getElementById(colData.id);
+                const columnDeleteButton = columnEle.querySelector('.column__header__buttons > .remove-button')
+                
+                columnDeleteButton.addEventListener('click', this.model.showDeleteColumnModal);
+            });
+        })
         this.model.getData();
-    }
-
-    manageColumnAdd () {
-        const addColumnEle = document.querySelector('.add-column')
-        addColumnEle.addEventListener('click', this.model.addColumn);
-    }
-
-    manageColumnDelete () {
-
-    }
-
-    manageFilter(){
-        console.log('h')
-        const filterEle = document.querySelector('.filter-cards > input');
-        filterEle.addEventListener('input', this.model.onChangeFilter);
     }
 }
 

@@ -15,13 +15,9 @@ class TodoView {
         document.querySelector('.container').appendChild(addColumnEle);
     }
 
-    render(data) {
+    render() {
         const container = document.querySelector('.container');
         container.innerHTML = '';
-        data.forEach((data)=>{
-            const columnView = new ColumnView(data);
-            columnView.init();
-        })
         this.renderAddColumnElement();
     }
 }

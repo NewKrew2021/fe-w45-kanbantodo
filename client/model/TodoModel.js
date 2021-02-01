@@ -1,16 +1,18 @@
 import API from "../utils/api";
+import Observable from "../utils/Observable";
 import ModalView from "../view/ModalView";
 
-class TodoModel {
+class TodoModel extends Observable{
     constructor() {
-        this.notify = this.notify.bind(this);
-        this.addColumn = this.addColumn.bind(this);
+        super();
+        this.showAddColumnModal = this.showAddColumnModal.bind(this);
+        this.showDeleteColumnModal = this.showDeleteColumnModal.bind(this);
         this.onChangeFilter = this.onChangeFilter.bind(this);
+        this.deleteColumn = this.deleteColumn.bind(this);
         this.init();
     }
 
-    init (){
-        this.observers = new Set();
+    init(){
     }
     
     async getData() {
@@ -22,29 +24,41 @@ class TodoModel {
     async setInitialState() {        
     }
 
+    async addColumn(value) {
+        await API.createNewColumn(value);
+        const { data } = await API.getTodoData();
+        this.state = {data};
+        this.notify(data);
+    }    
 
-    notify(data){
-        this.observers.forEach((subscriber) => {
-            subscriber(data);
-        })
-    }
-    subscribe(observer) {
-        this.observers.add(observer);
+    async deleteColumn(id) {
+        await API.deleteColumn(id);
+        const { data } = await API.getTodoData();
+        this.state = {data}
+        this.notify(data);
     }
 
-    addColumn() {
+    showAddColumnModal() {
         const modal = new ModalView({
             id: "column-add-modal",
             title:"Add new column",
             buttonText:["Add column"],
             showInputLabel: true,
             labelName: 'Column name',
-            onClickButton: [async (value) => {
-                await API.createNewColumn(value);
-                const { data } = await API.getTodoData();
-                this.notify(data);
-            }]
+            onClickButton: [this.addColumn.bind(this)]
         })
+        modal.init();
+    }
+
+    showDeleteColumnModal({target}) {
+        const id = target.closest('.column').id;
+        const modal = new ModalView({
+            id: 'deleteColumn' + id.toString(),
+            title: 'Really?',
+            buttonText: ['Delete'],
+            renderContent: () => {return '';},
+            onClickButton: [() => this.deleteColumn(id)]
+        });
         modal.init();
     }
 
@@ -61,8 +75,7 @@ class TodoModel {
             // TODO : object spread operator가 동작하지 않음. 에러 해결
             // const newData = { ...data, notes: filteredNotes};
             const {id, title} = data;
-            const newData = { id, title, notes: filteredNotes};
-            return newData;
+            return { id, title, notes: filteredNotes};
         });
         this.notify(filteredData);
     }

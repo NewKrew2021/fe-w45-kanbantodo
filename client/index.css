@@ -7,9 +7,64 @@
 }
 
 header{
-    height: 50px;
-    /* background-color: #ffd200; */
+    height: 20px;
+    background-color: darkgray;
+    display: flex;
+    padding: 15px;
+    font-size:20px;
+    justify-content: space-between;
 }
+.side-menu{
+    background: white;
+    border: 1px solid gray;
+    position: fixed;
+    width: 350px;
+    right: 0;
+    top: 0;
+    height: 100%;
+}
+
+.side-menu > .side-menu__header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid darkgray;
+    padding: 13px;
+    background: lightgray;
+    height: 16px;
+    font-size: 16px;
+}
+
+.side-menu > .activity {
+    height: 16px;
+    font-size: 16px;
+    padding: 13px;
+    border-bottom: 1px solid lightgray;
+}
+
+.side-menu > ul {
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu > ul > li {
+    list-style: none;
+}
+
+.activity-card {
+    padding: 13px;
+    border-bottom: 1px solid lightgray;
+}
+
+.activity-card > .content{
+    margin-bottom:5px;
+    font-size: 15px;
+}
+
+.activity-card > .time {
+    color: gray;
+    font-size: 14px;
+}
+
 .add-column{
     color: darkgray;
     width: 300px;
@@ -190,7 +245,7 @@ header{
 
 .filter-cards-container{
     
-    
+    padding: 20px;
 }
 
 .filter-cards {
