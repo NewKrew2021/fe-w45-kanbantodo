@@ -27,6 +27,7 @@
   font-size: 30px;
   font-weight: bold;
   padding: 13px 0px 0px 1400px;
+  cursor: pointer;
 }
 
 .filter-contatiner {
@@ -175,8 +176,8 @@
 
 .activity-in {
   position: fixed;
-  margin-left: 1392px;
-  width: 400px;
+  margin-left: 1342px;
+  width: 450px;
   height: 100%;
   background-color: #fafafa;
   z-index: 1;
@@ -189,18 +190,18 @@
 @-webkit-keyframes slidein {
   from {
       margin-left: 1800px;
-      width: 400px;
+      width: 450px;
   }
   to {
-      margin-left: 1392px;
-      width:400px;
+      margin-left: 1342px;
+      width: 450px;
   }
 }
 
 .activity-out {
   position: fixed;
-  margin-left: 1392px;
-  width: 400px;
+  margin-left: 1800px;
+  width: 450px;
   height: 100%;
   background-color: #fafafa;
   z-index: 1;
@@ -232,7 +233,7 @@
 }
 
 .activity-close {
-  margin-left: 310px;
+  margin-left: 360px;
   cursor: pointer;
 }
 
@@ -242,19 +243,26 @@
 }
 
 .item-title {
-  margin: 20px 0 0 20px;
-  width:100%;
+  margin: 20px 0 0 70px;
+  width:80%;
   font-weight: 500;
 }
 
 .item-timelog {
-  margin: 5px 0 20px 20px;
-  width: 100%;
+  margin: 5px 0 20px 70px;
+  width: 80%;
   font-size: 14px;
   color:#646464;
 }
 
 .item-bold {
   color: #1380da;
-  font-weight: 800;
+  font-weight: 700;
+}
+
+.user-img {
+  float: left;
+  width: 35px;
+  margin-left: 20px;
+  border-radius: 5px;
 }

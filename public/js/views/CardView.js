@@ -48,7 +48,7 @@ class CardView {
         const inputValue = inputEle.value;
         inputEle.value = "";
         this.model.addCards(idx, inputValue);
-        this.model.putActivity("added", "none", titleText, inputValue, "kevin", new Date());
+        this.model.putActivity("added", "none", titleText, inputValue, "kevin", Date.now());
       })
     })
   }
@@ -77,7 +77,7 @@ class CardView {
         let idx = 0;
         elements.forEach( (ele, index) => { if(ele === todoEle) idx=index} );
         this.model.deleteCard(idx, cardTitle);
-        this.model.putActivity("deleted", titleText, "none", cardTitle, "kevin", new Date());
+        this.model.putActivity("deleted", titleText, "none", cardTitle, "kevin", Date.now());
       })
     })
   }
@@ -119,7 +119,7 @@ class CardView {
               const prevTitle = todoContainerEle[prevIdx].querySelector("div.title-text").innerHTML;
               const curTitle = todoContainerEle[pos.idx].querySelector("div.title-text").innerHTML;
               this.model.moveCards(prevIdx, pos.idx, card);
-              this.model.putActivity("moved", prevTitle, curTitle, card, "kevin", new Date());
+              this.model.putActivity("moved", prevTitle, curTitle, card, "kevin", Date.now());
           }
         })
       }

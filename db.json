@@ -5,7 +5,11 @@
       "title": "To-Do",
       "cards": [
         {
-          "title": "34521",
+          "title": "1234",
+          "author": "kevin"
+        },
+        {
+          "title": "타입스크립트 공부하기",
           "author": "kevin"
         }
       ]
@@ -13,195 +17,115 @@
     {
       "id": 2,
       "title": "Doing",
-      "cards": [
-        {
-          "title": "1234",
-          "author": "kevin"
-        }
-      ]
+      "cards": []
     },
     {
       "id": 3,
       "title": "Done",
-      "cards": []
+      "cards": [
+        {
+          "title": "123",
+          "author": "kevin"
+        }
+      ]
     }
   ],
   "activity": [
     {
-      "type": "add",
+      "type": "deleted",
+      "from": "Doing",
+      "to": "none",
+      "text": "34521",
+      "author": "kevin",
+      "time": "1612168294038"
+    },
+    {
+      "type": "added",
       "from": "none",
+      "to": "Doing",
+      "text": "123",
+      "author": "kevin",
+      "time": "1612168295984"
+    },
+    {
+      "type": "added",
+      "from": "none",
+      "to": "To-Do",
+      "text": "1234",
+      "author": "kevin",
+      "time": "1612168297976"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
       "to": "Done",
       "text": "123",
       "author": "kevin",
-      "time": "123"
+      "time": "1612168764518"
     },
     {
-      "type": "add",
+      "type": "added",
       "from": "none",
       "to": "To-Do",
-      "text": "aaa",
+      "text": "타입스크립트 공부",
       "author": "kevin",
-      "time": "123"
-    },
-    {
-      "type": "add",
-      "from": "none",
-      "to": "To-Do",
-      "text": "12345",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:48:57 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "Doing",
-      "to": "none",
-      "text": "2",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:54:22 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "Doing",
-      "to": "none",
-      "text": "2",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:54:22 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "Doing",
-      "to": "none",
-      "text": "2",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:54:42 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "Doing",
-      "to": "none",
-      "text": "2",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:54:42 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "Done",
-      "to": "none",
-      "text": "1234",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:55:28 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "Done",
-      "to": "none",
-      "text": "1234",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:55:28 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "Doing",
-      "to": "none",
-      "text": "2",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:56:12 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "Doing",
-      "to": "none",
-      "text": "2",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:56:12 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "Doing",
-      "to": "none",
-      "text": "1",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:56:42 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "Doing",
-      "to": "none",
-      "text": "1",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:56:42 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "To-Do",
-      "to": "none",
-      "text": "aaa",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:57:17 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "Done",
-      "to": "none",
-      "text": "123",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:58:20 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "Done",
-      "to": "none",
-      "text": "123",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:58:20 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "To-Do",
-      "to": "none",
-      "text": "12345",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:58:48 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "add",
-      "from": "none",
-      "to": "Doing",
-      "text": "1234",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:59:03 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "delete",
-      "from": "Doing",
-      "to": "none",
-      "text": "1234",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:59:06 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "add",
-      "from": "none",
-      "to": "To-Do",
-      "text": "34521",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 11:59:09 GMT 0900 (대한민국 표준시)"
-    },
-    {
-      "type": "moved",
-      "from": "Doing",
-      "to": "To-Do",
-      "text": "1234",
-      "author": "kevin",
-      "time": "Mon Feb 01 2021 12:10:01 GMT 0900 (대한민국 표준시)"
+      "time": "1612168927514"
     },
     {
       "type": "moved",
       "from": "To-Do",
       "to": "Doing",
-      "text": "1234",
+      "text": "타입스크립트 공부",
       "author": "kevin",
-      "time": "Mon Feb 01 2021 17:02:16 GMT 0900 (대한민국 표준시)"
+      "time": "1612169873707"
+    },
+    {
+      "type": "moved",
+      "from": "Done",
+      "to": "Doing",
+      "text": "123",
+      "author": "kevin",
+      "time": "1612174721401"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "To-Do",
+      "text": "타입스크립트 공부",
+      "author": "kevin",
+      "time": "1612174722919"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "Done",
+      "text": "123",
+      "author": "kevin",
+      "time": "1612174726914"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "To-Do",
+      "text": "타입스크립트 공부하기",
+      "author": "kevin",
+      "time": "1612174741213"
+    },
+    {
+      "type": "moved",
+      "from": "To-Do",
+      "to": "Doing",
+      "text": "타입스크립트 공부",
+      "author": "kevin",
+      "time": "1612174742338"
+    },
+    {
+      "type": "deleted",
+      "from": "Doing",
+      "to": "none",
+      "text": "타입스크립트 공부",
+      "author": "kevin",
+      "time": "1612174743576"
     }
   ]
 }

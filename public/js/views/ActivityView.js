@@ -4,38 +4,102 @@ class ActivityView {
   }
 
   showActivityBoard(activities) {
-    console.log(activities);
-    // let contentHtml = ``;
-    // todos.forEach(todo => {
-    //   contentHtml += `
-    //     <div class="todo-container">
-    //       <div class="todo-title">
-    //         <div class="title-li title-img">
-    //           <svg class="svg-class">
-    //             <circle cx="13" cy="13" r="13" fill="#c9cdd3" />
-    //           </svg>
-    //         </div>
-    //         <div class="title-li title-number">${todo.cards.length}</div>
-    //         <div class="title-li title-text">${todo.title}</div>
-    //         <div class="title-li title-add">+</div>
-    //         <div class="title-li title-delete">✕</div>
-    //       </div>
-    //       <div class="todo-add non-display">
-    //         <input type="text" class="add-input"></input>
-    //         <button class="add-button" type="button">Add</button>
-    //         <button class="cancel-button" type="button">Cancel</button>
-    //       </div>
-    //       <div class="item-container"></div>
-    //     </div>
-    //   `
-    // });
-    // contents.innerHTML = contentHtml;
+    const activityContainer = document.querySelector("div.activity-contents");
+    const initHtml = ``;
+    
+    const activitiesHtml = activities.reduce( (initHtml, activity) => {
+      let activityHtml = `        
+          <div class="activity-item">
+          <img class="user-img" src="https://avatars.githubusercontent.com/u/26708382?s=460&u=60d666fedabd8d2e0cb2a589c0dec79bf1363fb3&v=4"></img>
+            <div class="item-title">
+              <span class="item-bold">@${activity.author}</span>
+        `;
+      switch(activity.type) {
+        case 'added':
+          activityHtml += `
+            <span>${activity.type}</span>
+            <span class="item-bold"> ${activity.text}</span>
+            <span> to ${activity.to} </span>
+          `
+          break;
+        case 'deleted':
+          activityHtml += `
+            <span>${activity.type}</span>
+            <span class="item-bold"> ${activity.text}</span>
+            <span> from ${activity.from} </span>
+          `
+          break;
+        case 'moved':
+          activityHtml += `
+            <span>${activity.type}</span>
+            <span class="item-bold"> ${activity.text}</span>
+            <span> from ${activity.from} </span>
+            <span> to ${activity.to} </span>
+          `
+          break;
+        case 'updated':
+          activityHtml += `
+            <span>${activity.type}</span>
+            <span class="item-bold"> ${activity.text}</span>
+          `
+      }
+      let timeText = 'seconds';
+      let timeGap = (Date.now() - activity.time)/1000;
+      
+      if(timeGap >= 86400){
+        timeGap /= 86400;
+        timeText = 'days'
+      } else if(timeGap >= 3600){
+        timeGap /= 3600;
+        timeText = 'hours'
+      } else if(timeGap >= 60){
+        timeGap /= 60;
+        timeText = 'minutes'
+      }
+      return initHtml += activityHtml + ` 
+          </div>
+          <div class="item-timelog">${Math.floor(timeGap)} ${timeText} ago</div>
+        </div>
+      `
+    }, initHtml)
+    activityContainer.innerHTML = activitiesHtml;
+  }
+
+  menuEventHandler() {
+    const menuBtn = document.querySelector("div.navbar-menu");
+    const activityEle = document.querySelector("div.activity-container");
+    menuBtn.addEventListener("click", e => {
+      this.displayActivityBoard(activityEle);
+    })
+  }
+
+  cancelEventHandler() {
+    const cancelBtn = document.querySelector("span.activity-close");
+    const activityEle = document.querySelector("div.activity-container");
+    cancelBtn.addEventListener("click", e => {
+      this.nonDisplayActivityBoard(activityEle);
+    })
+  }
+
+  displayActivityBoard(ele) {
+    ele.classList.remove("non-display");
+    ele.classList.remove("activity-out");
+    ele.classList.add("activity-in");
+  }
+
+  nonDisplayActivityBoard(ele) {
+    ele.classList.remove("activity-in");
+    ele.classList.add("activity-out");
   }
   
   init() {
-    console.log(this.model);
     this.model.subscribe(this.showActivityBoard);
-    this.model.getData();
+    this.model.getData()
+    .then(() => {
+      this.model.unSubscribe(this.showActivityBoard);
+      this.menuEventHandler();
+      this.cancelEventHandler();
+    });
   }
 }
 

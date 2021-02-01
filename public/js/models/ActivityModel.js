@@ -10,10 +10,6 @@ class ActivityModel extends Observable {
     this.activities = [...this.activities, newActivity];
     this.notify(this.activities);
   }
-  deleteActivity(newActivity) {
-    this.activities = [...this.activities].filter(activity => activity !== newActivity);
-    this.notify(this.activities);
-  }
   async getData() {
     const res = await fetch(URL+"/activity",{
       method: "GET",
@@ -25,7 +21,6 @@ class ActivityModel extends Observable {
     this.activities = activity;
     this.notify(this.activities);
   }
-
 }
 
 export {ActivityModel};
