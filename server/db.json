@@ -26,22 +26,37 @@
           "id": 2,
           "title": "수정하기5",
           "tasks": []
+        },
+        {
+          "id": 3,
+          "title": "새로운 아이템",
+          "tasks": []
+        },
+        {
+          "id": 4,
+          "title": "새로운 아이템 추가",
+          "tasks": []
+        },
+        {
+          "id": 5,
+          "title": "추가하기",
+          "tasks": []
         }
       ]
     },
     {
       "id": 2,
-      "name": "다했어2",
+      "name": "다했어",
       "author": "roddy.chan",
       "data": [
         {
-          "id": 0,
-          "title": "구성하기",
+          "id": 1,
+          "title": "카드 제목 수정기능 구현하기",
           "tasks": []
         },
         {
-          "id": 1,
-          "title": "구성하기4",
+          "id": 2,
+          "title": "검색 기능 구현하기",
           "tasks": []
         }
       ]

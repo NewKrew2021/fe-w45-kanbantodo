@@ -191,7 +191,26 @@ input {
   border-radius: 6px;
   margin: 10px;
   width: 355px;
-  min-height: 600px;
+  min-height: 500px;
+}
+
+.card-new {
+  background-color: #ffffff;
+  padding: 5px;
+  border: 1px dashed gray;
+  border-radius: 6px;
+  margin: 10px;
+  width: 355px;
+  height: 180px;
+  text-align: center;
+  line-height: 180px;
+  cursor: pointer;
+}
+
+.card-new:hover {
+  border: 1px dashed #0366d6;
+  -webkit-box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
+          box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
 }
 
 .card-header {

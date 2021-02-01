@@ -1,18 +1,12 @@
 
 export const domTpl = {
-    AddListView({idx, eidx, author, title, tasks = ''}) {
-        return `<div class="list-view droppable" data=${idx} data-idx=${eidx}>
-        <p class="title list-title"><img class="mg-right-6" src="/images/list_btn.png">${title}</p>
-        <ul class="task sub-title font-15">
-            ${tasks && tasks.map(element =>
-                `<li>${element.title}</li>`
-            ).join('')}
-        </ul>
-        <p class="author sub-title font-14"><span class="gray">Added by </span>${author}</p>
-        <button class="card-btn list-remove" data=${idx} data-idx=${eidx}>&times;</button>
-        </div>`
-    }
-    ,
+    NewColumn(){
+        return `
+            <div class="card-new bold">
+                <p>&#43; Add column</p>
+            </div>
+        `
+    },
     InitListView({ id, author, name, data }) {
         return `
         <div class="card droppable" data=${id}>

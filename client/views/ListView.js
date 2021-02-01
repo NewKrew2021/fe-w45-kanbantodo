@@ -36,7 +36,7 @@ class ListView {
         this.removeListView();
         this.editListView();
         this.dragAndDrop();
-        this.findLists();
+        this.findListView();
     }
 
     // template로 초기 html 넣기
@@ -50,6 +50,9 @@ class ListView {
             _dom.html(_dom.query('.card-wrapper'), createHTML(allObj));
         });
         this.cardsTitle = _dom.queryAll('.list-title')
+
+        // 맨 끝에 컬럼 추가기능 area 구현하기
+        _dom.addHTML(_dom.query('.card-wrapper'), domTpl['NewColumn']())
     }
 
     /* drag and drop */
@@ -235,7 +238,7 @@ class ListView {
     }
 
     // 검색으로 리스트를 찾기
-    findLists(){
+    findListView(){
         const searchBox = _dom.query('.search-input');
         searchBox.addEventListener('input', this.findListsHandler.bind(this));
     }
@@ -245,7 +248,7 @@ class ListView {
         this.removeListView();
         this.editListView();
         this.dragAndDrop();
-        this.findLists();
+        this.findListView();
     }
 }
 

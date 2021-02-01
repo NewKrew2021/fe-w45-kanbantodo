@@ -56,7 +56,6 @@ class TodoModel extends Observable {
             this.notify(this.todos);
         }
         else if (mode === 'card'){
-            console.log(mode);
             await req.editCardTitle(input);
             this.notify(this.todos);
         }
