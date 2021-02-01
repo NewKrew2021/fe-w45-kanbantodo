@@ -24,7 +24,7 @@ export default class KanbanController extends Controller {
     return this.kanbanData
   }
 
-  addColumn(columnData: ColumnData = { title: 'new column' }) {
+  addColumn(columnData: ColumnData = { title: 'new column', nNote: 0 }) {
     const columnController = new ColumnController({ id: '', columnData })
 
     // re-render

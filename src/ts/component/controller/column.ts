@@ -45,7 +45,11 @@ export default class ColumnController extends Controller {
   }
 
   addNote(noteData: NoteData) {
+    this.columnData.nNote++
+    this.view.render()
+
     const noteController = new NoteController({ id: '', noteData })
+    noteController.addDeleteListener(this.removeNote.bind(this))
 
     // re-render
     noteController.setWrapper(this.view.getChildrenWrapper('note'))
@@ -54,5 +58,7 @@ export default class ColumnController extends Controller {
   }
 
   removeNote(note: NoteController) {
+    this.columnData.nNote--
+    this.view.render()
   }
 }

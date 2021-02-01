@@ -12,12 +12,12 @@ export default class ColumnView extends View {
 
   toHtmlString() {
     const id = this.getID()
-    const { title }: ColumnData = this.getData()
+    const { title, nNote }: ColumnData = this.getData()
 
     return `
       <div id="${id}" class="column">
         <div class="d-flex flex-center mb-2">
-          <span class="badge">7</span>
+          <span class="badge">${nNote}</span>
           <strong class="ml-2 mr-auto">${title}</strong>
           <button>+</button>
           <button data-click-action="removeSelf">×</button>

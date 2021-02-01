@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   }
 
   kanbanData.forEach(({ title, notes }) => {
-    const columnController = kanbanController.addColumn({ title })
+    const columnController = kanbanController.addColumn({ title, nNote: 0 })
     notes.forEach(({ title, subtasks }) => {
       const noteController = columnController.addNote({ title })
     })
