@@ -1,6 +1,7 @@
 import API from "../utils/api";
 import Observable from "../utils/Observable";
 import ModalView from "../view/ModalView";
+import logger from "./ActionModel";
 
 class TodoModel extends Observable{
     constructor() {
@@ -23,18 +24,24 @@ class TodoModel extends Observable{
 
     async setInitialState() {        
     }
-
+ 
     async addColumn(value) {
         await API.createNewColumn(value);
         const { data } = await API.getTodoData();
         this.state = {data};
         this.notify(data);
+        logger.addColumn(value);
     }    
 
     async deleteColumn(id) {
         await API.deleteColumn(id);
+        logger.deleteColumn(
+            this.state.data.find(
+                (val) => {
+                    return val.id === id;
+                }).title);
         const { data } = await API.getTodoData();
-        this.state = {data}
+        this.state = { data }
         this.notify(data);
     }
 
@@ -47,7 +54,6 @@ class TodoModel extends Observable{
             labelName: 'Column name',
             onClickButton: [this.addColumn.bind(this)]
         })
-        modal.init();
     }
 
     showDeleteColumnModal({target}) {
@@ -59,7 +65,6 @@ class TodoModel extends Observable{
             renderContent: () => {return '';},
             onClickButton: [() => this.deleteColumn(id)]
         });
-        modal.init();
     }
 
     /**

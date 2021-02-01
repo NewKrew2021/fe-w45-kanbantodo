@@ -12,8 +12,8 @@ class ColumnController {
             const columnTitleEle = columnEle.querySelector('.column__header__text > .title');
 
             noteAddButton.addEventListener('click', this.model.addNote);
-            columnTitleEle.addEventListener('dblclick', this.model.editColumn);
-            columnEle.addEventListener('click', this.model.deleteNote)
+            columnTitleEle.addEventListener('dblclick', this.model.showEditColumnModal);
+            columnEle.addEventListener('click', this.model.showDeleteNoteModal)
         })
     }
 }

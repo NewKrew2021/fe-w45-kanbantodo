@@ -27,6 +27,7 @@ class ColumnView {
         this.createView.classList.add('hidden')
     }
     
+    // TODO : initial render와 구분하기
     render(colData) {
         const {notes, title, id} = colData;
         const noteNum = notes.length;
@@ -42,7 +43,8 @@ class ColumnView {
         columnEle.appendChild(this.renderCreateView())
         columnEle.appendChild(this.renderNotes(notes));
         const container = document.querySelector('.container');
-        container.appendChild(columnEle);
+        const addColumnEle = container.querySelector('.add-column');
+        container.insertBefore(columnEle, addColumnEle);
         this.addColumnViewEventListener(id);
     }
 

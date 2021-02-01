@@ -21,9 +21,12 @@ const defaultConfig = {
 
 class ModalView {
     constructor (config = defaultConfig) {
-        this.onClickCloseButton = this.onClickCloseButton.bind(this);
-        this.removeModal = this.removeModal.bind(this);
         this.config = config;
+        this.removeModal = this.removeModal.bind(this);
+        this.onClickCloseButton = this.onClickCloseButton.bind(this);
+        this.onClickButton = this.onClickButton.bind(this);
+        this.render = this.render.bind(this);
+        this.init();
     }
     
     init() {
@@ -42,8 +45,13 @@ class ModalView {
         this.removeModal();
     }
 
-    onClickButton(value) {
-        this.config.onClickButton[0](value);
+    onClickButton(e) {
+        const inputEle = document.querySelector('.modal input');
+        if (inputEle) {
+            this.config.onClickButton[0](inputEle.value);
+        } else {
+            this.config.onClickButton[0]();
+        }
         this.removeModal();
     }
 
@@ -78,19 +86,9 @@ class ModalView {
                 </div>
             </div>`
         modalEle.innerHTML = innerHtml;
-        modalEle.querySelector('.close-button').addEventListener('click', this.onClickCloseButton)
-        modalEle.querySelector('.modal-buttons').firstElementChild.addEventListener('click', () => {
-            const inputEle = modalEle.querySelector('input');
-            if (inputEle) {
-                const { value } = inputEle;
-                onClickButton[0](value);
-                inputEle.value = '';
-            } else {
-                onClickButton[0]();
-            }
-            this.onClickCloseButton();
-        })
         document.querySelector('body').appendChild(modalEle);
+        modalEle.querySelector('.close-button').addEventListener('click', this.onClickCloseButton);
+        modalEle.querySelector('.modal-buttons').firstElementChild.addEventListener('click', this.onClickButton);
     }
 }
 
