@@ -43,8 +43,11 @@ export default class View {
       // find out the target
       const target: HTMLElement = <HTMLElement>event.target
 
-      // get form data and convert to an object
-      const formDataObject = Object.fromEntries((new FormData(<HTMLFormElement>target)).entries())
+      // get form data
+      const formData = new FormData(<HTMLFormElement>target)
+
+      // convert form data to an object
+      const formDataObject = Object.fromEntries(formData.entries())
 
       // call the action with form data
       this.callAction(target.dataset.submitAction, formDataObject)
