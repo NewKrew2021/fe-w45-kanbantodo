@@ -1,6 +1,6 @@
 import "./public/stylesheet/style.sass";
-import "./public/stylesheet/main.css";
-import "./public/stylesheet/normalize.css";
+import "./public/stylesheet/main";
+import "./public/stylesheet/normalize";
 
 import { TodoController } from "./public/js/controllers/todo.controller";
 import { TodoModel } from "./public/js/models/todo.model";

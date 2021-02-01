@@ -31,5 +31,9 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    modules: ["node_modules"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
+  },
   plugins: [new HtmlWebpackPlugin({ template: "public/index.html" })],
 };

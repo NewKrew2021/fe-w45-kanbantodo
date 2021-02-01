@@ -1,4 +1,4 @@
-import { $, createNewElement, deleteElement } from "../common/utils.ts";
+import { $, createNewElement, deleteElement } from "../common/utils";
 
 const USER = "puba";
 const DRAGGABLE_ELEMENTS = ["todo-card", "todo-card--content", "todo-card--writer"];

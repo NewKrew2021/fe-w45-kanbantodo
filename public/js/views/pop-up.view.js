@@ -1,4 +1,4 @@
-import { $ } from "../common/utils.ts";
+import { $ } from "../common/utils";
 
 const POP_UP_TEMPLATE = {
   popUp(title) {
