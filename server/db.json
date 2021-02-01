@@ -19,7 +19,7 @@
     },
     {
       "id": 1,
-      "name": "하는중",
+      "name": "수정한 2번째 카드",
       "author": "roddy.chan",
       "data": [
         {
@@ -63,20 +63,9 @@
     },
     {
       "id": 3,
-      "name": "추가한 컬럼 수정",
+      "name": "4번째 카드",
       "author": "roddy.chan",
-      "data": [
-        {
-          "id": 0,
-          "title": "추가하기 수정2",
-          "tasks": []
-        },
-        {
-          "id": 1,
-          "title": "추가 아이템",
-          "tasks": []
-        }
-      ]
+      "data": []
     }
   ]
 }
