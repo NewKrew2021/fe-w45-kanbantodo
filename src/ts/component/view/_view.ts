@@ -10,6 +10,7 @@ export default class View {
     return ''
   }
   getData():any {}
+  getRenderData():any {}
 
   /*
 
