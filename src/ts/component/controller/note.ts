@@ -4,13 +4,22 @@ import NoteView from '../view/note'
 
 export default class NoteController extends Controller {
   private noteData: NoteData
-  private view: NoteView
 
-  constructor({ id, noteData }: { id: String, noteData: NoteData }) {
+  constructor({ id, noteData }: { id: string, noteData: NoteData }) {
     super()
+    this.id = id
     this.noteData = noteData
-    this.view = new NoteView({ id, noteData })
-    this.view.removeSelf = this.removeSelf.bind(this)
+    this.view = new NoteView()
+    this.bindMethods([
+      'getID',
+      'getData',
+      'removeSelf',
+    ])
+    this.view.render()
+  }
+
+  getData() {
+    return this.noteData
   }
 
   removeSelf() {
@@ -21,9 +30,5 @@ export default class NoteController extends Controller {
     this.view.remove()
 
     this.notifyDelete()
-  }
-
-  setWrapper(wrapper: HTMLElement) {
-    this.view.render(wrapper)
   }
 }

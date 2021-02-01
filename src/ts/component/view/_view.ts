@@ -5,6 +5,13 @@ export default class View {
     this.element = document.createElement('div')
   }
 
+  // get data from controller to render itself
+  getID():string {
+    return ''
+  }
+  getData():any {}
+  getRenderData():any {}
+
   /*
 
     event handling
@@ -37,8 +44,11 @@ export default class View {
       // find out the target
       const target: HTMLElement = <HTMLElement>event.target
 
-      // get form data and convert to an object
-      const formDataObject = Object.fromEntries((new FormData(<HTMLFormElement>target)).entries())
+      // get form data
+      const formData = new FormData(<HTMLFormElement>target)
+
+      // convert form data to an object
+      const formDataObject = Object.fromEntries(formData.entries())
 
       // call the action with form data
       this.callAction(target.dataset.submitAction, formDataObject)
@@ -66,9 +76,19 @@ export default class View {
     return ''
   }
 
-  render(wrapper: HTMLElement = this.element.parentElement) {
-    // detach from parent
-    this.element.parentElement?.removeChild(this.element)
+  render(wrapper: HTMLElement = this.element.parentElement, index?: number) {
+    const parent = this.element.parentElement
+
+    // if parent exist
+    if (parent) {
+      // set index
+      if (index === undefined) {
+        index = Array.from(parent.children).indexOf(this.element)
+      }
+
+      // detach from parent
+      parent?.removeChild(this.element)
+    }
 
     // make new temporary element
     const newElement = document.createElement('div')
@@ -108,7 +128,7 @@ export default class View {
     // attach this to wrapper
     if (wrapper) {
       this.beforeRender()
-      wrapper.appendChild(this.element)
+      wrapper.insertBefore(this.element, wrapper.children[index]);
       this.addEventListenerToWrapper(this.element)
       this.afterRender()
     }

@@ -1,30 +1,36 @@
 import ColumnData from '../../type/column'
 import View from './_view'
 
-export default class ColumnView extends View {
-  private id: String
-  private columnData: ColumnData
+export type ColumnRenderData = {
+  nNote: number,
+  formVisible: boolean
+}
 
-  constructor({ id, columnData }: { id: String, columnData: ColumnData }) {
+export default class ColumnView extends View {
+  constructor() {
     super()
-    this.id = id
-    this.columnData = columnData
-    this.render()
   }
 
   addNote() {}
 
+  toggleForm() {}
+
   removeSelf() {}
 
   toHtmlString() {
+    const id = this.getID()
+    const { title }: ColumnData = this.getData()
+    const { nNote, formVisible }: ColumnRenderData = this.getRenderData()
+
     return `
-      <div id="${this.id}" class="column">
-        <div class="d-flex mb-2">
-          <strong class="mr-auto my-auto">${this.columnData.title}</strong>
-          <button>+</button>
+      <div id="${id}" class="column">
+        <div class="d-flex flex-center mb-2">
+          <span class="badge">${nNote}</span>
+          <strong class="ml-2 mr-auto">${title}</strong>
+          <button data-click-action="toggleForm">+</button>
           <button data-click-action="removeSelf">×</button>
         </div>
-        <form class="mb-2" data-submit-action="addNote">
+        <form class="mb-2 ${formVisible ? '' : 'd-none'}" data-submit-action="addNote">
           <textarea name="title" class="fix-horizontal"></textarea>
           <div class="d-flex mt-2">
             <button type="submit" class="form-component flex-1 mr-1 bg-green white">Add</button>

@@ -4,7 +4,7 @@ import ColumnController from './component/controller/column'
 import KanbanController from './component/controller/kanban'
 import { findOne } from './util/index'
 
-const kanban = new KanbanController({ id: 'kanban', kanbanData: {} })
+const kanbanController = new KanbanController({ id: 'kanban', kanbanData: {} })
 
 window.addEventListener('DOMContentLoaded', (event) => {
   // fetch data
@@ -27,15 +27,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
   }
 
   kanbanData.forEach(({ title, notes }) => {
-    const columnController = kanban.addColumnWithData({ title })
-    // const column = new ColumnController({ id: '', columnData: { title } })
-    // notes.forEach(({ title, subtasks }) => {
-    //   const note = new NoteController({ id: '', taskData: { title } })
-    //   initAndAddTasks(note, subtasks)
-    //   column.addNote(note)
-    // })
+    const columnController = kanbanController.addColumn({ title })
+    notes.forEach(({ title, subtasks }) => {
+      const noteController = columnController.addNote({ title })
+    })
     // kanban.addColumn(column)
   })
 
-  kanban.setWrapper(findOne('#kanban_box'))
+  kanbanController.setWrapper(findOne('#kanban_box'))
 })

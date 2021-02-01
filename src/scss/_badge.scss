@@ -1,7 +1,8 @@
 .badge {
   display: inline-block;
-  color: #E08000;
-  border: 1px solid #E08000;
+  color: $color-green;
+  background-color: $color-white;
+  border: 1px solid $color-lightgray;
   border-radius: 0.25em;
-  padding: 0.125em 0.25em;
+  padding: 0.25em 0.5em;
 }
