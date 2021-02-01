@@ -17,7 +17,7 @@ class PopUpMenuView {
     });
   }
 
-  init() {
+  init(): PopUpMenuView {
     this.handleButtonTransition(this.menuButton, "translateX(0)");
     this.handleButtonTransition(this.closeButton, null);
 
