@@ -11,14 +11,16 @@ class PopUpMenuView {
     this.closeButton = $(".menu-pop-up__close-button");
   }
 
-  init() {
-    this.menuButton.addEventListener("click", () => {
-      this.element.style.transform = "translateX(0)";
+  handleButtonTransition(button: HTMLElement, transition: string) {
+    button.addEventListener("click", () => {
+      this.element.style.transform = transition;
     });
+  }
 
-    this.closeButton.addEventListener("click", () => {
-      this.element.style.transform = null;
-    });
+  init() {
+    this.handleButtonTransition(this.menuButton, "translateX(0)");
+    this.handleButtonTransition(this.closeButton, null);
+
     return this;
   }
 }
