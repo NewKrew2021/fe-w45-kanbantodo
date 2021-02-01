@@ -10,11 +10,18 @@ class InputView {
         this.model = model; // 생성 시 구독할 model(여기서는 TodoModel)을 주입받고 구독한다.
         this.model.subscribe(this.update.bind(this))
     }
-
-    // update, todos 토대로 그리기
-    update(state) {
+    
+    onEvents() {
         this.setClickBtn();
         this.inputNoteData();
+    }
+    
+    update(){
+        this.onEvents();
+    }
+
+    init() {
+        this.onEvents();
     }
 
     // Event handler
@@ -70,10 +77,6 @@ class InputView {
         });
     }
 
-    init() {
-        this.setClickBtn();
-        this.inputNoteData();
-    }
 }
 
 export default InputView;

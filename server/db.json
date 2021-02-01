@@ -18,30 +18,8 @@
       ]
     },
     {
-      "id": 1,
-      "name": "수정한 2번째",
-      "author": "roddy.chan",
-      "data": [
-        {
-          "id": 3,
-          "title": "새로운 아이템",
-          "tasks": []
-        },
-        {
-          "id": 4,
-          "title": "새로운 아이템 추가",
-          "tasks": []
-        },
-        {
-          "id": 5,
-          "title": "추가하기",
-          "tasks": []
-        }
-      ]
-    },
-    {
       "id": 2,
-      "name": "더 추가하기",
+      "name": "하는중",
       "author": "roddy.chan",
       "data": [
         {
@@ -53,20 +31,19 @@
           "id": 2,
           "title": "검색기능 구현",
           "tasks": []
+        },
+        {
+          "id": 0,
+          "title": "구현",
+          "tasks": []
         }
       ]
     },
     {
       "id": 3,
-      "name": "4번째 카드",
+      "name": "다했음",
       "author": "roddy.chan",
-      "data": [
-        {
-          "id": 0,
-          "title": "추가 하기",
-          "tasks": []
-        }
-      ]
+      "data": []
     }
   ]
 }

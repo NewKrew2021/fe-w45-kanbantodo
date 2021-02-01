@@ -19,16 +19,18 @@ class ListView {
         this.model.subscribe(this.update.bind(this))
     }
 
-    // update(모델의 상태값이 변화(데이터 추가 혹은 삭제)되면, 리스트뷰 업데이트 하기)
-    update(state) {
-        this.updateListView(state);
-    }
-
-    // 데이터를 가지고 view를 바로 렌더링하는 메서드
-    updateListView(res) {
+    // 이벤트 등록
+    onEvents() {
         this.render();
         this.dragAndDrop();
         this.findListView();
+    }
+    
+    update() {
+        this.onEvents();
+    }
+    init() {
+        this.onEvents();
     }
 
     // template로 초기 html 넣기
@@ -120,7 +122,6 @@ class ListView {
         document.removeEventListener('mousemove', this.onMouseMoveHandler);
         this.copiedNode.addEventListener('mousedown', this.dragDownHandler.bind(this));
         this.copiedNode.addEventListener('mouseup', this.dropUpHandler.bind(this));
-        //this.updateEvent(this.copiedNode); // 보류
         this.cardsTitle = _dom.queryAll('.list-title');
     }
 
@@ -132,15 +133,6 @@ class ListView {
             element.addEventListener('mouseup', this.dropUpHandler.bind(this));
         })
     }
-
-    /*
-    updateEvent(element) {
-        element.addEventListener('dblclick', this.editListHandler.bind(this));
-        const removeListBtn = _dom.queryAll('.list-remove');
-        removeListBtn.forEach(element => {
-            element.addEventListener('click', this.removeListHandler.bind(this));
-        })
-    }*/
 
     // filter cards
     async findListsHandler(e) {
@@ -157,7 +149,6 @@ class ListView {
         cardsTitleArr.forEach((item, idx) => {
             if (!item[idx].title.match(value)) {
                 item[idx].current.parentNode.classList.add('none');
-                console.log(item[idx].current.parentNode);
             } else {
                 item[idx].current.parentNode.classList.remove('none');
             }
@@ -170,11 +161,6 @@ class ListView {
         searchBox.addEventListener('input', this.findListsHandler.bind(this));
     }
 
-    init() {
-        this.render();
-        this.dragAndDrop();
-        this.findListView();
-    }
 }
 
 export default ListView;
