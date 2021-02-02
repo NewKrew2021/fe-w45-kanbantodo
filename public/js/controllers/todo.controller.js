@@ -12,7 +12,6 @@ class TodoController {
   }
 
   notify(todoCardList, status) {
-    console.log(this.todoList);
     this.todoList
       .filter((todo) => todo.status === status)
       .forEach(({ render }) => {

@@ -107,10 +107,22 @@ class TodoView {
       this.movingElement.addEventListener("mouseup", () => {
         if (newTodoList) {
           this.movingElement.style = "";
+
           newTodoList.appendChild(this.movingElement);
-          deleteElement(originalMovingElement);
-          popUpMenuModel.addLog({ user: USER, task: "", from: "", to: "", card: "" });
+          // log에 추가
+          let to = this.movingElement.closest(".todo").id;
+          let from = originalMovingElement.closest(".todo").id;
+          popUpMenuModel.addLog({
+            user: USER,
+            task: "",
+            from: from,
+            to: to,
+            card: "",
+          });
           notifyLog(popUpMenuModel.logList);
+          // 기존 node 삭제
+          deleteElement(originalMovingElement);
+
           notify(updateCardStatus({ id: originalMovingElement.id, status: newTodoList.id }));
         } else {
           deleteElement(this.movingElement);

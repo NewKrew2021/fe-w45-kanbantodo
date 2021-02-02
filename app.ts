@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   const popUpMenuModel = new PopUpMenuModel();
 
   const todoController = new TodoController(popUpMenuView);
-  console.log(todoController.logView);
 
   const todoModel = new TodoModel();
   const todoCardList = await todoModel.initData();
