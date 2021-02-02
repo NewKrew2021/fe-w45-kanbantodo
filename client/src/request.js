@@ -67,6 +67,27 @@ export function removeList({ cardId, id }) {
     }).then((res) => { return res })
 }
 
+// 사용자 액션 등록
+export function addUserHistory(input){
+    return fetch('http://localhost:5000/addHistory', {
+        method: 'post',
+        body: JSON.stringify(input),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }).then((res) => { return res })
+}
+
+// 사용자 액션 기록 불러오기
+export function getHistory(){
+    return fetch('http://localhost:5000/getHistory', {
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }).then((res) => { return res.json() });
+}
+
 export function getAllData() {
     return fetch('http://localhost:5000/posts', {
         method: 'get',

@@ -36,12 +36,13 @@ class InputView {
                 inputData = element.value;
                 this.model.addTodo({cardId, inputData});
                 // add history
-                this.model.setHistoryState({
-                    cardName: cardName,
-                    beforeTitle: '',
-                    afterTitle: inputData,
+                const historyState = {
+                    cardName: cardName, beforeTitle: '',
+                    afterTitle: inputData, writeTime : Date.now(),
                     action: 'ADD_NOTE'
-                });
+                }
+                this.model.setHistoryState(historyState);
+                this.model.addHistory({input : historyState});
             }
         })
     }

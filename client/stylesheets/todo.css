@@ -26,6 +26,9 @@ input {
   background-color: #ffffff;
   -webkit-box-shadow: 0 0 5px #dddee2;
           box-shadow: 0 0 5px #dddee2;
+  overflow-y: scroll;
+  -webkit-transform: translate(370px, 0);
+          transform: translate(370px, 0);
 }
 
 #menuBtn {
@@ -53,6 +56,11 @@ input {
   cursor: pointer;
 }
 
+.menu-accent {
+  color: #3495DD;
+  font-weight: 700;
+}
+
 .relative {
   position: relative;
 }
@@ -70,7 +78,7 @@ input {
 }
 
 .history {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
 }
 

@@ -4,21 +4,22 @@
 */
 import * as _dom from "../src/util"
 import TodoModel from "../models/TodoModel"
+import { domTpl } from './template';
 
 const SPEED = "500ms";
 
-interface Menu{
+interface Menu {
     model: TodoModel
     speed: string
     width: string
 }
 
-class MenuView{
+class MenuView {
     model: TodoModel
     speed: string
     width: string
     menuBar: HTMLElement
-    constructor({model, speed, width} : Menu){
+    constructor({ model, speed, width }: Menu) {
         this.model = model;
         this.speed = speed;
         this.width = width;
@@ -27,42 +28,58 @@ class MenuView{
     }
 
     // TodoModel의 상태값 변경 시, 기록이 남도록
-    update(){
+    update() {
         this.onEvents();
-        this.testState();
+        this.writeHistory();
     }
 
-    onEvents(){
+    onEvents() {
         this.showMenuBar();
         this.closeMenuBar();
     }
 
-    init(){
+    init() {
         this.showMenuBar();
         this.closeMenuBar();
+        this.writeHistory();
     }
 
     // menuBar hover Event
-    showMenuHandler(){
+    showMenuHandler() {
         this.menuBar.style.transition = this.speed;
         this.menuBar.style.transform = "translate(0, 0)";
     }
-    closeMenuHandler(){
+    closeMenuHandler() {
         this.menuBar.style.transform = `translate(${this.width}, 0)`;
     }
-    showMenuBar(){
+    showMenuBar() {
         const menuBtn = _dom.query('#menuBtn');
-        this.menuBar.style.transform = `translate(${this.width}, 0)`;
+        //this.menuBar.style.transform = `translate(${this.width}, 0)`;
         menuBtn.addEventListener('click', this.showMenuHandler.bind(this));
     }
-    closeMenuBar(){
+    closeMenuBar() {
         const menuCloseBtn = _dom.query('.menu-close');
         menuCloseBtn.addEventListener('click', this.closeMenuHandler.bind(this));
     }
 
-    // db에 기록하는 함수
-    testState(){
-        console.log(this.model.history);
+    // history state DB 값에 따라 업데이트
+    async writeHistory() {
+        const userActions = await this.model.getHistory();
+        _dom.html(_dom.query('.menu-item-wrapper'), "");
+        const createHTML = ({ data, type }) => {
+            let writeTime = Math.floor((Date.now() - data.writeTime) / 1000);
+            return domTpl[type]({ 
+                action : data.action,
+                afterTitle : data.afterTitle,
+                beforeTitle : data.beforeTitle,
+                cardName : data.cardName,
+                writeTime : writeTime });
+        };
+
+        userActions.forEach(element => {
+            const allObj = { data: element, type: element.action };
+            _dom.addHTML(_dom.query('.menu-item-wrapper'), createHTML(allObj));
+        });
     }
 }
 

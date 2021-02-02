@@ -98,15 +98,24 @@ class TodoModel extends Observable {
     // 어떤 카드에, 어떤 이벤트(추가, 삭제, 수정)가 이루어졌는지
     // action : ADD_CARD / ADD_NOTE / REMOVE_NOTE /
     // EDIT_NOTE / EDIT_CARD / REMOVE_CARD / (todo : MOVE_...)
-    setHistoryState({cardName, beforeTitle, afterTitle, action}){
-        this.history = {...this.history,
+    setHistoryState({cardName, beforeTitle, afterTitle, writeTime, action}){
+        this.history = { ...this.history,
             cardName: cardName,
             beforeTitle: beforeTitle,
             afterTitle: afterTitle,
+            writeTime: writeTime,
             action: action
         };
-        this.notify(this.history);
         return this.history;
+    }
+
+    async addHistory(input){
+        await req.addUserHistory(input);
+    }
+
+    async getHistory(){
+        const data = await req.getHistory();
+        return data;
     }
 
     // todo 데이터 가져오기. json-server로부터 GET 요청으로 데이터를 가져올 수 있다.

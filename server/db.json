@@ -7,44 +7,40 @@
       "data": [
         {
           "id": 0,
-          "title": "검색 필터 기능",
+          "title": "추가하기",
           "tasks": []
         },
         {
           "id": 1,
-          "title": "추가적인 모델 만들어야 하는지 살펴보기",
+          "title": "뮤",
+          "tasks": []
+        },
+        {
+          "id": 2,
+          "title": "abc",
           "tasks": []
         }
       ]
     },
     {
-      "id": 5,
-      "name": "네번째카드",
+      "id": 1,
+      "name": "뮤",
       "author": "roddy.chan",
       "data": [
         {
           "id": 0,
           "title": "abc",
           "tasks": []
-        },
-        {
-          "id": 1,
-          "title": "def",
-          "tasks": []
         }
       ]
     },
     {
-      "id": 6,
-      "name": "카드제목",
+      "id": 2,
+      "name": "뮤뮤",
       "author": "roddy.chan",
-      "data": [
-        {
-          "id": 0,
-          "title": "ffff",
-          "tasks": []
-        }
-      ]
+      "data": []
     }
+  ],
+  "history": [
   ]
 }
