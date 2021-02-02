@@ -1,9 +1,10 @@
 import { $ } from "../common/utils";
 
 class TodoController {
-  constructor() {
+  constructor(logView) {
     this.todoList = [];
     this.todoViewList = {};
+    this.logView = logView;
   }
 
   subscribe(todo) {
@@ -16,6 +17,10 @@ class TodoController {
       .forEach(({ render }) => {
         render(todoCardList[status], status);
       });
+  }
+
+  notifyLog(logList) {
+    this.logView.render(logList);
   }
 
   addButtonEvent(model, view, status) {
@@ -49,10 +54,15 @@ class TodoController {
     });
   }
 
-  createNewView(todoCardList, TodoView, todoModel, status) {
+  createNewView(todoCardList, TodoView, todoModel, status, popUpMenuModel) {
     this.todoViewList[status] = new TodoView(status).init();
 
-    this.todoViewList[status].HandleDragAndDrop(todoModel.updateCardStatus, this.notify.bind(this));
+    this.todoViewList[status].HandleDragAndDrop(
+      todoModel.updateCardStatus,
+      this.notify.bind(this),
+      popUpMenuModel,
+      this.notifyLog.bind(this)
+    );
     this.subscribe({
       render: this.todoViewList[status].render,
       status: this.todoViewList[status].status,
@@ -62,9 +72,9 @@ class TodoController {
     this.addButtonEvent(todoModel, this.todoViewList[status], status);
   }
 
-  init(todoCardList, TodoView, todoModel) {
+  init(todoCardList, TodoView, todoModel, popUpMenuModel) {
     for (let status in todoCardList) {
-      this.createNewView(todoCardList, TodoView, todoModel, status);
+      this.createNewView(todoCardList, TodoView, todoModel, status, popUpMenuModel);
     }
     this.handlePopUpEvent(todoCardList, TodoView, todoModel);
 

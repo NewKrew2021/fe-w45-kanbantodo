@@ -1,4 +1,4 @@
-import { $, createNewElement, deleteElement } from "../common/utils";
+import { $, createNewElement, deleteElement } from "@public/js/common/utils";
 
 const USER = "puba";
 const DRAGGABLE_ELEMENTS = ["todo-card", "todo-card--content", "todo-card--writer"];
@@ -81,7 +81,7 @@ class TodoView {
     this.movingElement.style.top = `${pageY - this.movingElement.offsetHeight / 2}px`;
   }
 
-  HandleDragAndDrop(updateCardStatus, notify) {
+  HandleDragAndDrop(updateCardStatus, notify, popUpMenuModel, notifyLog) {
     this.element.addEventListener("mousedown", ({ target }) => {
       if (!DRAGGABLE_ELEMENTS.includes(target.className)) return;
       let originalMovingElement = target.closest(".todo-card");
@@ -107,7 +107,20 @@ class TodoView {
       this.movingElement.addEventListener("mouseup", () => {
         if (newTodoList) {
           this.movingElement.style = "";
+
           newTodoList.appendChild(this.movingElement);
+          // log에 추가
+
+          let log = {
+            user: USER,
+            task: this.movingElement.innerText.split("\n")[0],
+            from: originalMovingElement.closest(".todo").id,
+            to: this.movingElement.closest(".todo").id,
+            card: "",
+          };
+          popUpMenuModel.addLog(log);
+          notifyLog(popUpMenuModel.logList);
+          // 기존 node 삭제
           deleteElement(originalMovingElement);
 
           notify(updateCardStatus({ id: originalMovingElement.id, status: newTodoList.id }));
