@@ -55,7 +55,7 @@ class TodoModel extends Observable {
                     listId = 0;
                 }
             }
-        }.bind(this));
+        });
 
         // 받은 todo값을 적당히 가공하고 넣기
         const inputObj = {
