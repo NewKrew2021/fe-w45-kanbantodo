@@ -31,6 +31,11 @@
           "id": 0,
           "title": "abc",
           "tasks": []
+        },
+        {
+          "id": 1,
+          "title": "def",
+          "tasks": []
         }
       ]
     },
@@ -42,5 +47,12 @@
     }
   ],
   "history": [
+    {
+      "action": "ADD_NOTE",
+      "cardName": "뮤",
+      "beforeTitle": "",
+      "afterTitle": "def",
+      "writeTime": 1612275621393
+    }
   ]
 }

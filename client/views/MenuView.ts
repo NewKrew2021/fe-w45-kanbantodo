@@ -54,7 +54,6 @@ class MenuView {
     }
     showMenuBar() {
         const menuBtn = _dom.query('#menuBtn');
-        //this.menuBar.style.transform = `translate(${this.width}, 0)`;
         menuBtn.addEventListener('click', this.showMenuHandler.bind(this));
     }
     closeMenuBar() {
