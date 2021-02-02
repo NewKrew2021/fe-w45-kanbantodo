@@ -1,5 +1,29 @@
 import { $ } from "../common/utils";
 
+const PROFILE_IMAGE: string =
+  "https://avatars.githubusercontent.com/u/37804777?s=460&u=088956f4c1a3613536ddb54dac7492b469a12ca9&v=4";
+
+const POP_UP_MENU_TPL: object = {
+  detailItem(profile: string, user: string): string {
+    return `
+      <li class="menu-detail__item">
+        <img
+          class="user-image"
+          src="${profile}"
+          alt=""
+        />
+        <div class="activity-content">
+          <div class="user-id">${user}</div>
+          <div class="balloon">
+            <span class="user-activity">added</span>
+            <span class="card">감사</span>
+          </div>
+        </div>
+      </li>
+          `;
+  },
+};
+
 class PopUpMenuView {
   element: HTMLElement;
   menuButton: HTMLElement;
@@ -19,7 +43,7 @@ class PopUpMenuView {
 
   init(): PopUpMenuView {
     this.handleButtonTransition(this.menuButton, "translateX(0)");
-    this.handleButtonTransition(this.closeButton, null);
+    this.handleButtonTransition(this.closeButton, "");
 
     return this;
   }
