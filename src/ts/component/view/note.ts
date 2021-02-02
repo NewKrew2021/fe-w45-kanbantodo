@@ -6,10 +6,6 @@ export default class NoteView extends View {
     super()
   }
 
-  editNote() {}
-
-  removeSelf() {}
-
   toHtmlString() {
     const id = this.getID()
     const { title }: NoteData = this.getData()
