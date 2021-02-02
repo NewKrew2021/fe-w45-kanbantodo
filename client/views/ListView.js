@@ -107,11 +107,11 @@ class ListView {
             }
             if (elemBelow.classList.contains('card')) {
                 elemBelow.children.forEach(function (elem) {
-                    if (element.classList.contains(listWrapper))
+                    if (elem.classList.contains(listWrapper))
                         parentNode = elem;
                 })
                 parentNode.children.forEach(function (elem) {
-                    if (element.className === listViewWrapper)
+                    if (elem.className === listViewWrapper)
                         targetNode = elem;
                 })
                 targetNode.appendChild(copiedNode);
