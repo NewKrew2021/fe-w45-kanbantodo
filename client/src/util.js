@@ -13,16 +13,16 @@ export function create({type, className}){
     res.classList.add(...className);
     return res;
 }
-export function getAttr({node, attr}){
+export function getAttr({nodeList, attr}){
     return node.getAttribute(attr);
 }
 
-export function addClass({ node, className }){
+export function addClass({nodeList, className}){
     node.forEach(element =>{
         element.classList.add(className);
     })
 }
-export function removeClass({ node, className }){
+export function removeClass({nodeList, className}){
     node.forEach(element => {
         element.classList.remove(className);
     });
