@@ -26,7 +26,7 @@ export default class ColumnView extends View {
       <div id="${id}" class="column">
         <div class="d-flex flex-center mb-2">
           <span class="badge">${nNote}</span>
-          <strong class="ml-2 mr-auto">${title}</strong>
+          <strong class="ml-2 mr-auto" role="button" data-click-action="showEditModal">${title}</strong>
           <button data-click-action="toggleForm">+</button>
           <button data-click-action="removeSelf">×</button>
         </div>

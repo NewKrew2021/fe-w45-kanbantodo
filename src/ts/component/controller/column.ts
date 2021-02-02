@@ -3,6 +3,7 @@ import Controller from './_controller'
 import NoteController from './note'
 import ColumnView, { ColumnRenderData } from '../view/column'
 import NoteData from '../../type/note'
+import ModalController from './modal'
 
 export default class ColumnController extends Controller {
   private columnData: ColumnData
@@ -21,6 +22,7 @@ export default class ColumnController extends Controller {
       'addNote',
       'toggleForm',
       'removeSelf',
+      'showEditModal',
     ])
     this.view.render()
   }
@@ -73,5 +75,35 @@ export default class ColumnController extends Controller {
   toggleForm() {
     this.renderData.formVisible = !this.renderData.formVisible
     this.view.render()
+  }
+
+  editColumn({ columnName }: { columnName: string }) {
+    columnName = columnName.trim()
+
+    // handle exception: invalid or same name
+    if (!columnName || columnName === this.columnData.title) return
+
+    // update column's name
+    this.columnData.title = columnName
+    this.view.render()
+  }
+
+  showEditModal() {
+    new ModalController({
+      id: '',
+      renderData: {
+        title: 'Edit Column',
+        htmlString: `
+          <form data-submit-action="editColumn">
+            <div class="mb-3">
+              <label for="modal-body-input">Column name</label>
+              <input type="text" name="columnName" id="modal-body-input" class="w-100" placeholder="${this.columnData.title}">
+            </div>
+            <button type="submit" class="form-component bg-green white">Update</button>
+          </form>
+        `
+      },
+      parentController: this
+    })
   }
 }
