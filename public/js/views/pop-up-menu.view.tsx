@@ -4,6 +4,21 @@ const PROFILE_IMAGE: string =
   "https://avatars.githubusercontent.com/u/37804777?s=460&u=088956f4c1a3613536ddb54dac7492b469a12ca9&v=4";
 
 const POP_UP_MENU_TPL: object = {
+  statusTask(task: string, card: string, todoList: string) {
+    return `
+      <span class="user-activity">${task}</span>
+      <span class="card">${card}</span>
+      <span class="activity-content__todo-list">${todoList}</span>
+    `;
+  },
+  moveTask(task: string, from: string, to: string, card: string): string {
+    return `
+      <span class="user-activity">${task}</span>
+      <span class="from">${from}</span>
+      <span class="card">${card}</span>
+      <span class="to">${to}</span>
+    `;
+  },
   detailItem(profile: string, user: string): string {
     return `
       <li class="menu-detail__item">
