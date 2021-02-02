@@ -42,11 +42,11 @@ class TodoModel extends Observable {
     }
 
     // 리스트뷰(todo) 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
-    async addTodo({ idx, inputData }) {
+    async addTodo({ cardId, inputData }) {
         const res = await req.getAllData();
         let curlen, listId;
         res.forEach(function(e, i){
-            if(parseInt(e.id) === parseInt(idx)){
+            if(parseInt(e.id) === parseInt(cardId)){
                 if (res[i].data.length !== 0){
                     curlen = res[i].data.length - 1;
                     listId = res[i].data[curlen].id + 1;
@@ -60,7 +60,7 @@ class TodoModel extends Observable {
         // 받은 todo값을 적당히 가공하고 넣기
         const inputObj = {
             input: {
-                cardId: parseInt(idx),
+                cardId: parseInt(cardId),
                 listId: parseInt(listId),
                 title: inputData
             }
@@ -96,9 +96,15 @@ class TodoModel extends Observable {
     }
 
     // 어떤 카드에, 어떤 이벤트(추가, 삭제, 수정)가 이루어졌는지
-    // action : CARD_NEW / NOTE_NEW / NOTE_REMOVE / NOTE_EDIT / (todo : MOVE_...)
-    setHistoryState({cardId, title, action}){
-        this.history = {...this.history, cardId: cardId, title: title, action: action};
+    // action : ADD_CARD / ADD_NOTE / REMOVE_NOTE /
+    // EDIT_NOTE / EDIT_CARD / REMOVE_CARD / (todo : MOVE_...)
+    setHistoryState({cardName, beforeTitle, afterTitle, action}){
+        this.history = {...this.history,
+            cardName: cardName,
+            beforeTitle: beforeTitle,
+            afterTitle: afterTitle,
+            action: action
+        };
         this.notify(this.history);
         return this.history;
     }

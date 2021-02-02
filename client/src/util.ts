@@ -28,6 +28,27 @@ function removeClass({nodeList, className}){
     });
 }
 
+function getCardName({cardId}){
+    const cardname = queryAll('.card-name');
+    let result = '';
+    cardname.forEach(element => {
+        if (element.getAttribute('data') === cardId){
+            result = element.textContent;
+        }
+    });
+    return result;
+}
+function getNoteTitle({cardId, id}){
+    const noteTitle = queryAll('.list-title');
+    let result = '';
+    noteTitle.forEach(element=>{
+        if (element.getAttribute('data-idx') === id){
+            result = element.textContent;
+        }
+    }) 
+    return result;
+}
+
 function dfs_q(node, target) {
     let returnVal;
     /* dfs 탐색 */
@@ -60,4 +81,5 @@ function queryAll(target) {
     return dfs_q_all([], document.body, target)
 }
 
-export { addHTML, html, create, getAttr, addClass, removeClass, query, queryAll};
+export { addHTML, html, create, getAttr, getCardName, getNoteTitle,
+    addClass, removeClass, query, queryAll};

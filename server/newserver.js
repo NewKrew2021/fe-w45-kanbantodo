@@ -45,6 +45,7 @@ app.post('/addcard', (req, res)=>{
 // input : {cardId:_, listId:_, title:_} 형태의 data 받고 추가
 app.post('/addlist', (req, res) => {
     const { cardId, listId, title } = req.body.input;
+    console.log(cardId, listId, title);
     if(db.get('posts').find({ id: cardId }).value()){
         db.get('posts')
           .find({ id: cardId })

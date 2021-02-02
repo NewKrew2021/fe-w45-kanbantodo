@@ -27,12 +27,21 @@ class InputView {
     // Event handler
     addInputHandler(e){
         const inputArea = _dom.queryAll('.list-input');
-        const idx = e.target.getAttribute('data');
+        const cardId = e.target.getAttribute('data');
+        const cardName = _dom.getCardName({cardId});
         let inputData = '';
+
         inputArea.forEach(element => {
-            if (element.getAttribute('data') === idx) {
+            if (element.getAttribute('data') === cardId) {
                 inputData = element.value;
-                this.model.addTodo({idx, inputData});
+                this.model.addTodo({cardId, inputData});
+                // add history
+                this.model.setHistoryState({
+                    cardName: cardName,
+                    beforeTitle: '',
+                    afterTitle: inputData,
+                    action: 'ADD_NOTE'
+                });
             }
         })
     }

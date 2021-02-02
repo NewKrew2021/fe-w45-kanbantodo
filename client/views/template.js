@@ -8,7 +8,7 @@ export const domTpl = {
         <div class="card droppable" data=${id}>
         <div class="card-header" data=${id} data-idx=-1>
             <span class="card-count bold" data=${id}>${data.length}</span>
-            <span class="title bold" data=${id} data-idx=-1>${name}</span>
+            <span class="title bold card-name" data=${id} data-idx=-1>${name}</span>
                 <button class="card-btn htop-add" data=${id}>&#43;</button>
                 <button class="card-btn htop-remove" data=${id}>&times;</button>
         </div>
@@ -24,7 +24,7 @@ export const domTpl = {
             <div class="list-view-wrapper" data=${id}>
             ${data.map((element) =>
             `<div class="list-view droppable" data=${id} data-idx=${element.id}>
-                <p class="title list-title inline-block"><img class="mg-right-6" src="/images/list_btn.png">${element.title}</p>
+                <p class="title list-title inline-block" data=${id} data-idx=${element.id}><img class="mg-right-6" src="/images/list_btn.png">${element.title}</p>
                 <ul class="task sub-title font-15">
                 ${element.tasks && element.tasks.map(element =>
                     `<li>${element.title}</li>`

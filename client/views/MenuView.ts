@@ -62,7 +62,7 @@ class MenuView{
 
     // db에 기록하는 함수
     testState(){
-        console.log(this.model.todos);
+        console.log(this.model.history);
     }
 }
 
