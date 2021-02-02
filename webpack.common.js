@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: "./client/src/app.js", // 엔트리 포인트
+    entry: "./client/src/app.ts", // 엔트리 포인트
     module: {
         rules: [
             {
@@ -31,6 +31,10 @@ module.exports = {
                 }
             }
         ]
+    },
+    resolve: {
+        modules: ["node_modules"],
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
     },
     plugins: [
         new HtmlWebpackPlugin({

@@ -23,19 +23,19 @@ app.post('/add', (req, res) => {
 
 // Get All Data
 app.get('/posts', (req, res) => {
-    res.send( db.get('posts').value() )
+    res.send(db.get('posts').value())
 })
 
 // [+] 전체 큰 카드를 추가할 때(= 새로운 column 추가)
 // input : { id:_, name:_, author:_} 형태의 data 받고 추가
-app.post('/addcard', (req, res)=>{
-    const {id, name, author} = req.body.input;
-    if(db.get('posts').find({id : id}).value()){
+app.post('/addcard', (req, res) => {
+    const { id, name, author } = req.body.input;
+    if (db.get('posts').find({ id: id }).value()) {
         res.send('Card registration failed')
     } else {
         db.get('posts')
-          .push({ id: id, name : name, author: author, data : []})
-          .write()
+            .push({ id: id, name: name, author: author, data: [] })
+            .write()
         res.send('Card registered successfully!')
     }
 })
@@ -45,15 +45,15 @@ app.post('/addcard', (req, res)=>{
 // input : {cardId:_, listId:_, title:_} 형태의 data 받고 추가
 app.post('/addlist', (req, res) => {
     const { cardId, listId, title } = req.body.input;
-    if(db.get('posts').find({ id: cardId }).value()){
+    if (db.get('posts').find({ id: cardId }).value()) {
         db.get('posts')
-          .find({ id: cardId })
-          .get('data')
-          .push({ id: listId, title : title, tasks: []})
-          .write()
+            .find({ id: cardId })
+            .get('data')
+            .push({ id: listId, title: title, tasks: [] })
+            .write()
         res.send('list registered successfully');
     }
-    else{
+    else {
         res.send('list registration failed');
     }
 })
@@ -77,8 +77,8 @@ app.post('/addtask', (req, res) => {
 app.delete('/list/remove/:cardId', (req, res) => {
     const { cardId } = req.params;
     db.get('posts')
-      .remove({ id: parseInt(cardId) })
-      .write()
+        .remove({ id: parseInt(cardId) })
+        .write()
     res.send('list removed successfully!');
 })
 
@@ -86,22 +86,22 @@ app.delete('/list/remove/:cardId', (req, res) => {
 app.delete('/list/remove/:cardId/:id', (req, res) => {
     const { cardId, id } = req.params;
     db.get('posts')
-      .find({ id: parseInt(cardId) })
-      .get('data')
-      .remove({ id: parseInt(id) })
-      .write()
+        .find({ id: parseInt(cardId) })
+        .get('data')
+        .remove({ id: parseInt(id) })
+        .write()
     res.send('list removed successfully!');
 })
 
 // [*] 특정 카드 타이틀을 수정할 때
-app.put('/list/edit/:cardId', (req, res)=>{
+app.put('/list/edit/:cardId', (req, res) => {
     const { cardId } = req.params;
     const { title } = req.body.input;
     db.get('posts')
-      .find({ id: parseInt(cardId)})
-      .assign( { name : title })
-      .write()
-    res.send('list removed successfully!'); 
+        .find({ id: parseInt(cardId) })
+        .assign({ name: title })
+        .write()
+    res.send('list removed successfully!');
 })
 
 // [*] 특정 카드 -> 리스트뷰 아이템을 수정할 때
@@ -109,12 +109,30 @@ app.put('/list/edit/:cardId/:id', (req, res) => {
     const { cardId, id } = req.params;
     const { title } = req.body.input;
     db.get('posts')
-      .find({ id: parseInt(cardId) })
-      .get('data')
-      .find({ id: parseInt(id) })
-      .assign({ title : title })
-      .write()
+        .find({ id: parseInt(cardId) })
+        .get('data')
+        .find({ id: parseInt(id) })
+        .assign({ title: title })
+        .write()
     res.send('list removed successfully!');
+})
+
+// [+] 히스토리에 사용자 액션을 등록할 때
+app.post('/addHistory', (req, res) => {
+    const { action, cardName,
+        beforeTitle, afterTitle, writeTime } = req.body.input;
+    db.get('history')
+        .push({
+            action: action, cardName: cardName,
+            beforeTitle: beforeTitle, afterTitle: afterTitle,
+            writeTime: writeTime
+        })
+        .write()
+    res.send('Card registered successfully!')
+})
+
+app.get('/getHistory', (req, res) => {
+    res.send(db.get('history').value())
 })
 
 app.listen(port, () => {

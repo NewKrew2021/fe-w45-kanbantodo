@@ -7,49 +7,52 @@
       "data": [
         {
           "id": 0,
-          "title": "검색 필터 기능",
-          "tasks": []
-        },
-        {
-          "id": 1,
-          "title": "추가적인 모델 만들어야 하는지 살펴보기",
-          "tasks": []
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "name": "다했음",
-      "author": "roddy.chan",
-      "data": [
-        {
-          "id": 0,
-          "title": "abcd",
-          "tasks": []
-        },
-        {
-          "id": 1,
           "title": "추가하기",
           "tasks": []
+        },
+        {
+          "id": 1,
+          "title": "뮤",
+          "tasks": []
+        },
+        {
+          "id": 2,
+          "title": "abc",
+          "tasks": []
         }
       ]
     },
     {
-      "id": 4,
-      "name": "새 카드 추가",
+      "id": 1,
+      "name": "뮤",
       "author": "roddy.chan",
       "data": [
         {
           "id": 0,
-          "title": "아이템 추가",
+          "title": "abc",
           "tasks": []
         },
         {
           "id": 1,
-          "title": "두번째 추가",
+          "title": "def",
           "tasks": []
         }
       ]
+    },
+    {
+      "id": 2,
+      "name": "뮤뮤",
+      "author": "roddy.chan",
+      "data": []
+    }
+  ],
+  "history": [
+    {
+      "action": "ADD_NOTE",
+      "cardName": "뮤",
+      "beforeTitle": "",
+      "afterTitle": "def",
+      "writeTime": 1612275621393
     }
   ]
 }

@@ -16,6 +16,7 @@ class TodoModel extends Observable {
         super();
         this.todos = []; // data state
         this.state = {}; 
+        this.history = {}; // history state
         this.url = initialUrl; // 가져올 데이터의 요청 URL
     }
 
@@ -37,16 +38,15 @@ class TodoModel extends Observable {
 
     async removeCard({ cardId }){
         await req.removeCard({ cardId });
-        this.notify(this.todo);
+        this.notify(this.todos);
     }
 
     // 리스트뷰(todo) 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
-    async addTodo({ idx, inputData }) {
+    async addTodo({ cardId, inputData }) {
         const res = await req.getAllData();
         let curlen, listId;
-        console.log(res);
         res.forEach(function(e, i){
-            if(parseInt(e.id) === parseInt(idx)){
+            if(parseInt(e.id) === parseInt(cardId)){
                 if (res[i].data.length !== 0){
                     curlen = res[i].data.length - 1;
                     listId = res[i].data[curlen].id + 1;
@@ -55,12 +55,12 @@ class TodoModel extends Observable {
                     listId = 0;
                 }
             }
-        }.bind(this));
+        });
 
         // 받은 todo값을 적당히 가공하고 넣기
         const inputObj = {
             input: {
-                cardId: parseInt(idx),
+                cardId: parseInt(cardId),
                 listId: parseInt(listId),
                 title: inputData
             }
@@ -91,8 +91,30 @@ class TodoModel extends Observable {
 
     setModalState({cardId, id, mode}){
         this.state = {...this.state, cardId: cardId, id: id, mode: mode};
-        this.notify(this.state);
         return this.state;
+    }
+
+    // 어떤 카드에, 어떤 이벤트(추가, 삭제, 수정)가 이루어졌는지
+    // action : ADD_CARD / ADD_NOTE / REMOVE_NOTE /
+    // EDIT_NOTE / EDIT_CARD / REMOVE_CARD / (todo : MOVE_...)
+    setHistoryState({cardName, beforeTitle, afterTitle, writeTime, action}){
+        this.history = { ...this.history,
+            cardName: cardName,
+            beforeTitle: beforeTitle,
+            afterTitle: afterTitle,
+            writeTime: writeTime,
+            action: action
+        };
+        return this.history;
+    }
+
+    async addHistory(input){
+        await req.addUserHistory(input);
+    }
+
+    async getHistory(){
+        const data = await req.getHistory();
+        return data;
     }
 
     // todo 데이터 가져오기. json-server로부터 GET 요청으로 데이터를 가져올 수 있다.

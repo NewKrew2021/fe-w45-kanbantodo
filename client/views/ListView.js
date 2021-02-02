@@ -5,8 +5,7 @@
     데이터가 새롭게 추가되면, 구독 중인 ListView가 감지한다.
 */
 import { domTpl } from './template.js';
-import * as _dom from '../src/util.js';
-import * as req from '../src/request.js';
+import * as _dom from '../src/util';
 
 /* TodoModel을 구독하는 Observer */
 class ListView {
@@ -46,7 +45,7 @@ class ListView {
         this.cardsTitle = _dom.queryAll('.list-title')
 
         // 맨 끝에 컬럼 추가기능 area 구현하기
-        const addNewCard = _dom.create({type: 'div', className: ['card-new', 'bold']});
+        const addNewCard = _dom.create({ type: 'div', className: ['card-new', 'bold'] });
         _dom.html(addNewCard, domTpl['NewColumn']());
         _dom.query('.card-wrapper').appendChild(addNewCard);
     }
@@ -100,11 +99,22 @@ class ListView {
         }
         // elem은 가장 많이 겹치는 노드
         function enterDroppable(elem, elemBelow, copiedNode) {
+            let parentNode, targetNode;
+            const [listWrapper, listViewWrapper] = ['list-wrapper', 'list-view-wrapper'];
+
             if (!!elem.nextSibling && !elem.parentNode.classList.contains('card-wrapper')) {
                 elem.parentNode.insertBefore(copiedNode, elem);
             }
             if (elemBelow.classList.contains('card')) {
-                elemBelow.children[1].children[1].appendChild(copiedNode);
+                elemBelow.children.forEach(function (elem) {
+                    if (elem.classList.contains(listWrapper))
+                        parentNode = elem;
+                })
+                parentNode.children.forEach(function (elem) {
+                    if (elem.className === listViewWrapper)
+                        targetNode = elem;
+                })
+                targetNode.appendChild(copiedNode);
             }
         }
         function leaveDroppable(elem) {

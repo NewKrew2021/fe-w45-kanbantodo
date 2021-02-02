@@ -2,7 +2,7 @@
     InputView.js : [+]를 누를 때 나오는 input-view
     - 모델 객체를 주입받고 구독하는 [Observer] 이다.
 */
-import * as _dom from '../src/util.js';
+import * as _dom from '../src/util';
 
 /* TodoModel을 구독하는 Observer */
 class InputView {
@@ -27,12 +27,22 @@ class InputView {
     // Event handler
     addInputHandler(e){
         const inputArea = _dom.queryAll('.list-input');
-        const idx = e.target.getAttribute('data');
+        const cardId = e.target.getAttribute('data');
+        const cardName = _dom.getCardName({cardId});
         let inputData = '';
+
         inputArea.forEach(element => {
-            if (element.getAttribute('data') === idx) {
+            if (element.getAttribute('data') === cardId) {
                 inputData = element.value;
-                this.model.addTodo({idx, inputData});
+                this.model.addTodo({cardId, inputData});
+                // add history
+                const historyState = {
+                    cardName: cardName, beforeTitle: '',
+                    afterTitle: inputData, writeTime : Date.now(),
+                    action: 'ADD_NOTE'
+                }
+                this.model.setHistoryState(historyState);
+                this.model.addHistory({input : historyState});
             }
         })
     }

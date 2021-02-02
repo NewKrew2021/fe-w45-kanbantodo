@@ -1,185 +1,119 @@
-import * as _dom from '../src/util.js';
+import * as dom from '../src/util';
 
 /*
     ModalView.js
     모달이 표시되어야 하는 뷰와 관련된 이벤트, 핸들러 등록
 */
-
 class ModalView {
-    constructor(model) {
-        this.modalView = _dom.query('.modal');
-        this.removeModal = _dom.query('.modal-remove'); // 삭제 모달
-        this.editModal = _dom.query('.modal-edit'); // 수정 모달
-
-        this.modalSaveBtn = _dom.query('.btn-save-modal'); // 노트 제목 수정
-        this.modalWriteBtn = _dom.query('.btn-write-modal'); // 새로운 카드 생성
-        this.modalAcceptBtn = _dom.query('.btn-accept-modal'); // 노트 수정 예 버튼
-        this.modalCloseBtn = _dom.query('.btn-close-modal'); // 노트 수정 아니오 버튼
-
-        this.removeCardModal = _dom.query('.modal-card-remove'); // 삭제 모달
-        this.cardRemoveBtn = _dom.query('.btn-card-accept'); // 삭제 예 버튼
-        this.cardCancelBtn = _dom.query('.btn-card-close'); // 삭제 아니오 버튼
-        
+    constructor(model){
         this.model = model;
-        this.model.subscribe(this.update.bind(this));
     }
 
-    onEvents(){ // 이벤트 관련 함수 등록
-        this.removeNote();
-        this.editTitle();
-        this.addNewCard();
-        this.removeCard();
-    }
-
-    update() {
-        this.onEvents();
-    }
-    init(){
-        this.onEvents();
-    }
-
-    // remove note item
-    async removeNoteHandler(e){
-        const cardId = _dom.getAttr({node: e.target, attr: 'data'});
-        const id = _dom.getAttr({node: e.target, attr: 'data-idx'});
-        await this.model.setModalState({ cardId, id });
-
-        _dom.removeClass({
-            node: [this.modalView, this.removeModal],
-            className : 'none'
-        })
-        this.modalAcceptBtn.addEventListener('click', function () {
-            this.model.removeTodo(this.model.state);
-            _dom.addClass({
-                node: [this.modalView, this.removeModal],
-                className : 'none'
-            })
-        }.bind(this))
-        this.modalCloseBtn.addEventListener('click', () => {
-            _dom.addClass({
-                node: [this.modalView, this.removeModal],
-                className : 'none'
-            })
-        })
-    }   
+    // remove Note Item
     async removeNote(){
         const { } = await this.model.getInitialData();
-        const removeListBtn = _dom.queryAll('.list-remove');
-        removeListBtn.forEach(element => {
-            element.addEventListener('click', this.removeNoteHandler.bind(this));
-        })
-    }
-
-    // edit note/card item
-    async editHandler(e){
-        const cardId = e.currentTarget.getAttribute('data');
-        const id = e.currentTarget.getAttribute('data-idx');
-        const modalHeader = _dom.query('.modal-header-title');
-        const modalInput = _dom.query('.modal-input');
-        let mode = '';
-        modalInput.value = '';
-        
-        _dom.addClass({
-            node: [this.modalWriteBtn], className : "none" });
-        _dom.removeClass({
-            node: [this.modalView, this.editModal, this.modalSaveBtn], className: "none"
+        const noteItems = dom.queryAll('.list-remove'); // 노트 삭제 버튼
+        noteItems.forEach(element => {
+            element.addEventListener('click', (e)=>console.log(e.target));
         });
-        if (id == -1) {
-            mode = 'card';
-            _dom.html(modalHeader, '카드 제목 수정하기');
-        }
-        else {
-            mode = 'list';
-            _dom.html(modalHeader, '노트 제목 수정하기');
-        }
-        await this.model.setModalState({ cardId, id, mode });
-
-        this.modalSaveBtn.addEventListener('click', function () {
-            const newTitle = modalInput.value;
-            const input = { input: { title: newTitle } };
-            this.model.editTodo({ ...this.model.state, input }, this.model.state.mode);
-            _dom.addClass({
-                node: [this.modalView, this.editModal],
-                className : "none"
-            });
-        }.bind(this))
-    }
-    async editTitle(){
-        const { } = await this.model.getInitialData();
-        const card = _dom.queryAll('.card-header');
-        const note = _dom.queryAll('.list-view');
-        const closeBtn = _dom.query('.btn-edit-close-modal');
-        note.forEach(element => {
-            element.addEventListener('dblclick', this.editHandler.bind(this));
-        })
-        card.forEach(element => {
-            element.addEventListener('dblclick', this.editHandler.bind(this));
-        })
-        closeBtn.addEventListener('click', () => {
-            _dom.addClass({
-                node: [this.modalView, this.editModal],
-                className : "none"
-            });
-        })
     }
 
-    // add card 
     addNewCardHandler(){
-        const modalHeader = _dom.query('.modal-header-title');
-        const modalInput = _dom.query('.modal-input');
-        modalInput.value = '';
-        _dom.addClass({
-            node: [this.modalSaveBtn],
+        dom.removeClass({
+            nodeList: [dom.query('.modal'), dom.query('.modal-new-card')],
             className: 'none'
         })
-        _dom.removeClass({
-            node: [this.modalView, this.editModal, this.modalWriteBtn],
-            className: 'none'
-        })
-        _dom.html(modalHeader, '새로운 카드 추가하기');
-        this.modalWriteBtn.addEventListener('click', function () {
-            const newTitle = modalInput.value;
-            this.model.addCard({ name : newTitle, author: "roddy.chan" });
-            _dom.addClass({
-                node: [this.modalView, this.editModal],
-                className: 'none'
-            })
-        }.bind(this))
     }
+
     async addNewCard(){
         const { } = await this.model.getInitialData();
-        const addBtn = _dom.query('.card-new');
-        addBtn.addEventListener('click', this.addNewCardHandler.bind(this));
+        const addArea = dom.query('.card-new');
+        addArea.addEventListener('click', this.addNewCardHandler.bind(this));
     }
 
-    // remove card
-    removeCardHandler(e){
-        const cardId = _dom.getAttr({node: e.target, attr: 'data'});
-        _dom.removeClass({
-            node: [this.modalView, this.removeCardModal],
+    editCardHandler(e){
+        const cardId = e.target.getAttribute('data');
+        // modal open
+        dom.removeClass({
+            nodeList: [dom.query('.modal'), dom.query('.modal-edit')],
             className: 'none'
         })
-        this.cardRemoveBtn.addEventListener('click', function () {
-            this.model.removeCard({ cardId });
-            _dom.addClass({
-                node: [this.modalView, this.removeCardModal],
-                className: 'none'
-            })
-        }.bind(this))
-        this.cardCancelBtn.addEventListener('click', () => {
-            _dom.addClass({
-                node: [this.modalView, this.removeCardModal],
-                className: 'none'
-            })
+        dom.html(dom.query('.modal-edit-header-title'), "카드 제목 수정하기");  
+    }
+    async editCardTitle(){
+        const { } = await this.model.getInitialData();
+        const cardNames = dom.queryAll('.card-name');
+        cardNames.forEach(element => {
+            element.addEventListener('dblclick', this.editCardHandler.bind(this));
         })
     }
-    async removeCard(){
+
+    editNoteHandler(e){
+        const cardId = e.target.getAttribute('data');
+        const id = e.target.getAttribute('data-idx');
+        // modal open
+        dom.removeClass({
+            nodeList: [dom.query('.modal'), dom.query('.modal-edit')],
+            className: 'none'
+        })
+        dom.html(dom.query('.modal-edit-header-title'), "노트 제목 수정하기");        
+    }
+    async editNoteTitle(){
         const { } = await this.model.getInitialData();
-        const removeBtn = _dom.queryAll('.htop-remove');
-        removeBtn.forEach(element => {
-            element.addEventListener('click', this.removeCardHandler.bind(this));
+        const noteTitles = dom.queryAll('.list-title');
+        noteTitles.forEach(element => {
+            element.addEventListener('dblclick', this.editNoteHandler.bind(this));
+        })
+    }
+
+    // close btn event
+    closeEditModal(){
+        const closeBtn = dom.query('.btn-edit-close-modal');
+        closeBtn.addEventListener('click', ()=>{
+            dom.addClass({
+                nodeList: [dom.query('.modal'), dom.query('.modal-edit')],
+                className: 'none'
+            })
+        });
+    }
+    closeNewCardModal(){
+        const closeBtn = dom.query('.btn-new-close-modal');
+        closeBtn.addEventListener('click', ()=>{
+            dom.addClass({
+                nodeList: [dom.query('.modal'), dom.query('.modal-edit')],
+                className: 'none'
+            })
+        });
+    }
+    closeRemoveCardModal(){
+        const closeBtn = dom.query('.btn-card-close');
+        closeBtn.addEventListener('click', ()=>{
+            dom.addClass({
+                nodeList: [dom.query('.modal'), dom.query('.modal-card-remove')],
+                className: 'none'
+            })
+        });
+    }
+    closeRemoveNoteModal(){
+        const closeBtn = dom.query('.btn-close-modal');
+        closeBtn.addEventListener('click', ()=>{
+            dom.addClass({
+                nodeList: [dom.query('.modal'), dom.query('.modal-remove')],
+                className: 'none'
+            })
         });
     }
 
+    updateEvent(){
+
+    }
+
+    init(){
+        this.removeNote();
+        this.editCardTitle();
+        this.editNoteTitle();
+        this.closeEditModal();
+        this.addNewCard();
+    }
 }
 export default ModalView;
