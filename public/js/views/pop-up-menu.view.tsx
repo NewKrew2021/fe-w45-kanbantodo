@@ -1,4 +1,4 @@
-import { $ } from "../common/utils";
+import { $ } from "@public/js/common/utils";
 
 const PROFILE_IMAGE: string =
   "https://avatars.githubusercontent.com/u/37804777?s=460&u=088956f4c1a3613536ddb54dac7492b469a12ca9&v=4";

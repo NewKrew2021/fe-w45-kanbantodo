@@ -34,6 +34,9 @@ module.exports = {
   resolve: {
     modules: ["node_modules"],
     extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
+    alias: {
+      "@public": path.resolve(__dirname, "public"),
+    },
   },
   plugins: [new HtmlWebpackPlugin({ template: "public/index.html" })],
 };

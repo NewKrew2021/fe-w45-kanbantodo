@@ -1,4 +1,4 @@
-import { $ } from "../common/utils";
+import { $ } from "@public/js/common/utils";
 
 const POP_UP_TEMPLATE = {
   popUp(title) {
