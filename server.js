@@ -12,6 +12,7 @@ const db = low(adapter);
 server.use(middlewares);
 
 server.get('/cards', (req, res) => {
+  console.log(typeof(req), typeof(res))
   res.send(db.get('todos').value());
 })
 

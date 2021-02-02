@@ -3,7 +3,16 @@
     {
       "id": 1,
       "title": "To-Do",
-      "cards": []
+      "cards": [
+        {
+          "title": "3",
+          "author": "kevin"
+        },
+        {
+          "title": "123",
+          "author": "kevin"
+        }
+      ]
     },
     {
       "id": 2,
@@ -13,129 +22,270 @@
     {
       "id": 3,
       "title": "Done",
-      "cards": []
+      "cards": [
+        {
+          "title": "2",
+          "author": "kevin"
+        }
+      ]
     }
   ],
   "activity": [
     {
-      "type": "moved",
-      "from": "To-Do",
-      "to": "Doing",
-      "text": "123",
-      "author": "kevin",
-      "time": "1612176930165"
-    },
-    {
-      "type": "moved",
-      "from": "Doing",
+      "type": "added",
+      "from": "none",
       "to": "To-Do",
-      "text": "123",
+      "text": "1",
       "author": "kevin",
-      "time": "1612176932774"
+      "time": "1612229161320"
     },
     {
-      "type": "moved",
-      "from": "To-Do",
+      "type": "added",
+      "from": "none",
       "to": "Doing",
-      "text": "123",
+      "text": "2",
       "author": "kevin",
-      "time": "1612176933866"
+      "time": "1612229163390"
     },
     {
-      "type": "moved",
-      "from": "Doing",
+      "type": "added",
+      "from": "none",
       "to": "To-Do",
-      "text": "123",
+      "text": "3",
       "author": "kevin",
-      "time": "1612176935317"
+      "time": "1612229165843"
     },
     {
       "type": "moved",
       "from": "To-Do",
       "to": "Doing",
-      "text": "123",
+      "text": "3",
       "author": "kevin",
-      "time": "1612184769980"
+      "time": "1612229168396"
     },
     {
       "type": "moved",
       "from": "Doing",
       "to": "To-Do",
-      "text": "123",
+      "text": "2",
       "author": "kevin",
-      "time": "1612184773039"
+      "time": "1612229170297"
     },
     {
       "type": "moved",
       "from": "To-Do",
       "to": "Doing",
-      "text": "123",
+      "text": "1",
       "author": "kevin",
-      "time": "1612184775031"
+      "time": "1612229172199"
     },
     {
-      "type": "moved",
+      "type": "deleted",
       "from": "Doing",
-      "to": "To-Do",
-      "text": "123",
+      "to": "none",
+      "text": "1",
       "author": "kevin",
-      "time": "1612184777663"
+      "time": "1612229174831"
     },
     {
       "type": "moved",
       "from": "To-Do",
       "to": "Doing",
-      "text": "123",
+      "text": "2",
       "author": "kevin",
-      "time": "1612184780374"
+      "time": "1612244983632"
     },
     {
       "type": "moved",
       "from": "Doing",
       "to": "To-Do",
-      "text": "123",
+      "text": "3",
       "author": "kevin",
-      "time": "1612184782057"
-    },
-    {
-      "type": "moved",
-      "from": "To-Do",
-      "to": "Doing",
-      "text": "123",
-      "author": "kevin",
-      "time": "1612184783058"
+      "time": "1612244984634"
     },
     {
       "type": "moved",
       "from": "Doing",
       "to": "To-Do",
-      "text": "123",
+      "text": "2",
       "author": "kevin",
-      "time": "1612184785268"
-    },
-    {
-      "type": "moved",
-      "from": "To-Do",
-      "to": "Doing",
-      "text": "123",
-      "author": "kevin",
-      "time": "1612184786416"
-    },
-    {
-      "type": "moved",
-      "from": "Doing",
-      "to": "To-Do",
-      "text": "123",
-      "author": "kevin",
-      "time": "1612184788373"
+      "time": "1612244985455"
     },
     {
       "type": "deleted",
       "from": "To-Do",
       "to": "none",
+      "text": "3",
+      "author": "kevin",
+      "time": "1612247529595"
+    },
+    {
+      "type": "added",
+      "from": "none",
+      "to": "To-Do",
+      "text": "3",
+      "author": "kevin",
+      "time": "1612251391031"
+    },
+    {
+      "type": "moved",
+      "from": "To-Do",
+      "to": "Doing",
+      "text": "3",
+      "author": "kevin",
+      "time": "1612255814333"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "To-Do",
+      "text": "3",
+      "author": "kevin",
+      "time": "1612255815176"
+    },
+    {
+      "type": "moved",
+      "from": "To-Do",
+      "to": "Doing",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612256261216"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "To-Do",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612256265772"
+    },
+    {
+      "type": "moved",
+      "from": "To-Do",
+      "to": "Doing",
+      "text": "3",
+      "author": "kevin",
+      "time": "1612256267201"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "Doing",
+      "text": "3",
+      "author": "kevin",
+      "time": "1612257410311"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "Done",
+      "text": "3",
+      "author": "kevin",
+      "time": "1612257705824"
+    },
+    {
+      "type": "moved",
+      "from": "To-Do",
+      "to": "Doing",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612261343726"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "To-Do",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612261412533"
+    },
+    {
+      "type": "moved",
+      "from": "To-Do",
+      "to": "Doing",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612261810436"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "To-Do",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612263069312"
+    },
+    {
+      "type": "moved",
+      "from": "To-Do",
+      "to": "Doing",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612263166947"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "To-Do",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612263168543"
+    },
+    {
+      "type": "moved",
+      "from": "Done",
+      "to": "Doing",
+      "text": "3",
+      "author": "kevin",
+      "time": "1612263177892"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "To-Do",
+      "text": "3",
+      "author": "kevin",
+      "time": "1612263180221"
+    },
+    {
+      "type": "moved",
+      "from": "To-Do",
+      "to": "Doing",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612263181964"
+    },
+    {
+      "type": "added",
+      "from": "none",
+      "to": "Doing",
       "text": "123",
       "author": "kevin",
-      "time": "1612184793043"
+      "time": "1612263889500"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "Doing",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612264075728"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "Done",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612265814234"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "To-Do",
+      "text": "123",
+      "author": "kevin",
+      "time": "1612265815190"
     }
   ]
 }
