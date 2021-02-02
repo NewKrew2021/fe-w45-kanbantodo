@@ -1,5 +1,10 @@
 import View from "../view/_view"
 
+interface MethodBindingOption {
+  methodName: string,
+  bindTarget: Controller,
+}
+
 export default class Controller {
   private updateListeners: Array<Function>
   private deleteListeners: Array<Function>
@@ -35,9 +40,21 @@ export default class Controller {
     this.view.render(wrapper, index)
   }
 
-  bindMethods(methods: Array<string>) {
-    methods.forEach(method => {
-      (this.view as any)[method] = (this as any)[method].bind(this)
+  bindMethods(bindingOptions: Array<MethodBindingOption | string>) {
+    bindingOptions.forEach(bindingOption => {
+
+      // set name of method to bind, and binding target
+      let methodName, bindTarget
+      if (typeof bindingOption === 'string') {
+        methodName = bindingOption
+        bindTarget = this
+      } else {
+        methodName = bindingOption.methodName
+        bindTarget = bindingOption.bindTarget
+      }
+
+      // bind method
+      (this.view as any)[methodName] = (bindTarget as any)[methodName].bind(bindTarget)
     })
   }
 }
