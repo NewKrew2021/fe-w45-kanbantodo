@@ -98,10 +98,10 @@ module.exports.findAllActivities = findAllActivities;
 
 async function insertActivity(activityData) {
     console.log("db:inserting activity...");
-    const {title,author,sectionID,action,newTitle,newSectionName}=activityData;
+    const {title,author,sectionID,action,newTitle,newSectionName,time}=activityData;
     //// create a document to be inserted
 
-    const doc = {title, author, sectionName:sectionID, action};
+    const doc = {title, author, sectionName:sectionID, action,time};
     if(typeof newTitle !== `undefined`){
         doc.newTitle=newTitle;
     }

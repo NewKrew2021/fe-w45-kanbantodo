@@ -5,6 +5,7 @@ export interface Activity{
     action:string,
     title:string,
     sectionName:string,
+    time:number;
     newTitle?:string,
     newSectionName?:string
 }

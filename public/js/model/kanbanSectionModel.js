@@ -29,7 +29,9 @@ async function createTask(sectionID,{title,author}) {
         const data = await res.json();
         taskList=data.tasks;
         render({sectionID,taskListData:taskList});
-        addActivity({action:"add",title,sectionName:sectionID,author});
+
+        const time=data.time;
+        addActivity({action:"add",title,sectionName:sectionID,author,time});
     }catch(err){
         console.error(err);
     }
@@ -47,17 +49,19 @@ async function deleteTask(sectionID, {dbID,title,author}){
         const data=await res.json();
         taskList=data.tasks;
         render({sectionID,taskListData:taskList});
-        addActivity({action:"delete",title,sectionName:sectionID,author});
+
+        const time=data.time;
+        addActivity({action:"delete",title,sectionName:sectionID,author,time});
     }catch(err){
         console.error(err);
     }
 
 }
-async function updateTask(sectionID,{dbID,title,prevTitle,author}){
+async function updateTask(sectionID,{dbID,title,newTitle,author}){
     try{
         const res=await fetch(`/kanban`, {
             method: 'PUT',
-            body: JSON.stringify({sectionID,id:dbID,title:title,prevTitle,author}),
+            body: JSON.stringify({sectionID,id:dbID,title:title,newTitle,author}),
             headers: {
                 "Content-Type": "application/json",
             }
@@ -65,7 +69,9 @@ async function updateTask(sectionID,{dbID,title,prevTitle,author}){
         const data=await res.json();
         taskList=data.tasks;
         render({sectionID,taskListData:taskList});
-        addActivity({action:"update",title,sectionName:sectionID,prevTitle,author});
+
+        const time=data.time;
+        addActivity({action:"update",title,sectionName:sectionID,newTitle,author,time});
     }catch(err){
         console.error(err);
     }

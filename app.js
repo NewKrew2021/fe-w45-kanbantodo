@@ -24,25 +24,33 @@ app.post('/kanban',async (req, res) =>{
     const {sectionID,title,author}=req.body;
     await db.insertTodo({sectionID,title,author});
     const data=await db.findAll(sectionID);
-    await db.insertActivity({sectionID,title,author,action:"add"});
-    res.json({tasks:data});
+    
+    const time=Date.now();
+    await db.insertActivity({sectionID,title,author,action:"add",time});
+
+    res.json({tasks:data,time});
 });
 
 app.put('/kanban',async (req, res) =>{
-    const {sectionID,id,title,author,prevTitle}=req.body;
+    const {sectionID,id,title,author,newTitle}=req.body;
     await db.updateTodo({sectionID,id,title});
     const data=await db.findAll(sectionID);
-    await db.insertActivity({sectionID,title,author,action:"update",prevTitle});
 
-    res.json({tasks:data});
+    const time=Date.now();
+    await db.insertActivity({sectionID,title,author,action:"update",newTitle,time});
+
+    res.json({tasks:data,time});
 });
 
 app.delete('/kanban',async (req, res) =>{
     const {sectionID,id,title,author}=req.body;    
     await db.deleteTodo(id);
     const data=await db.findAll(sectionID);
-    await db.insertActivity({sectionID,title,author,action:"delete"});
-    res.json({tasks:data});
+    
+    const time=Date.now();
+    await db.insertActivity({sectionID,title,author,action:"delete",time});
+    
+    res.json({tasks:data,time});
 });
 
 app.get('/activities', async(req, res) =>{

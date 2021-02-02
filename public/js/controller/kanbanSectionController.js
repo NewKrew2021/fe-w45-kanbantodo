@@ -66,7 +66,7 @@ export function initSectionController({sectionID}){
     });
     //UPDATE: call PUT API
     submitBtn.addEventListener("click",()=>{
-        updateTask(sectionID,{dbID:updateTargetID,title:modalTextArea.value,prevTitle:"",author:"justin"});
+        updateTask(sectionID,{dbID:updateTargetID,title:"이전내용",newTitle:modalTextArea.value,author:"justin"});
     });
 
     //DELETE
