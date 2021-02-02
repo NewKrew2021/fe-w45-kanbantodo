@@ -28,6 +28,10 @@ input {
           box-shadow: 0 0 5px #dddee2;
 }
 
+#menuBtn {
+  cursor: pointer;
+}
+
 .menu {
   background-color: #f6f8fa;
   border-bottom: 1px solid #dddee2;
@@ -42,6 +46,11 @@ input {
   padding: 15px;
   font-size: 14px;
   border-bottom: 1px solid #dddee2;
+}
+
+.menu-close {
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .relative {

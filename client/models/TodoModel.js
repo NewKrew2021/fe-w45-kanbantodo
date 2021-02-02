@@ -16,6 +16,7 @@ class TodoModel extends Observable {
         super();
         this.todos = []; // data state
         this.state = {}; 
+        this.history = {}; // history state
         this.url = initialUrl; // 가져올 데이터의 요청 URL
     }
 
@@ -37,14 +38,13 @@ class TodoModel extends Observable {
 
     async removeCard({ cardId }){
         await req.removeCard({ cardId });
-        this.notify(this.todo);
+        this.notify(this.todos);
     }
 
     // 리스트뷰(todo) 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
     async addTodo({ idx, inputData }) {
         const res = await req.getAllData();
         let curlen, listId;
-        console.log(res);
         res.forEach(function(e, i){
             if(parseInt(e.id) === parseInt(idx)){
                 if (res[i].data.length !== 0){
@@ -93,6 +93,14 @@ class TodoModel extends Observable {
         this.state = {...this.state, cardId: cardId, id: id, mode: mode};
         this.notify(this.state);
         return this.state;
+    }
+
+    // 어떤 카드에, 어떤 이벤트(추가, 삭제, 수정)가 이루어졌는지
+    // action : CARD_NEW / NOTE_NEW / NOTE_REMOVE / NOTE_EDIT / (todo : MOVE_...)
+    setHistoryState({cardId, title, action}){
+        this.history = {...this.history, cardId: cardId, title: title, action: action};
+        this.notify(this.history);
+        return this.history;
     }
 
     // todo 데이터 가져오기. json-server로부터 GET 요청으로 데이터를 가져올 수 있다.

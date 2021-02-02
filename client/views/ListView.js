@@ -5,7 +5,7 @@
     데이터가 새롭게 추가되면, 구독 중인 ListView가 감지한다.
 */
 import { domTpl } from './template.js';
-import * as _dom from '../src/util.js';
+import * as _dom from '../src/util';
 
 /* TodoModel을 구독하는 Observer */
 class ListView {

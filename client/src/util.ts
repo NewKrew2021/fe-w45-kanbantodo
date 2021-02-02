@@ -2,27 +2,27 @@
     util.js
 */
 
-export function addHTML(node, text) {
+function addHTML(node, text) {
     node.innerHTML += text;
 }
-export function html(node, text) {
+function html(node, text) {
     node.innerHTML = text;
 }
-export function create({type, className}){
+function create({type, className}){
     const res = document.createElement(type);
     res.classList.add(...className);
     return res;
 }
-export function getAttr({nodeList, attr}){
+function getAttr({nodeList, attr}){
     return nodeList.getAttribute(attr);
 }
 
-export function addClass({nodeList, className}){
+function addClass({nodeList, className}){
     nodeList.forEach(element =>{
         element.classList.add(className);
     })
 }
-export function removeClass({nodeList, className}){
+function removeClass({nodeList, className}){
     nodeList.forEach(element => {
         element.classList.remove(className);
     });
@@ -53,9 +53,11 @@ function dfs_q_all(nodeList, node, target){
     return nodeList;
 }
 
-export function query(target) {
+function query(target) {
     return dfs_q(document.body, target)
 }
-export function queryAll(target) {
+function queryAll(target) {
     return dfs_q_all([], document.body, target)
 }
+
+export { addHTML, html, create, getAttr, addClass, removeClass, query, queryAll};

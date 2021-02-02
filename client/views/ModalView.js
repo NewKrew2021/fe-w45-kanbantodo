@@ -1,4 +1,4 @@
-import * as _dom from '../src/util.js';
+import * as _dom from '../src/util';
 
 /*
     ModalView.js
