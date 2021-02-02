@@ -21,8 +21,11 @@ const POP_UP_MENU_TPL: object = {
   moveTask(task: string, from: string, to: string, card: string): string {
     return `
       <span class="user-activity">${task}</span>
-      <span class="from">${from}</span>
+      moved
       <span class="card">${card}</span>
+      from
+      <span class="from">${from}</span>
+      to
       <span class="to">${to}</span>
     `;
   },
@@ -66,13 +69,16 @@ class PopUpMenuView {
     this.menuDetail.innerHTML = logList.reduce((acc, { profile, user, task, from, to, card }) => {
       return (
         acc +
-        POP_UP_MENU_TPL.detailItem(profile, user, POP_UP_MENU_TPL.moveTask(task, from, to, card))
+        POP_UP_MENU_TPL.detailItem(
+          PROFILE_IMAGE,
+          user,
+          POP_UP_MENU_TPL.moveTask(task, from, to, card)
+        )
       );
     }, ``);
   }
 
   init(): PopUpMenuView {
-    this.render(LOG_LIST);
     this.handleButtonTransition(this.menuButton, "translateX(0)");
     this.handleButtonTransition(this.closeButton, "");
 

@@ -8,7 +8,8 @@ $cancel-button-background: #000000bd
 $pop-up-background: #000000
 $pop-up-content: #ffffff
 $menu-pop-up-width: 400px
-$menu-background: #ffffff
+$menu-background: #9e9e9e
+$menu-header-background: #ffffff
 
 ul,li
     padding: 0
@@ -40,14 +41,22 @@ ul,li
     &__header
         box-sizing: border-box
         width: 100%
-        padding: 10px
+        padding: 15px
         border: 1px $common-border-color solid
         display: flex
+        font-size: 20px
         justify-content: space-between
+        background: $menu-header-background
     &__close-button
         cursor: pointer
+        background: red
+        height: 22px
+        width: 22px
+        text-align: center
+        border-radius: 11px
 
 .menu-detail
+    height: 100%
     box-sizing: border-box
     &__header
         padding: 10px
@@ -58,6 +67,7 @@ ul,li
 
 .activity-content
     margin-left: 25px
+
 .user-image
     width: 60px
     height: 60px
@@ -79,7 +89,10 @@ ul,li
         position: absolute
         top: 10px
         left: -15px
-
+    .user-activity, .from, .card, .to
+        color: #0000ff
+        font-weight: bolder
+        font-size: 20px
 .pop-up
     z-index: 1
     position: fixed
