@@ -4,7 +4,7 @@ class ColumnView {
     constructor() {
     }
     
-    async init() {
+    init() {
     }
     
     addColumnViewEventListener(id) {
@@ -27,26 +27,39 @@ class ColumnView {
         this.createView.classList.add('hidden')
     }
     
-    render(colData) {
-        const {notes, title, id} = colData;
-        const noteNum = notes.length;
-        let columnEle = document.getElementById(id);
-        if (!columnEle) {
-            columnEle = document.createElement('div');
-            columnEle.className = "column";
-            columnEle.id = id;
-        } else {
-            columnEle.innerHTML = '';
-        }
-        columnEle.appendChild(this.renderColumnHeader({noteNum, title}))
+    createColumnElement({notes, title, id}) {
+        const columnEle = document.createElement('div');
+        columnEle.className = "column";
+        columnEle.id = id;
+        columnEle.appendChild(this.renderColumnHeader(notes.length, title))
         columnEle.appendChild(this.renderCreateView())
         columnEle.appendChild(this.renderNotes(notes));
         const container = document.querySelector('.container');
-        container.appendChild(columnEle);
+        const addColumnEle = container.querySelector('.add-column');
+        container.insertBefore(columnEle, addColumnEle);
         this.addColumnViewEventListener(id);
     }
 
-    renderColumnHeader({noteNum, title}) {
+    updateColumnElement({notes, title, id}, columnEle) {
+        columnEle.innerHTML = '';
+        columnEle.appendChild(this.renderColumnHeader(notes.length, title))
+        columnEle.appendChild(this.renderCreateView())
+        columnEle.appendChild(this.renderNotes(notes));
+        this.addColumnViewEventListener(id);
+    }
+
+    // TODO : initial render와 구분하기
+    render(colData) {
+        const {id} = colData;
+        const columnEle = document.getElementById(id);
+        if (columnEle) {
+            this.updateColumnElement(colData, columnEle);
+        } else{
+            this.createColumnElement(colData);
+        }
+    }
+
+    renderColumnHeader(noteNum, title) {
         const ele = document.createElement('div');
         const innerHtml = `<div class="column__header__text">
             <div class="number">${noteNum}</div>
