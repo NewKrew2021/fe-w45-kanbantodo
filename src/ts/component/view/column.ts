@@ -11,12 +11,6 @@ export default class ColumnView extends View {
     super()
   }
 
-  addNote() {}
-
-  toggleForm() {}
-
-  removeSelf() {}
-
   toHtmlString() {
     const id = this.getID()
     const { title }: ColumnData = this.getData()

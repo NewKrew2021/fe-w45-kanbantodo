@@ -5,8 +5,6 @@ export default class KanbanView extends View {
     super()
   }
 
-  addColumn() {}
-
   toHtmlString() {
     const id = this.getID()
 
