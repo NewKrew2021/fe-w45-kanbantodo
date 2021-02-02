@@ -25,7 +25,7 @@ export default class View {
 
       // find out the target
       let target: HTMLElement = <HTMLElement>event.target
-      while (!target.dataset.clickAction) {
+      while (target.dataset.clickAction === undefined) {
         // if no action, do nothing
         if (target === this.element) return
         // else, go to parents
