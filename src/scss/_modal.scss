@@ -1,0 +1,35 @@
+.modal-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: rgba(0, 0, 0, .32);
+  padding: 1.5em 1.5em 6em 1.5em;
+
+  .modal {
+    margin: auto;
+    background-color: $color-bright;
+    border-radius: 0.5em;
+    border: 1px solid $color-white;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(72, 72, 96, .14), 0 3px 6px rgba(0, 0, 0, .27);
+
+    .modal-head,
+    .modal-body {
+      padding: 1em;
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      background-color: $color-light;
+      border-bottom: 1px solid $color-lightgray;
+    }
+
+    // .modal-body {}
+  }
+}
