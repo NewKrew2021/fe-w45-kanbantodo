@@ -1,9 +1,10 @@
 import { $ } from "../common/utils";
 
 class TodoController {
-  constructor() {
+  constructor(logView) {
     this.todoList = [];
     this.todoViewList = {};
+    this.logView = logView;
   }
 
   subscribe(todo) {
@@ -11,11 +12,16 @@ class TodoController {
   }
 
   notify(todoCardList, status) {
+    console.log(this.todoList);
     this.todoList
       .filter((todo) => todo.status === status)
       .forEach(({ render }) => {
         render(todoCardList[status], status);
       });
+  }
+
+  notifyLog(logList) {
+    this.logView.render(logList);
   }
 
   addButtonEvent(model, view, status) {
@@ -55,7 +61,8 @@ class TodoController {
     this.todoViewList[status].HandleDragAndDrop(
       todoModel.updateCardStatus,
       this.notify.bind(this),
-      popUpMenuModel
+      popUpMenuModel,
+      this.notifyLog.bind(this)
     );
     this.subscribe({
       render: this.todoViewList[status].render,

@@ -10,14 +10,16 @@ import { PopUpMenuView } from "./public/js/views/pop-up-menu.view";
 import { PopUpMenuModel } from "./public/js/models/pop-up-menu.model";
 
 document.addEventListener("DOMContentLoaded", async (event) => {
-  const todoController = new TodoController();
+  const popUpMenuView = new PopUpMenuView().init();
+  const popUpMenuModel = new PopUpMenuModel();
+
+  const todoController = new TodoController(popUpMenuView);
+  console.log(todoController.logView);
 
   const todoModel = new TodoModel();
   const todoCardList = await todoModel.initData();
 
   const popUpView = new PopUpView();
-  const popUpMenuView = new PopUpMenuView().init();
-  const popUpMenuModel = new PopUpMenuModel();
 
   popUpView.render();
 

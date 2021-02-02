@@ -81,7 +81,7 @@ class TodoView {
     this.movingElement.style.top = `${pageY - this.movingElement.offsetHeight / 2}px`;
   }
 
-  HandleDragAndDrop(updateCardStatus, notify, popUpMenuModel) {
+  HandleDragAndDrop(updateCardStatus, notify, popUpMenuModel, notifyLog) {
     this.element.addEventListener("mousedown", ({ target }) => {
       if (!DRAGGABLE_ELEMENTS.includes(target.className)) return;
       let originalMovingElement = target.closest(".todo-card");
@@ -110,7 +110,7 @@ class TodoView {
           newTodoList.appendChild(this.movingElement);
           deleteElement(originalMovingElement);
           popUpMenuModel.addLog({ user: USER, task: "", from: "", to: "", card: "" });
-          console.log(popUpMenuModel.logList);
+          notifyLog(popUpMenuModel.logList);
           notify(updateCardStatus({ id: originalMovingElement.id, status: newTodoList.id }));
         } else {
           deleteElement(this.movingElement);

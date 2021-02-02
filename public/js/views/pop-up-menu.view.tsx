@@ -63,7 +63,7 @@ class PopUpMenuView {
   }
 
   render(logList: object[]) {
-    return logList.reduce((acc, { profile, user, task, from, to, card }) => {
+    this.menuDetail.innerHTML = logList.reduce((acc, { profile, user, task, from, to, card }) => {
       return (
         acc +
         POP_UP_MENU_TPL.detailItem(profile, user, POP_UP_MENU_TPL.moveTask(task, from, to, card))
@@ -72,7 +72,7 @@ class PopUpMenuView {
   }
 
   init(): PopUpMenuView {
-    this.menuDetail.innerHTML = this.render(LOG_LIST);
+    this.render(LOG_LIST);
     this.handleButtonTransition(this.menuButton, "translateX(0)");
     this.handleButtonTransition(this.closeButton, "");
 
