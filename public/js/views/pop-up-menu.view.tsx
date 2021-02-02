@@ -3,15 +3,23 @@ import { $ } from "../common/utils";
 const PROFILE_IMAGE: string =
   "https://avatars.githubusercontent.com/u/37804777?s=460&u=088956f4c1a3613536ddb54dac7492b469a12ca9&v=4";
 
-const LOG_LIST = [
-  { profile: PROFILE_IMAGE, user: "puba", task: "a", from: "b", to: "c", card: "d" },
-  { profile: PROFILE_IMAGE, user: "puba", task: "a", from: "b", to: "c", card: "d" },
-  { profile: PROFILE_IMAGE, user: "puba", task: "a", from: "b", to: "c", card: "d" },
-  { profile: PROFILE_IMAGE, user: "puba", task: "a", from: "b", to: "c", card: "d" },
-];
+interface Log {
+  profile: string;
+  user: string;
+  task: string;
+  from: string;
+  to: string;
+  card: string;
+}
 
-const POP_UP_MENU_TPL: object = {
-  statusTask(task: string, card: string, todoList: string) {
+interface PopUpMenuTPL {
+  statusTask(task: string, card: string, todoList: string): string;
+  moveTask(task: string, from: string, to: string, card: string): string;
+  detailItem(profile: string, user: string, taskTPL: string): string;
+}
+
+const POP_UP_MENU_TPL: PopUpMenuTPL = {
+  statusTask(task: string, card: string, todoList: string): string {
     return `
       <span class="user-activity">${task}</span>
       <span class="card">${card}</span>
@@ -65,17 +73,20 @@ class PopUpMenuView {
     });
   }
 
-  render(logList: object[]) {
-    this.menuDetail.innerHTML = logList.reduce((acc, { profile, user, task, from, to, card }) => {
-      return (
-        acc +
-        POP_UP_MENU_TPL.detailItem(
-          PROFILE_IMAGE,
-          user,
-          POP_UP_MENU_TPL.moveTask(task, from, to, card)
-        )
-      );
-    }, ``);
+  render(logList: Log[]) {
+    this.menuDetail.innerHTML = logList.reduce(
+      (acc: string, { profile, user, task, from, to, card }) => {
+        return (
+          acc +
+          POP_UP_MENU_TPL.detailItem(
+            PROFILE_IMAGE,
+            user,
+            POP_UP_MENU_TPL.moveTask(task, from, to, card)
+          )
+        );
+      },
+      ``
+    );
   }
 
   init(): PopUpMenuView {
