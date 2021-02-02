@@ -1,3 +1,48 @@
+// submit event handler
+function submitEventListener(event: Event) {
+  event.stopPropagation()
+  event.preventDefault()
+
+  // find out the target
+  const target: HTMLElement = <HTMLElement>event.target
+
+  // get form data
+  const formData = new FormData(<HTMLFormElement>target)
+
+  // convert form data to an object
+  const formDataObject = Object.fromEntries(formData.entries())
+
+  // call the action with form data
+  this.callAction(target.dataset.submitAction, formDataObject)
+}
+
+// common event handler
+function commonEventListener(event: Event, actionName: string) {
+  event.stopPropagation()
+
+  // find out the target
+  let target: HTMLElement = <HTMLElement>event.target
+  while (target.dataset[actionName] === undefined) {
+    // if no action, do nothing
+    if (target === this.element) return
+    // else, go to parents
+    target = target.parentElement
+  }
+
+  // call the action
+  this.callAction(target.dataset[actionName])
+}
+
+// click event handler
+function clickEventListener(event: Event) {
+  return commonEventListener.bind(this)(event, 'clickAction')
+}
+
+// double-click event handler
+function dblclickEventListener(event: Event) {
+  return commonEventListener.bind(this)(event, 'dblclickAction')
+}
+
 export default class View {
   protected element: HTMLElement // temporary root
 
@@ -20,39 +65,13 @@ export default class View {
 
   addEventListenerToWrapper(wrapper: HTMLElement) {
     // click event
-    wrapper.addEventListener('click', event => {
-      event.stopPropagation()
+    wrapper.addEventListener('click', clickEventListener.bind(this))
 
-      // find out the target
-      let target: HTMLElement = <HTMLElement>event.target
-      while (target.dataset.clickAction === undefined) {
-        // if no action, do nothing
-        if (target === this.element) return
-        // else, go to parents
-        target = target.parentElement
-      }
-
-      // call the action
-      this.callAction(target.dataset.clickAction)
-    })
+    // double-click event
+    wrapper.addEventListener('dblclick', dblclickEventListener.bind(this))
 
     // submit event
-    wrapper.addEventListener('submit', event => {
-      event.stopPropagation()
-      event.preventDefault()
-
-      // find out the target
-      const target: HTMLElement = <HTMLElement>event.target
-
-      // get form data
-      const formData = new FormData(<HTMLFormElement>target)
-
-      // convert form data to an object
-      const formDataObject = Object.fromEntries(formData.entries())
-
-      // call the action with form data
-      this.callAction(target.dataset.submitAction, formDataObject)
-    })
+    wrapper.addEventListener('submit', submitEventListener.bind(this))
   }
 
   callAction(action: string, arg?: any) {
