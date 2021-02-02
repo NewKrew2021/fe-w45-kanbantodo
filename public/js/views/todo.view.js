@@ -110,15 +110,15 @@ class TodoView {
 
           newTodoList.appendChild(this.movingElement);
           // log에 추가
-          let to = this.movingElement.closest(".todo").id;
-          let from = originalMovingElement.closest(".todo").id;
-          popUpMenuModel.addLog({
+
+          let log = {
             user: USER,
-            task: "",
-            from: from,
-            to: to,
+            task: this.movingElement.innerText.split("\n")[0],
+            from: originalMovingElement.closest(".todo").id,
+            to: this.movingElement.closest(".todo").id,
             card: "",
-          });
+          };
+          popUpMenuModel.addLog(log);
           notifyLog(popUpMenuModel.logList);
           // 기존 node 삭제
           deleteElement(originalMovingElement);
