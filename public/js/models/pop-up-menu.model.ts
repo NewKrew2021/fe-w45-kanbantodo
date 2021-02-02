@@ -1,4 +1,4 @@
-class popUpMenuModel {
+class PopUpMenuModel {
   logList: object[];
 
   constructor() {
@@ -10,4 +10,4 @@ class popUpMenuModel {
   }
 }
 
-export { popUpMenuModel };
+export { PopUpMenuModel };
