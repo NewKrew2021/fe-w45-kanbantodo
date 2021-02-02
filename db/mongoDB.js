@@ -4,11 +4,13 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 
 let database;
 let collection;
+let activityCollection;
 
 async function init() {
     await client.connect();
     database = client.db("todoDB");
     collection= database.collection("taskCollection");
+    activityCollection=database.collection("activityCollection");
 };
 init();
 
@@ -71,3 +73,45 @@ async function deleteTodo(id){
 
 }
 module.exports.deleteTodo = deleteTodo;
+
+
+
+async function findAllActivities(sectionID) {
+    if(typeof collection === 'undefined') return;
+    console.log("db:findAll...",sectionID);
+
+    // query for movies that have a runtime less than 15 minutes
+    const cursor = activityCollection.find();
+    // print a message if no documents were found
+    if ((await cursor.count()) === 0) {
+        console.log("No documents found!");
+    }
+    const result = [];
+    await cursor.forEach(({ _id, title, author,type }) => {
+        result.push({ _id, title, author,type });
+    }); // map함수가 동작하지않음
+    return result;
+
+}
+module.exports.findAllActivities = findAllActivities;
+
+
+async function insertActivity(activityData) {
+    console.log("db:inserting activity...");
+    const {title,author,sectionID,action,newTitle,newSectionName}=activityData;
+    //// create a document to be inserted
+
+    const doc = {title, author, sectionName:sectionID, action};
+    if(typeof newTitle !== `undefined`){
+        doc.newTitle=newTitle;
+    }
+    if(typeof newSectionName !== `undefined`){
+        doc.newSectionName=newSectionName;
+    }
+    const result = await activityCollection.insertOne(doc);
+    console.log(
+        `${result.insertedCount} documents were inserted with the _id: ${result.insertedId}`,
+    );
+
+}
+module.exports.insertActivity = insertActivity;

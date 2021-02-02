@@ -1,8 +1,12 @@
-export function initMenu(){
+import {Activity} from "../model/activityModel";
+import {initActivityController} from"../controller/activityController.ts";
+
+export function initActivity(){
 
     render();
     initEvents();
-    //renderList();
+    initActivityController();
+    //renderActivityList();
 
 }
 function initEvents(){
@@ -27,7 +31,7 @@ function initEvents(){
 }
 function render(){
     const sideBar=document.querySelector("#side-bar");
-    sideBar.classList.add("sb-close")
+    sideBar.classList.add("sb-close");
     const html=
     `
     <div id="title">
@@ -39,5 +43,17 @@ function render(){
     `;
 
     sideBar.innerHTML=html;
+
+};
+
+export function renderActivityList(activityListData :Activity[]) {
+    const sideBar=document.querySelector("#side-bar");
+    const activityList=sideBar.querySelector("#activity-list");
+
+    const html=activityListData.reduce((acc,{title})=>
+        acc+`<div>${title}</div>`
+    ,"");
+
+    activityList.innerHTML=html;
 
 }

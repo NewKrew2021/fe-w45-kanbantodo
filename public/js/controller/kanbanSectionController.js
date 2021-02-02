@@ -66,7 +66,7 @@ export function initSectionController({sectionID}){
     });
     //UPDATE: call PUT API
     submitBtn.addEventListener("click",()=>{
-        updateTask(sectionID,{dbID:updateTargetID,title:modalTextArea.value});
+        updateTask(sectionID,{dbID:updateTargetID,title:modalTextArea.value,prevTitle:"",author:"justin"});
     });
 
     //DELETE
@@ -78,40 +78,37 @@ export function initSectionController({sectionID}){
         if(!result) return;
         const taskItem=e.target.closest(".item");
         const dbID=taskItem.attributes.dbID.value;
-        deleteTask(sectionID,dbID);
+        const title=taskItem.querySelector(".title").innerText;
+        deleteTask(sectionID,{dbID,title,author:"justin"});
     }
 
     //카드 옮기기 
-    taskList.addEventListener("mousedown",(e)=>{
-        const target=e.target;
-        if(!target.className.includes("item"))return;
-        const width=target.offsetWidth;
-        const height=target.offsetHeight
-        target.style.position='absolute';
-        target.style.zIndex=1000;
+    // taskList.addEventListener("mousedown",(e)=>{
+    //     const target=e.target;
+    //     if(!target.className.includes("item"))return;
+    //     const width=target.offsetWidth;
+    //     const height=target.offsetHeight
+    //     target.style.position='absolute';
+    //     target.style.zIndex=1000;
 
-        document.body.append(target);
+    //     document.body.append(target);
 
-        function moveAt(pageX,pageY){
-            target.style.left=pageX- target.offsetWidth / 2+'px';
-            target.style.top=pageY- target.offsetHeight / 2+'px';
-        }
+    //     function moveAt(pageX,pageY){
+    //         target.style.left=pageX- target.offsetWidth / 2+'px';
+    //         target.style.top=pageY- target.offsetHeight / 2+'px';
+    //     }
+    //     moveAt(e.pageX,e.pageY);
 
-        moveAt(e.pageX,e.pageY);
+    //     function onMouseMove(e){
+    //         moveAt(e.pageX,e.pageY);
+    //     }
+    //     document.addEventListener('mousemove',onMouseMove);
 
-        function onMouseMove(e){
-            moveAt(e.pageX,e.pageY);
-        }
-
-        document.addEventListener('mousemove',onMouseMove);
-
-        target.onmouseup=function(){
-            document.removeEventListener('mousemove',onMouseMove);
-            target.onmouseup=null;
-        }
-
-    });
+    //     target.onmouseup=function(){
+    //         document.removeEventListener('mousemove',onMouseMove);
+    //         target.onmouseup=null;
+    //     }
+    // });
     // taskList.addEventListener("mouseup",()=>{
-
     // })
 }
