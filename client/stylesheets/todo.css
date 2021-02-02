@@ -77,6 +77,10 @@ input {
   padding-bottom: 3px;
 }
 
+.time {
+  color: gray;
+}
+
 .history {
   font-size: 15px;
   font-weight: 600;
@@ -144,7 +148,7 @@ input {
   padding: 1em;
 }
 
-.modal-input, .modal-new-input {
+.modal-new-input, .modal-edit-input {
   width: 90%;
   min-height: 100px;
   border-radius: 5px;
@@ -164,7 +168,7 @@ input {
   color: yellow;
 }
 
-.btn-save-modal {
+.btn-save-modal, .btn-save-note-modal {
   width: 170px;
   float: left;
   background-color: #34B370;

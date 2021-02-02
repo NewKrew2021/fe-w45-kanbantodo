@@ -9,50 +9,111 @@
           "id": 0,
           "title": "추가하기",
           "tasks": []
-        },
-        {
-          "id": 1,
-          "title": "뮤",
-          "tasks": []
-        },
-        {
-          "id": 2,
-          "title": "abc",
-          "tasks": []
         }
       ]
     },
     {
       "id": 1,
-      "name": "뮤",
+      "name": "하는중",
       "author": "roddy.chan",
       "data": [
         {
           "id": 0,
-          "title": "abc",
+          "title": "Drag&Drop 후 DB 저장",
           "tasks": []
         },
         {
           "id": 1,
-          "title": "def",
+          "title": "TypeScript로 일부 구현하기",
           "tasks": []
         }
       ]
     },
     {
       "id": 2,
-      "name": "뮤뮤",
+      "name": "끝난일",
+      "author": "roddy.chan",
+      "data": [
+        {
+          "id": 0,
+          "title": "webpack, babel 설정하기",
+          "tasks": []
+        },
+        {
+          "id": 1,
+          "title": "express&lowdb로 DB 구성하기",
+          "tasks": []
+        },
+        {
+          "id": 2,
+          "title": "사용자 조작 히스토리 보여주기",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "새로운 일",
       "author": "roddy.chan",
       "data": []
     }
   ],
   "history": [
     {
-      "action": "ADD_NOTE",
-      "cardName": "뮤",
+      "action": "EDIT_CARD",
+      "cardName": "하는중2",
       "beforeTitle": "",
-      "afterTitle": "def",
-      "writeTime": 1612275621393
+      "afterTitle": "하는중",
+      "writeTime": 1612284533557
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "sfdsfd",
+      "afterTitle": "Drag&Drop 후 DB 저장",
+      "writeTime": 1612284548572
+    },
+    {
+      "action": "ADD_CARD",
+      "cardName": "끝난일",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612284660480
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "끝난일",
+      "beforeTitle": "",
+      "afterTitle": "webpack, babel 설정하기",
+      "writeTime": 1612284691743
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "끝난일",
+      "beforeTitle": "",
+      "afterTitle": "express&lowdb로 DB 구성하기",
+      "writeTime": 1612284701969
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "TypeScript로 일부 구현하기",
+      "writeTime": 1612284744001
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "끝난일",
+      "beforeTitle": "",
+      "afterTitle": "사용자 조작 히스토리 보여주기",
+      "writeTime": 1612286089673
+    },
+    {
+      "action": "ADD_CARD",
+      "cardName": "새로운 일",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612286172722
     }
   ]
 }

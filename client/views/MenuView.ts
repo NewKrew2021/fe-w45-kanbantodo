@@ -67,17 +67,33 @@ class MenuView {
         _dom.html(_dom.query('.menu-item-wrapper'), "");
         const createHTML = ({ data, type }) => {
             let writeTime = Math.floor((Date.now() - data.writeTime) / 1000);
+            let result;
+            if (writeTime < 119){
+                result = writeTime + " seconds";
+            }
+            if (writeTime >= 120 && writeTime < 7200){
+                writeTime = Math.floor(writeTime / 60);
+                result = writeTime + " minutes";
+            }
+            if (writeTime >= 7200){
+                writeTime = Math.floor(writeTime / 7200);
+                result = writeTime + " hours";
+            }
             return domTpl[type]({ 
                 action : data.action,
                 afterTitle : data.afterTitle,
                 beforeTitle : data.beforeTitle,
                 cardName : data.cardName,
-                writeTime : writeTime });
+                writeTime : result });
         };
 
         userActions.forEach(element => {
             const allObj = { data: element, type: element.action };
-            _dom.addHTML(_dom.query('.menu-item-wrapper'), createHTML(allObj));
+            const historyItem = _dom.create({ type: 'div', className: ['menu-item', 'relative']});
+            _dom.html(historyItem, createHTML(allObj));
+            _dom.query('.menu-item-wrapper').prepend(historyItem);
+
+            //_dom.addHTML(_dom.query('.menu-item-wrapper'), createHTML(allObj));
         });
     }
 }

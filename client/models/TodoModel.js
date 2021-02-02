@@ -38,7 +38,7 @@ class TodoModel extends Observable {
 
     async removeCard({ cardId }){
         await req.removeCard({ cardId });
-        this.notify(this.todos);
+        this.notify(this.todos)
     }
 
     // 리스트뷰(todo) 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
@@ -74,12 +74,12 @@ class TodoModel extends Observable {
     // 리스트뷰(note item) 삭제, 상태 변화, Observer에게 알려 준다.
     async removeTodo( {cardId, id} ) {
         await req.removeList({ cardId, id });
-        this.notify(this.todos);
+        this.notify(this.todos)
     }
 
     // 리스트뷰(note item)의 타이틀 수정
     async editTodo(input, mode){
-        if (mode === 'list'){
+        if (mode === 'note'){
             await req.editList(input);
             this.notify(this.todos);
         }
@@ -89,8 +89,8 @@ class TodoModel extends Observable {
         }
     }
 
-    setModalState({cardId, id, mode}){
-        this.state = {...this.state, cardId: cardId, id: id, mode: mode};
+    setModalState({cardId, id}){
+        this.state = {...this.state, cardId: cardId, id: id};
         return this.state;
     }
 

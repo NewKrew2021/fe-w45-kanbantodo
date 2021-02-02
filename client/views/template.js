@@ -40,39 +40,39 @@ export const domTpl = {
         `
     },
     ADD_CARD({ action, afterTitle, beforeTitle, cardName, writeTime }) {
-        return `<div class="menu-item relative"><img class="profile" src="images/jackson.png">
+        return `<img class="profile" src="images/jackson.png">
         <p class="menu-text history">Add <span class="menu-accent">${cardName}</span> card</p>
-        <p class="menu-text time">${writeTime} seconds ago</p>
-        </div>`
+        <p class="menu-text time">${writeTime} ago</p>
+        `
     },
     REMOVE_CARD({ action, afterTitle, beforeTitle, cardName, writeTime }) {
-        return `<div class="menu-item relative"><img class="profile" src="images/jackson.png">
+        return `<img class="profile" src="images/jackson.png">
         <p class="menu-text history">Remove <span class="menu-accent">${cardName}</span> card</p>
-        <p class="menu-text time">${writeTime} seconds ago</p>
-        </div>`
+        <p class="menu-text time">${writeTime} ago</p>
+        `
     },
     ADD_NOTE({ action, afterTitle, beforeTitle, cardName, writeTime }) {
-        return `<div class="menu-item relative"><img class="profile" src="images/jackson.png">
+        return `<img class="profile" src="images/jackson.png">
         <p class="menu-text history">Add <span class="menu-accent">${afterTitle}</span> to <span class="menu-accent">${cardName}</span> card</p>
-        <p class="menu-text time">${writeTime} seconds ago</p>
-        </div>`
+        <p class="menu-text time">${writeTime} ago</p>
+        `
     },
     REMOVE_NOTE({ action, afterTitle, beforeTitle, cardName, writeTime }) {
-        return `<div class="menu-item relative"><img class="profile" src="images/jackson.png">
+        return `<img class="profile" src="images/jackson.png">
         <p class="menu-text history">Remove <span class="menu-accent">${afterTitle}</span> from <span class="menu-accent">${cardName}</span> card</p>
-        <p class="menu-text time">${writeTime} seconds ago</p>
-        </div>`
+        <p class="menu-text time">${writeTime} ago</p>
+        `
     },
     EDIT_CARD({ action, afterTitle, beforeTitle, cardName, writeTime }) {
-        return `<div class="menu-item relative"><img class="profile" src="images/jackson.png">
+        return `<img class="profile" src="images/jackson.png">
         <p class="menu-text history">Edit title : <span class="menu-accent">${cardName}</span> card &#8594; <span class="menu-accent">${afterTitle}</span> card</p>
-        <p class="menu-text time">${writeTime} seconds ago</p>
-        </div>`
+        <p class="menu-text time">${writeTime} ago</p>
+        `
     },
     EDIT_NOTE({ action, afterTitle, beforeTitle, cardName, writeTime }) {
-        return `<div class="menu-item relative"><img class="profile" src="images/jackson.png">
+        return `<img class="profile" src="images/jackson.png">
         <p class="menu-text history">Edit title : <span>${cardName}</span>><span class="menu-accent">${beforeTitle}</span> &#8594; <span class="menu-accent">${afterTitle}</span></p>
-        <p class="menu-text time">${writeTime}초 전</p>
-        </div>`
+        <p class="menu-text time">${writeTime} ago</p>
+        `
     }
 };

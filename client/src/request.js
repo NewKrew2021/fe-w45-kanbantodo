@@ -27,6 +27,7 @@ export function addList(input) {
 
 // 리스트뷰 아이템 타이틀 수정
 export function editList({ cardId, id, input }) {
+    console.log(cardId,id,input);
     return fetch(`http://localhost:5000/list/edit/${cardId}/${id}`, {
         method: "put",
         body: JSON.stringify(input),
