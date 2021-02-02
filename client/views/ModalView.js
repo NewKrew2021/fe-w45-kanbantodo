@@ -40,24 +40,24 @@ class ModalView {
 
     // remove note item
     async removeNoteHandler(e){
-        const cardId = _dom.getAttr({node: e.target, attr: 'data'});
-        const id = _dom.getAttr({node: e.target, attr: 'data-idx'});
+        const cardId = _dom.getAttr({nodeList: e.target, attr: 'data'});
+        const id = _dom.getAttr({nodeList: e.target, attr: 'data-idx'});
         await this.model.setModalState({ cardId, id });
 
         _dom.removeClass({
-            node: [this.modalView, this.removeModal],
+            nodeList: [this.modalView, this.removeModal],
             className : 'none'
         })
         this.modalAcceptBtn.addEventListener('click', function () {
             this.model.removeTodo(this.model.state);
             _dom.addClass({
-                node: [this.modalView, this.removeModal],
+                nodeList: [this.modalView, this.removeModal],
                 className : 'none'
             })
         }.bind(this))
         this.modalCloseBtn.addEventListener('click', () => {
             _dom.addClass({
-                node: [this.modalView, this.removeModal],
+                nodeList: [this.modalView, this.removeModal],
                 className : 'none'
             })
         })
@@ -80,9 +80,11 @@ class ModalView {
         modalInput.value = '';
         
         _dom.addClass({
-            node: [this.modalWriteBtn], className : "none" });
+            nodeList: [this.modalWriteBtn],
+            className : "none" });
         _dom.removeClass({
-            node: [this.modalView, this.editModal, this.modalSaveBtn], className: "none"
+            nodeList: [this.modalView, this.editModal, this.modalSaveBtn],
+            className: "none"
         });
         if (id == -1) {
             mode = 'card';
@@ -99,7 +101,7 @@ class ModalView {
             const input = { input: { title: newTitle } };
             this.model.editTodo({ ...this.model.state, input }, this.model.state.mode);
             _dom.addClass({
-                node: [this.modalView, this.editModal],
+                nodeList: [this.modalView, this.editModal],
                 className : "none"
             });
         }.bind(this))
@@ -117,7 +119,7 @@ class ModalView {
         })
         closeBtn.addEventListener('click', () => {
             _dom.addClass({
-                node: [this.modalView, this.editModal],
+                nodeList: [this.modalView, this.editModal],
                 className : "none"
             });
         })
@@ -129,11 +131,11 @@ class ModalView {
         const modalInput = _dom.query('.modal-input');
         modalInput.value = '';
         _dom.addClass({
-            node: [this.modalSaveBtn],
+            nodeList: [this.modalSaveBtn],
             className: 'none'
         })
         _dom.removeClass({
-            node: [this.modalView, this.editModal, this.modalWriteBtn],
+            nodeList: [this.modalView, this.editModal, this.modalWriteBtn],
             className: 'none'
         })
         _dom.html(modalHeader, '새로운 카드 추가하기');
@@ -141,7 +143,7 @@ class ModalView {
             const newTitle = modalInput.value;
             this.model.addCard({ name : newTitle, author: "roddy.chan" });
             _dom.addClass({
-                node: [this.modalView, this.editModal],
+                nodeList: [this.modalView, this.editModal],
                 className: 'none'
             })
         }.bind(this))
@@ -154,21 +156,21 @@ class ModalView {
 
     // remove card
     removeCardHandler(e){
-        const cardId = _dom.getAttr({node: e.target, attr: 'data'});
+        const cardId = _dom.getAttr({nodeList: e.target, attr: 'data'});
         _dom.removeClass({
-            node: [this.modalView, this.removeCardModal],
+            nodeList: [this.modalView, this.removeCardModal],
             className: 'none'
         })
         this.cardRemoveBtn.addEventListener('click', function () {
             this.model.removeCard({ cardId });
             _dom.addClass({
-                node: [this.modalView, this.removeCardModal],
+                nodeList: [this.modalView, this.removeCardModal],
                 className: 'none'
             })
         }.bind(this))
         this.cardCancelBtn.addEventListener('click', () => {
             _dom.addClass({
-                node: [this.modalView, this.removeCardModal],
+                nodeList: [this.modalView, this.removeCardModal],
                 className: 'none'
             })
         })
