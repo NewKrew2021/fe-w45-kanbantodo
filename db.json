@@ -7,6 +7,10 @@
         {
           "title": "2",
           "author": "kevin"
+        },
+        {
+          "title": "3",
+          "author": "kevin"
         }
       ]
     },
@@ -109,6 +113,14 @@
       "text": "3",
       "author": "kevin",
       "time": "1612247529595"
+    },
+    {
+      "type": "added",
+      "from": "none",
+      "to": "To-Do",
+      "text": "3",
+      "author": "kevin",
+      "time": "1612251391031"
     }
   ]
 }
