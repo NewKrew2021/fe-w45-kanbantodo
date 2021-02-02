@@ -18,35 +18,6 @@
       ]
     },
     {
-      "id": 3,
-      "name": "다했음",
-      "author": "roddy.chan",
-      "data": [
-        {
-          "id": 0,
-          "title": "abcd",
-          "tasks": []
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "name": "새 카드 추가",
-      "author": "roddy.chan",
-      "data": [
-        {
-          "id": 0,
-          "title": "아이템 추가",
-          "tasks": []
-        },
-        {
-          "id": 1,
-          "title": "두번째 추가",
-          "tasks": []
-        }
-      ]
-    },
-    {
       "id": 5,
       "name": "네번째카드",
       "author": "roddy.chan",
@@ -54,6 +25,23 @@
         {
           "id": 1,
           "title": "asffsdsfdsdf",
+          "tasks": []
+        },
+        {
+          "id": 2,
+          "title": "afdsf",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "마지막 카드",
+      "author": "roddy.chan",
+      "data": [
+        {
+          "id": 0,
+          "title": "adfasfd",
           "tasks": []
         }
       ]
