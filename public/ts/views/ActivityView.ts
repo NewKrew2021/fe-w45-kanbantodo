@@ -1,12 +1,11 @@
 class ActivityView {
-  constructor(model){
+  model: any;
+  constructor(model: any){
     this.model = model;
   }
 
-  showActivityBoard(activities) {
-    const activityContainer = document.querySelector("div.activity-contents");
-    const initHtml = ``;
-    
+  showActivityBoard(activities: Array<any>) {
+    const activityContainer = document.querySelector("div.activity-contents") as HTMLTextAreaElement;
     const activitiesHtml = activities.reduceRight( (initHtml, activity) => {
       let activityHtml = `        
           <div class="activity-item">
@@ -61,40 +60,40 @@ class ActivityView {
           <div class="item-timelog">${Math.floor(timeGap)} ${timeText} ago</div>
         </div>
       `
-    }, initHtml)
+    }, ``)
     activityContainer.innerHTML = activitiesHtml;
   }
 
   menuEventHandler() {
-    const menuBtn = document.querySelector("div.navbar-menu");
-    const activityEle = document.querySelector("div.activity-container");
+    const menuBtn = document.querySelector("div.navbar-menu") as HTMLTextAreaElement;
+    const activityEle = document.querySelector("div.activity-container") as HTMLTextAreaElement;
     menuBtn.addEventListener("click", e => {
       this.displayActivityBoard(activityEle);
     })
   }
 
   cancelEventHandler() {
-    const cancelBtn = document.querySelector("span.activity-close");
-    const activityEle = document.querySelector("div.activity-container");
+    const cancelBtn = document.querySelector("span.activity-close") as HTMLTextAreaElement;
+    const activityEle = document.querySelector("div.activity-container") as HTMLTextAreaElement;
     cancelBtn.addEventListener("click", e => {
       this.nonDisplayActivityBoard(activityEle);
     })
   }
 
   clearEventHandler() {
-    const clearBtn = document.querySelector("span.activity-clear");
+    const clearBtn = document.querySelector("span.activity-clear") as HTMLTextAreaElement;
     clearBtn.addEventListener("click", e => {
       this.model.clearActivity();
     })
   }
 
-  displayActivityBoard(ele) {
+  displayActivityBoard(ele:Element) {
     ele.classList.remove("non-display");
     ele.classList.remove("activity-out");
     ele.classList.add("activity-in");
   }
 
-  nonDisplayActivityBoard(ele) {
+  nonDisplayActivityBoard(ele:Element) {
     ele.classList.remove("activity-in");
     ele.classList.add("activity-out");
   }

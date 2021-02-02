@@ -1,16 +1,20 @@
-import {Observable} from "../common.js";
-import {URL} from "../utils/url.js"
+// @ts-ignore next-line
+import {Observable} from "../common.ts";
+// @ts-ignore next-line
+import {URL} from "../utils/url.ts"
 
 class TodoModel extends Observable {
+  todos: Array<any>;
+  notify: any;
   constructor() {
     super();
     this.todos = [];
   }
-  addTodo(newTodo) {
+  addTodo(newTodo: object) {
     this.todos = [...this.todos, newTodo];
     this.notify(this.todos);
   }
-  deleteTodo(newTodo) {
+  deleteTodo(newTodo: object) {
     this.todos = [...this.todos].filter(todo => todo !== newTodo);
     this.notify(this.todos);
   }
@@ -21,11 +25,11 @@ class TodoModel extends Observable {
     const data = await res.json();
     this.saveInitTodo(data);
   }
-  saveInitTodo(todo){
+  saveInitTodo(todo: Array<any>){
     this.todos = todo;
     this.notify(this.todos);
   }
 
 }
 
-export {TodoModel};
+export { TodoModel };

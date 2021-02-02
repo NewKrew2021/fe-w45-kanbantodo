@@ -1,7 +1,11 @@
-import {Observable} from "../common.js";
-import {URL} from "../utils/url.js"
+// @ts-ignore next-line
+import {Observable} from "../common.ts";
+// @ts-ignore next-line
+import {URL} from "../utils/url.ts"
 
 class ActivityModel extends Observable {
+  activities: Array<any>;
+  notify: any;
   constructor() {
     super();
     this.activities = [];
@@ -15,7 +19,7 @@ class ActivityModel extends Observable {
     this.saveInitActivity(data);
   }
 
-  async putActivity(type, from, to, text, author, time) {
+  async putActivity(type:string, from:number, to:number, text:string, author:string, time:number) {
     try{
       const res = await fetch( URL + `/activity?type=${type}&from=${from}&to=${to}&text=${text}&author=${author}&time=${time}`, {
         method: "PUT",
@@ -39,7 +43,7 @@ class ActivityModel extends Observable {
     }
   }
 
-  addActivity(type, from, to, text, author, time) {
+  addActivity(type:string, from:number, to:number, text:string, author:string, time:number) {
     this.putActivity(type, from, to, text, author, time)
     .then( data => {
       this.activities = data;
@@ -55,7 +59,7 @@ class ActivityModel extends Observable {
     })
   }
 
-  saveInitActivity(activity){
+  saveInitActivity(activity: Array<any>){
     this.activities = activity;
     this.notify(this.activities);
   }
