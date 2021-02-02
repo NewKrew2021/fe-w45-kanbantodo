@@ -1,14 +1,14 @@
-$header-background:#000000 
-$header-font-color:#fef01b
-$common-border-color:#b9b8b8
-$todo-background-color:#9bbbd4
-$todo-card-background:#ffffff
-$add-button-background:#fef01b
-$cancel-button-background:#000000bd
-$pop-up-background:#000000
-$pop-up-content:#ffffff
-$menu-pop-up-width:300px
-$menu-background:#ffffff
+$header-background: #000000
+$header-font-color: #fef01b
+$common-border-color: #b9b8b8
+$todo-background-color: #9bbbd4
+$todo-card-background: #ffffff
+$add-button-background: #fef01b
+$cancel-button-background: #000000bd
+$pop-up-background: #000000
+$pop-up-content: #ffffff
+$menu-pop-up-width: 300px
+$menu-background: #ffffff
 
 ul,li
     padding: 0
@@ -54,6 +54,25 @@ ul,li
         box-sizing: border-box
         border: 1px $common-border-color solid
         padding: 10px
+
+.balloon
+    box-sizing: border-box
+    position: relative
+    width: 250px
+    height: 50px
+    margin-left: 25px
+    background: $add-button-background
+    border-radius: 10px
+    padding: 15px
+    &:after
+        border-top: 15px solid $add-button-background
+        border-left: 15px solid transparent
+        border-right: 0px solid transparent
+        border-bottom: 0px solid transparent
+        content: ""
+        position: absolute
+        top: 10px
+        left: -15px
 
 .pop-up
     z-index: 1
