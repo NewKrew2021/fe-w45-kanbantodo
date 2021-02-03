@@ -6,14 +6,12 @@ interface History{
     cardName: string
     writeTime: number
 }
-
 interface InitData{
     id : string
     author : string
     name : string
     data : string
 }
-
 interface MethodDictionary{
     [index: string] : any
 } // Object[key] 형태로 접근 시, 타입스크립트에서는 인덱싱 가능한 타입으로 정의해야 함
