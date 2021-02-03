@@ -1,56 +1,54 @@
 /*
-    util.js
+    util.ts
+    js -> typescript로 정의(완료)
 */
 
-function addHTML(node, text) {
+function addHTML(node : HTMLElement, text : string) {
     node.innerHTML += text;
 }
-function html(node, text) {
+function html(node : HTMLElement, text : string) {
     node.innerHTML = text;
 }
-function create({type, className}){
+function create({type, className} : {type : string, className : Array<string>}){
     const res = document.createElement(type);
     res.classList.add(...className);
     return res;
 }
-function getAttr({nodeList, attr}){
-    return nodeList.getAttribute(attr);
-}
-
-function addClass({nodeList, className}){
+function addClass({nodeList, className} : {nodeList : Array<HTMLElement>, className : string}){
     nodeList.forEach(element =>{
         element.classList.add(className);
     })
 }
-function removeClass({nodeList, className}){
+function removeClass({nodeList, className} : {nodeList : Array<HTMLElement>, className : string}){
     nodeList.forEach(element => {
         element.classList.remove(className);
     });
 }
 
-function getCardName({cardId}){
+function getCardName({cardId} : {cardId : string}){
     const cardname = queryAll('.card-name');
-    let result = '';
-    cardname.forEach(element => {
+    let result;
+    cardname.forEach((element : Element) => {
         if (element.getAttribute('data') === cardId){
             result = element.textContent;
         }
     });
     return result;
 }
-function getNoteTitle({cardId, id}){
+function getNoteTitle({cardId, id} : {cardId : string, id : string}){
+    let result;
     const noteTitle = queryAll('.list-title');
-    let result = '';
-    noteTitle.forEach(element=>{
-        if (element.getAttribute('data-idx') === id){
+    noteTitle.forEach((element : Element)=>{
+        if (element.getAttribute('data') === cardId && 
+                element.getAttribute('data-idx') === id){
             result = element.textContent;
         }
-    }) 
+    })
     return result;
 }
 
-function dfs_q(node, target) {
-    let returnVal;
+function dfs_q(node : Element, target : string): any{
+    let returnVal = undefined;
     /* dfs 탐색 */
     for (let element of node.children) {
         if (element.matches(target))
@@ -64,7 +62,7 @@ function dfs_q(node, target) {
     return returnVal;
 }
 
-function dfs_q_all(nodeList, node, target){
+function dfs_q_all(nodeList : Array<Element>, node : Element, target : string){
     for (let element of node.children) {
         if (element.matches(target))
             nodeList.push(element);
@@ -74,12 +72,12 @@ function dfs_q_all(nodeList, node, target){
     return nodeList;
 }
 
-function query(target) {
+function query(target : string) {
     return dfs_q(document.body, target)
 }
-function queryAll(target) {
+function queryAll(target : string) {
     return dfs_q_all([], document.body, target)
 }
 
-export { addHTML, html, create, getAttr, getCardName, getNoteTitle,
+export { addHTML, html, create, getCardName, getNoteTitle,
     addClass, removeClass, query, queryAll};

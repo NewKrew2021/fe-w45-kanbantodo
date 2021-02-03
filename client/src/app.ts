@@ -2,12 +2,12 @@
     app.js
     <entry point>
 */
-import ListView from '../views/ListView';
-import TodoModel from '../models/TodoModel';
-import * as _dom from './util';
-import InputView from '../views/InputView';
-import ModalView from '../views/ModalView';
-import MenuView from '../views/menuView';
+import ListView from 'client/views/ListView';
+import TodoModel from 'client/models/TodoModel';
+import * as _dom from 'client/src/util';
+import InputView from 'client/views/InputView';
+import ModalView from 'client/views/ModalView';
+import MenuView from 'client/views/MenuView';
 
 // model, Subject
 const todoModel = new TodoModel('http://localhost:5000/posts');

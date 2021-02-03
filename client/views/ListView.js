@@ -4,8 +4,8 @@
     구독중인 모델의 어떤 상태가 변경되면 -> 화면의 변화 발생(렌더링)
     데이터가 새롭게 추가되면, 구독 중인 ListView가 감지한다.
 */
-import { domTpl } from './template.js';
-import * as _dom from '../src/util';
+import { domTpl } from 'client/views/template';
+import * as _dom from 'client/src/util';
 
 /* TodoModel을 구독하는 Observer */
 class ListView {

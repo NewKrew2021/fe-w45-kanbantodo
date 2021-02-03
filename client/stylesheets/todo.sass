@@ -4,6 +4,8 @@ $--color-main-gray: #dddee2
 $--color-main-green: #34B370
 $--color-main-blue: #3495DD
 $--color-soft-blue: #EFF8FD
+$--color-blue: #71B3EE 
+$--color-red: #F3758A
 
 input
     outline: none
@@ -11,6 +13,10 @@ input
     box-shadow: none
     line-height: 2
     margin-left: 1em
+
+
+#root
+    user-select: none
 
 #header
     width: 100%
@@ -57,6 +63,10 @@ input
     color: $--color-main-blue
     font-weight: 700
 
+.red
+    color: $--color-red
+    font-weight: 700
+
 .relative
     position: relative
 
@@ -74,7 +84,7 @@ input
     color: gray
 
 .history
-    font-size: 15px
+    font-size: 13.5px
     font-weight: 600
 
 .modal
@@ -314,6 +324,7 @@ input
     position: relative
     box-shadow: 0px 1px 2px lightgray
     width: 320px
+    border-left: 3px solid $--color-blue
 
 .list-view:hover
     border: 1px solid #0366d6

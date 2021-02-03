@@ -15,7 +15,7 @@ class TodoModel extends Observable {
     constructor(initialUrl) {
         super();
         this.todos = []; // data state
-        this.state = {}; 
+        this.state = {}; // modal state
         this.history = {}; // history state
         this.url = initialUrl; // 가져올 데이터의 요청 URL
     }

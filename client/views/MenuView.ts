@@ -2,16 +2,24 @@
     menuView.ts
     우측 사이드 메뉴바 부분
 */
-import * as _dom from "../src/util"
-import TodoModel from "../models/TodoModel"
-import { domTpl } from './template';
-
-const SPEED = "500ms";
+import * as _dom from 'client/src/util'
+import TodoModel from 'client/models/TodoModel'
+import relataiveTime from 'dayjs/plugin/relativeTime'
+import { domTpl } from 'client/views/template';
+import dayjs from 'dayjs'
 
 interface Menu {
     model: TodoModel
     speed: string
     width: string
+}
+
+interface History{
+    action: string
+    afterTitle: string
+    beforeTitle: string
+    cardName: string
+    writeTime: number
 }
 
 class MenuView {
@@ -63,28 +71,19 @@ class MenuView {
 
     // history state DB 값에 따라 업데이트
     async writeHistory() {
-        const userActions = await this.model.getHistory();
+        const userActions : Array<History> = await this.model.getHistory();
         _dom.html(_dom.query('.menu-item-wrapper'), "");
-        const createHTML = ({ data, type }) => {
-            let writeTime = Math.floor((Date.now() - data.writeTime) / 1000);
-            let result;
-            if (writeTime < 119){
-                result = writeTime + " seconds";
-            }
-            if (writeTime >= 120 && writeTime < 7200){
-                writeTime = Math.floor(writeTime / 60);
-                result = writeTime + " minutes";
-            }
-            if (writeTime >= 7200){
-                writeTime = Math.floor(writeTime / 7200);
-                result = writeTime + " hours";
-            }
+        dayjs.extend(relataiveTime);
+        console.log(userActions);
+
+        const createHTML = ({ data, type } : {data : History, type: string}) => {
+            const write = dayjs(data.writeTime);
             return domTpl[type]({ 
                 action : data.action,
                 afterTitle : data.afterTitle,
                 beforeTitle : data.beforeTitle,
                 cardName : data.cardName,
-                writeTime : result });
+                writeTime : dayjs(write).fromNow() });
         };
 
         userActions.forEach(element => {
@@ -92,8 +91,6 @@ class MenuView {
             const historyItem = _dom.create({ type: 'div', className: ['menu-item', 'relative']});
             _dom.html(historyItem, createHTML(allObj));
             _dom.query('.menu-item-wrapper').prepend(historyItem);
-
-            //_dom.addHTML(_dom.query('.menu-item-wrapper'), createHTML(allObj));
         });
     }
 }

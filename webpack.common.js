@@ -35,6 +35,9 @@ module.exports = {
     resolve: {
         modules: ["node_modules"],
         extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
+        alias: {
+            "client": path.resolve(__dirname, "client")
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({
