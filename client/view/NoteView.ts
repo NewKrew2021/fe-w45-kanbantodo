@@ -1,5 +1,12 @@
+import { NoteData } from "../utils/types";
+
+interface NoteView {
+    title: string;
+    id: string;
+}
+
 class NoteView {
-    constructor({title, id, data}) {
+    constructor({title, id, data}: NoteData) {
         this.title = title;
         this.id = id;
     }

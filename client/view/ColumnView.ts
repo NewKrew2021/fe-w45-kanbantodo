@@ -1,4 +1,10 @@
+import { ColumnData, NoteData } from "../utils/types";
 import NoteView from "./NoteView";
+
+interface ColumnView {
+    createView: Element | null;
+}
+
 
 class ColumnView {
     constructor() {
@@ -7,27 +13,34 @@ class ColumnView {
     init() {
     }
     
-    addColumnViewEventListener(id) {
+    addColumnViewEventListener(id: string) {
         const columnEle = document.getElementById(id);
-        const showAddButton = columnEle.querySelector('.column__header .add-button');
-        const AddCancelButton = columnEle.querySelector('.note-add .cancel-button')
-        this.createView = columnEle.querySelector('.note-add');
-        showAddButton.addEventListener('click', this.onClickAddButton.bind(this));
-        AddCancelButton.addEventListener('click', this.onClickNoteCancelButton.bind(this));
+        if (columnEle) {
+            const showAddButton = columnEle.querySelector('.column__header .add-button');
+            const AddCancelButton = columnEle.querySelector('.note-add .cancel-button')
+            this.createView = columnEle.querySelector('.note-add');
+            showAddButton && showAddButton.addEventListener('click', this.onClickAddButton.bind(this));
+            AddCancelButton && AddCancelButton.addEventListener('click', this.onClickNoteCancelButton.bind(this));
+        }
     }
 
     onClickAddButton () {
-        if (this.createView.classList.contains('hidden')) {
+        if (this.createView && this.createView.classList.contains('hidden')) {
             this.createView.classList.remove('hidden');
         }
     }
 
     onClickNoteCancelButton() {
-        this.createView.querySelector('textarea').value = '';
-        this.createView.classList.add('hidden')
+        if(this.createView){
+            const textareaElement = this.createView.querySelector('textarea')
+            if (textareaElement) {
+                textareaElement.value = '';
+            }
+            this.createView.classList.add('hidden')
+        }
     }
     
-    createColumnElement({notes, title, id}) {
+    createColumnElement({notes, title, id}: ColumnData) {
         const columnEle = document.createElement('div');
         columnEle.className = "column";
         columnEle.id = id;
@@ -35,12 +48,14 @@ class ColumnView {
         columnEle.appendChild(this.renderCreateView())
         columnEle.appendChild(this.renderNotes(notes));
         const container = document.querySelector('.container');
-        const addColumnEle = container.querySelector('.add-column');
-        container.insertBefore(columnEle, addColumnEle);
+        if (container) {
+            const addColumnEle = container.querySelector('.add-column');
+            container.insertBefore(columnEle, addColumnEle);
+        }
         this.addColumnViewEventListener(id);
     }
 
-    updateColumnElement({notes, title, id}, columnEle) {
+    updateColumnElement({notes, title, id}:ColumnData, columnEle: Element) {
         columnEle.innerHTML = '';
         columnEle.appendChild(this.renderColumnHeader(notes.length, title))
         columnEle.appendChild(this.renderCreateView())
@@ -49,7 +64,7 @@ class ColumnView {
     }
 
     // TODO : initial render와 구분하기
-    render(colData) {
+    render(colData: ColumnData) {
         const {id} = colData;
         const columnEle = document.getElementById(id);
         if (columnEle) {
@@ -59,7 +74,7 @@ class ColumnView {
         }
     }
 
-    renderColumnHeader(noteNum, title) {
+    renderColumnHeader(noteNum: number, title: string) {
         const ele = document.createElement('div');
         const innerHtml = `<div class="column__header__text">
             <div class="number">${noteNum}</div>
@@ -89,10 +104,10 @@ class ColumnView {
         return ele;
     }
 
-    renderNotes(colData) {
+    renderNotes(notes: NoteData[]) {
         const ele = document.createElement('ul');
         ele.className = "column__note-container"
-        const noteHtml = colData.reduce((acc, cur) => {
+        const noteHtml = notes.reduce((acc, cur) => {
             return acc + new NoteView(cur).render();
         }, '')
         ele.innerHTML = noteHtml;
