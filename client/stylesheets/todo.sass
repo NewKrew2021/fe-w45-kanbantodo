@@ -6,6 +6,7 @@ $--color-main-blue: #3495DD
 $--color-soft-blue: #EFF8FD
 $--color-blue: #71B3EE 
 $--color-red: #F3758A
+$--color-soft-green: #c1e9b4
 
 input
     outline: none
@@ -270,7 +271,10 @@ input
 
 .card-header
     position: relative
-    margin: 10px 7px 15px 7px
+    border-radius: 6px
+    padding: 10px
+    margin-bottom: 10px
+    //margin: 10px 7px 15px 7px
 
 .card-count
     width: 25px
@@ -278,9 +282,9 @@ input
     display: inline-block
     border-radius: 50%
     background-color: $--color-main-blue
-    color: white
     text-align: center
     line-height: 27px
+    color: white
 
 .input-list-view
     display: block
@@ -331,7 +335,7 @@ input
     position: relative
     box-shadow: 0px 1px 2px lightgray
     width: 320px
-    border-left: 3px solid $--color-blue
+    border-left: 3px solid $--color-main-blue
 
 .list-view:hover
     border: 1px solid #0366d6
@@ -367,10 +371,7 @@ input
 .search-btn>img
     width: 18px
     height: 18px
-.htop-remove
-    top: 0
 .htop-add
-    top: 0
     right: 25px   
 
 .none

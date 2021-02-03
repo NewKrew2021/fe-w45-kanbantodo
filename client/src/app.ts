@@ -12,8 +12,6 @@ import MenuView from 'client/views/MenuView';
 // model, Subject
 const todoModel = new TodoModel('http://localhost:5000/posts');
 
-//debugger;
-
 // Observer
 const listview = new ListView(todoModel);
 listview.init();
@@ -24,7 +22,6 @@ inputview.init();
 const modalview = new ModalView(todoModel);
 modalview.init();
 
-const MENU_SPEED = "500ms";
-const MENU_WIDTH = "370px";
+const [MENU_SPEED, MENU_WIDTH] = ["500ms", "370px"];
 const menuview = new MenuView({ model: todoModel, speed: MENU_SPEED, width: MENU_WIDTH });
 menuview.init();

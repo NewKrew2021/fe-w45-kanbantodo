@@ -37,7 +37,12 @@ class TodoModel extends Observable {
     //{ id:_, name:_, author:_}
     async addCard({ name, author }: { name: string, author: string }) {
         const res = await req.getAllData();
-        let cardId = res[res.length - 1].id + 1;
+        let cardId ;
+        if (res.length !== 0){
+            cardId = res[res.length - 1].id + 1;
+        } else{
+            cardId = 0;
+        }
         const inputObj : NewCardState = {
             id: cardId,
             name: name,
@@ -130,7 +135,6 @@ class TodoModel extends Observable {
     // todo 데이터 가져오기. json-server로부터 GET 요청으로 데이터를 가져올 수 있다.
     async getInitialData() {
         const data = await req.getAllData();
-        console.log(data);
         this.todos = [...this.todos, data];
         return this.todos;
     }

@@ -325,7 +325,9 @@ input {
 
 .card-header {
   position: relative;
-  margin: 10px 7px 15px 7px;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .card-count {
@@ -334,9 +336,9 @@ input {
   display: inline-block;
   border-radius: 50%;
   background-color: #3495DD;
-  color: white;
   text-align: center;
   line-height: 27px;
+  color: white;
 }
 
 .input-list-view {
@@ -395,7 +397,7 @@ input {
   -webkit-box-shadow: 0px 1px 2px lightgray;
           box-shadow: 0px 1px 2px lightgray;
   width: 320px;
-  border-left: 3px solid #71B3EE;
+  border-left: 3px solid #3495DD;
 }
 
 .list-view:hover {
@@ -446,12 +448,7 @@ input {
   height: 18px;
 }
 
-.htop-remove {
-  top: 0;
-}
-
 .htop-add {
-  top: 0;
   right: 25px;
 }
 
