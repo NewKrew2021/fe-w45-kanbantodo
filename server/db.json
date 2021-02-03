@@ -6,11 +6,6 @@
       "author": "roddy.chan",
       "data": [
         {
-          "id": 0,
-          "title": "수정하기",
-          "tasks": []
-        },
-        {
           "id": 1,
           "title": "TypeScript로 일부 구현하기",
           "tasks": []
@@ -35,6 +30,11 @@
         {
           "id": 2,
           "title": "사용자 히스토리 보여주기",
+          "tasks": []
+        },
+        {
+          "id": 3,
+          "title": "추가하기",
           "tasks": []
         }
       ]
@@ -131,6 +131,33 @@
       "beforeTitle": "",
       "afterTitle": "",
       "writeTime": 1612314565131
+    },
+    {
+      "action": "ADD_CARD",
+      "cardName": "해야할 일",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612323393294
+    },
+    {
+      "action": "REMOVE_CARD",
+      "cardName": "해야할 일",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612323428278
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "webpack, babel 설정하기",
+      "writeTime": 1612323527957
+    },
+    {
+      "action": "ADD_NOTE",
+      "beforeTitle": "",
+      "afterTitle": "추가하기",
+      "writeTime": 1612325219832
     }
   ]
 }
