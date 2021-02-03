@@ -1,7 +1,7 @@
-import NoteData from '../../type/note'
 import Controller from './_controller'
 import NoteView from '../view/note'
 import ModalController from './modal'
+import { NoteData } from '../../type/index'
 
 export default class NoteController extends Controller {
   private noteData: NoteData

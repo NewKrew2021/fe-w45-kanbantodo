@@ -2,37 +2,48 @@ import TaskController from './component/controller/task'
 import NoteController from './component/controller/note'
 import ColumnController from './component/controller/column'
 import KanbanController from './component/controller/kanban'
-import { findOne } from './util/index'
-
-const kanbanController = new KanbanController({ id: 'kanban', kanbanData: {} })
+import { findOne, myFetchGET } from './util/index'
+import { ColumnFetchedData, KanbanFetchedData, NoteFetchedData } from './type/index'
 
 window.addEventListener('DOMContentLoaded', (event) => {
+  initKanban()
+})
+
+async function initKanban() {
   // fetch data
-  const kanbanData = [
-    { title: 'A', notes: [ { title: 'A', subtasks: [ { title: 'A', subtasks: [] as Array<any> } ] } ] },
-    { title: 'B', notes: [ { title: 'B', subtasks: [ { title: 'B', subtasks: [] as Array<any> } ] } ] },
-    { title: 'C', notes: [ { title: 'C', subtasks: [ { title: 'C', subtasks: [] as Array<any> } ] } ] },
-    { title: 'D', notes: [ { title: 'D', subtasks: [ { title: 'D', subtasks: [] as Array<any> } ] } ] },
-  ]
+  const kanbanFetchedData: KanbanFetchedData = await myFetchGET('/kanban')
 
-  function initAndAddTasks(parent: NoteController | TaskController, tasks: Array<any>) {
-    // handle exception: no task
-    if (!tasks) return
+  // create new kanban
+  const kanbanController = new KanbanController({ id: kanbanFetchedData._id })
 
-    tasks.forEach(({ title, subtasks }) => {
-      const task = new TaskController({ id: '', taskData: { title }})
-      initAndAddTasks(task, subtasks)
-      parent.addTask(task)
+  // add columns
+  kanbanFetchedData.columns.forEach((columnFetchedData: ColumnFetchedData) => {
+
+    // create new column
+    const columnController = new ColumnController({
+      id: columnFetchedData._id,
+      title: columnFetchedData.title
     })
-  }
 
-  kanbanData.forEach(({ title, notes }) => {
-    const columnController = kanbanController.addColumn({ title })
-    notes.forEach(({ title, subtasks }) => {
-      const noteController = columnController.addNote({ title })
+    // add notes
+    columnFetchedData.notes.forEach((noteFetchedData: NoteFetchedData) => {
+
+      // create new note
+      const noteController = new NoteController({
+        id: noteFetchedData._id,
+        title: noteFetchedData.title
+      })
+
+      // TODO: check tasks
+
+      // append note
+      noteController.setWrapper(columnController.view.getChildrenWrapper('note'))
     })
-    // kanban.addColumn(column)
+
+    // append column
+    columnController.setWrapper(kanbanController.view.getChildrenWrapper('column'))
   })
 
+  // append kanban
   kanbanController.setWrapper(findOne('#kanban_box'))
-})
+}

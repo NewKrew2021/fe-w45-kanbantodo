@@ -1,4 +1,4 @@
-import NoteData from '../../type/note'
+import { NoteData } from '../../type/index'
 import View from './_view'
 
 export default class NoteView extends View {

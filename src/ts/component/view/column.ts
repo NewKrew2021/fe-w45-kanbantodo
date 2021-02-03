@@ -1,4 +1,4 @@
-import ColumnData from '../../type/column'
+import { ColumnData } from '../../type/index'
 import View from './_view'
 
 export type ColumnRenderData = {

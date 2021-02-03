@@ -1,8 +1,7 @@
-import KanbanData from '../../type/kanban'
 import Controller from './_controller'
 import ColumnController from './column'
 import KanbanView from '../view/kanban'
-import ColumnData from '../../type/column'
+import { KanbanData } from '../../type/index'
 
 export default class KanbanController extends Controller {
   private kanbanData: KanbanData

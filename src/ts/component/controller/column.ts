@@ -1,9 +1,8 @@
-import ColumnData from '../../type/column'
 import Controller from './_controller'
 import NoteController from './note'
 import ColumnView, { ColumnRenderData } from '../view/column'
-import NoteData from '../../type/note'
 import ModalController from './modal'
+import { ColumnData, NoteData } from '../../type/index'
 
 export default class ColumnController extends Controller {
   private columnData: ColumnData
