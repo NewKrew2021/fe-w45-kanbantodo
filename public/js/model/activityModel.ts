@@ -23,7 +23,7 @@ export async function fetchActivities() {
         const data=await res.json();
         activityList=data.tasks;
         activityList.sort((a,b)=>
-            ( (a.time < b.time) ? 1:-1)
+            ( (a.time < b.time) ? 1:-1) // 시간값 기준 내림차순 정렬(최근 만들어진 레코드가 먼저오게끔)
         );
         renderActivityList(activityList);
     }catch(err){

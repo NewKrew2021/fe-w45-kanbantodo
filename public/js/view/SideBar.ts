@@ -50,7 +50,6 @@ export function renderActivityList(activityListData :Activity[]) {
     const activityList=sideBar.querySelector("#activity-list");
 
     const html=activityListData.reduce((acc,cur)=>{
-        console.log(cur);
         return acc+
         `<div class="side-item">
             <div>${getTextHTML(cur)}</div>
