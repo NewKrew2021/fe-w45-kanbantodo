@@ -1,3 +1,9 @@
+$modal-min-width-rem: (
+  "20": 16,
+  "30": 24,
+  "40": 32,
+);
+
 .modal-box {
   position: fixed;
   top: 0;
@@ -31,5 +37,13 @@
     }
 
     // .modal-body {}
+  }
+
+  @each $k, $v in $modal-min-width-rem {
+    @media (min-width: #{$k}rem) {
+      .modal {
+        min-width: #{$v}rem;
+      }
+    }
   }
 }

@@ -1,6 +1,6 @@
 import View from "../view/_view"
 
-interface MethodBindingOption {
+export interface MethodBindingOption {
   methodName: string,
   bindTarget: Controller,
 }
@@ -8,16 +8,19 @@ interface MethodBindingOption {
 export default class Controller {
   private updateListeners: Array<Function>
   private deleteListeners: Array<Function>
-  protected id: string
-  protected view: View
+  private _view: View
 
   constructor() {
     this.updateListeners = []
     this.deleteListeners = []
   }
 
-  getID() {
-    return this.id
+  get view() {
+    return this._view
+  }
+
+  set view(_view: View) {
+    this._view = _view
   }
 
   addUpdateListener(listener: Function) {

@@ -1,19 +1,23 @@
-import Controller from './_controller'
+import Controller, { MethodBindingOption } from './_controller'
 import ModalView, { ModalRenderData } from '../view/modal'
 
 export default class ModalController extends Controller {
   private renderData: ModalRenderData
 
-  constructor({ id, renderData, parentController }: { id: string, renderData: ModalRenderData, parentController: Controller }) {
+  constructor({
+      renderData,
+      methodBindingOptions,
+    }: {
+      renderData: ModalRenderData,
+      methodBindingOptions: Array<MethodBindingOption>,
+    }) {
     super()
-    this.id = id
     this.renderData = renderData
     this.view = new ModalView()
     this.bindMethods([
-      'getID',
       'getRenderData',
       'closeModal',
-      { methodName: 'editColumn', bindTarget: parentController }
+      ...methodBindingOptions,
     ])
     this.setWrapper(document.body)
     this.view.render()

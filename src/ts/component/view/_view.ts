@@ -51,9 +51,6 @@ export default class View {
   }
 
   // get data from controller to render itself
-  getID():string {
-    return ''
-  }
   getData():any {}
   getRenderData():any {}
 

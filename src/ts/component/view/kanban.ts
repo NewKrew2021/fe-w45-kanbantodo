@@ -1,3 +1,4 @@
+import { KanbanData } from '../../type/index'
 import View from './_view'
 
 export default class KanbanView extends View {
@@ -6,7 +7,7 @@ export default class KanbanView extends View {
   }
 
   toHtmlString() {
-    const id = this.getID()
+    const { id }: KanbanData = this.getData()
 
     return `
       <div id="${id}" class="kanban">
