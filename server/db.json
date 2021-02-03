@@ -2,57 +2,173 @@
   "posts": [
     {
       "id": 0,
-      "name": "해야할일",
+      "name": "해야할 일",
       "author": "roddy.chan",
       "data": [
         {
           "id": 0,
-          "title": "추가하기",
-          "tasks": []
-        },
-        {
-          "id": 1,
-          "title": "뮤",
-          "tasks": []
-        },
-        {
-          "id": 2,
-          "title": "abc",
+          "title": "히스토리 삭제기능 구현(중요도 낮음)",
           "tasks": []
         }
       ]
     },
     {
       "id": 1,
-      "name": "뮤",
+      "name": "하는 중",
       "author": "roddy.chan",
       "data": [
         {
           "id": 0,
-          "title": "abc",
+          "title": "drag&drop 후 db 반영하기",
           "tasks": []
         },
         {
           "id": 1,
-          "title": "def",
+          "title": "url 하드코딩 없애고 webpack으로 해결하기",
           "tasks": []
         }
       ]
     },
     {
       "id": 2,
-      "name": "뮤뮤",
+      "name": "끝난 일",
       "author": "roddy.chan",
-      "data": []
+      "data": [
+        {
+          "id": 0,
+          "title": "webpack & babel 기본 설정",
+          "tasks": []
+        },
+        {
+          "id": 2,
+          "title": "TypeScript로 파일들 재작성하기",
+          "tasks": []
+        },
+        {
+          "id": 3,
+          "title": "추가/삭제/수정 기능 구현하기",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "추가적으로 한 일",
+      "author": "roddy.chan",
+      "data": [
+        {
+          "id": 0,
+          "title": "moment.js, dayjs 살펴보고 적용하기",
+          "tasks": []
+        }
+      ]
     }
   ],
   "history": [
     {
       "action": "ADD_NOTE",
-      "cardName": "뮤",
+      "cardName": "하는 중",
       "beforeTitle": "",
-      "afterTitle": "def",
-      "writeTime": 1612275621393
+      "afterTitle": "drag&drop 후 db 반영하기",
+      "writeTime": 1612355264219
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "하는 중",
+      "beforeTitle": "",
+      "afterTitle": "url 하드코딩 없애고 webpack에서 해결하기",
+      "writeTime": 1612355277324
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "",
+      "afterTitle": "webpack & babel 기본 설정",
+      "writeTime": 1612355288339
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "",
+      "afterTitle": "전체적인 레이아웃 구성(css 포함)",
+      "writeTime": 1612355298520
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "",
+      "afterTitle": "TypeScript로 파일들 재작성하기",
+      "writeTime": 1612355327567
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "해야할 일",
+      "beforeTitle": "",
+      "afterTitle": "히스토리 일괄 삭제기능 구현(중요도 낮음)",
+      "writeTime": 1612355356561
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "",
+      "afterTitle": "추가/삭제/수정 기능 구현하기",
+      "writeTime": 1612355510141
+    },
+    {
+      "action": "ADD_CARD",
+      "cardName": "추가적으로 한 일",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612355524114
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "추가적으로 한 일",
+      "beforeTitle": "",
+      "afterTitle": "moment.js, dayjs 살펴보고 적용하기",
+      "writeTime": 1612355551898
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "하는 중",
+      "beforeTitle": "url 하드코딩 없애고 webpack에서 해결하기",
+      "afterTitle": "url 하드코딩 없애고 webpack으로 해결하기",
+      "writeTime": 1612355580716
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "해야할 일",
+      "beforeTitle": "",
+      "afterTitle": "히스토리 일괄 삭제기능 구현(중요도 낮음)",
+      "writeTime": 1612355617206
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "해야할 일",
+      "beforeTitle": "",
+      "afterTitle": "히스토리 삭제기능 구현(중요도 낮음)",
+      "writeTime": 1612355625660
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "",
+      "afterTitle": "전체적인 레이아웃 구성(css 포함)",
+      "writeTime": 1612357798263
+    },
+    {
+      "action": "ADD_CARD",
+      "cardName": "테스트 용도",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612357807875
+    },
+    {
+      "action": "REMOVE_CARD",
+      "cardName": "테스트 용도",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612357809760
     }
   ]
 }

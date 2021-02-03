@@ -7,6 +7,13 @@ input {
   margin-left: 1em;
 }
 
+#root {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
 #header {
   width: 100%;
   height: 50px;
@@ -51,6 +58,14 @@ input {
   border-bottom: 1px solid #dddee2;
 }
 
+.menu-history-remove {
+  font-size: 13px;
+  padding: 5px;
+  font-weight: 600;
+  border-radius: 7px;
+  background-color: #dddee2;
+}
+
 .menu-close {
   font-size: 20px;
   cursor: pointer;
@@ -58,6 +73,11 @@ input {
 
 .menu-accent {
   color: #3495DD;
+  font-weight: 700;
+}
+
+.red {
+  color: #F3758A;
   font-weight: 700;
 }
 
@@ -77,8 +97,12 @@ input {
   padding-bottom: 3px;
 }
 
+.time {
+  color: gray;
+}
+
 .history {
-  font-size: 15px;
+  font-size: 13.5px;
   font-weight: 600;
 }
 
@@ -144,7 +168,7 @@ input {
   padding: 1em;
 }
 
-.modal-input, .modal-new-input {
+.modal-new-input, .modal-edit-input {
   width: 90%;
   min-height: 100px;
   border-radius: 5px;
@@ -164,7 +188,7 @@ input {
   color: yellow;
 }
 
-.btn-save-modal {
+.btn-save-modal, .btn-save-note-modal {
   width: 170px;
   float: left;
   background-color: #34B370;
@@ -301,7 +325,9 @@ input {
 
 .card-header {
   position: relative;
-  margin: 10px 7px 15px 7px;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .card-count {
@@ -310,9 +336,9 @@ input {
   display: inline-block;
   border-radius: 50%;
   background-color: #3495DD;
-  color: white;
   text-align: center;
   line-height: 27px;
+  color: white;
 }
 
 .input-list-view {
@@ -371,6 +397,7 @@ input {
   -webkit-box-shadow: 0px 1px 2px lightgray;
           box-shadow: 0px 1px 2px lightgray;
   width: 320px;
+  border-left: 3px solid #3495DD;
 }
 
 .list-view:hover {
@@ -421,12 +448,7 @@ input {
   height: 18px;
 }
 
-.htop-remove {
-  top: 0;
-}
-
 .htop-add {
-  top: 0;
   right: 25px;
 }
 

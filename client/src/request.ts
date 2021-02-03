@@ -2,9 +2,10 @@
     request.js
     모델에 들어갈 CRUD를 도와 주는 함수들
 */
+import { NewCardState, NewNoteState, HistoryState } from 'client/src/interface'
 
-export function addCard(input) {
-    return fetch('http://localhost:5000/addCard', {
+export function addCardReq(input : NewCardState) {
+    return fetch(`${ADD_CARD_URL}`, {
         method: 'post',
         body: JSON.stringify(input),
         headers: {
@@ -13,10 +14,9 @@ export function addCard(input) {
     }).then((res) => { return res })
 }
 
-
 //input : {cardId:_, listId:_, title:_}
-export function addList(input) {
-    return fetch('http://localhost:5000/addlist', {
+export function addList(input : NewNoteState) {
+    return fetch(`${ADD_LIST_URL}`, {
         method: 'post',
         body: JSON.stringify(input),
         headers: {
@@ -26,8 +26,8 @@ export function addList(input) {
 }
 
 // 리스트뷰 아이템 타이틀 수정
-export function editList({ cardId, id, input }) {
-    return fetch(`http://localhost:5000/list/edit/${cardId}/${id}`, {
+export function editList({ cardId, id, input }: { cardId: string, id: string, input: string }) {
+    return fetch(`${EDIT_URL}/${cardId}/${id}`, {
         method: "put",
         body: JSON.stringify(input),
         headers: {
@@ -37,8 +37,8 @@ export function editList({ cardId, id, input }) {
 }
 
 // 카드 타이틀 수정
-export function editCardTitle({ cardId, input }) {
-    return fetch(`http://localhost:5000/list/edit/${cardId}`, {
+export function editCardTitle({ cardId, input }: { cardId: string, input: string }) {
+    return fetch(`${EDIT_URL}/${cardId}`, {
         method: "put",
         body: JSON.stringify(input),
         headers: {
@@ -48,8 +48,8 @@ export function editCardTitle({ cardId, input }) {
 }
 
 // cardId의 카드 삭제
-export function removeCard({ cardId }){
-    return fetch(`http://localhost:5000/list/remove/${cardId}`, {
+export function removeCard({ cardId }: { cardId: string }) {
+    return fetch(`${REMOVE_URL}/${cardId}`, {
         method: "delete",
         headers: {
             "Content-Type": "application/json",
@@ -58,8 +58,8 @@ export function removeCard({ cardId }){
 }
 
 // cardId의 id 리스트뷰 삭제
-export function removeList({ cardId, id }) {
-    return fetch(`http://localhost:5000/list/remove/${cardId}/${id}`, {
+export function removeList({ cardId, id }: { cardId: string, id: string }) {
+    return fetch(`${REMOVE_URL}/${cardId}/${id}`, {
         method: "delete",
         headers: {
             "Content-Type": "application/json",
@@ -68,8 +68,8 @@ export function removeList({ cardId, id }) {
 }
 
 // 사용자 액션 등록
-export function addUserHistory(input){
-    return fetch('http://localhost:5000/addHistory', {
+export function addUserHistory(input: HistoryState) {
+    return fetch(`${ADD_HISTORY_URL}`, {
         method: 'post',
         body: JSON.stringify(input),
         headers: {
@@ -79,8 +79,8 @@ export function addUserHistory(input){
 }
 
 // 사용자 액션 기록 불러오기
-export function getHistory(){
-    return fetch('http://localhost:5000/getHistory', {
+export function getHistory() {
+    return fetch(`${GET_HISTORY_URL}`, {
         method: 'get',
         headers: {
             'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export function getHistory(){
 }
 
 export function getAllData() {
-    return fetch('http://localhost:5000/posts', {
+    return fetch(`${GET_ALL_DATA_URL}`, {
         method: 'get',
         headers: {
             'Content-Type': 'application/json',

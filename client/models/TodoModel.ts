@@ -9,61 +9,75 @@
         새롭게 입력되는 todo의 값
 */
 import Observable from './observable.js'
-import * as req from '../src/request.js';
+import * as req from 'client/src/request';
+import { ModalState, NewCardState, NewNoteState, HistoryState } from 'client/src/interface'
 
 class TodoModel extends Observable {
-    constructor(initialUrl) {
+    url: string
+    todos: Array<any>
+    state: ModalState
+    history: HistoryState
+    constructor(initialUrl: string) {
         super();
         this.todos = []; // data state
-        this.state = {}; 
-        this.history = {}; // history state
+        this.state = {  // modal state
+            cardId: '',
+            id: ''
+        };
+        this.history = { // history state
+            action: '',
+            afterTitle: '',
+            beforeTitle: '',
+            cardName: '',
+            writeTime: 0
+        };
         this.url = initialUrl; // 가져올 데이터의 요청 URL
     }
 
     //{ id:_, name:_, author:_}
-    async addCard({ name, author }){
+    async addCard({ name, author }: { name: string, author: string }) {
         const res = await req.getAllData();
-        let cardId = res[res.length - 1].id + 1;
-        const inputObj = {
-            input : {
-                id: cardId,
-                name: name,
-                author: author
-            }
+        let cardId ;
+        if (res.length !== 0){
+            cardId = res[res.length - 1].id + 1;
+        } else{
+            cardId = 0;
         }
-        await req.addCard(inputObj);
+        const inputObj : NewCardState = {
+            id: cardId,
+            name: name,
+            author: author
+        }
+        await req.addCardReq(inputObj);
         this.todos = [...this.todos, res];
         this.notify(this.todos);
     }
 
-    async removeCard({ cardId }){
+    async removeCard({ cardId }: { cardId: string }) {
         await req.removeCard({ cardId });
-        this.notify(this.todos);
+        this.notify(this.todos)
     }
 
     // 리스트뷰(todo) 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
-    async addTodo({ cardId, inputData }) {
+    async addTodo({ cardId, inputData }: { cardId: string, inputData: string }) {
         const res = await req.getAllData();
-        let curlen, listId;
-        res.forEach(function(e, i){
-            if(parseInt(e.id) === parseInt(cardId)){
-                if (res[i].data.length !== 0){
+        let curlen : number, listId : number = 0;
+        res.forEach(function(e : any, i : number) {
+            if (parseInt(e.id) === parseInt(cardId)) {
+                if (res[i].data.length !== 0) {
                     curlen = res[i].data.length - 1;
                     listId = res[i].data[curlen].id + 1;
                 }
-                if (res[i].data.length === 0){
+                if (res[i].data.length === 0) {
                     listId = 0;
                 }
             }
         });
-
-        // 받은 todo값을 적당히 가공하고 넣기
-        const inputObj = {
-            input: {
-                cardId: parseInt(cardId),
-                listId: parseInt(listId),
-                title: inputData
-            }
+        // 받은 todo값을 가공하고 넣기
+        const inputObj : NewNoteState = {
+            cardId: cardId,
+            listId: listId,
+            title: inputData
         }
         await req.addList(inputObj);
         // 데이터에 추가 후 notify 한다.
@@ -72,33 +86,34 @@ class TodoModel extends Observable {
     }
 
     // 리스트뷰(note item) 삭제, 상태 변화, Observer에게 알려 준다.
-    async removeTodo( {cardId, id} ) {
+    async removeTodo({ cardId, id } : {cardId: string, id: string}) {
         await req.removeList({ cardId, id });
-        this.notify(this.todos);
+        this.notify(this.todos)
     }
 
     // 리스트뷰(note item)의 타이틀 수정
-    async editTodo(input, mode){
-        if (mode === 'list'){
+    async editTodo(input : any, mode : string) {
+        if (mode === 'note') {
             await req.editList(input);
             this.notify(this.todos);
         }
-        else if (mode === 'card'){
+        else if (mode === 'card') {
             await req.editCardTitle(input);
             this.notify(this.todos);
         }
     }
 
-    setModalState({cardId, id, mode}){
-        this.state = {...this.state, cardId: cardId, id: id, mode: mode};
+    setModalState({ cardId, id } : ModalState) {
+        this.state = { ...this.state, cardId: cardId, id: id };
         return this.state;
     }
 
     // 어떤 카드에, 어떤 이벤트(추가, 삭제, 수정)가 이루어졌는지
-    // action : ADD_CARD / ADD_NOTE / REMOVE_NOTE /
-    // EDIT_NOTE / EDIT_CARD / REMOVE_CARD / (todo : MOVE_...)
-    setHistoryState({cardName, beforeTitle, afterTitle, writeTime, action}){
-        this.history = { ...this.history,
+    // action : ADD_CARD / ADD_NOTE / REMOVE_NOTE / EDIT_NOTE / EDIT_CARD / REMOVE_CARD
+    setHistoryState({ cardName, beforeTitle,
+        afterTitle, writeTime, action } : HistoryState) {
+        this.history = {
+            ...this.history,
             cardName: cardName,
             beforeTitle: beforeTitle,
             afterTitle: afterTitle,
@@ -108,11 +123,11 @@ class TodoModel extends Observable {
         return this.history;
     }
 
-    async addHistory(input){
+    async addHistory({input} : {input: HistoryState}) {
         await req.addUserHistory(input);
     }
 
-    async getHistory(){
+    async getHistory() {
         const data = await req.getHistory();
         return data;
     }

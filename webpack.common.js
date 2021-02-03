@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     entry: "./client/src/app.ts", // 엔트리 포인트
@@ -35,8 +36,20 @@ module.exports = {
     resolve: {
         modules: ["node_modules"],
         extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
+        alias: {
+            "client": path.resolve(__dirname, "client")
+        }
     },
     plugins: [
+        new webpack.DefinePlugin({
+            ADD_CARD_URL: JSON.stringify("http://localhost:5000/addCard"),
+            ADD_LIST_URL: JSON.stringify("http://localhost:5000/addlist"),
+            EDIT_URL: JSON.stringify("http://localhost:5000/list/edit"),
+            REMOVE_URL: JSON.stringify("http://localhost:5000/list/remove"),
+            ADD_HISTORY_URL: JSON.stringify("http://localhost:5000/addHistory"),
+            GET_HISTORY_URL: JSON.stringify("http://localhost:5000/getHistory"),
+            GET_ALL_DATA_URL : JSON.stringify("http://localhost:5000/posts")
+        }),
         new HtmlWebpackPlugin({
             template: './client/todo.html'
         }),
