@@ -8,8 +8,8 @@ import * as _dom from 'client/src/util';
 
 /* TodoModel을 구독하는 Observer */
 class InputView {
-    model : TodoModel
-    constructor(model : TodoModel) {
+    model: TodoModel
+    constructor(model: TodoModel) {
         this.model = model; // 생성 시 구독할 model(여기서는 TodoModel)을 주입받고 구독한다.
         this.model.subscribe(this.update.bind(this))
     }
@@ -18,8 +18,8 @@ class InputView {
         this.setClickBtn();
         this.inputNoteData();
     }
-    
-    update(){
+
+    update() {
         this.onEvents();
     }
 
@@ -28,30 +28,30 @@ class InputView {
     }
 
     // Event handler
-    addInputHandler(e : Event){
+    addInputHandler(e: Event) {
         const inputArea = _dom.queryAll('.list-input');
-        const cardId : string = (e.target as Element).getAttribute('data')!; // non-null assertion
-        const cardName : string = _dom.getCardName({cardId});
+        const cardId: string = (e.target as Element).getAttribute('data')!; // non-null assertion
+        const cardName: string = _dom.getCardName({ cardId });
         let inputData = '';
 
         inputArea.forEach(elem => {
-            if (elem.getAttribute('data') === cardId) {
-                inputData = (elem as HTMLTextAreaElement).value;
-                this.model.addTodo({cardId, inputData});
+            if (elem.getAttribute('data') !== cardId) return;
+            inputData = (elem as HTMLTextAreaElement).value;
+            this.model.addTodo({ cardId, inputData });
 
-                // add history state
-                const historyState : HistoryState = {
-                    cardName: cardName, beforeTitle: '',
-                    afterTitle: inputData, writeTime : Date.now(),
-                    action: 'ADD_NOTE'
-                }
-                this.model.setHistoryState(historyState);
-                this.model.addHistory({input : historyState});
+            // add history state
+            const historyState: HistoryState = {
+                cardName: cardName, beforeTitle: '',
+                afterTitle: inputData, writeTime: Date.now(),
+                action: 'ADD_NOTE'
             }
+            this.model.setHistoryState(historyState);
+            this.model.addHistory({ input: historyState });
+
         })
     }
 
-    removeInputHandler(e : Event){
+    removeInputHandler(e: Event) {
         const inputArea = _dom.queryAll('.list-input');
         const idx = (e.target as Element).getAttribute('data');
         inputArea.forEach(elem => {
@@ -61,7 +61,7 @@ class InputView {
         })
     }
 
-    toggleEvtHandler(e : Event){
+    toggleEvtHandler(e: Event) {
         const inputDiv = _dom.queryAll('.input-list-view');
         const idx = (e.target as Element).getAttribute('data');
         inputDiv.forEach(elem => {
@@ -73,8 +73,8 @@ class InputView {
 
     async inputNoteData() {
         const { } = await this.model.getInitialData();
-        const inputBtn : Array<Element> = _dom.queryAll('.btn-add-list');
-        const cancelBtn : Array<Element> = _dom.queryAll('.btn-cancel-list');
+        const inputBtn: Array<Element> = _dom.queryAll('.btn-add-list');
+        const cancelBtn: Array<Element> = _dom.queryAll('.btn-cancel-list');
         inputBtn.forEach(elem => {
             elem.addEventListener('click', this.addInputHandler.bind(this));
         })
@@ -85,7 +85,7 @@ class InputView {
 
     async setClickBtn() {
         const { } = await this.model.getInitialData();
-        const cardBtn : Array<Element> = _dom.queryAll('.card-btn.htop-add');
+        const cardBtn: Array<Element> = _dom.queryAll('.card-btn.htop-add');
         cardBtn.forEach(elem => {
             elem.addEventListener('click', this.toggleEvtHandler.bind(this))
         });
