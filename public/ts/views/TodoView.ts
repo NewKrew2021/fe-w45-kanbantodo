@@ -33,10 +33,10 @@ class TodoView {
         </div>
       `
     }, ``);
-    contentHtml += `
-      <div class="add-container">+ Add column</div>
-    `
+    contentHtml += `<div class="add-container">+ Add column</div>`
     contents.innerHTML = contentHtml;
+    this.addAddColumnEvent();
+    this.removeAddColumnEvent();
   }
 
   columnTitleClickEvent() {
@@ -74,6 +74,29 @@ class TodoView {
     ele.addEventListener("click", addEditModal);
   }
 
+  addAddColumnEvent() {
+    const addContainer = document.querySelector("div.add-container") as HTMLTextAreaElement;
+    addContainer.addEventListener("click", e => {
+      this.model.addColumn()
+      .then(this.cardModel.getCard.bind(this.cardModel))
+    })
+  }
+
+  removeAddColumnEvent() {
+    const cancelBtns = document.querySelectorAll("div.title-delete");
+    console.log(cancelBtns)
+    cancelBtns.forEach(cancelBtn => {
+      cancelBtn.addEventListener("click", e => {
+        const eventEle = e.target as HTMLTextAreaElement;
+        const todoEle = eventEle.closest(".todo-container") as HTMLTextAreaElement;
+        const titleEle = todoEle.querySelector("div.title-text") as HTMLTextAreaElement;
+        const todoTitle = titleEle.innerHTML;
+        this.model.removeColumn(todoTitle)
+        .then(this.cardModel.getCard.bind(this.cardModel));
+      })
+    })
+  }
+
   displayModalWindow(todoEles: NodeListOf<Element>, modalEle:HTMLElement) {
     todoEles.forEach(todoEle => todoEle.classList.add("opacity-on"))
     modalEle.classList.remove("non-display");
@@ -84,7 +107,7 @@ class TodoView {
   }
 
   init() {
-    this.model.subscribe(this.displayTodoBoard);
+    this.model.subscribe(this.displayTodoBoard.bind(this));
     this.model.getInitialData()
     this.columnTitleClickEvent();
   }

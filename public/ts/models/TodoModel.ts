@@ -33,6 +33,24 @@ class TodoModel extends Observable {
     return data;
   }
 
+  async addColumn(){
+    const res = await fetch(URL+`/todos`, {
+      method: "PUT",
+    })
+    const data = await res.json();
+    this.saveTodo(data);
+    return data;
+  }
+
+  async removeColumn(todoTitle: string){
+    const res = await fetch(URL + `/delete_todos?todoTitle=${todoTitle}`, {
+      method: "POST",
+    })
+    const data = await res.json();
+    this.saveTodo(data);
+    return data;
+  }
+
   saveTodo(todo: Array<any>){
     this.todos = todo;
     this.notify(this.todos);

@@ -19,6 +19,21 @@ server.post('/todos', (req, res) => {
   res.send(db.get('todos').value());
 })
 
+server.post('/delete_todos', (req, res) => {
+  console.log(req.query.todoTitle);
+  db.get('todos')
+    .remove({ title: req.query.todoTitle })
+    .write();
+  res.send(db.get('todos').value());
+})
+
+server.put('/todos', (req, res) => {
+  db.get('todos')
+    .push({title:"New Column", cards:[]})
+    .write();
+  res.send(db.get('todos').value());
+})
+
 server.get('/cards', (req, res) => {
   res.send(db.get('todos').value());
 })
