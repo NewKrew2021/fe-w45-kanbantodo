@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
   const popUpView = new PopUpView();
 
-  popUpView.render();
+  popUpView.render().addOpenEvent();
 
   todoController.init(todoCardList, TodoView, todoModel, popUpMenuModel);
 });
