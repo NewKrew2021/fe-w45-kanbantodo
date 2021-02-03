@@ -130,6 +130,7 @@ class TodoModel extends Observable {
     // todo 데이터 가져오기. json-server로부터 GET 요청으로 데이터를 가져올 수 있다.
     async getInitialData() {
         const data = await req.getAllData();
+        console.log(data);
         this.todos = [...this.todos, data];
         return this.todos;
     }

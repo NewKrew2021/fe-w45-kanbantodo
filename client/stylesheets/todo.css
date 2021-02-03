@@ -58,6 +58,14 @@ input {
   border-bottom: 1px solid #dddee2;
 }
 
+.menu-history-remove {
+  font-size: 13px;
+  padding: 5px;
+  font-weight: 600;
+  border-radius: 7px;
+  background-color: #dddee2;
+}
+
 .menu-close {
   font-size: 20px;
   cursor: pointer;

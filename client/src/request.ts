@@ -2,7 +2,7 @@
     request.js
     모델에 들어갈 CRUD를 도와 주는 함수들
 */
-import { ModalState, NewCardState, NewNoteState, HistoryState } from 'client/src/interface'
+import { NewCardState, NewNoteState, HistoryState } from 'client/src/interface'
 
 export function addCardReq(input : NewCardState) {
     return fetch('http://localhost:5000/addCard', {
