@@ -13,6 +13,10 @@ const app = express()
 const routes = require('./lib/routes')
 const HTTP_PORT = parseInt(process.env.HTTP_PORT)
 
+// morgan
+const morgan = require('morgan')
+app.use(morgan('common'))
+
 // express use webpack middleware
 app.use(webpackDevMiddleware(compiler));
 
