@@ -45,13 +45,15 @@ class TodoModel extends Observable{
 
     async deleteColumn(id: string) {
         await API.deleteColumn(id);
-        logger.deleteColumn(
-            this.data.find((val) => {return val.id === id;})!.title);
-        const res = await API.getTodoData();
-        const body = await res.json();
-        const data = body.data;
-        this.data = data;
-        this.notify(data);
+        const deleteColumnData = this.data.find((val) => {return val.id === id;});
+        if (deleteColumnData) {
+            logger.deleteColumn(deleteColumnData.title);
+            const res = await API.getTodoData();
+            const body = await res.json();
+            const data = body.data;
+            this.data = data;
+            this.notify(data);
+        }
     }
 
     showAddColumnModal() {

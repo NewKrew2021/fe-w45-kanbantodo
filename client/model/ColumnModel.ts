@@ -70,10 +70,9 @@ class ColumnModel extends Observable{
             const res = await API.getColumnData(id);
             const body = await res.json();
             const data = body.data;
-            const deleteTitle = this.data.notes.find(
-                (val) => {return val.id === deleteId})!.title;
-            if (deleteTitle) {
-                logger.deleteNote(deleteTitle, this.data.title)
+            const deleteNoteData = this.data.notes.find((val) => {return val.id === deleteId});
+            if(deleteNoteData) {
+                logger.deleteNote(deleteNoteData.title, this.data.title)
                 this.data = data;
                 this.notify(data);
             }
