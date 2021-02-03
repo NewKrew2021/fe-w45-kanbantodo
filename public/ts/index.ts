@@ -1,10 +1,9 @@
-// @ts-nocheck
-import {TodoModel} from "./models/TodoModel.ts"
-import {TodoView} from "./views/TodoView.ts"
-import {CardModel} from "./models/CardModel.ts"
-import {CardView} from "./views/CardView.ts"
-import {ActivityModel} from "./models/ActivityModel.ts"
-import {ActivityView} from "./views/ActivityView.ts"
+import {TodoModel} from "./models/TodoModel"
+import {TodoView} from "./views/TodoView"
+import {CardModel} from "./models/CardModel"
+import {CardView} from "./views/CardView"
+import {ActivityModel} from "./models/ActivityModel"
+import {ActivityView} from "./views/ActivityView"
 
 
 window.addEventListener("DOMContentLoaded", init)

@@ -7,27 +7,27 @@
         {
           "title": "3",
           "author": "kevin"
-        },
-        {
-          "title": "123",
-          "author": "kevin"
         }
       ]
     },
     {
       "id": 2,
       "title": "Doing",
-      "cards": []
-    },
-    {
-      "id": 3,
-      "title": "Done",
       "cards": [
         {
           "title": "2",
           "author": "kevin"
+        },
+        {
+          "title": "1",
+          "author": "kevin"
         }
       ]
+    },
+    {
+      "id": 3,
+      "title": "Done",
+      "cards": []
     }
   ],
   "activity": [
@@ -286,6 +286,102 @@
       "text": "123",
       "author": "kevin",
       "time": "1612265815190"
+    },
+    {
+      "type": "moved",
+      "from": "To-Do",
+      "to": "Doing",
+      "text": "123",
+      "author": "kevin",
+      "time": "1612266637332"
+    },
+    {
+      "type": "moved",
+      "from": "To-Do",
+      "to": "Doing",
+      "text": "3",
+      "author": "kevin",
+      "time": "1612315210783"
+    },
+    {
+      "type": "deleted",
+      "from": "Doing",
+      "to": "none",
+      "text": "3",
+      "author": "kevin",
+      "time": "1612315213033"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "Doing",
+      "text": "123",
+      "author": "kevin",
+      "time": "1612315213753"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "Doing",
+      "text": "123",
+      "author": "kevin",
+      "time": "1612315214238"
+    },
+    {
+      "type": "deleted",
+      "from": "Done",
+      "to": "none",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612315215080"
+    },
+    {
+      "type": "deleted",
+      "from": "Doing",
+      "to": "none",
+      "text": "123",
+      "author": "kevin",
+      "time": "1612315216172"
+    },
+    {
+      "type": "added",
+      "from": "none",
+      "to": "To-Do",
+      "text": "1",
+      "author": "kevin",
+      "time": "1612315223496"
+    },
+    {
+      "type": "added",
+      "from": "none",
+      "to": "To-Do",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612315226645"
+    },
+    {
+      "type": "added",
+      "from": "none",
+      "to": "To-Do",
+      "text": "3",
+      "author": "kevin",
+      "time": "1612315228850"
+    },
+    {
+      "type": "moved",
+      "from": "To-Do",
+      "to": "Doing",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612315230583"
+    },
+    {
+      "type": "moved",
+      "from": "To-Do",
+      "to": "Doing",
+      "text": "1",
+      "author": "kevin",
+      "time": "1612321206743"
     }
   ]
 }

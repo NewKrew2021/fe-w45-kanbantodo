@@ -1,7 +1,5 @@
-// @ts-ignore next-line
-import {Observable} from "../common.ts";
-// @ts-ignore next-line
-import {URL} from "../utils/url.ts"
+import {Observable} from "../common";
+import {URL} from "../utils/url"
 
 class TodoModel extends Observable {
   todos: Array<any>;
