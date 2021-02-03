@@ -34,6 +34,7 @@ class TodoController {
       this.notify(model.todoCardList, status);
     });
   }
+
   handlePopUpEvent(todoCardList, TodoView, todoModel) {
     const popUpElement = $(".pop-up");
 
