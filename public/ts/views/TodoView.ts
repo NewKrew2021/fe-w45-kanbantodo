@@ -2,8 +2,10 @@ import { TodoModel } from "../models/TodoModel";
 
 class TodoView {
   model: TodoModel;
-  constructor(model: TodoModel){
+  cardModel: any;
+  constructor(model: TodoModel, cardModel: object){
     this.model = model;
+    this.cardModel = cardModel;
   }
 
   displayTodoBoard(todos: any[]) {
@@ -39,30 +41,37 @@ class TodoView {
     document.addEventListener("dblclick", event => {
       const eventEle = event.target as HTMLTextAreaElement;
       if(eventEle.classList.contains("title-text")){
+        const titleText = eventEle.innerHTML;
         const editModal = document.querySelector("div.column-modal") as HTMLTextAreaElement;
         // 모달창 생기게
         this.displayModalWindow(editModal);
 
         // 모달창 이벤트
-        this.addEditModalEvent(editModal);
+        this.addEditModalEvent(editModal, titleText);
 
         // 뒷배경 흐리게
-
-        // 다른거 클릭 안되게
 
       }
     })
   }
 
-  addEditModalEvent(ele:HTMLElement){
+  addEditModalEvent(ele:HTMLElement, titleText:string){
     const addEditModal = (event: Event) => {
       const eventEle = event.target as HTMLTextAreaElement;
       if(eventEle.classList.contains("column-cancel")){
         this.nonDisplayModalWindow(ele);
+        const inputEle = ele.querySelector("#column-name") as HTMLTextAreaElement;
+        inputEle.value = ``;
         ele.removeEventListener("click",addEditModal);
+
+        // 다시 뒷배경 진하게
       }
       else if(eventEle.classList.contains("update-btn")){
-        // update
+        // update to db
+        const inputEle = ele.querySelector("#column-name") as HTMLTextAreaElement;
+        this.model.modifyTodoTitle(titleText, inputEle.value)
+        .then(this.cardModel.getCard.bind(this.cardModel))
+        .then(()=>this.nonDisplayModalWindow(ele));
       }
     }
     ele.addEventListener("click", addEditModal);
