@@ -21,8 +21,8 @@ export default class ColumnController extends Controller {
       'getRenderData',
       'addNote',
       'toggleForm',
-      'removeSelf',
       'showEditModal',
+      'showCloseModal',
     ])
     this.view.render()
   }
@@ -105,6 +105,22 @@ export default class ColumnController extends Controller {
       },
       methodBindingOptions: [
         { methodName: 'editColumn', bindTarget: this }
+      ]
+    })
+  }
+
+  showCloseModal() {
+    new ModalController({
+      id: '',
+      renderData: {
+        title: 'Close Column',
+        htmlString: `
+          <p>Are you sure?</p>
+          <button class="form-component bg-orangered white" data-click-action="removeSelf">Delete</button>
+        `
+      },
+      methodBindingOptions: [
+        { methodName: 'removeSelf', bindTarget: this }
       ]
     })
   }
