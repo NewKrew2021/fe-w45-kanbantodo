@@ -1,4 +1,4 @@
-const $ = (target: string, parent = document) => {
+const $ = (target: string, parent = document): HTMLElement | null => {
   return parent.querySelector(target);
 };
 

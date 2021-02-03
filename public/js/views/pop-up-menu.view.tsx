@@ -55,10 +55,10 @@ const POP_UP_MENU_TPL: PopUpMenuTPL = {
 };
 
 class PopUpMenuView {
-  element: HTMLElement;
-  menuButton: HTMLElement;
-  closeButton: HTMLElement;
-  menuDetail: HTMLElement;
+  element: HTMLElement | null;
+  menuButton: HTMLElement | null;
+  closeButton: HTMLElement | null;
+  menuDetail: HTMLElement | null;
 
   constructor() {
     this.element = $(".menu-pop-up");
@@ -67,13 +67,16 @@ class PopUpMenuView {
     this.menuDetail = $(".menu-detail");
   }
 
-  handleButtonTransition(button: HTMLElement, transition: string) {
+  handleButtonTransition(button: HTMLElement | null, transition: string) {
+    if (!button) return;
     button.addEventListener("click", () => {
+      if (!this.element) return;
       this.element.style.transform = transition;
     });
   }
 
   render(logList: Log[]) {
+    if (!this.menuDetail) return;
     this.menuDetail.innerHTML = logList.reduce(
       (acc: string, { profile, user, task, from, to, card }) => {
         return (
