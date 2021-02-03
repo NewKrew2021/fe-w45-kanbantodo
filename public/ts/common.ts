@@ -3,10 +3,10 @@ class Observable {
   constructor() {
     this._observers = new Set();
   }
-  subscribe(observer:Set<any>) {
+  subscribe(observer:any) {
     this._observers.add(observer);
   }
-  unSubscribe(observer:Set<any>) {
+  unSubscribe(observer:any) {
     this._observers.delete(observer);
   }
   notify(...param: (any[] | Element)[]) {

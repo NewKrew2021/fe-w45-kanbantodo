@@ -1,7 +1,5 @@
-// @ts-ignore next-line
-import {Observable} from "../common.ts";
-// @ts-ignore next-line
-import {URL} from "../utils/url.ts"
+import {Observable} from "../common";
+import {URL} from "../utils/url"
 
 class TodoModel extends Observable {
   todos: Array<any>;
@@ -23,13 +21,40 @@ class TodoModel extends Observable {
       method: "GET",
     });
     const data = await res.json();
-    this.saveInitTodo(data);
+    this.saveTodo(data);
   }
-  saveInitTodo(todo: Array<any>){
+
+  async modifyTodoTitle( prevTitle:string, curTitle:string) {
+    const res = await fetch(URL+`/todos?prevTitle=${prevTitle}&curTitle=${curTitle}`, {
+      method: "POST",
+    })
+    const data = await res.json();
+    this.saveTodo(data);
+    return data;
+  }
+
+  async addColumn(){
+    const res = await fetch(URL+`/todos`, {
+      method: "PUT",
+    })
+    const data = await res.json();
+    this.saveTodo(data);
+    return data;
+  }
+
+  async removeColumn(todoTitle: string){
+    const res = await fetch(URL + `/delete_todos?todoTitle=${todoTitle}`, {
+      method: "POST",
+    })
+    const data = await res.json();
+    this.saveTodo(data);
+    return data;
+  }
+
+  saveTodo(todo: Array<any>){
     this.todos = todo;
     this.notify(this.todos);
   }
-
 }
 
 export { TodoModel };

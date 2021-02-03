@@ -11,27 +11,48 @@ const db = low(adapter);
 
 server.use(middlewares);
 
+server.post('/todos', (req, res) => {
+  db.get('todos')
+    .find({ title: req.query.prevTitle })
+    .assign({ title: req.query.curTitle })
+    .write()
+  res.send(db.get('todos').value());
+})
+
+server.post('/delete_todos', (req, res) => {
+  console.log(req.query.todoTitle);
+  db.get('todos')
+    .remove({ title: req.query.todoTitle })
+    .write();
+  res.send(db.get('todos').value());
+})
+
+server.put('/todos', (req, res) => {
+  db.get('todos')
+    .push({title:"New Column", cards:[]})
+    .write();
+  res.send(db.get('todos').value());
+})
+
 server.get('/cards', (req, res) => {
-  console.log(typeof(req), typeof(res))
   res.send(db.get('todos').value());
 })
 
 server.put('/cards', (req, res) => {
   db.get('todos')
-    .find({id: Number(req.query.id)})
+    .find({ title: req.query.todoTitle })
     .get('cards')
-    .push({title: req.query.title, author: "kevin"})
+    .push({ title: req.query.cardTitle, author: "kevin" })
     .write();
-    res.send(db.get('todos').value());
+  res.send(db.get('todos').value());
 })
 
 server.delete('/cards', (req, res) => {
   db.get('todos')
-    .find({id: Number(req.query.id)})
+    .find({ title: req.query.todoTitle })
     .get('cards')
-    .remove({ title : req.query.title })
+    .remove({ title: req.query.cardTitle })
     .write();
-
   res.send(db.get('todos').value());
 })
 

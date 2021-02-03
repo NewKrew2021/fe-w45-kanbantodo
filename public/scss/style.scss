@@ -19,7 +19,7 @@ $container-color : #cecece;
 }
 
 %input-btn {
-  width:206px;
+  width:170px;
   height: 45px;
   font-size: large;
   font-weight: 700;
@@ -33,6 +33,14 @@ $container-color : #cecece;
 
 .non-display {
   display: none;
+}
+
+.opacity-on{
+  opacity: 0.5;
+}
+
+.opacity-off{
+  opacity:1;
 }
 
 .navbar {
@@ -60,12 +68,12 @@ $container-color : #cecece;
 .contents {
   width: 100%;
   height: 100%;
-  margin: 0 0 0 140px;
+  margin: 0 0 0 50px;
 }
 
 .todo-container {
   float: left;
-  width: 450px;
+  width: 380px;
   height: 700px;
   margin: 5px 0 0 30px;
   border-radius: 8px;
@@ -73,18 +81,18 @@ $container-color : #cecece;
 }
 
 .todo-title {
-  width: 420px;
+  width: 350px;
   height: 30px;
   margin: 20px 0 0 15px;
 }
 
 .todo-contents {
-  width: 420px;
+  width: 350px;
   margin: 5px 0 0 15px;
 }
 
 .todo-cards {
-  width: 390px;
+  width: 320px;
   margin-top: 10px;
   padding: 13px 0 0 30px;
   border: 1px solid $container-color;
@@ -92,10 +100,11 @@ $container-color : #cecece;
   background-color: #fafafa;
   color: #424242;
   font-weight: 500;
+  z-index: 1;
 }
 
 .card-title {
-  width: 350px;
+  width: 270px;
   height: 30px;
   float: left;
 }
@@ -141,14 +150,14 @@ $container-color : #cecece;
 }
 
 .title-add {
-  margin: -7px 0 0 360px;
+  margin: -7px 0 0 290px;
   font-size: 35px;
   color: #424242;
   cursor: pointer;
 }
 
 .title-delete {
-  margin: 1px 0 0 395px;
+  margin: 2px 0 0 325px;
   font-size: 20px;
   font-weight: 900;
   color: #424242;
@@ -156,13 +165,13 @@ $container-color : #cecece;
 }
 
 .todo-add {
-  width: 430px;
+  width: 350px;
   height: 130px;
   margin: 10px 0 0 15px;
 }
 
 .add-input {
-  width: 408px;
+  width: 336px;
   height: 70px;
   padding-left: 10px;
   border: 1px solid #148aeb;
@@ -264,4 +273,84 @@ $container-color : #cecece;
   width: 35px;
   margin-left: 20px;
   border-radius: 5px;
+}
+
+.column-modal {
+  position: fixed;
+  width: 550px;
+  height: 250px;
+  margin: 300px 0 0 600px;
+  border: 1px solid #8d8d8d;
+  border-radius: 10px;
+  background-color: #ffffff;
+  z-index: 1;
+}
+
+.column-head {
+  width: 550px;
+  height: 60px;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 1px solid #c1c6cc;
+  background-color: #dee3e9;
+  
+}
+
+.column-title {
+  float: left;
+  width: 480px;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 20px 0 0 20px;
+}
+
+.column-cancel {
+  float: left;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 20px 0 0 15px;
+  cursor: pointer;
+}
+
+.column-text {
+  margin: 30px 0 0 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.column-input {
+  margin: 7px 0 0 19px;
+  padding-left: 20px;
+  width: 500px;
+  height: 40px;
+  border: 1px solid #148aeb;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.update-btn {
+  @extend %input-btn;
+  margin: 20px 0 0 195px;
+  color: #f6f6f6;
+  border: 1px solid #4da160;
+  background-color: #4ebb66;
+}
+
+.add-container {
+  float: left;
+  width: 270px;
+  height: 90px;
+  margin: 5px 0 0 30px;
+  border: 2px solid #b1b1b1;
+  border-radius: 8px;
+  border-style: dotted;
+  padding: 60px 0 0 110px;
+  font-size: 23px;
+  font-weight: 700;
+  color: #505050;
+  cursor: pointer;
+}
+
+.add-container:hover {
+  background-color: #b1b1b1;
+  color: #f5f5f5;
 }

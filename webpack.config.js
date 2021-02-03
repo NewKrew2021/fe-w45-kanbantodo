@@ -37,8 +37,11 @@ module.exports = {
 		new HtmlWebpackPlugin({
 		 template: './public/index.html'
 		}),
-		
 	],
+	resolve: {
+    modules: ["node_modules"],
+    extensions: [".ts", ".js"],
+  },
 	devServer: {
 		contentBase: './dist',
 	}

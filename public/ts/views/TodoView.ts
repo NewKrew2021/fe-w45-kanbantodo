@@ -1,12 +1,16 @@
+import { TodoModel } from "../models/TodoModel";
+
 class TodoView {
-  constructor(model){
+  model: TodoModel;
+  cardModel: any;
+  constructor(model: TodoModel, cardModel: object){
     this.model = model;
+    this.cardModel = cardModel;
   }
 
-  displayTodoBoard(todos) {
-    const contents = document.querySelector("div.contents");
-    let initHtml = ``;
-    const contentHtml = todos.reduce((initHtml, todo) => {
+  displayTodoBoard(todos: any[]) {
+    const contents = document.querySelector("div.contents") as HTMLTextAreaElement;
+    let contentHtml = todos.reduce((initHtml: string, todo: { cards: string | any[]; title: any; }) => {
       return initHtml += `
         <div class="todo-container">
           <div class="todo-title">
@@ -28,13 +32,84 @@ class TodoView {
           <div class="item-container"></div>
         </div>
       `
-    }, initHtml);
+    }, ``);
+    contentHtml += `<div class="add-container">+ Add column</div>`
     contents.innerHTML = contentHtml;
+    this.addAddColumnEvent();
+    this.removeAddColumnEvent();
   }
-  
+
+  columnTitleClickEvent() {
+    document.addEventListener("dblclick", event => {
+      const eventEle = event.target as HTMLTextAreaElement;
+      const todoEles = document.querySelectorAll("div.todo-container")
+      if(eventEle.classList.contains("title-text")){
+        const titleText = eventEle.innerHTML;
+        const editModal = document.querySelector("div.column-modal") as HTMLTextAreaElement;
+        this.displayModalWindow(todoEles, editModal);
+        this.addEditModalEvent(editModal, titleText);
+        // 뒷배경 흐리게
+        
+      }
+    })
+  }
+
+  addEditModalEvent(ele:HTMLElement, titleText:string){
+    const addEditModal = (event: Event) => {
+      const eventEle = event.target as HTMLTextAreaElement;
+      const todoEles = document.querySelectorAll("div.todo-container")
+      if(eventEle.classList.contains("column-cancel")){
+        this.nonDisplayModalWindow(todoEles, ele);
+        const inputEle = ele.querySelector("#column-name") as HTMLTextAreaElement;
+        inputEle.value = ``;
+        ele.removeEventListener("click",addEditModal);
+      }
+      else if(eventEle.classList.contains("update-btn")){
+        const inputEle = ele.querySelector("#column-name") as HTMLTextAreaElement;
+        this.model.modifyTodoTitle(titleText, inputEle.value)
+        .then(this.cardModel.getCard.bind(this.cardModel))
+        .then(()=>this.nonDisplayModalWindow(todoEles, ele));
+      }
+    }
+    ele.addEventListener("click", addEditModal);
+  }
+
+  addAddColumnEvent() {
+    const addContainer = document.querySelector("div.add-container") as HTMLTextAreaElement;
+    addContainer.addEventListener("click", e => {
+      this.model.addColumn()
+      .then(this.cardModel.getCard.bind(this.cardModel))
+    })
+  }
+
+  removeAddColumnEvent() {
+    const cancelBtns = document.querySelectorAll("div.title-delete");
+    console.log(cancelBtns)
+    cancelBtns.forEach(cancelBtn => {
+      cancelBtn.addEventListener("click", e => {
+        const eventEle = e.target as HTMLTextAreaElement;
+        const todoEle = eventEle.closest(".todo-container") as HTMLTextAreaElement;
+        const titleEle = todoEle.querySelector("div.title-text") as HTMLTextAreaElement;
+        const todoTitle = titleEle.innerHTML;
+        this.model.removeColumn(todoTitle)
+        .then(this.cardModel.getCard.bind(this.cardModel));
+      })
+    })
+  }
+
+  displayModalWindow(todoEles: NodeListOf<Element>, modalEle:HTMLElement) {
+    todoEles.forEach(todoEle => todoEle.classList.add("opacity-on"))
+    modalEle.classList.remove("non-display");
+  }
+  nonDisplayModalWindow(todoEles: NodeListOf<Element>, modalEle:HTMLElement) {
+    todoEles.forEach(todoEle => todoEle.classList.remove("opacity-on"))
+    modalEle.classList.add("non-display");
+  }
+
   init() {
-    this.model.subscribe(this.displayTodoBoard);
+    this.model.subscribe(this.displayTodoBoard.bind(this));
     this.model.getInitialData()
+    this.columnTitleClickEvent();
   }
 }
 

@@ -52,7 +52,7 @@ class CardView {
         const inputEle = parentEle.querySelector("input.add-input") as HTMLTextAreaElement;
         const inputValue = inputEle.value;
         inputEle.value = "";
-        this.model.addCards(idx, inputValue);
+        this.model.addCards(titleText, inputValue);
         this.activityModel.addActivity("added", "none", titleText, inputValue, "kevin", Date.now());
       })
     })
@@ -82,10 +82,7 @@ class CardView {
         const cardEle = eventEle.closest(".todo-cards") as HTMLTextAreaElement;
         const cardTitleEle = cardEle.querySelector("div.card-title") as HTMLTextAreaElement;
         const cardTitle = cardTitleEle.innerHTML;
-        const elements = document.querySelectorAll("div.todo-container");
-        let idx = 0;
-        elements.forEach( (ele, index) => { if(ele === todoEle) idx=index} );
-        this.model.deleteCard(idx, cardTitle);
+        this.model.deleteCard(titleText, cardTitle);
         this.activityModel.addActivity("deleted", titleText, "none", cardTitle, "kevin", Date.now());
       })
     })
@@ -133,9 +130,9 @@ class CardView {
               const prevTitleText = prevTitle.innerHTML;
               const curElement = todoContainerEle[pos.idx] as HTMLTextAreaElement;
               const curTitle = curElement.querySelector("div.title-text") as HTMLTextAreaElement;
-              const curTitleText = curTitle.innerHTML
+              const curTitleText = curTitle.innerHTML;
 
-              this.model.moveCards(prevIdx, pos.idx, card);
+              this.model.moveCards(prevTitleText, curTitleText, card);
               this.activityModel.addActivity("moved", prevTitleText, curTitleText, card, "kevin", Date.now());
           }
         })
@@ -160,7 +157,7 @@ class CardView {
   
   init() {
     this.model.subscribe(this.displayCard.bind(this));
-    this.model.getCardInit()
+    this.model.getCard()
     .then(this.plusBtnEvent.bind(this))
     .then(this.addBtnEvent.bind(this))
     .then(this.cancelBtnEvent.bind(this))
