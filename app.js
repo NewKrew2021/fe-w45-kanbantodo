@@ -33,7 +33,7 @@ app.post('/kanban',async (req, res) =>{
 
 app.put('/kanban',async (req, res) =>{
     const {sectionID,id,title,author,newTitle}=req.body;
-    await db.updateTodo({sectionID,id,title});
+    await db.updateTodo({sectionID,id,newTitle});
     const data=await db.findAll(sectionID);
 
     const time=Date.now();

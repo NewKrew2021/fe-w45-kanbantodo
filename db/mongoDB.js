@@ -47,10 +47,10 @@ async function insertTodo({ sectionID,title, author }) {
 }
 module.exports.insertTodo = insertTodo;
 
-async function updateTodo({ id,title }) {
-    console.log("db:updating...");
+async function updateTodo({ id,newTitle }) {
+    console.log("db:updating...",id,newTitle);
     const filter = { _id: new ObjectId(id) };
-    const updateDoc = {$set: {title:title}};
+    const updateDoc = {$set: {title:newTitle}};
     const result = await collection.updateOne(filter, updateDoc);
     console.log(
       `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`,
@@ -87,8 +87,8 @@ async function findAllActivities(sectionID) {
         console.log("No documents found!");
     }
     const result = [];
-    await cursor.forEach(({ _id, title, author,type }) => {
-        result.push({ _id, title, author,type });
+    await cursor.forEach(activity => {
+        result.push(activity);
     }); // map함수가 동작하지않음
     return result;
 

@@ -6,17 +6,31 @@
     z-index: 1000;
     left:100%;
     background-color: white;
+    overflow:scroll;
     #title{
         padding : 10px;
-        background-color: white;
+        background-color: rgb(243,243,243);
     }
     #sub{
         padding : 10px;
-        background-color: white;
+        background-color: rgb(243,243,243);
+        border:0.5px solid lightgray;
     }
     #close-btn{
         position:absolute;
         right:10px;
+    }
+    .side-item{
+        padding:5px 5px 5px 5px;
+        border-bottom:0.5px solid lightgray;
+        border-left:0.5px solid lightgray;
+        border-right:0.5px solid lightgray;
+    }
+    .blue{
+        color:blue;
+    }
+    .bold{
+        font-weight:bold;
     }
 }
 .sb-close{
