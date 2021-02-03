@@ -1,25 +1,13 @@
 {
   "posts": [
     {
-      "id": 0,
-      "name": "해야할일",
-      "author": "roddy.chan",
-      "data": [
-        {
-          "id": 0,
-          "title": "추가하기",
-          "tasks": []
-        }
-      ]
-    },
-    {
       "id": 1,
       "name": "하는중",
       "author": "roddy.chan",
       "data": [
         {
           "id": 0,
-          "title": "Drag&Drop 후 DB 저장",
+          "title": "수정하기",
           "tasks": []
         },
         {
@@ -46,16 +34,10 @@
         },
         {
           "id": 2,
-          "title": "사용자 조작 히스토리 보여주기",
+          "title": "사용자 히스토리 보여주기",
           "tasks": []
         }
       ]
-    },
-    {
-      "id": 3,
-      "name": "새로운 일",
-      "author": "roddy.chan",
-      "data": []
     }
   ],
   "history": [
@@ -114,6 +96,41 @@
       "beforeTitle": "",
       "afterTitle": "",
       "writeTime": 1612286172722
+    },
+    {
+      "action": "REMOVE_CARD",
+      "cardName": "새로운 일",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612313773231
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "끝난일",
+      "beforeTitle": "사용자 조작 히스토리 보여주기",
+      "afterTitle": "사용자 히스토리 보여주기",
+      "writeTime": 1612314010651
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "해야할일",
+      "beforeTitle": "",
+      "afterTitle": "테스트",
+      "writeTime": 1612314549150
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "webpack, babel 설정하기",
+      "afterTitle": "수정하기",
+      "writeTime": 1612314559229
+    },
+    {
+      "action": "REMOVE_CARD",
+      "cardName": "해야할일",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612314565131
     }
   ]
 }
