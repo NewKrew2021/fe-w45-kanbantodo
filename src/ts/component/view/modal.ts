@@ -19,7 +19,7 @@ export default class ModalView extends View {
         <div class="modal" data-click-action="">
           <div class="modal-head">
             <strong>${title}</strong>
-            <button data-click-action="closeModal">×</button>
+            <button class="ml-auto" data-click-action="closeModal">×</button>
           </div>
           <div class="modal-body">
             ${htmlString}
