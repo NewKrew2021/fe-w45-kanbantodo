@@ -9,11 +9,6 @@
           "id": 1,
           "title": "TypeScript로 일부 구현하기",
           "tasks": []
-        },
-        {
-          "id": 2,
-          "title": "abc",
-          "tasks": []
         }
       ]
     },
@@ -270,6 +265,13 @@
       "beforeTitle": "",
       "afterTitle": "abc",
       "writeTime": 1612328097424
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "abc",
+      "writeTime": 1612328249250
     }
   ]
 }
