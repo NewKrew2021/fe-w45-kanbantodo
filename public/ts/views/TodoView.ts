@@ -10,8 +10,7 @@ class TodoView {
 
   displayTodoBoard(todos: any[]) {
     const contents = document.querySelector("div.contents") as HTMLTextAreaElement;
-    let initHtml = ``;
-    const contentHtml = todos.reduce((initHtml: string, todo: { cards: string | any[]; title: any; }) => {
+    let contentHtml = todos.reduce((initHtml: string, todo: { cards: string | any[]; title: any; }) => {
       return initHtml += `
         <div class="todo-container">
           <div class="todo-title">
@@ -33,7 +32,10 @@ class TodoView {
           <div class="item-container"></div>
         </div>
       `
-    }, initHtml);
+    }, ``);
+    contentHtml += `
+      <div class="add-container">+ Add column</div>
+    `
     contents.innerHTML = contentHtml;
   }
 

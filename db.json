@@ -8,10 +8,6 @@
           "author": "kevin"
         },
         {
-          "title": "1234",
-          "author": "kevin"
-        },
-        {
           "title": "To-do",
           "author": "kevin"
         }
@@ -21,7 +17,11 @@
       "title": "Doing",
       "cards": [
         {
-          "title": "2",
+          "title": "1234",
+          "author": "kevin"
+        },
+        {
+          "title": "123",
           "author": "kevin"
         }
       ]
@@ -30,7 +30,7 @@
       "title": "Done",
       "cards": [
         {
-          "title": "123",
+          "title": "2",
           "author": "kevin"
         }
       ]
@@ -692,6 +692,30 @@
       "text": "To-do",
       "author": "kevin",
       "time": "1612342583231"
+    },
+    {
+      "type": "moved",
+      "from": "123",
+      "to": "Doing",
+      "text": "1234",
+      "author": "kevin",
+      "time": "1612345433402"
+    },
+    {
+      "type": "moved",
+      "from": "Done",
+      "to": "Doing",
+      "text": "123",
+      "author": "kevin",
+      "time": "1612345434726"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "Done",
+      "text": "2",
+      "author": "kevin",
+      "time": "1612345436172"
     }
   ]
 }
