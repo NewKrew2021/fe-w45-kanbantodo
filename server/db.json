@@ -9,11 +9,6 @@
           "id": 1,
           "title": "TypeScript로 일부 구현하기",
           "tasks": []
-        },
-        {
-          "id": 2,
-          "title": "acc",
-          "tasks": []
         }
       ]
     },
@@ -446,6 +441,41 @@
       "beforeTitle": "webpack, babel 설정하기",
       "afterTitle": "webpack, babel 설정",
       "writeTime": 1612336106559
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "acc",
+      "writeTime": 1612336758014
+    },
+    {
+      "action": "REMOVE_CARD",
+      "cardName": "해야할일",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612336835546
+    },
+    {
+      "action": "ADD_CARD",
+      "cardName": "해야할일",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612336839612
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "해야할일",
+      "beforeTitle": "",
+      "afterTitle": "abc",
+      "writeTime": 1612341003511
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "해야할일",
+      "beforeTitle": "",
+      "afterTitle": "abcd",
+      "writeTime": 1612341017663
     }
   ]
 }

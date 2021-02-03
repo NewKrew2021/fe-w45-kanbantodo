@@ -86,7 +86,7 @@ class TodoModel extends Observable {
         this.notify(this.todos)
     }
 
-    // 리스트뷰(note item)의 타이틀 수정 // input type 정의 예정
+    // 리스트뷰(note item)의 타이틀 수정
     async editTodo(input : any, mode : string) {
         if (mode === 'note') {
             await req.editList(input);
@@ -104,8 +104,7 @@ class TodoModel extends Observable {
     }
 
     // 어떤 카드에, 어떤 이벤트(추가, 삭제, 수정)가 이루어졌는지
-    // action : ADD_CARD / ADD_NOTE / REMOVE_NOTE /
-    // EDIT_NOTE / EDIT_CARD / REMOVE_CARD
+    // action : ADD_CARD / ADD_NOTE / REMOVE_NOTE / EDIT_NOTE / EDIT_CARD / REMOVE_CARD
     setHistoryState({ cardName, beforeTitle,
         afterTitle, writeTime, action } : HistoryState) {
         this.history = {

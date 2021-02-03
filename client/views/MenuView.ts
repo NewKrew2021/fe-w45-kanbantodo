@@ -6,20 +6,13 @@ import * as _dom from 'client/src/util'
 import TodoModel from 'client/models/TodoModel'
 import relataiveTime from 'dayjs/plugin/relativeTime'
 import { domTpl } from 'client/views/template';
+import { HistoryState } from 'client/src/interface'
 import dayjs from 'dayjs'
 
 interface Menu {
     model: TodoModel
     speed: string
     width: string
-}
-
-interface History{
-    action: string
-    afterTitle: string
-    beforeTitle: string
-    cardName: string
-    writeTime: number
 }
 
 class MenuView {
@@ -71,11 +64,11 @@ class MenuView {
 
     // history state DB 값에 따라 업데이트
     async writeHistory() {
-        const userActions : Array<History> = await this.model.getHistory();
+        const userActions : Array<HistoryState> = await this.model.getHistory();
         _dom.html(_dom.query('.menu-item-wrapper'), "");
         dayjs.extend(relataiveTime);
 
-        const createHTML = ({ data, type } : {data : History, type: string}) => {
+        const createHTML = ({ data, type } : {data : HistoryState, type: string}) => {
             const write = dayjs(data.writeTime);
             return domTpl[type]({ 
                 action : data.action,

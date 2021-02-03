@@ -24,3 +24,17 @@ export interface ModalState {
     cardId: string
     id: string
 }
+export interface InitData{
+    id : string
+    author : string
+    name : string
+    data : Array<any>
+}
+export interface Droppable{
+    elem : Element
+    elemBelow : Element
+    copiedNode : Element
+}
+export interface ObjIndex{
+    [index: number]: any
+}

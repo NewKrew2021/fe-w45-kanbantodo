@@ -1,14 +1,10 @@
 import TodoModel from 'client/models/TodoModel';
-import * as dom from '../src/util';
+import * as dom from 'client/src/util';
+import { Input } from 'client/src/interface'
 /*
     ModalView.js
     모달이 표시되어야 하는 뷰와 관련된 이벤트, 핸들러 등록
 */
-interface Input{
-    input:{
-        title : string
-    }
-}
 class ModalView {
     model : TodoModel
     constructor(model : TodoModel){
@@ -21,10 +17,6 @@ class ModalView {
         this.removeCard();
         this.editCardTitle();
         this.editNoteTitle();
-        this.closeEditModal();
-        this.closeNewCardModal();
-        this.closeRemoveCardModal();
-        this.closeRemoveNoteModal();
         this.addNewCard();
     }
 
@@ -76,6 +68,13 @@ class ModalView {
         removeBtn.forEach(element => {
             element.addEventListener('click', this.setRemoveNoteHandler.bind(this));
         });
+        const closeBtn = dom.query('.btn-close-modal');
+        closeBtn.addEventListener('click', ()=>{
+            dom.addClass({
+                nodeList: [dom.query('.modal'), dom.query('.modal-remove')],
+                className: 'none'
+            })
+        });
     }
 
     // remove card
@@ -122,6 +121,13 @@ class ModalView {
         const removeBtn = dom.queryAll('.htop-remove'); // 카드 삭제 버튼
         removeBtn.forEach(element => {
             element.addEventListener('click', this.setRemoveCardHandler.bind(this));
+        });
+        const closeBtn = dom.query('.btn-card-close');
+        closeBtn.addEventListener('click', ()=>{
+            dom.addClass({
+                nodeList: [dom.query('.modal'), dom.query('.modal-card-remove')],
+                className: 'none'
+            })
         });
     }
 
@@ -193,6 +199,13 @@ class ModalView {
         cardNames.forEach(element => {
             element.addEventListener('dblclick', this.editCardHandler.bind(this));
         })
+        const closeBtn = dom.query('.btn-new-close-modal');
+        closeBtn.addEventListener('click', ()=>{
+            dom.addClass({
+                nodeList: [dom.query('.modal'), dom.query('.modal-new-card')],
+                className: 'none'
+            })
+        });
     }
 
     // edit note
@@ -242,41 +255,10 @@ class ModalView {
         noteTitles.forEach(element => {
             element.addEventListener('dblclick', this.editNoteHandler.bind(this));
         })
-    }
-
-    // close btn event
-    closeEditModal(){
         const closeBtn = dom.query('.btn-edit-close-modal');
         closeBtn.addEventListener('click', ()=>{
             dom.addClass({
                 nodeList: [dom.query('.modal'), dom.query('.modal-edit')],
-                className: 'none'
-            })
-        });
-    }
-    closeNewCardModal(){
-        const closeBtn = dom.query('.btn-new-close-modal');
-        closeBtn.addEventListener('click', ()=>{
-            dom.addClass({
-                nodeList: [dom.query('.modal'), dom.query('.modal-new-card')],
-                className: 'none'
-            })
-        });
-    }
-    closeRemoveCardModal(){
-        const closeBtn = dom.query('.btn-card-close');
-        closeBtn.addEventListener('click', ()=>{
-            dom.addClass({
-                nodeList: [dom.query('.modal'), dom.query('.modal-card-remove')],
-                className: 'none'
-            })
-        });
-    }
-    closeRemoveNoteModal(){
-        const closeBtn = dom.query('.btn-close-modal');
-        closeBtn.addEventListener('click', ()=>{
-            dom.addClass({
-                nodeList: [dom.query('.modal'), dom.query('.modal-remove')],
                 className: 'none'
             })
         });
@@ -286,10 +268,6 @@ class ModalView {
         this.removeNote();
         this.editCardTitle();
         this.editNoteTitle();
-        this.closeEditModal();
-        this.closeNewCardModal();
-        this.closeRemoveCardModal();
-        this.closeRemoveNoteModal();
         this.addNewCard();
         this.removeNoteItem();
         this.removeCard();

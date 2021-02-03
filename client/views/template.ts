@@ -1,16 +1,5 @@
-interface History{
-    action: string
-    afterTitle: string
-    beforeTitle: string
-    cardName: string
-    writeTime: number
-}
-interface InitData{
-    id : string
-    author : string
-    name : string
-    data : Array<any>
-}
+import { HistoryState, InitData } from 'client/src/interface'
+
 interface MethodDictionary{
     [index: string] : any
 } // Object[key] 형태로 접근 시, 타입스크립트에서는 인덱싱 가능한 타입으로 정의해야 함
@@ -55,39 +44,39 @@ export const domTpl : MethodDictionary = {
             </div>
         `
     },
-    ADD_CARD({ action, afterTitle, beforeTitle, cardName, writeTime } : History) {
+    ADD_CARD({ action, afterTitle, beforeTitle, cardName, writeTime } : HistoryState) {
         return `<img class="profile" src="images/jackson.png">
-        <p class="menu-text history"><span class="menu-accent">${cardName}</span> 카드를 만들었습니다.</p>
+        <p class="menu-text HistoryState"><span class="menu-accent">${cardName}</span> 카드를 만들었습니다.</p>
         <p class="menu-text time">${writeTime}</p>
         `
     },
-    REMOVE_CARD({ action, afterTitle, beforeTitle, cardName, writeTime } : History) {
+    REMOVE_CARD({ action, afterTitle, beforeTitle, cardName, writeTime } : HistoryState) {
         return `<img class="profile" src="images/jackson.png">
-        <p class="menu-text history"><span class="menu-accent">${cardName}</span> 카드를 <span class="red">삭제</span>하였습니다.</p>
+        <p class="menu-text HistoryState"><span class="menu-accent">${cardName}</span> 카드를 <span class="red">삭제</span>하였습니다.</p>
         <p class="menu-text time">${writeTime}</p>
         `
     },
-    ADD_NOTE({ action, afterTitle, beforeTitle, cardName, writeTime } : History) {
+    ADD_NOTE({ action, afterTitle, beforeTitle, cardName, writeTime } : HistoryState) {
         return `<img class="profile" src="images/jackson.png">
-        <p class="menu-text history"><span class="menu-accent">${afterTitle}</span> 노트를 <span class="menu-accent">${cardName}</span> 카드에 추가하였습니다.</p>
+        <p class="menu-text HistoryState"><span class="menu-accent">${afterTitle}</span> 노트를 <span class="menu-accent">${cardName}</span> 카드에 추가하였습니다.</p>
         <p class="menu-text time">${writeTime}</p>
         `
     },
-    REMOVE_NOTE({ action, afterTitle, beforeTitle, cardName, writeTime } : History) {
+    REMOVE_NOTE({ action, afterTitle, beforeTitle, cardName, writeTime } : HistoryState) {
         return `<img class="profile" src="images/jackson.png">
-        <p class="menu-text history"><span class="menu-accent">${afterTitle}</span> 노트를 <span class="menu-accent">${cardName}</span> 카드에서 <span class="red">삭제</span>하였습니다.</p>
+        <p class="menu-text HistoryState"><span class="menu-accent">${afterTitle}</span> 노트를 <span class="menu-accent">${cardName}</span> 카드에서 <span class="red">삭제</span>하였습니다.</p>
         <p class="menu-text time">${writeTime}</p>
         `
     },
-    EDIT_CARD({ action, afterTitle, beforeTitle, cardName, writeTime } : History) {
+    EDIT_CARD({ action, afterTitle, beforeTitle, cardName, writeTime } : HistoryState) {
         return `<img class="profile" src="images/jackson.png">
-        <p class="menu-text history"><span class="menu-accent">${cardName}</span> 카드의 제목을 <span class="menu-accent">${afterTitle}</span>(으)로 변경하였습니다.</p>
+        <p class="menu-text HistoryState"><span class="menu-accent">${cardName}</span> 카드의 제목을 <span class="menu-accent">${afterTitle}</span>(으)로 변경하였습니다.</p>
         <p class="menu-text time">${writeTime}</p>
         `
     },
-    EDIT_NOTE({ action, afterTitle, beforeTitle, cardName, writeTime } : History) {
+    EDIT_NOTE({ action, afterTitle, beforeTitle, cardName, writeTime } : HistoryState) {
         return `<img class="profile" src="images/jackson.png">
-        <p class="menu-text history"><span>${cardName}</span> 카드의 <span class="menu-accent">${beforeTitle}</span> 노트를 <span class="menu-accent">${afterTitle}</span>(으)로 변경하였습니다.</p>
+        <p class="menu-text HistoryState"><span>${cardName}</span> 카드의 <span class="menu-accent">${beforeTitle}</span> 노트를 <span class="menu-accent">${afterTitle}</span>(으)로 변경하였습니다.</p>
         <p class="menu-text time">${writeTime}</p>
         `
     }

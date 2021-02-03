@@ -3,15 +3,9 @@
     - 모델 객체를 주입받고 구독하는 [Observer] 이다.
 */
 import TodoModel from 'client/models/TodoModel';
+import { HistoryState } from 'client/src/interface'
 import * as _dom from 'client/src/util';
 
-interface HistoryState {
-    action: string
-    afterTitle: string
-    beforeTitle: string
-    cardName: string
-    writeTime: number
-}
 /* TodoModel을 구독하는 Observer */
 class InputView {
     model : TodoModel
