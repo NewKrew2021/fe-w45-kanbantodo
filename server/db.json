@@ -12,22 +12,7 @@
         },
         {
           "id": 2,
-          "title": "abc",
-          "tasks": []
-        },
-        {
-          "id": 3,
-          "title": "def",
-          "tasks": []
-        },
-        {
-          "id": 4,
-          "title": "adf",
-          "tasks": []
-        },
-        {
-          "id": 5,
-          "title": "dfs",
+          "title": "acc",
           "tasks": []
         }
       ]
@@ -39,7 +24,7 @@
       "data": [
         {
           "id": 0,
-          "title": "webpack, babel 설정하기",
+          "title": "webpack, babel 설정",
           "tasks": []
         },
         {
@@ -53,6 +38,12 @@
           "tasks": []
         }
       ]
+    },
+    {
+      "id": 3,
+      "name": "해야할일",
+      "author": "roddy.chan",
+      "data": []
     }
   ],
   "history": [
@@ -322,6 +313,139 @@
       "beforeTitle": "",
       "afterTitle": "dfs",
       "writeTime": 1612332632497
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "dfs",
+      "writeTime": 1612334560682
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "adf",
+      "writeTime": 1612334561964
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "def",
+      "writeTime": 1612334563381
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "abc",
+      "writeTime": 1612334564630
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "acc",
+      "writeTime": 1612334647535
+    },
+    {
+      "action": "ADD_CARD",
+      "cardName": "sad",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612335092244
+    },
+    {
+      "action": "ADD_CARD",
+      "cardName": "sffds",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612335298168
+    },
+    {
+      "action": "ADD_CARD",
+      "cardName": "sfd",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612335321816
+    },
+    {
+      "action": "REMOVE_CARD",
+      "cardName": "sad",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612335769668
+    },
+    {
+      "action": "REMOVE_CARD",
+      "cardName": "sfd",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612335771152
+    },
+    {
+      "action": "ADD_CARD",
+      "cardName": "saffsd",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612335772692
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "saffsd",
+      "beforeTitle": "",
+      "afterTitle": "sdf",
+      "writeTime": 1612335774537
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "saffsd",
+      "beforeTitle": "",
+      "afterTitle": "sd",
+      "writeTime": 1612335816592
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "saffsd",
+      "beforeTitle": "",
+      "afterTitle": "d",
+      "writeTime": 1612335862853
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "saffsd",
+      "beforeTitle": "",
+      "afterTitle": "d",
+      "writeTime": 1612335887680
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "saffsd",
+      "beforeTitle": "",
+      "afterTitle": "d",
+      "writeTime": 1612335890058
+    },
+    {
+      "action": "EDIT_CARD",
+      "cardName": "saffsd",
+      "beforeTitle": "",
+      "afterTitle": "해야할 일",
+      "writeTime": 1612335899218
+    },
+    {
+      "action": "EDIT_CARD",
+      "cardName": "해야할 일",
+      "beforeTitle": "",
+      "afterTitle": "해야할일",
+      "writeTime": 1612336099910
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "끝난일",
+      "beforeTitle": "webpack, babel 설정하기",
+      "afterTitle": "webpack, babel 설정",
+      "writeTime": 1612336106559
     }
   ]
 }

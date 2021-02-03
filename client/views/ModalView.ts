@@ -4,6 +4,11 @@ import * as dom from '../src/util';
     ModalView.js
     모달이 표시되어야 하는 뷰와 관련된 이벤트, 핸들러 등록
 */
+interface Input{
+    input:{
+        title : string
+    }
+}
 class ModalView {
     model : TodoModel
     constructor(model : TodoModel){
@@ -56,8 +61,8 @@ class ModalView {
         });
     }
     setRemoveNoteHandler(e : Event){
-        const cardId = (e.target as Element).getAttribute('data');
-        const id = (e.target as Element).getAttribute('data-idx');
+        const cardId : string = (e.target as Element).getAttribute('data')!;
+        const id : string = (e.target as Element).getAttribute('data-idx')!;
         this.model.setModalState({cardId, id});
         // remove-note modal open
         dom.removeClass({
@@ -76,7 +81,7 @@ class ModalView {
     // remove card
     removeCardItem(){
         const acceptBtn = dom.query('.btn-card-accept');
-        acceptBtn.addEventListener('click', function(){
+        acceptBtn.addEventListener('click', () => {
             const cardId = this.model.state.cardId;
             const cards = dom.queryAll('.card');
             const cardName = dom.getCardName({cardId});
@@ -100,11 +105,11 @@ class ModalView {
             }
             this.model.setHistoryState(historyState);
             this.model.addHistory({input : historyState});
-        }.bind(this));
+        });
     }
-    setRemoveCardHandler(e){
-        const cardId = e.target.getAttribute('data');
-        const id = e.target.getAttribute('data-idx');
+    setRemoveCardHandler(e : Event){
+        const cardId = (e.target as Element).getAttribute('data')!;
+        const id = (e.target as Element).getAttribute('data-idx')!;
         this.model.setModalState({cardId, id});
         // remove-card modal open
         dom.removeClass({
@@ -128,7 +133,7 @@ class ModalView {
             nodeList: [dom.query('.modal'), dom.query('.modal-new-card')],
             className: 'none'
         })
-        writeBtn.addEventListener('click', function(){
+        writeBtn.addEventListener('click', ()=>{
             const name = modalInput.value;
             this.model.addCard({name: name, author: "roddy.chan"});
             dom.addClass({
@@ -143,7 +148,7 @@ class ModalView {
             }
             this.model.setHistoryState(historyState);
             this.model.addHistory({input : historyState});
-        }.bind(this))
+        })
     }
     async addNewCard(){
         const { } = await this.model.getInitialData();
@@ -152,8 +157,8 @@ class ModalView {
     }
 
     // edit card
-    editCardHandler(e){
-        const cardId = e.target.getAttribute('data');
+    editCardHandler(e : Event){
+        const cardId : string = (e.target as Element).getAttribute('data')!;
         const cardName = dom.getCardName({cardId});
         const modalInput = dom.query('.modal-edit-input');
         const saveBtn = dom.query('.btn-save-modal');
@@ -163,9 +168,9 @@ class ModalView {
             className: 'none'
         })
         dom.html(dom.query('.modal-edit-header-title'), "카드 제목 수정하기");  
-        saveBtn.addEventListener('click', function(){
+        saveBtn.addEventListener('click', ()=>{
             const newTitle = modalInput.value;
-            const input = { input: { title: newTitle } };
+            const input : Input = { input: { title: newTitle } };
             this.model.editTodo({cardId, input},'card');
 
             const historyState = {
@@ -180,7 +185,7 @@ class ModalView {
                 nodeList: [dom.query('.modal'), dom.query('.modal-edit')],
                 className: 'none'
             })
-        }.bind(this))
+        })
     }
     async editCardTitle(){
         const { } = await this.model.getInitialData();
@@ -191,9 +196,9 @@ class ModalView {
     }
 
     // edit note
-    editNoteHandler(e){
-        const cardId = e.target.getAttribute('data');
-        const id = e.target.getAttribute('data-idx');
+    editNoteHandler(e : Event){
+        const cardId = (e.target as Element).getAttribute('data')!;
+        const id = (e.target as Element).getAttribute('data-idx')!;
         const cardName = dom.getCardName({cardId});
         const noteName = dom.getNoteTitle({cardId, id});
         const modalInput = dom.query('.modal-edit-input');
@@ -208,9 +213,9 @@ class ModalView {
             className: 'none'
         })
         dom.html(dom.query('.modal-edit-header-title'), "노트 제목 수정하기");   
-        saveBtn.addEventListener('click', function(){
+        saveBtn.addEventListener('click', ()=>{
             const newTitle = modalInput.value;
-            const input = { input: { title: newTitle } };
+            const input : Input = { input: { title: newTitle } };
             this.model.editTodo({cardId, id, input},'note');
 
             const historyState = {
@@ -229,7 +234,7 @@ class ModalView {
                 nodeList: [dom.query('.btn-save-modal')],
                 className: 'none'
             })
-        }.bind(this))     
+        })     
     }
     async editNoteTitle(){
         const { } = await this.model.getInitialData();

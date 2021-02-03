@@ -29,7 +29,7 @@ app.get('/posts', (req, res) => {
 // [+] 전체 큰 카드를 추가할 때(= 새로운 column 추가)
 // input : { id:_, name:_, author:_} 형태의 data 받고 추가
 app.post('/addcard', (req, res) => {
-    const { id, name, author } = req.body.input;
+    const { id, name, author } = req.body;
     if (db.get('posts').find({ id: id }).value()) {
         res.send('Card registration failed')
     } else {
@@ -44,7 +44,7 @@ app.post('/addcard', (req, res) => {
 // main cardId -> 리스트 아이템 listId 에 추가
 // input : {cardId:_, listId:_, title:_} 형태의 data 받고 추가
 app.post('/addlist', (req, res) => {
-    const { cardId, listId, title } = req.body.input;
+    const { cardId, listId, title } = req.body;
     if (db.get('posts').find({ id: cardId }).value()) {
         db.get('posts')
             .find({ id: cardId })

@@ -9,24 +9,8 @@
         새롭게 입력되는 todo의 값
 */
 import Observable from './observable.js'
-import * as req from '../src/request.js';
-
-interface ModalState {
-    cardId: string
-    id: string
-}
-interface HistoryState {
-    action: string
-    afterTitle: string
-    beforeTitle: string
-    cardName: string
-    writeTime: number
-}
-interface State {
-    todos: Array<any>
-    state: Array<ModalState>
-    history: Array<HistoryState>
-}
+import * as req from 'client/src/request';
+import { ModalState, NewCardState, NewNoteState, HistoryState } from 'client/src/interface'
 
 class TodoModel extends Observable {
     url: string
@@ -54,14 +38,12 @@ class TodoModel extends Observable {
     async addCard({ name, author }: { name: string, author: string }) {
         const res = await req.getAllData();
         let cardId = res[res.length - 1].id + 1;
-        const inputObj = {
-            input: {
-                id: cardId,
-                name: name,
-                author: author
-            }
+        const inputObj : NewCardState = {
+            id: cardId,
+            name: name,
+            author: author
         }
-        await req.addCard(inputObj);
+        await req.addCardReq(inputObj);
         this.todos = [...this.todos, res];
         this.notify(this.todos);
     }
@@ -86,14 +68,11 @@ class TodoModel extends Observable {
                 }
             }
         });
-
         // 받은 todo값을 가공하고 넣기
-        const inputObj = {
-            input: {
-                cardId: parseInt(cardId),
-                listId: listId,
-                title: inputData
-            }
+        const inputObj : NewNoteState = {
+            cardId: cardId,
+            listId: listId,
+            title: inputData
         }
         await req.addList(inputObj);
         // 데이터에 추가 후 notify 한다.
@@ -119,7 +98,7 @@ class TodoModel extends Observable {
         }
     }
 
-    setModalState({ cardId, id } : {cardId: string, id: string}) {
+    setModalState({ cardId, id } : ModalState) {
         this.state = { ...this.state, cardId: cardId, id: id };
         return this.state;
     }
