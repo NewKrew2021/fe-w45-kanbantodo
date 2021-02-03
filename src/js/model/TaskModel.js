@@ -2,6 +2,7 @@ import { Observable } from "./Observable.js";
 import { getData, deleteData, postData, putData } from "../REST_API.js";
 
 import produce from "immer";
+import { v4 as uuidv4 } from "uuid";
 
 export class TaskModel extends Observable {
   constructor() {
@@ -13,15 +14,20 @@ export class TaskModel extends Observable {
     this.modify = this.modify.bind(this);
     this.filter = this.filter.bind(this);
   }
-  async initModel() {
-    this.state.list = await getData("list");
-    this.state.task = await getData("task");
-    this.state.subTask = await getData("subTask");
+  initModel() {
+    Promise.all([getData("list"), getData("task"), getData("subTask")]).then(
+      (data) => {
+        this.state.list = data[0];
+        this.state.task = data[1];
+        this.state.subTask = data[2];
 
-    this.notify(this.state);
+        this.notify(this.state);
+      }
+    );
   }
   add({ type, data }) {
-    data.id = new Date().getTime();
+    console.log(type, data);
+    data.id = uuidv4();
     this.state[type].push(data);
 
     this.notify(this.state);
@@ -29,13 +35,21 @@ export class TaskModel extends Observable {
     postData(type, data);
   }
   delete({ type, id }) {
-    this.state[type] = this.state[type].filter(item => item.id !== parseInt(id));
+    this.state[type] = this.state[type].filter(
+      (item) => item.id !== parseInt(id)
+    );
     this.notify(this.state);
 
     deleteData(type, id);
   }
-  modify({ type, id, data }) {
-
+  modify(type, info) {
+    this.state[type] = this.state[type].map((item) => {
+      if (item.id !== parseInt(info.id)) return item;
+      putData("list", { id: item.id, title: info.value });
+      item.title = info.value;
+      return item;
+    });
+    this.notify(this.state);
   }
   filter(word) {
     if (!word) {
@@ -43,8 +57,8 @@ export class TaskModel extends Observable {
       return;
     }
     const reg = new RegExp(`${word}`);
-    const newState = produce(this.state, draft => {
-      draft.task = draft.task.filter(task => reg.test(task.title));
+    const newState = produce(this.state, (draft) => {
+      draft.task = draft.task.filter((task) => reg.test(task.title));
     });
     this.notify(newState);
   }

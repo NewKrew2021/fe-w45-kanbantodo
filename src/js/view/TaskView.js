@@ -8,27 +8,42 @@ export class TaskView extends Observer {
     this.rootEl = rootEl;
     this.rootEl.addEventListener("click", ({ target }) => {
       if (target.matches(".close-image-task")) {
-        this.triggerEvent({ type: "delete-task", detail: { id: this.getId(target) }} );
+        this.triggerEvent({
+          type: "DELETE_TASK",
+          detail: { id: this.getId(target) },
+        });
       }
-      
+    });
+    this.rootEl.addEventListener("dblclick", ({ target }) => {
+      if (target.matches(".task")) {
+        this.triggerEvent({
+          type: "DETAIL",
+          detail: {
+            id: target.id,
+            title: target.getAttribute("name"),
+            subTasks: [...target.lastChild.childNodes].map(
+              (item) => item.innerText
+            ),
+          },
+        });
+      }
     });
   }
   update(state) {
     [...this.rootEl.childNodes].forEach((listEl) => {
       const listId = listEl.id;
       const filtered = state.task.filter((task) => task.listId === listId);
-      listEl.innerHTML += `<div>${filtered.length}개</div>`;
-      listEl.innerHTML += filtered.reduce((acc, cur) => {
+      let html = `<div>${filtered.length}개</div>`;
+      html += filtered.reduce((acc, cur) => {
         return acc + this.template(cur);
       }, "");
+      listEl.innerHTML += html;
     });
   }
-  render(state) {
-    // 뷰가 어떻게 생겼고 어떻게 작동하는지에 대한 정보를 지닌 객체를 반환
-  }
+  render(state) {}
   template(data) {
     let html =
-      `<div id="${data.id}" class="task border-radius-10 border-gray margin-center">${data.title}` +
+      `<div id="${data.id}" name="${data.title}" class="task border-radius-10 border-gray margin-center">${data.title}` +
       `<img id="${data.id}" src=${closeImage} class="close-image-task">` +
       `</div>`;
     return html;
