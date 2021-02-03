@@ -1,6 +1,6 @@
 import View from "../view/_view"
 
-interface MethodBindingOption {
+export interface MethodBindingOption {
   methodName: string,
   bindTarget: Controller,
 }

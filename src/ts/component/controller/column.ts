@@ -97,13 +97,15 @@ export default class ColumnController extends Controller {
           <form data-submit-action="editColumn">
             <div class="mb-3">
               <label for="modal-body-input">Column name</label>
-              <input type="text" name="columnName" id="modal-body-input" class="w-100" placeholder="${this.columnData.title}" autofocus>
+              <input type="text" name="columnName" id="modal-body-input" class="w-100" placeholder="${this.columnData.title}" value="${this.columnData.title}" autofocus>
             </div>
             <button type="submit" class="form-component bg-green white">Update</button>
           </form>
         `
       },
-      parentController: this
+      methodBindingOptions: [
+        { methodName: 'editColumn', bindTarget: this }
+      ]
     })
   }
 }
