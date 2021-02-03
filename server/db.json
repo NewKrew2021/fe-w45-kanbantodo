@@ -40,11 +40,6 @@
           "tasks": []
         },
         {
-          "id": 1,
-          "title": "전체적인 레이아웃 구성(css 포함)",
-          "tasks": []
-        },
-        {
           "id": 2,
           "title": "TypeScript로 파일들 재작성하기",
           "tasks": []
@@ -153,6 +148,27 @@
       "beforeTitle": "",
       "afterTitle": "히스토리 삭제기능 구현(중요도 낮음)",
       "writeTime": 1612355625660
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "",
+      "afterTitle": "전체적인 레이아웃 구성(css 포함)",
+      "writeTime": 1612357798263
+    },
+    {
+      "action": "ADD_CARD",
+      "cardName": "테스트 용도",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612357807875
+    },
+    {
+      "action": "REMOVE_CARD",
+      "cardName": "테스트 용도",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612357809760
     }
   ]
 }
