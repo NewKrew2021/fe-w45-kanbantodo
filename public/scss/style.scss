@@ -265,3 +265,62 @@ $container-color : #cecece;
   margin-left: 20px;
   border-radius: 5px;
 }
+
+.column-modal {
+  position: fixed;
+  width: 550px;
+  height: 250px;
+  margin: 300px 0 0 600px;
+  border: 1px solid #8d8d8d;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.column-head {
+  width: 550px;
+  height: 60px;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 1px solid #c1c6cc;
+  background-color: #dee3e9;
+  
+}
+
+.column-title {
+  float: left;
+  width: 480px;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 20px 0 0 20px;
+}
+
+.column-cancel {
+  float: left;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 20px 0 0 15px;
+  cursor: pointer;
+}
+
+.column-text {
+  margin: 30px 0 0 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.column-input {
+  margin: 7px 0 0 19px;
+  padding-left: 20px;
+  width: 500px;
+  height: 40px;
+  border: 1px solid #148aeb;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.update-btn {
+  @extend %input-btn;
+  margin: 20px 0 0 170px;
+  color: #f6f6f6;
+  border: 1px solid #4da160;
+  background-color: #4ebb66;
+}

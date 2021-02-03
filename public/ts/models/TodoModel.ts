@@ -27,7 +27,6 @@ class TodoModel extends Observable {
     this.todos = todo;
     this.notify(this.todos);
   }
-
 }
 
 export { TodoModel };

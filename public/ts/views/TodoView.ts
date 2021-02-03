@@ -36,12 +36,43 @@ class TodoView {
   }
 
   columnTitleClickEvent() {
-    console.log(123);
     document.addEventListener("dblclick", event => {
       const eventEle = event.target as HTMLTextAreaElement;
       if(eventEle.classList.contains("title-text")){
+        const editModal = document.querySelector("div.column-modal") as HTMLTextAreaElement;
+        // 모달창 생기게
+        this.displayModalWindow(editModal);
+
+        // 모달창 이벤트
+        this.addEditModalEvent(editModal);
+
+        // 뒷배경 흐리게
+
+        // 다른거 클릭 안되게
+
       }
     })
+  }
+
+  addEditModalEvent(ele:HTMLElement){
+    const addEditModal = (event: Event) => {
+      const eventEle = event.target as HTMLTextAreaElement;
+      if(eventEle.classList.contains("column-cancel")){
+        this.nonDisplayModalWindow(ele);
+        ele.removeEventListener("click",addEditModal);
+      }
+      else if(eventEle.classList.contains("update-btn")){
+        // update
+      }
+    }
+    ele.addEventListener("click", addEditModal);
+  }
+
+  displayModalWindow(ele:HTMLElement) {
+    ele.classList.remove("non-display");
+  }
+  nonDisplayModalWindow(ele:HTMLElement) {
+    ele.classList.add("non-display");
   }
 
   
