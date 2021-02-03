@@ -1,29 +1,34 @@
-const $ = (target, parent = document) => {
+const $ = (target: string, parent = document) => {
   return parent.querySelector(target);
 };
 
-const createNewElement = (tag, className, innerText) => {
+const createNewElement = (tag: string, className: string, innerText: string) => {
   const newElement = document.createElement(tag);
   newElement.className = className;
   newElement.innerText = innerText;
   return newElement;
 };
 
-const deleteClassFromElement = (element, className) => {
+const deleteClassFromElement = (element: HTMLElement, className: string) => {
   element.classList.remove(className);
 };
 
-const deleteElement = (element) => {
+const deleteElement = (element: any) => {
   element.parentNode.removeChild(element);
 };
 
-const _addBubbledEventListener = (eventType, eventDelegatedElement, selector, callback) => {
-  eventDelegatedElement.addEventListener(eventType, (event) => {
+const _addBubbledEventListener = (
+  eventType: string,
+  eventDelegatedElement: any,
+  selector: string,
+  callback: any
+) => {
+  eventDelegatedElement.addEventListener(eventType, (event: any) => {
     if (event.target === selector) callback(event);
   });
 };
 
-const getIndexFromParent = (element) => {
+const getIndexFromParent = (element: ChildNode) => {
   let elementIndex = 0;
 
   while (element !== null && element.previousSibling !== null) {
