@@ -1,4 +1,4 @@
-import { $ } from "@public/js/common/utils";
+import { $, translateTime } from "@public/js/common/utils";
 
 const PROFILE_IMAGE: string =
   "https://avatars.githubusercontent.com/u/37804777?s=460&u=088956f4c1a3613536ddb54dac7492b469a12ca9&v=4";
@@ -10,12 +10,13 @@ interface Log {
   from: string;
   to: string;
   card: string;
+  time: string;
 }
 
 interface PopUpMenuTPL {
   statusTask(task: string, card: string, todoList: string): string;
   moveTask(task: string, from: string, to: string, card: string): string;
-  detailItem(profile: string, user: string, taskTPL: string): string;
+  detailItem(profile: string, user: string, time: string, taskTPL: string): string;
 }
 
 const POP_UP_MENU_TPL: PopUpMenuTPL = {
@@ -37,7 +38,7 @@ const POP_UP_MENU_TPL: PopUpMenuTPL = {
       <span class="to">${to}</span>
     `;
   },
-  detailItem(profile: string, user: string, taskTPL: string): string {
+  detailItem(profile: string, user: string, time: string, taskTPL: string): string {
     return `
       <li class="menu-detail__item">
         <img
@@ -46,7 +47,8 @@ const POP_UP_MENU_TPL: PopUpMenuTPL = {
           alt=""
         />
         <div class="activity-content">
-          <div class="user-id">${user}</div>
+          <span class="user-id">${user}</span>
+          <span>${time}</span>
           <div class="balloon">${taskTPL}</div>
         </div>
       </li>
@@ -78,12 +80,13 @@ class PopUpMenuView {
   render(logList: Log[]) {
     if (!this.menuDetail) return;
     this.menuDetail.innerHTML = logList.reduce(
-      (acc: string, { profile, user, task, from, to, card }) => {
+      (acc: string, { profile, user, task, from, to, card, time }) => {
         return (
           acc +
           POP_UP_MENU_TPL.detailItem(
             PROFILE_IMAGE,
             user,
+            translateTime(time),
             POP_UP_MENU_TPL.moveTask(task, from, to, card)
           )
         );

@@ -1,4 +1,4 @@
-import { $, createNewElement, deleteElement } from "@public/js/common/utils";
+import { $, createNewElement, deleteElement, getTime } from "@public/js/common/utils";
 
 const USER = "puba";
 const DRAGGABLE_ELEMENTS = ["todo-card", "todo-card--content", "todo-card--writer"];
@@ -119,6 +119,7 @@ class TodoView {
             from: originalMovingElement.closest(".todo").id,
             to: this.movingElement.closest(".todo").id,
             card: "",
+            time: getTime(),
           };
           popUpMenuModel.addLog(log);
           notifyLog(popUpMenuModel.logList);

@@ -1,5 +1,14 @@
+import moment from "moment";
+
 const $ = (target: string, parent = document): HTMLElement | null => {
   return parent.querySelector(target);
+};
+const getTime = (): string => {
+  return moment().format();
+};
+
+const translateTime = (time: string): string => {
+  return moment(time).fromNow();
 };
 
 const createNewElement = (tag: string, className: string, innerText: string) => {
@@ -39,4 +48,12 @@ const getIndexFromParent = (element: ChildNode) => {
   return elementIndex;
 };
 
-export { $, createNewElement, deleteClassFromElement, getIndexFromParent, deleteElement };
+export {
+  $,
+  createNewElement,
+  deleteClassFromElement,
+  getIndexFromParent,
+  deleteElement,
+  translateTime,
+  getTime,
+};
