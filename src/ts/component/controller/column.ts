@@ -9,14 +9,12 @@ export default class ColumnController extends Controller {
   private columnData: ColumnData
   private renderData: ColumnRenderData
 
-  constructor({ id, columnData }: { id: string, columnData: ColumnData }) {
+  constructor(columnData: ColumnData) {
     super()
-    this.id = id
     this.columnData = columnData
     this.renderData = { nNote: 0, formVisible: false }
     this.view = new ColumnView()
     this.bindMethods([
-      'getID',
       'getData',
       'getRenderData',
       'addNote',
@@ -90,7 +88,6 @@ export default class ColumnController extends Controller {
 
   showEditModal() {
     new ModalController({
-      id: '',
       renderData: {
         title: 'Edit Column',
         htmlString: `
@@ -111,7 +108,6 @@ export default class ColumnController extends Controller {
 
   showDeleteModal() {
     new ModalController({
-      id: '',
       renderData: {
         title: 'Delete Column',
         htmlString: `

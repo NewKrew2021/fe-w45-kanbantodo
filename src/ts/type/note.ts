@@ -1,5 +1,6 @@
 type NoteData = {
-  title: string
+  id: string,
+  title: string,
 }
 
 export default NoteData

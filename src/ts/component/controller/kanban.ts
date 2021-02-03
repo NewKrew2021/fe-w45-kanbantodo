@@ -7,13 +7,11 @@ import ColumnData from '../../type/column'
 export default class KanbanController extends Controller {
   private kanbanData: KanbanData
 
-  constructor({ id, kanbanData }: { id: string, kanbanData: KanbanData }) {
+  constructor(kanbanData: KanbanData) {
     super()
-    this.id = id
     this.kanbanData = kanbanData
     this.view = new KanbanView()
     this.bindMethods([
-      'getID',
       'getData',
       'addColumn',
     ])
@@ -24,8 +22,8 @@ export default class KanbanController extends Controller {
     return this.kanbanData
   }
 
-  addColumn(columnData: ColumnData = { title: 'new column' }) {
-    const columnController = new ColumnController({ id: '', columnData })
+  addColumn() {
+    const columnController = new ColumnController({ id: '', title: 'new column' })
 
     // re-render
     columnController.setWrapper(this.view.getChildrenWrapper('column'))

@@ -7,8 +7,7 @@ export default class NoteView extends View {
   }
 
   toHtmlString() {
-    const id = this.getID()
-    const { title }: NoteData = this.getData()
+    const { id, title }: NoteData = this.getData()
 
     return `
       <div id="${id}" class="note" role="button" data-action="editNote">

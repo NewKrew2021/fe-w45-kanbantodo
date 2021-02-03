@@ -6,7 +6,7 @@ export default class KanbanView extends View {
   }
 
   toHtmlString() {
-    const id = this.getID()
+    const { id } = this.getData()
 
     return `
       <div id="${id}" class="kanban">

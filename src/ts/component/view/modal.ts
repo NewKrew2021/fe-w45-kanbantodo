@@ -11,11 +11,10 @@ export default class ModalView extends View {
   }
 
   toHtmlString() {
-    const id = this.getID()
     const { title, htmlString }: ModalRenderData = this.getRenderData()
 
     return `
-      <div id="${id}" class="modal-box" data-click-action="closeModal">
+      <div class="modal-box" data-click-action="closeModal">
         <div class="modal" data-click-action="">
           <div class="modal-head">
             <strong>${title}</strong>

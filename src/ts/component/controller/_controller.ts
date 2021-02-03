@@ -8,16 +8,11 @@ export interface MethodBindingOption {
 export default class Controller {
   private updateListeners: Array<Function>
   private deleteListeners: Array<Function>
-  protected id: string
   protected view: View
 
   constructor() {
     this.updateListeners = []
     this.deleteListeners = []
-  }
-
-  getID() {
-    return this.id
   }
 
   addUpdateListener(listener: Function) {

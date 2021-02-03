@@ -12,8 +12,7 @@ export default class ColumnView extends View {
   }
 
   toHtmlString() {
-    const id = this.getID()
-    const { title }: ColumnData = this.getData()
+    const { id, title }: ColumnData = this.getData()
     const { nNote, formVisible }: ColumnRenderData = this.getRenderData()
 
     return `

@@ -1,5 +1,6 @@
 type ColumnData = {
-  title: string
+  id: string,
+  title: string,
 }
 
 export default ColumnData

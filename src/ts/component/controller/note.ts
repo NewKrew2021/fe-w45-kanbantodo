@@ -6,13 +6,11 @@ import ModalController from './modal'
 export default class NoteController extends Controller {
   private noteData: NoteData
 
-  constructor({ id, noteData }: { id: string, noteData: NoteData }) {
+  constructor(noteData: NoteData) {
     super()
-    this.id = id
     this.noteData = noteData
     this.view = new NoteView()
     this.bindMethods([
-      'getID',
       'getData',
       'showDeleteModal',
     ])
@@ -35,7 +33,6 @@ export default class NoteController extends Controller {
 
   showDeleteModal() {
     new ModalController({
-      id: '',
       renderData: {
         title: 'Delete Note',
         htmlString: `
