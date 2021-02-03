@@ -20,5 +20,10 @@ export function initKanban(){
         initKanbanSection({sectionID,title});
         initSectionController({sectionID});
     });
+    initAppendSection();
+}
 
+function initAppendSection(){
+    const kanban=document.querySelector("#kanban");
+    kanban.innerHTML+=`<div id="append-section"> click to make new column</div>`
 }

@@ -1,10 +1,10 @@
 import { initHeader } from "./js/view/Header";
 import { initKanban } from "./js/view/Kanban";
 import { initSearchBar } from "./js/view/SearchBar";
-import { initMenu } from "./js/view/menu.ts";
+import { initActivity } from "./js/view/SideBar.ts";
 (function initApp() {
     initHeader();
-    initMenu();
+    initActivity();
     initSearchBar();
     initKanban();
 })();

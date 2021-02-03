@@ -4,11 +4,13 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 
 let database;
 let collection;
+let activityCollection;
 
 async function init() {
     await client.connect();
     database = client.db("todoDB");
     collection= database.collection("taskCollection");
+    activityCollection=database.collection("activityCollection");
 };
 init();
 
@@ -45,10 +47,10 @@ async function insertTodo({ sectionID,title, author }) {
 }
 module.exports.insertTodo = insertTodo;
 
-async function updateTodo({ id,title }) {
-    console.log("db:updating...");
+async function updateTodo({ id,newTitle }) {
+    console.log("db:updating...",id,newTitle);
     const filter = { _id: new ObjectId(id) };
-    const updateDoc = {$set: {title:title}};
+    const updateDoc = {$set: {title:newTitle}};
     const result = await collection.updateOne(filter, updateDoc);
     console.log(
       `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`,
@@ -71,3 +73,45 @@ async function deleteTodo(id){
 
 }
 module.exports.deleteTodo = deleteTodo;
+
+
+
+async function findAllActivities(sectionID) {
+    if(typeof collection === 'undefined') return;
+    console.log("db:findAll...",sectionID);
+
+    // query for movies that have a runtime less than 15 minutes
+    const cursor = activityCollection.find();
+    // print a message if no documents were found
+    if ((await cursor.count()) === 0) {
+        console.log("No documents found!");
+    }
+    const result = [];
+    await cursor.forEach(activity => {
+        result.push(activity);
+    }); // map함수가 동작하지않음
+    return result;
+
+}
+module.exports.findAllActivities = findAllActivities;
+
+
+async function insertActivity(activityData) {
+    console.log("db:inserting activity...");
+    const {title,author,sectionID,action,newTitle,newSectionName,time}=activityData;
+    //// create a document to be inserted
+
+    const doc = {title, author, sectionName:sectionID, action,time};
+    if(typeof newTitle !== `undefined`){
+        doc.newTitle=newTitle;
+    }
+    if(typeof newSectionName !== `undefined`){
+        doc.newSectionName=newSectionName;
+    }
+    const result = await activityCollection.insertOne(doc);
+    console.log(
+        `${result.insertedCount} documents were inserted with the _id: ${result.insertedId}`,
+    );
+
+}
+module.exports.insertActivity = insertActivity;
