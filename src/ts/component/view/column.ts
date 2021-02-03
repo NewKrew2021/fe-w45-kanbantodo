@@ -22,7 +22,7 @@ export default class ColumnView extends View {
           <span class="badge">${nNote}</span>
           <strong class="flex-1 ml-2 mr-auto" role="button" data-dblclick-action="showEditModal">${title}</strong>
           <button data-click-action="toggleForm">+</button>
-          <button data-click-action="showCloseModal">×</button>
+          <button data-click-action="showDeleteModal">×</button>
         </div>
         <form class="mb-2 ${formVisible ? '' : 'd-none'}" data-submit-action="addNote">
           <textarea name="title" class="fix-horizontal"></textarea>

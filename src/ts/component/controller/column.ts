@@ -22,7 +22,7 @@ export default class ColumnController extends Controller {
       'addNote',
       'toggleForm',
       'showEditModal',
-      'showCloseModal',
+      'showDeleteModal',
     ])
     this.view.render()
   }
@@ -44,7 +44,7 @@ export default class ColumnController extends Controller {
     this.notifyUpdate()
   }
 
-  removeSelf() {
+  deleteSelf() {
     // TODO: request to server
     // TODO: delete value
 
@@ -109,18 +109,18 @@ export default class ColumnController extends Controller {
     })
   }
 
-  showCloseModal() {
+  showDeleteModal() {
     new ModalController({
       id: '',
       renderData: {
-        title: 'Close Column',
+        title: 'Delete Column',
         htmlString: `
           <p>Are you sure?</p>
-          <button class="form-component bg-orangered white" data-click-action="removeSelf">Delete</button>
+          <button class="form-component bg-orangered white" data-click-action="deleteSelf">Delete</button>
         `
       },
       methodBindingOptions: [
-        { methodName: 'removeSelf', bindTarget: this }
+        { methodName: 'deleteSelf', bindTarget: this }
       ]
     })
   }
