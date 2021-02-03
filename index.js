@@ -2,15 +2,15 @@
 require('dotenv').config()
 
 // webpack config
-const webpack = require('webpack');
+const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const config = require('./webpack.config.development.js')
-const compiler = webpack(config);
+const compiler = webpack(config)
 
 // express
 const express = require('express')
 const app = express()
-const routes = require('./routes')
+const routes = require('./lib/routes')
 const HTTP_PORT = parseInt(process.env.HTTP_PORT)
 
 // express use webpack middleware
