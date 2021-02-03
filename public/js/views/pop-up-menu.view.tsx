@@ -4,6 +4,7 @@ const PROFILE_IMAGE: string =
   "https://avatars.githubusercontent.com/u/37804777?s=460&u=088956f4c1a3613536ddb54dac7492b469a12ca9&v=4";
 
 interface Log {
+  type: string;
   profile: string;
   writer: string;
   content: string;
@@ -76,8 +77,9 @@ class PopUpMenuView {
 
   render(logList: Log[]) {
     if (!this.menuDetail) return;
-    this.menuDetail.innerHTML = logList.reduce(
-      (acc: string, { profile, writer, content, from, to, time }) => {
+    this.menuDetail.innerHTML = logList
+      .reverse()
+      .reduce((acc: string, { profile, writer, content, from, to, time }) => {
         return (
           acc +
           POP_UP_MENU_TPL.detailItem(
@@ -87,9 +89,7 @@ class PopUpMenuView {
             POP_UP_MENU_TPL.moveTask(content, from, to)
           )
         );
-      },
-      ``
-    );
+      }, ``);
   }
 
   init(): PopUpMenuView {
