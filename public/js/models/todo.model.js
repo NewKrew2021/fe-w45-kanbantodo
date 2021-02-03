@@ -35,7 +35,7 @@ class TodoModel {
     await this.updateCardData({ id, status });
 
     this.todoCardList = await this.getCardData();
-
+    console.log(this.todoCardList);
     return this.todoCardList;
   }
 

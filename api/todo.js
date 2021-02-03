@@ -16,6 +16,10 @@ const TodoSchema = new mongoose.Schema({
   writer: String,
   status: String,
   type: String,
+  from: String,
+  to: String,
+  time: String,
+  profile: String,
 });
 
 const Todo = mongoose.model("Todo", TodoSchema);
@@ -27,12 +31,16 @@ const getTodo = () => {
   });
 };
 
-const postTodo = async ({ content, writer, status, type }) => {
+const postTodo = async ({ content, writer, status, type, from, to, time, profile }) => {
   const newTodo = new Todo({
-    content: content,
-    writer: writer,
-    status: status,
-    type: type,
+    content,
+    writer,
+    status,
+    type,
+    from,
+    to,
+    time,
+    profile,
   });
 
   return newTodo
