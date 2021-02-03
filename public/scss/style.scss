@@ -35,6 +35,14 @@ $container-color : #cecece;
   display: none;
 }
 
+.opacity-on{
+  opacity: 0.5;
+}
+
+.opacity-off{
+  opacity:1;
+}
+
 .navbar {
   width: 1792px;
   height: 60px;
@@ -274,6 +282,7 @@ $container-color : #cecece;
   border: 1px solid #8d8d8d;
   border-radius: 10px;
   background-color: #ffffff;
+  z-index: 1;
 }
 
 .column-head {

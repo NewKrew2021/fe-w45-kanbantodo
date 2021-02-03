@@ -40,17 +40,14 @@ class TodoView {
   columnTitleClickEvent() {
     document.addEventListener("dblclick", event => {
       const eventEle = event.target as HTMLTextAreaElement;
+      const todoEles = document.querySelectorAll("div.todo-container")
       if(eventEle.classList.contains("title-text")){
         const titleText = eventEle.innerHTML;
         const editModal = document.querySelector("div.column-modal") as HTMLTextAreaElement;
-        // 모달창 생기게
-        this.displayModalWindow(editModal);
-
-        // 모달창 이벤트
+        this.displayModalWindow(todoEles, editModal);
         this.addEditModalEvent(editModal, titleText);
-
         // 뒷배경 흐리게
-
+        
       }
     })
   }
@@ -58,33 +55,32 @@ class TodoView {
   addEditModalEvent(ele:HTMLElement, titleText:string){
     const addEditModal = (event: Event) => {
       const eventEle = event.target as HTMLTextAreaElement;
+      const todoEles = document.querySelectorAll("div.todo-container")
       if(eventEle.classList.contains("column-cancel")){
-        this.nonDisplayModalWindow(ele);
+        this.nonDisplayModalWindow(todoEles, ele);
         const inputEle = ele.querySelector("#column-name") as HTMLTextAreaElement;
         inputEle.value = ``;
         ele.removeEventListener("click",addEditModal);
-
-        // 다시 뒷배경 진하게
       }
       else if(eventEle.classList.contains("update-btn")){
-        // update to db
         const inputEle = ele.querySelector("#column-name") as HTMLTextAreaElement;
         this.model.modifyTodoTitle(titleText, inputEle.value)
         .then(this.cardModel.getCard.bind(this.cardModel))
-        .then(()=>this.nonDisplayModalWindow(ele));
+        .then(()=>this.nonDisplayModalWindow(todoEles, ele));
       }
     }
     ele.addEventListener("click", addEditModal);
   }
 
-  displayModalWindow(ele:HTMLElement) {
-    ele.classList.remove("non-display");
+  displayModalWindow(todoEles: NodeListOf<Element>, modalEle:HTMLElement) {
+    todoEles.forEach(todoEle => todoEle.classList.add("opacity-on"))
+    modalEle.classList.remove("non-display");
   }
-  nonDisplayModalWindow(ele:HTMLElement) {
-    ele.classList.add("non-display");
+  nonDisplayModalWindow(todoEles: NodeListOf<Element>, modalEle:HTMLElement) {
+    todoEles.forEach(todoEle => todoEle.classList.remove("opacity-on"))
+    modalEle.classList.add("non-display");
   }
 
-  
   init() {
     this.model.subscribe(this.displayTodoBoard);
     this.model.getInitialData()

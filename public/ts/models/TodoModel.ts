@@ -30,6 +30,7 @@ class TodoModel extends Observable {
     })
     const data = await res.json();
     this.saveTodo(data);
+    return data;
   }
 
   saveTodo(todo: Array<any>){
