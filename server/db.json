@@ -9,6 +9,11 @@
           "id": 1,
           "title": "TypeScript로 일부 구현하기",
           "tasks": []
+        },
+        {
+          "id": 2,
+          "title": "abc",
+          "tasks": []
         }
       ]
     },
@@ -158,6 +163,113 @@
       "beforeTitle": "",
       "afterTitle": "추가하기",
       "writeTime": 1612325219832
+    },
+    {
+      "action": "ADD_NOTE",
+      "beforeTitle": "",
+      "afterTitle": "abc",
+      "writeTime": 1612326009101
+    },
+    {
+      "action": "ADD_NOTE",
+      "beforeTitle": "",
+      "afterTitle": "dfef",
+      "writeTime": 1612326504882
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "beforeTitle": "",
+      "writeTime": 1612326841505
+    },
+    {
+      "action": "ADD_NOTE",
+      "beforeTitle": "",
+      "afterTitle": "df",
+      "writeTime": 1612326847287
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "beforeTitle": "",
+      "writeTime": 1612326848896
+    },
+    {
+      "action": "ADD_NOTE",
+      "beforeTitle": "",
+      "afterTitle": "abc",
+      "writeTime": 1612326901688
+    },
+    {
+      "action": "ADD_NOTE",
+      "beforeTitle": "",
+      "afterTitle": "edfe",
+      "writeTime": 1612326932498
+    },
+    {
+      "action": "ADD_NOTE",
+      "beforeTitle": "",
+      "afterTitle": "adsf",
+      "writeTime": 1612326983046
+    },
+    {
+      "action": "ADD_NOTE",
+      "beforeTitle": "",
+      "afterTitle": "dsf",
+      "writeTime": 1612327038081
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "sdf",
+      "writeTime": 1612327065879
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "writeTime": 1612327070560
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "끝난일",
+      "beforeTitle": "",
+      "afterTitle": "abc",
+      "writeTime": 1612327092306
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "dsf",
+      "writeTime": 1612327094500
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "adsf",
+      "writeTime": 1612327095635
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "edfe",
+      "writeTime": 1612327097098
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "abc",
+      "writeTime": 1612327098054
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "abc",
+      "writeTime": 1612328097424
     }
   ]
 }
