@@ -19,43 +19,19 @@ const POP_UP_TEMPLATE = {
 class PopUpView {
   constructor() {
     this.popUpElement = $(".pop-up");
+    this.addButton = $(".add-kanban-button");
   }
 
-  handlePopUpEvent(todoCardList, TodoView, todoModel) {
-    const popUpElement = $(".pop-up");
-
-    $(".add-kanban-button").addEventListener("click", (event) => {
-      popUpElement.style.display = "flex";
+  addOpenEvent() {
+    this.addButton.addEventListener("click", (event) => {
+      this.popUpElement.style.display = "flex";
     });
-
-    $(".add-button", popUpElement).addEventListener("click", (event) => {
-      let status = $(".add-new-kanban__input", popUpElement).value;
-      todoModel.todoCardList[status] = [];
-      this.createNewView(todoCardList, TodoView, todoModel, status);
-
-      popUpElement.style.display = "none";
-    });
-
-    $(".cancel-button", popUpElement).addEventListener("click", (event) => {
-      popUpElement.style.display = "none";
-    });
-  }
-
-  createNewView(todoCardList, TodoView, todoModel, status) {
-    this.todoViewList[status] = new TodoView(status).init();
-
-    this.todoViewList[status].HandleDragAndDrop(todoModel.updateCardStatus);
-    this.subscribe({
-      render: this.todoViewList[status].render,
-      status: this.todoViewList[status].status,
-    });
-
-    this.notify(todoCardList, status);
-    this.addButtonEvent(todoModel, this.todoViewList[status], status);
+    return this;
   }
 
   render() {
     this.popUpElement.innerHTML = POP_UP_TEMPLATE.popUp("New kanban board");
+    return this;
   }
 }
 

@@ -1,7 +1,11 @@
-import { $, createNewElement, deleteElement } from "@public/js/common/utils";
+import { $, createNewElement, deleteElement, getTime } from "@public/js/common/utils";
 
 const USER = "puba";
 const DRAGGABLE_ELEMENTS = ["todo-card", "todo-card--content", "todo-card--writer"];
+const TODO_TYPE = "todo";
+const LOG_TYPE = "log";
+const PROFILE_IMAGE =
+  "https://avatars.githubusercontent.com/u/37804777?s=460&u=088956f4c1a3613536ddb54dac7492b469a12ca9&v=4";
 
 const TODO_TPL = {
   addTodo() {
@@ -58,6 +62,7 @@ class TodoView {
           content: $(".add-todo-card__input", this.element).value,
           status: this.status,
           writer: USER,
+          type: TODO_TYPE,
         };
         callback(newTodoData);
       }
@@ -112,11 +117,13 @@ class TodoView {
           // log에 추가
 
           let log = {
-            user: USER,
-            task: this.movingElement.innerText.split("\n")[0],
+            writer: USER,
+            type: LOG_TYPE,
+            content: this.movingElement.innerText.split("\n")[0],
             from: originalMovingElement.closest(".todo").id,
             to: this.movingElement.closest(".todo").id,
-            card: "",
+            time: getTime(),
+            profile: PROFILE_IMAGE,
           };
           popUpMenuModel.addLog(log);
           notifyLog(popUpMenuModel.logList);

@@ -15,6 +15,11 @@ const TodoSchema = new mongoose.Schema({
   content: String,
   writer: String,
   status: String,
+  type: String,
+  from: String,
+  to: String,
+  time: String,
+  profile: String,
 });
 
 const Todo = mongoose.model("Todo", TodoSchema);
@@ -26,11 +31,16 @@ const getTodo = () => {
   });
 };
 
-const postTodo = async ({ content, writer, status }) => {
+const postTodo = async ({ content, writer, status, type, from, to, time, profile }) => {
   const newTodo = new Todo({
-    content: content,
-    writer: writer,
-    status: status,
+    content,
+    writer,
+    status,
+    type,
+    from,
+    to,
+    time,
+    profile,
   });
 
   return newTodo
@@ -51,7 +61,6 @@ const deleteTodo = ({ id }) => {
 };
 
 const updateTodo = async ({ id, status }) => {
-  console.log(id, status);
   return Todo.updateOne({ _id: id }, { $set: { status: status } }, (err, todo) => {
     if (err) throw err;
     return todo;

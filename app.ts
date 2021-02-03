@@ -10,8 +10,11 @@ import { PopUpMenuView } from "@public/js/views/pop-up-menu.view";
 import { PopUpMenuModel } from "@public/js/models/pop-up-menu.model";
 
 document.addEventListener("DOMContentLoaded", async (event) => {
-  const popUpMenuView = new PopUpMenuView().init();
   const popUpMenuModel = new PopUpMenuModel();
+  let logList = await popUpMenuModel.initData();
+
+  const popUpMenuView = new PopUpMenuView().init();
+  popUpMenuView.render(logList);
 
   const todoController = new TodoController(popUpMenuView);
 
@@ -20,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
   const popUpView = new PopUpView();
 
-  popUpView.render();
+  popUpView.render().addOpenEvent();
 
   todoController.init(todoCardList, TodoView, todoModel, popUpMenuModel);
 });

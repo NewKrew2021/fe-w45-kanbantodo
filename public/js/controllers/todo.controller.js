@@ -34,12 +34,9 @@ class TodoController {
       this.notify(model.todoCardList, status);
     });
   }
+
   handlePopUpEvent(todoCardList, TodoView, todoModel) {
     const popUpElement = $(".pop-up");
-
-    $(".add-kanban-button").addEventListener("click", (event) => {
-      popUpElement.style.display = "flex";
-    });
 
     $(".add-button", popUpElement).addEventListener("click", (event) => {
       let status = $(".add-new-kanban__input", popUpElement).value;
