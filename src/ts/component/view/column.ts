@@ -28,7 +28,7 @@ export default class ColumnView extends View {
           <textarea name="title" class="fix-horizontal"></textarea>
           <div class="d-flex mt-2">
             <button type="submit" class="form-component flex-1 mr-1 bg-green white">Add</button>
-            <button type="button" class="form-component flex-1 ml-1 bg-white">Cancel</button>
+            <button type="button" class="form-component flex-1 ml-1 bg-white" data-click-action="toggleForm">Cancel</button>
           </div>
         </form>
         <div class="children-wrapper" data-wrapper-type="note">
