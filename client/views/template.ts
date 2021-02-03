@@ -1,4 +1,3 @@
-
 interface History{
     action: string
     afterTitle: string
@@ -10,7 +9,7 @@ interface InitData{
     id : string
     author : string
     name : string
-    data : string
+    data : Array<any>
 }
 interface MethodDictionary{
     [index: string] : any
@@ -43,7 +42,7 @@ export const domTpl : MethodDictionary = {
             `<div class="list-view droppable" data=${id} data-idx=${element.id}>
                 <p class="title list-title inline-block" data=${id} data-idx=${element.id}><img class="mg-right-6" src="/images/list_btn.png">${element.title}</p>
                 <ul class="task sub-title font-15">
-                ${element.tasks && element.tasks.map(element =>
+                ${element.tasks && element.tasks.map((element : any) =>
                 `<li>${element.title}</li>`
             ).join('')} 
                 </ul>

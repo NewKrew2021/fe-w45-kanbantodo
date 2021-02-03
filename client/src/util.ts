@@ -25,9 +25,9 @@ function removeClass({nodeList, className} : {nodeList : Array<HTMLElement>, cla
     });
 }
 
-function getCardName({cardId} : {cardId : string}){
+function getCardName({cardId} : {cardId : string}): string{
     const cardname = queryAll('.card-name');
-    let result;
+    let result : string | null = '';
     cardname.forEach((element : Element) => {
         if (element.getAttribute('data') === cardId){
             result = element.textContent;
@@ -35,8 +35,8 @@ function getCardName({cardId} : {cardId : string}){
     });
     return result;
 }
-function getNoteTitle({cardId, id} : {cardId : string, id : string}){
-    let result;
+function getNoteTitle({cardId, id} : {cardId : string, id : string}) : string{
+    let result : string | null = '';
     const noteTitle = queryAll('.list-title');
     noteTitle.forEach((element : Element)=>{
         if (element.getAttribute('data') === cardId && 

@@ -5,6 +5,13 @@
 import TodoModel from 'client/models/TodoModel';
 import * as _dom from 'client/src/util';
 
+interface HistoryState {
+    action: string
+    afterTitle: string
+    beforeTitle: string
+    cardName: string
+    writeTime: number
+}
 /* TodoModel을 구독하는 Observer */
 class InputView {
     model : TodoModel
@@ -30,10 +37,8 @@ class InputView {
     addInputHandler(e : Event){
         const inputArea = _dom.queryAll('.list-input');
         const cardId : string = (e.target as Element).getAttribute('data')!; // non-null assertion
-        const cardName = _dom.getCardName({cardId});
+        const cardName : string = _dom.getCardName({cardId});
         let inputData = '';
-
-        console.log(cardId, cardName);
 
         inputArea.forEach(elem => {
             if (elem.getAttribute('data') === cardId) {
@@ -41,9 +46,9 @@ class InputView {
                 this.model.addTodo({cardId, inputData});
 
                 // add history state
-                const historyState = {
+                const historyState : HistoryState = {
                     cardName: cardName, beforeTitle: '',
-                    afterTitle: inputData,writeTime : Date.now(),
+                    afterTitle: inputData, writeTime : Date.now(),
                     action: 'ADD_NOTE'
                 }
                 this.model.setHistoryState(historyState);

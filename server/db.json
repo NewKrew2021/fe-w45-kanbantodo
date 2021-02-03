@@ -9,6 +9,26 @@
           "id": 1,
           "title": "TypeScript로 일부 구현하기",
           "tasks": []
+        },
+        {
+          "id": 2,
+          "title": "abc",
+          "tasks": []
+        },
+        {
+          "id": 3,
+          "title": "def",
+          "tasks": []
+        },
+        {
+          "id": 4,
+          "title": "adf",
+          "tasks": []
+        },
+        {
+          "id": 5,
+          "title": "dfs",
+          "tasks": []
         }
       ]
     },
@@ -29,12 +49,7 @@
         },
         {
           "id": 2,
-          "title": "사용자 히스토리 보여주기",
-          "tasks": []
-        },
-        {
-          "id": 3,
-          "title": "추가하기",
+          "title": "새 할일 추가",
           "tasks": []
         }
       ]
@@ -272,6 +287,41 @@
       "beforeTitle": "",
       "afterTitle": "abc",
       "writeTime": 1612328249250
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "끝난일",
+      "beforeTitle": "",
+      "afterTitle": "추가하기",
+      "writeTime": 1612330553409
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "끝난일",
+      "beforeTitle": "",
+      "afterTitle": "사용자 히스토리 보여주기",
+      "writeTime": 1612330630069
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "끝난일",
+      "beforeTitle": "",
+      "afterTitle": "새 할일 추가",
+      "writeTime": 1612331996405
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "abc",
+      "writeTime": 1612332353789
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "하는중",
+      "beforeTitle": "",
+      "afterTitle": "dfs",
+      "writeTime": 1612332632497
     }
   ]
 }

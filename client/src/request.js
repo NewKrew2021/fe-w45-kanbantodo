@@ -70,6 +70,7 @@ export function removeList({ cardId, id }) {
 
 // 사용자 액션 등록
 export function addUserHistory(input){
+    console.log(input)
     return fetch('http://localhost:5000/addHistory', {
         method: 'post',
         body: JSON.stringify(input),

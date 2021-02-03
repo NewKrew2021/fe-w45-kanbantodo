@@ -120,7 +120,7 @@ app.put('/list/edit/:cardId/:id', (req, res) => {
 // [+] 히스토리에 사용자 액션을 등록할 때
 app.post('/addHistory', (req, res) => {
     const { action, cardName,
-        beforeTitle, afterTitle, writeTime } = req.body.input;
+        beforeTitle, afterTitle, writeTime } = req.body;
     db.get('history')
         .push({
             action: action, cardName: cardName,

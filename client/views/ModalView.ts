@@ -1,11 +1,12 @@
+import TodoModel from 'client/models/TodoModel';
 import * as dom from '../src/util';
-
 /*
     ModalView.js
     모달이 표시되어야 하는 뷰와 관련된 이벤트, 핸들러 등록
 */
 class ModalView {
-    constructor(model){
+    model : TodoModel
+    constructor(model : TodoModel){
         this.model = model;
         this.model.subscribe(this.update.bind(this))
     }
@@ -25,8 +26,8 @@ class ModalView {
     // remove note
     removeNoteItem(){
         const acceptBtn = dom.query('.btn-accept-modal');
-        acceptBtn.addEventListener('click', function(){
-            const cardId = this.model.state.cardId;
+        acceptBtn.addEventListener('click', ()=>{
+            const cardId : string = this.model.state.cardId;
             const id = this.model.state.id;
             const cardName = dom.getCardName({cardId});
             const noteName = dom.getNoteTitle({cardId, id});
@@ -52,11 +53,11 @@ class ModalView {
             }
             this.model.setHistoryState(historyState);
             this.model.addHistory({input : historyState});
-        }.bind(this));
+        });
     }
-    setRemoveNoteHandler(e){
-        const cardId = e.target.getAttribute('data');
-        const id = e.target.getAttribute('data-idx');
+    setRemoveNoteHandler(e : Event){
+        const cardId = (e.target as Element).getAttribute('data');
+        const id = (e.target as Element).getAttribute('data-idx');
         this.model.setModalState({cardId, id});
         // remove-note modal open
         dom.removeClass({

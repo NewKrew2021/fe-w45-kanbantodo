@@ -74,7 +74,6 @@ class MenuView {
         const userActions : Array<History> = await this.model.getHistory();
         _dom.html(_dom.query('.menu-item-wrapper'), "");
         dayjs.extend(relataiveTime);
-        console.log(userActions);
 
         const createHTML = ({ data, type } : {data : History, type: string}) => {
             const write = dayjs(data.writeTime);
