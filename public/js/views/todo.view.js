@@ -2,6 +2,7 @@ import { $, createNewElement, deleteElement } from "@public/js/common/utils";
 
 const USER = "puba";
 const DRAGGABLE_ELEMENTS = ["todo-card", "todo-card--content", "todo-card--writer"];
+const TODO_TYPE = "todo";
 
 const TODO_TPL = {
   addTodo() {
@@ -58,6 +59,7 @@ class TodoView {
           content: $(".add-todo-card__input", this.element).value,
           status: this.status,
           writer: USER,
+          type: TODO_TYPE,
         };
         callback(newTodoData);
       }

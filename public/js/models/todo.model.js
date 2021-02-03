@@ -1,4 +1,5 @@
 const TODO_API_HOST = "http://localhost:8000/api/todo";
+const TODO_TYPE = "todo";
 
 class TodoModel {
   constructor() {
@@ -34,7 +35,7 @@ class TodoModel {
     await this.updateCardData({ id, status });
 
     this.todoCardList = await this.getCardData();
-    console.log(this.todoCardList);
+
     return this.todoCardList;
   }
 
@@ -73,6 +74,7 @@ class TodoModel {
 
   clusterTodoData(todoData) {
     for (let todo of todoData) {
+      if (todo.type !== TODO_TYPE) continue;
       if (this.todoCardList[todo.status]) {
         this.todoCardList[todo.status] = [...this.todoCardList[todo.status], todo];
         continue;
