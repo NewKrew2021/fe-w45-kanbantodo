@@ -1,47 +1,40 @@
 {
   "posts": [
     {
-      "id": 1,
-      "name": "하는중",
-      "author": "roddy.chan",
-      "data": [
-        {
-          "id": 1,
-          "title": "TypeScript로 일부 구현하기",
-          "tasks": []
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "name": "끝난일",
-      "author": "roddy.chan",
-      "data": [
-        {
-          "id": 0,
-          "title": "webpack, babel 설정",
-          "tasks": []
-        },
-        {
-          "id": 1,
-          "title": "수정",
-          "tasks": []
-        },
-        {
-          "id": 2,
-          "title": "새 할일 추가",
-          "tasks": []
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "name": "끝난 일",
+      "id": 0,
+      "name": "해야할일2",
       "author": "roddy.chan",
       "data": []
     }
   ],
   "history": [
-    
+    {
+      "action": "REMOVE_CARD",
+      "cardName": "",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612353686331
+    },
+    {
+      "action": "EDIT_CARD",
+      "cardName": "해야할 일",
+      "beforeTitle": "",
+      "afterTitle": "해야할일",
+      "writeTime": 1612353725736
+    },
+    {
+      "action": "EDIT_CARD",
+      "cardName": "해야할 일",
+      "beforeTitle": "",
+      "afterTitle": "해야할일2",
+      "writeTime": 1612353729945
+    },
+    {
+      "action": "EDIT_CARD",
+      "cardName": "해야할일",
+      "beforeTitle": "",
+      "afterTitle": "해야할일2",
+      "writeTime": 1612353729947
+    }
   ]
 }
