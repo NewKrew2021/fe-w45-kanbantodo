@@ -1,13 +1,17 @@
-class InputView {
-    constructor({onChange, defaultValue = '', placeholder = '', showLabel = false, label = ''}) {
 
-    }
-
-    render() {
-        showInputLabel? `<label>${labelName}</label><input type="text" placeholder="이름을 입력하세요." value="${defaultValue?defaultValue:''}"></input>`:``
-    }
+interface ModalConfig {
+    id: string;
+    title: string;
+    buttonText: string[];
+    showInputLabel?: boolean;
+    defaultValue?: string;
+    labelName?: string;
+    onClickButton: Function[];
 }
 
+interface ModalView {
+    config: ModalConfig;
+}
 
 const defaultConfig = {
     id:"modal",
@@ -20,8 +24,8 @@ const defaultConfig = {
 }
 
 class ModalView {
-    constructor (config = defaultConfig) {
-        this.config = config;
+    constructor (config: ModalConfig) {
+        this.config = {...defaultConfig, ...config};
         this.removeModal = this.removeModal.bind(this);
         this.onClickCloseButton = this.onClickCloseButton.bind(this);
         this.onClickButton = this.onClickButton.bind(this);
@@ -38,15 +42,15 @@ class ModalView {
      */
     removeModal() {
         const modalEle = document.querySelector('.modal-container');
-        modalEle.remove()
+        modalEle && modalEle.remove()
     }
 
     onClickCloseButton() {
         this.removeModal();
     }
 
-    onClickButton(e) {
-        const inputEle = document.querySelector('.modal input');
+    onClickButton() {
+        const inputEle = document.querySelector('.modal input') as HTMLInputElement;
         if (inputEle) {
             this.config.onClickButton[0](inputEle.value);
         } else {
@@ -61,7 +65,7 @@ class ModalView {
         return modalBackgroundEle;
     }
 
-    render({id, title, buttonText, showInputLabel, labelName, onClickButton, defaultValue}) {
+    render({id, title, buttonText, showInputLabel, labelName, onClickButton, defaultValue}: ModalConfig) {
         const modalEle = document.createElement('div');
         modalEle.className = 'modal-container'
         modalEle.id = id;
@@ -86,9 +90,11 @@ class ModalView {
                 </div>
             </div>`
         modalEle.innerHTML = innerHtml;
-        document.querySelector('body').appendChild(modalEle);
-        modalEle.querySelector('.close-button').addEventListener('click', this.onClickCloseButton);
-        modalEle.querySelector('.modal-buttons').firstElementChild.addEventListener('click', this.onClickButton);
+        document.querySelector('body')!.appendChild(modalEle);
+        const closeButton = modalEle.querySelector('.close-button');
+        const modalButtonContainer =  modalEle.querySelector('.modal-buttons');
+        closeButton && closeButton.addEventListener('click', this.onClickCloseButton);
+        modalButtonContainer && modalButtonContainer.firstElementChild && modalButtonContainer.firstElementChild.addEventListener('click', this.onClickButton);
     }
 }
 

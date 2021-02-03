@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     mode: "development",
-    entry: "./app.js",
+    entry: "./app.ts",
     devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -24,6 +24,7 @@ module.exports = {
             zlib: false,
             assert: false,
         },
+        extensions: ['.ts', '.js']
     },
     devServer: {
         contentBase: __dirname + "/dist/",
@@ -35,8 +36,8 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
-                use: 'babel-loader',
+                test: /\.(js|ts)x?$/,
+                use: [{ loader: 'babel-loader' }, { loader: 'ts-loader' }],
                 exclude: /node_modules/
             },
             {
@@ -56,6 +57,10 @@ module.exports = {
                 use: 'file-loader'
             }
         ]
+    },
+    resolve: {
+        modules: ["node_modules"],
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".css", "scss"],
     },
     plugins: [
         new HtmlWebpackPlugin({

@@ -26,7 +26,7 @@ app.get('/column/:id', (req, res) => {
 
 // Create new column
 app.post('/column', (req, res) =>{
-  const {title} = req.body.data;
+  const {title} = req.body;
   db.get('todos')
     .push({ id: Date.now().toString(), title, notes: []})
     .write();
@@ -50,7 +50,7 @@ app.delete('/column/:id', (req, res) => {
 // Create new note
 app.post('/note/:colId', (req, res) => {
   const {colId} = req.params;
-  const {title} = req.body.data;
+  const {title} = req.body;
   if (db.get('todos').find({id: colId})) {
     db.get('todos')
       .find({id: colId}).get('notes')
@@ -79,7 +79,7 @@ app.delete('/note/:colId/:noteId', (req, res) => {
 // Edit column
 app.put('/column/:colId', (req, res) =>{
   const {colId} = req.params;
-  const {title} = req.body.data;
+  const {title} = req.body;
   try {
     db.get('todos').find({ id: colId }).assign({title}).write();
     res.status(200);

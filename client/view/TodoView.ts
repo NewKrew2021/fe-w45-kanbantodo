@@ -1,4 +1,3 @@
-import ColumnView from "./ColumnView";
 
 class TodoView {
     constructor() {
@@ -8,17 +7,19 @@ class TodoView {
     init() {
     }
 
-    renderAddColumnElement() {
+    renderAddColumnElement(columnsContainer: Element) {
         const addColumnEle = document.createElement('div');
         addColumnEle.innerText = 'Click to add column.';
         addColumnEle.className = 'add-column';
-        document.querySelector('.container').appendChild(addColumnEle);
+        columnsContainer.appendChild(addColumnEle);
     }
 
     render() {
-        const container = document.querySelector('.container');
-        container.innerHTML = '';
-        this.renderAddColumnElement();
+        const columnsContainer = document.querySelector('.container');
+        if(columnsContainer) {
+            columnsContainer.innerHTML = '';
+            this.renderAddColumnElement(columnsContainer);
+        }
     }
 }
 

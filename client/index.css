@@ -77,27 +77,25 @@ header{
 
 .add-column{
     color: darkgray;
-    width: 300px;
+    min-width: 300px;
     border: 1px dashed darkgray;
     border-radius: 10px;
     text-align: center;
     padding: 30px 10px;
 }
 .container {
-    padding-top:20px;
-    width: 1200px;
-    margin:auto;
+    margin: 0px 20px;
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    overflow-x: scroll;
 }
 
 .column{
     background-color: #e3e3e3;
-    width: 300px;
+    min-width: 300px;
     border-radius: 5px;
     border: 1px solid darkgray;
     padding: 10px;
+    margin-right: 20px;
 }
 
 .column__header {
