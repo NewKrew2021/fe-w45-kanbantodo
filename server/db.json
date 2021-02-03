@@ -2,39 +2,116 @@
   "posts": [
     {
       "id": 0,
-      "name": "해야할일2",
+      "name": "해야할 일",
+      "author": "roddy.chan",
+      "data": []
+    },
+    {
+      "id": 1,
+      "name": "하는 중",
+      "author": "roddy.chan",
+      "data": [
+        {
+          "id": 0,
+          "title": "adf",
+          "tasks": []
+        },
+        {
+          "id": 1,
+          "title": "dsf",
+          "tasks": []
+        },
+        {
+          "id": 2,
+          "title": "dff",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "dfdfdfd",
       "author": "roddy.chan",
       "data": []
     }
   ],
   "history": [
     {
-      "action": "REMOVE_CARD",
+      "action": "EDIT_NOTE",
       "cardName": "",
       "beforeTitle": "",
-      "afterTitle": "",
-      "writeTime": 1612353686331
+      "afterTitle": "afaf",
+      "writeTime": 1612354650277
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "",
+      "beforeTitle": "",
+      "afterTitle": "dfdf",
+      "writeTime": 1612354701127
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "",
+      "beforeTitle": "",
+      "afterTitle": "dfdf",
+      "writeTime": 1612354802423
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "",
+      "beforeTitle": "",
+      "afterTitle": "dfdf",
+      "writeTime": 1612354834855
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "하는 중",
+      "beforeTitle": "ㅇㄹㄹ",
+      "afterTitle": "dff",
+      "writeTime": 1612354878301
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "하는 중",
+      "beforeTitle": "ㅇㄹㄹ",
+      "afterTitle": "dffdfdf",
+      "writeTime": 1612354881323
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "하는 중",
+      "beforeTitle": "ㅁ",
+      "afterTitle": "dffdfdfsdf",
+      "writeTime": 1612354884094
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "하는 중",
+      "beforeTitle": "dffdfdfsdf",
+      "afterTitle": "adf",
+      "writeTime": 1612354942260
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "하는 중",
+      "beforeTitle": "dffdfdf",
+      "afterTitle": "dsf",
+      "writeTime": 1612354958293
     },
     {
       "action": "EDIT_CARD",
-      "cardName": "해야할 일",
+      "cardName": "끝낸 일",
       "beforeTitle": "",
-      "afterTitle": "해야할일",
-      "writeTime": 1612353725736
+      "afterTitle": "dfd",
+      "writeTime": 1612355133842
     },
     {
       "action": "EDIT_CARD",
-      "cardName": "해야할 일",
+      "cardName": "dfd",
       "beforeTitle": "",
-      "afterTitle": "해야할일2",
-      "writeTime": 1612353729945
-    },
-    {
-      "action": "EDIT_CARD",
-      "cardName": "해야할일",
-      "beforeTitle": "",
-      "afterTitle": "해야할일2",
-      "writeTime": 1612353729947
+      "afterTitle": "dfdfdfd",
+      "writeTime": 1612355138405
     }
   ]
 }
