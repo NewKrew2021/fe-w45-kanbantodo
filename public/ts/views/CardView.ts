@@ -89,8 +89,10 @@ class CardView {
   }
 
   moveCardEvent() {
-    let prevEle:HTMLElement, curEle:HTMLElement, copyEle:any, prevIdx: number, curIdx: number, moveIdx: number, elePos: Array<any> = [];
+    let prevEle:HTMLElement, curEle:HTMLElement, copyEle:any, elePos: Array<any> = [];
+    let prevIdx: number, moveIdx: number, newCardIdx:number;
     const todoContainerEle = document.querySelectorAll("div.todo-container");
+    const contentsEle = document.querySelector("div.contents") as HTMLTextAreaElement;
     todoContainerEle.forEach((todo, index) => {
       const pos = todo.getBoundingClientRect();
       elePos.push({left:pos.left, right:pos.right, top:pos.top, bottom:pos.bottom, idx:index})
@@ -102,17 +104,17 @@ class CardView {
       if(card==="todo-cards" || card==="todo-author" || card==="card-title"){
         prevEle = eventEle.closest(".todo-container") as HTMLTextAreaElement;
         const itemEle = prevEle.querySelector("div.item-container") as HTMLTextAreaElement;
+        const cards = prevEle.querySelectorAll(".todo-cards");
+        newCardIdx =this.getCardIndex(cards, copyEle, event);
         curEle = eventEle.closest("div.todo-cards") as HTMLTextAreaElement;
         copyEle = curEle.cloneNode(true);
         curEle.classList.add("opacity-on")
-        itemEle.appendChild(copyEle);
+        contentsEle.appendChild(copyEle);
+
         copyEle.setAttribute("style", `position: fixed; left: ${event.clientX-gapX}px; top: ${event.clientY-gapY}px;`);
         isMoveCard = true;
         gapX = event.clientX - curEle.getBoundingClientRect().left;
         gapY = event.clientY - curEle.getBoundingClientRect().top;
-        todoContainerEle.forEach((todo, index) => {
-          if(todo === prevEle) curIdx=index;
-        })
       }
     })
 
@@ -125,20 +127,19 @@ class CardView {
           if(todo === prevEle) prevIdx=index;
         })
         elePos.forEach( pos => {
-          if(event.clientX >= pos.left && event.clientX <= pos.right &&
-            event.clientY >= pos.top && event.clientY <= pos.bottom){
-              const btnEle = cardEle.closest("div.todo-cards") as HTMLTextAreaElement;
-              const cardTitleEle = btnEle.querySelector("div.card-title") as HTMLTextAreaElement;
-              const card = cardTitleEle.innerHTML;
-              const prevElement = todoContainerEle[prevIdx] as HTMLTextAreaElement;
-              const prevTitle = prevElement.querySelector("div.title-text") as HTMLTextAreaElement;
-              const prevTitleText = prevTitle.innerHTML;
-              const curElement = todoContainerEle[pos.idx] as HTMLTextAreaElement;
-              const curTitle = curElement.querySelector("div.title-text") as HTMLTextAreaElement;
-              const curTitleText = curTitle.innerHTML;
-              curEle.remove();
-              this.model.moveCards(prevTitleText, curTitleText, card);
-              this.activityModel.addActivity("moved", prevTitleText, curTitleText, card, "kevin", Date.now());
+          if(this.checkDifferentEle(event, pos)){
+            const btnEle = cardEle.closest("div.todo-cards") as HTMLTextAreaElement;
+            const cardTitleEle = btnEle.querySelector("div.card-title") as HTMLTextAreaElement;
+            const card = cardTitleEle.innerHTML;
+            const prevElement = todoContainerEle[prevIdx] as HTMLTextAreaElement;
+            const prevTitle = prevElement.querySelector("div.title-text") as HTMLTextAreaElement;
+            const prevTitleText = prevTitle.innerHTML;
+            const curElement = todoContainerEle[pos.idx] as HTMLTextAreaElement;
+            const curTitle = curElement.querySelector("div.title-text") as HTMLTextAreaElement;
+            const curTitleText = curTitle.innerHTML;
+            contentsEle.removeChild(copyEle);
+            this.model.moveCards(prevTitleText, curTitleText, card, moveIdx, newCardIdx);
+            this.activityModel.addActivity("moved", prevTitleText, curTitleText, card, "kevin", Date.now());
           }
         })
       }
@@ -147,33 +148,46 @@ class CardView {
       if(isMoveCard){
         copyEle.setAttribute("style", `position: fixed; left: ${event.clientX-gapX}px; top: ${event.clientY-gapY}px;`);
         elePos.forEach( pos => {
-          if(event.clientX >= pos.left && event.clientX <= pos.right &&
-            event.clientY >= pos.top && event.clientY <= pos.bottom){
-              const curElement = todoContainerEle[pos.idx] as HTMLTextAreaElement;
-              const itemElement = curElement.querySelector(".item-container") as  HTMLTextAreaElement;
-              console.log(moveIdx, pos.idx);
-              if(moveIdx !== pos.idx) {
-                moveIdx = pos.idx;
-                itemElement.appendChild(curEle);
-              }
-              // const btnEle = event.target.closest("div.todo-cards") as HTMLTextAreaElement;
-              // const cardTitleEle = btnEle.querySelector("div.card-title") as HTMLTextAreaElement;
-              // const card = cardTitleEle.innerHTML;
-              // const prevElement = todoContainerEle[prevIdx] as HTMLTextAreaElement;
-              // const prevTitle = prevElement.querySelector("div.title-text") as HTMLTextAreaElement;
-              // const prevTitleText = prevTitle.innerHTML;
-              // const curElement = todoContainerEle[pos.idx] as HTMLTextAreaElement;
-              // const curTitle = curElement.querySelector("div.title-text") as HTMLTextAreaElement;
-              // const curTitleText = curTitle.innerHTML;
-              // console.log(prevTitleText, curTitleText, card)
-
-              // this.model.moveCards(prevTitleText, curTitleText, card);
-              // this.activityModel.addActivity("moved", prevTitleText, curTitleText, card, "kevin", Date.now());
+          if(this.checkDifferentEle(event, pos)){
+            const curElement = todoContainerEle[pos.idx] as HTMLTextAreaElement;
+            const itemElement = curElement.querySelector(".item-container") as  HTMLTextAreaElement;
+            if(moveIdx !== pos.idx) {
+              moveIdx = pos.idx;
+              itemElement.appendChild(curEle);
+            }
+            const cards = curElement.querySelectorAll("div.todo-cards");
+            newCardIdx =this.getCardIndex(cards, copyEle, event);
+            if(newCardIdx === -1 && !this.checkDifferentEle(event, itemElement.getBoundingClientRect())) {
+              newCardIdx=cards.length-1;
+            }
+            if(newCardIdx !== -1) {
+              if(newCardIdx < cards.length - 1) cards[newCardIdx].before(curEle);
+              else if(newCardIdx < cards.length){
+                cards[cards.length-1].after(curEle);
+                newCardIdx=cards.length-1;
+              } 
+            }
           }
         })
-        
       }
     })
+  }
+
+  getCardIndex(cards:NodeList, copyEle:HTMLElement, event:any):number {
+    let idx:number=-1;
+    cards.forEach( (card, index) => {
+      if(card === copyEle) return ;
+      const pos = card.getBoundingClientRect();
+      if(this.checkDifferentEle(event, pos)){
+        idx = index;
+      }
+    })
+    return idx;
+  }
+
+  checkDifferentEle(event:any, pos:any) {
+    if(event.clientX >= pos.left && event.clientX <= pos.right && event.clientY >= pos.top && event.clientY <= pos.bottom) return true;
+    return false;
   }
 
   displayInputWindow(ele:HTMLElement) {

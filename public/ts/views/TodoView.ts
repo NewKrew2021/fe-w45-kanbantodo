@@ -84,7 +84,6 @@ class TodoView {
 
   removeAddColumnEvent() {
     const cancelBtns = document.querySelectorAll("div.title-delete");
-    console.log(cancelBtns)
     cancelBtns.forEach(cancelBtn => {
       cancelBtn.addEventListener("click", e => {
         const eventEle = e.target as HTMLTextAreaElement;

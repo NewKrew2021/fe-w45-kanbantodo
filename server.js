@@ -47,6 +47,14 @@ server.put('/cards', (req, res) => {
   res.send(db.get('todos').value());
 })
 
+server.put('/addcards', (req, res) => {
+  db.get('todos')
+    .find({ title: req.query.todoTitle })
+    .assign({ cards: JSON.parse(req.query.list) })
+    .write();
+  res.send(db.get('todos').value());
+})
+
 server.delete('/cards', (req, res) => {
   db.get('todos')
     .find({ title: req.query.todoTitle })
