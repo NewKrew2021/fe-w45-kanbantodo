@@ -1,15 +1,15 @@
-$header-background: #000000
+$header-background-color: #000000
 $header-font-color: #fef01b
 $common-border-color: #b9b8b8
 $todo-background-color: #9bbbd4
-$todo-card-background: #ffffff
-$add-button-background: #fef01b
-$cancel-button-background: #000000bd
-$pop-up-background: #000000
-$pop-up-content: #ffffff
+$todo-card-background-color: #ffffff
+$add-button-background-color: #fef01b
+$cancel-button-background-color: #000000bd
+$pop-up-background-color: #000000
+$pop-up-content-color: #ffffff
 $menu-pop-up-width: 400px
-$menu-background: #9e9e9e
-$menu-header-background: #ffffff
+$menu-background-color: #9e9e9e
+$menu-header-background-color: #ffffff
 
 ul,li
     padding: 0
@@ -19,7 +19,7 @@ ul,li
 .header
     font-size: 40px
     font-weight: bolder
-    background: $header-background
+    background: $header-background-color
     color: $header-font-color
     display: flex
     justify-content: space-between
@@ -37,7 +37,7 @@ ul,li
     border: 1px $common-border-color solid
     transform: translateX($menu-pop-up-width)
     transition-duration: 0.5s
-    background: $menu-background
+    background: $menu-background-color
     &__header
         box-sizing: border-box
         width: 100%
@@ -46,7 +46,7 @@ ul,li
         display: flex
         font-size: 20px
         justify-content: space-between
-        background: $menu-header-background
+        background: $menu-header-background-color
     &__close-button
         cursor: pointer
         background: red
@@ -78,11 +78,11 @@ ul,li
     position: relative
     width: 280px
     min-height: 50px
-    background: $add-button-background
+    background: $add-button-background-color
     border-radius: 10px
     padding: 15px
     &:after
-        border-top: 15px solid $add-button-background
+        border-top: 15px solid $add-button-background-color
         border-left: 15px solid transparent
         border-right: 0px solid transparent
         border-bottom: 0px solid transparent
@@ -106,13 +106,13 @@ ul,li
         position: fixed
         width: 100vw
         height: 100vh
-        background: $pop-up-background
+        background: $pop-up-background-color
         opacity: 0.5
     &__content
         border-radius: 10px
         padding: 30px 20px 10px 20px
         z-index: 2
-        background: $pop-up-content
+        background: $pop-up-content-color
         width: 500px
         height: 200px
     &__title
@@ -143,10 +143,10 @@ ul,li
     flex: 1 1 auto
     cursor: pointer
 .add-button
-    background: $add-button-background
+    background: $add-button-background-color
 .cancel-button
-    background: $cancel-button-background
-    color: $add-button-background
+    background: $cancel-button-background-color
+    color: $add-button-background-color
 
 .kanban-board
     padding: 20px
@@ -160,8 +160,8 @@ ul,li
     font-weight: bolder
     padding: 10px 20px
     border-radius: 10px
-    color: $add-button-background
-    background: $cancel-button-background
+    color: $add-button-background-color
+    background: $cancel-button-background-color
     cursor: pointer
 
 .search-box
@@ -191,7 +191,7 @@ ul,li
             width: 20px
             margin-right: 10px
             border-radius: 20px
-            background: $todo-card-background
+            background: $todo-card-background-color
         &--title
             float: left
         &--add-button
@@ -212,7 +212,7 @@ ul,li
     box-sizing: border-box
     width: 360px
     min-height: 100px
-    background: $todo-card-background
+    background: $todo-card-background-color
     border-radius: 10px
     padding: 20px
     margin-bottom: 10px

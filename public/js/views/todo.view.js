@@ -43,6 +43,12 @@ class TodoView {
     this.render = this.render.bind(this);
     this.status = status;
     this.movingElement = null;
+    this.newTodoList = null;
+    this.isCardMoving = false;
+    this.originalMovingElement = null;
+    this.mouseMoveEvent = this.mouseMoveEvent.bind(this);
+    this.mouseDownEvent = this.mouseDownEvent.bind(this);
+    this.mouseUpEvent = this.mouseUpEvent.bind(this);
   }
 
   createTodo(cardList, status) {
@@ -86,58 +92,71 @@ class TodoView {
     this.movingElement.style.top = `${pageY - this.movingElement.offsetHeight / 2}px`;
   }
 
+  mouseMoveEvent(event) {
+    if (!this.movingElement) return;
+
+    this.movingElement.hidden = true;
+    let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    this.newTodoList = elemBelow.closest(".todo");
+    this.movingElement.hidden = false;
+    this.moveAt(event.pageX, event.pageY);
+  }
+
+  mouseDownEvent({ target }) {
+    if (!DRAGGABLE_ELEMENTS.includes(target.className)) return;
+    this.originalMovingElement = target.closest(".todo-card");
+    this.movingElement = this.originalMovingElement.cloneNode(true);
+    this.originalMovingElement.style.opacity = 0.5;
+
+    this.movingElement.style.position = "absolute";
+    this.movingElement.style.zIndex = 1000;
+
+    document.body.append(this.movingElement);
+
+    document.addEventListener("mousemove", this.mouseMoveEvent);
+  }
+
+  mouseUpEvent(updateCardStatus, notify, popUpMenuModel, notifyLog) {
+    return () => {
+      if (!this.movingElement) return;
+      if (this.newTodoList) {
+        this.movingElement.style = "";
+
+        this.newTodoList.appendChild(this.movingElement);
+        // log에 추가
+        let log = {
+          writer: USER,
+          type: LOG_TYPE,
+          content: this.movingElement.innerText.split("\n")[0],
+          from: this.originalMovingElement.closest(".todo").id,
+          to: this.movingElement.closest(".todo").id,
+          time: getTime(),
+          profile: PROFILE_IMAGE,
+        };
+        popUpMenuModel.addLog(log);
+        notifyLog(popUpMenuModel.logList);
+        // 기존 node 삭제
+        deleteElement(this.originalMovingElement);
+
+        notify(
+          updateCardStatus({ id: this.originalMovingElement.id, status: this.newTodoList.id })
+        );
+      } else {
+        deleteElement(this.movingElement);
+        this.originalMovingElement.style = null;
+      }
+
+      document.removeEventListener("mousemove", this.mouseMoveEvent);
+      this.movingElement = null;
+    };
+  }
+
   HandleDragAndDrop(updateCardStatus, notify, popUpMenuModel, notifyLog) {
-    this.element.addEventListener("mousedown", ({ target }) => {
-      if (!DRAGGABLE_ELEMENTS.includes(target.className)) return;
-      let originalMovingElement = target.closest(".todo-card");
-      this.movingElement = originalMovingElement.cloneNode(true);
-      originalMovingElement.style.opacity = 0.5;
-
-      this.movingElement.style.position = "absolute";
-      this.movingElement.style.zIndex = 1000;
-
-      document.body.append(this.movingElement);
-      let newTodoList = null;
-
-      const onMouseMove = (event) => {
-        this.movingElement.hidden = true;
-        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-        newTodoList = elemBelow.closest(".todo");
-        this.movingElement.hidden = false;
-        this.moveAt(event.pageX, event.pageY);
-      };
-
-      document.addEventListener("mousemove", onMouseMove);
-
-      this.movingElement.addEventListener("mouseup", () => {
-        if (newTodoList) {
-          this.movingElement.style = "";
-
-          newTodoList.appendChild(this.movingElement);
-          // log에 추가
-
-          let log = {
-            writer: USER,
-            type: LOG_TYPE,
-            content: this.movingElement.innerText.split("\n")[0],
-            from: originalMovingElement.closest(".todo").id,
-            to: this.movingElement.closest(".todo").id,
-            time: getTime(),
-            profile: PROFILE_IMAGE,
-          };
-          popUpMenuModel.addLog(log);
-          notifyLog(popUpMenuModel.logList);
-          // 기존 node 삭제
-          deleteElement(originalMovingElement);
-
-          notify(updateCardStatus({ id: originalMovingElement.id, status: newTodoList.id }));
-        } else {
-          deleteElement(this.movingElement);
-          originalMovingElement.style = null;
-        }
-        document.removeEventListener("mousemove", onMouseMove);
-      });
-    });
+    this.element.addEventListener("mousedown", this.mouseDownEvent);
+    document.addEventListener(
+      "mouseup",
+      this.mouseUpEvent(updateCardStatus, notify, popUpMenuModel, notifyLog)
+    );
   }
 
   render(cardList, status) {

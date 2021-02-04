@@ -35,13 +35,13 @@ class TodoController {
     });
   }
 
-  handlePopUpEvent(todoCardList, TodoView, todoModel) {
+  handlePopUpEvent(todoCardList, TodoView, todoModel, popUpMenuModel) {
     const popUpElement = $(".pop-up");
 
     $(".add-button", popUpElement).addEventListener("click", (event) => {
       let status = $(".add-new-kanban__input", popUpElement).value;
       todoModel.todoCardList[status] = [];
-      this.createNewView(todoCardList, TodoView, todoModel, status);
+      this.createNewView(todoCardList, TodoView, todoModel, status, popUpMenuModel);
 
       popUpElement.style.display = "none";
     });
@@ -60,6 +60,7 @@ class TodoController {
       popUpMenuModel,
       this.notifyLog.bind(this)
     );
+
     this.subscribe({
       render: this.todoViewList[status].render,
       status: this.todoViewList[status].status,
@@ -73,7 +74,7 @@ class TodoController {
     for (let status in todoCardList) {
       this.createNewView(todoCardList, TodoView, todoModel, status, popUpMenuModel);
     }
-    this.handlePopUpEvent(todoCardList, TodoView, todoModel);
+    this.handlePopUpEvent(todoCardList, TodoView, todoModel, popUpMenuModel);
 
     return this;
   }
