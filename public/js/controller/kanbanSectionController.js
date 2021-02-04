@@ -4,7 +4,6 @@ export function initSectionController({sectionID}){
 
     //SELECT
     fetchTasks(sectionID);
-
     //INSERT logic including panel manipulation
     const section=document.querySelector(`#${sectionID}-section`);
     const openPanelBtn=section.querySelector(".open-panel-btn");

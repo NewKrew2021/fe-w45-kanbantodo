@@ -57,6 +57,15 @@ app.get('/activities', async(req, res) =>{
     const data=await db.findAllActivities(req.query.sectionID);
     res.json({tasks:data});
 });
+app.get('/section', async(req, res) =>{
+    const data=await db.findSections();
+    res.json({sectionList:data});
+});
+
+app.post('/section',async (req, res) =>{
+    const newSection=await db.insertSection();
+    res.json({newSection});
+});
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
