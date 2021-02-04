@@ -57,6 +57,24 @@ app.get('/activities', async(req, res) =>{
     const data=await db.findAllActivities(req.query.sectionID);
     res.json({tasks:data});
 });
+app.get('/section', async(req, res) =>{
+    const data=await db.findSections();
+    res.json({sectionList:data});
+});
+
+app.post('/section',async (req, res) =>{
+    const newSection=await db.insertSection();
+    res.json({newSection});
+});
+
+app.delete('/section',async (req, res) =>{
+    const {sectionID}=req.body;    
+    const result = await db.deleteSection(sectionID);
+
+    if( result) res.json({sectionID});
+    else res.json({result,sectionID:null});
+
+});
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);

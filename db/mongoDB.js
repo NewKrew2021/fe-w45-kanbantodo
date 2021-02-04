@@ -5,12 +5,14 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 let database;
 let collection;
 let activityCollection;
+let sectionCollection
 
 async function init() {
     await client.connect();
     database = client.db("todoDB");
     collection= database.collection("taskCollection");
     activityCollection=database.collection("activityCollection");
+    sectionCollection=database.collection('sectionCollection');
 };
 init();
 
@@ -115,3 +117,60 @@ async function insertActivity(activityData) {
 
 }
 module.exports.insertActivity = insertActivity;
+
+async function insertSection() {
+    console.log("db:inserting section...");
+
+    const query={}
+    const cursor = sectionCollection.find(query);
+    // print a message if no documents were found
+    const count=await cursor.count();
+    if ((count) === 0) {
+        console.log("No documents found!");
+    }
+
+    const doc = {sectionID:`section${count+1}`,title:"새 칼럼"};
+    
+    const result = await sectionCollection.insertOne(doc);
+    console.log(
+        `${result.insertedCount} documents were inserted with the _id: ${result.insertedId}`,
+    );
+    return doc;
+}
+module.exports.insertSection = insertSection;
+
+
+async function findSections() {
+    if(typeof sectionCollection === 'undefined') return;
+    console.log("db:findAll sections...");
+
+    // query for movies that have a runtime less than 15 minutes
+    const cursor = sectionCollection.find();
+    // print a message if no documents were found
+    if ((await cursor.count()) === 0) {
+        console.log("No documents found!");
+    }
+    const result = [];
+    await cursor.forEach(activity => {
+        result.push(activity);
+    }); // map함수가 동작하지않음
+    return result;
+
+}
+module.exports.findSections = findSections;
+
+async function deleteSection(sectionID){
+
+    console.log("db:delete target:",sectionID);
+    const query = { sectionID };
+    const result = await sectionCollection.deleteOne(query);
+    if (result.deletedCount === 1) {
+        console.dir("Successfully deleted one document.");
+        return true;
+    } else {
+        console.log("No documents matched the query. Deleted 0 documents.");
+        return false;
+    }
+
+}
+module.exports.deleteSection = deleteSection;
