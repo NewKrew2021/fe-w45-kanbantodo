@@ -24,6 +24,11 @@ export interface ModalState {
     cardId: string
     id: string
 }
+export interface MovedData{
+    id: string
+    title: string
+    tasks: Array<any>
+}
 export interface InitData{
     id : string
     author : string

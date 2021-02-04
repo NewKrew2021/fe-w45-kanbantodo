@@ -11,7 +11,7 @@
 import Observable from './observable.js'
 import * as req from 'client/src/request';
 import * as dom from 'client/src/util'
-import { ModalState, NewCardState, NewNoteState, HistoryState } from 'client/src/interface'
+import { ModalState, MovedData, NewCardState, NewNoteState, HistoryState } from 'client/src/interface'
 
 class TodoModel extends Observable {
     url: string
@@ -62,7 +62,7 @@ class TodoModel extends Observable {
     // 리스트뷰(todo) 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
     async addTodo({ cardId, inputData }: { cardId: string, inputData: string }) {
         const res = await req.getAllData();
-        //let listId : string; // uuid
+        //let listId : string; uuid/
         let listId : string = '';
         res.forEach((e : any, i : number) =>{
             if (parseInt(e.id) === parseInt(cardId)) {
@@ -81,7 +81,9 @@ class TodoModel extends Observable {
     // 리스트뷰(note item) 삭제, 상태 변화, Observer에게 알려 준다.
     async removeTodo({ cardId, id } : {cardId: string, id: string}) {
         await req.removeList({ cardId, id });
-        this.notify(this.todos)
+        const res = await req.getAllData();
+        this.todos = [...this.todos, res];
+        //this.notify(this.todos)
     }
 
     // 리스트뷰(note item)의 타이틀 수정
@@ -94,6 +96,12 @@ class TodoModel extends Observable {
             await req.editCardTitle(input);
             this.notify(this.todos);
         }
+    }
+
+    // 노트 움직이기
+    async movingTodo({cardId, input} : {cardId: string, input: Array<MovedData>}){
+        console.log(cardId, input);
+        await req.moveList({cardId, input});
     }
 
     setModalState({ cardId, id } : ModalState) {

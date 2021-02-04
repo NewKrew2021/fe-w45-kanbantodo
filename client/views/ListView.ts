@@ -1,28 +1,19 @@
 /*
-    ListView.ts : card에 존재하는 여러 개의 아이템들
-    모델을 구독하는 Observer
-    구독중인 모델의 어떤 상태가 변경되면 -> 화면의 변화 발생(렌더링)
-    데이터가 새롭게 추가되면, 구독 중인 ListView가 감지한다.
-
-    drop 후 DB 저장과정 생각해 본 사항
-    (1) drop한 곳이 카드의 자식 몇 번째인지 indexof 등으로 계산
-    (2) db로부터 posts->card->data 배열값을 받아 온 다음,
-    (3) (1)에서 구한 인덱스 번째에 새롭게 아이템을 추가
-    (4) db update
+    ListView.ts : card에 존재하는 여러 개의 아이템들에 대한 뷰
 */
 import { domTpl } from 'client/views/template';
 import * as dom from 'client/src/util';
 import TodoModel from 'client/models/TodoModel';
-import { InitData, ObjIndex, Droppable } from 'client/src/interface'
+import { InitData, ObjIndex, Droppable, MovedData } from 'client/src/interface'
 
 /* TodoModel을 구독하는 Observer */
 class ListView {
-    model : TodoModel
-    cardsTitle : Array<Element>
-    onMouseMoveHandler : any
-    curTarget : any
-    copiedNode : any
-    constructor(model : TodoModel) {
+    model: TodoModel
+    cardsTitle: Array<Element>
+    onMouseMoveHandler: any
+    curTarget: any
+    copiedNode: any
+    constructor(model: TodoModel) {
         this.cardsTitle = dom.queryAll('.list-title')
         this.onMouseMoveHandler;
         this.curTarget;
@@ -47,11 +38,11 @@ class ListView {
 
     // template로 초기 html 넣기
     async render() {
-        const data : Array<Array<InitData>> = await this.model.getInitialData(); // 초기 데이터를 가져온다.
-        const createHTML = ({ data, type } : {data : Array<InitData>, type : string}) =>
-                                data.reduce((acc : string, { id, name, author, data } : InitData) => {
-            return acc + domTpl[type]({ id, name, author, data });
-        }, ``);
+        const data: Array<Array<InitData>> = await this.model.getInitialData(); // 초기 데이터를 가져온다.
+        const createHTML = ({ data, type }: { data: Array<InitData>, type: string }) =>
+            data.reduce((acc: string, { id, name, author, data }: InitData) => {
+                return acc + domTpl[type]({ id, name, author, data });
+            }, ``);
         data.forEach((element) => {
             const allObj = { data: element, type: 'InitListView' };
             dom.html(dom.query('.card-wrapper'), createHTML(allObj));
@@ -69,7 +60,7 @@ class ListView {
        (2) mousemove - position:absolute, left-top 변경
        (3) mouseup - 드래그 앤 드롭 완료 후 관련 작업 수행
     */
-    dragDownHandler(e : Event) {
+    dragDownHandler(e: Event) {
         if (e.target !== e.currentTarget) return;
         let curTarget = e.currentTarget as HTMLElement;
         const copiedNode = ((e.currentTarget as Element).cloneNode(true)) as HTMLElement;
@@ -87,11 +78,11 @@ class ListView {
         document.body.append(e.target as HTMLElement);
 
         moveAt((e as MouseEvent).pageX, (e as MouseEvent).pageY);
-        function moveAt(pageX : number, pageY : number) { // transform으로 수정할 예정
+        function moveAt(pageX: number, pageY: number) { // transform으로 수정할 예정
             (e.target as HTMLElement).style.left = pageX - shiftX + 'px';
             (e.target as HTMLElement).style.top = pageY - shiftY + 'px';
         }
-        function onMouseMove(event : MouseEvent) {
+        function onMouseMove(event: MouseEvent) {
             moveAt(event.pageX, event.pageY);
             curTarget.hidden = true;
             let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
@@ -114,8 +105,8 @@ class ListView {
             }
         }
         // elem은 가장 많이 겹치는 노드
-        function enterDroppable({elem, elemBelow, copiedNode} : Droppable) {
-            let parentNode : Element, targetNode : Element;
+        function enterDroppable({ elem, elemBelow, copiedNode }: Droppable) {
+            let parentNode: Element, targetNode: Element;
             const [listWrapper, listViewWrapper] = ['list-wrapper', 'list-view-wrapper'];
 
             if (!!elem.nextSibling && !(elem.parentNode as Element).classList.contains('card-wrapper')) {
@@ -133,7 +124,7 @@ class ListView {
                 targetNode!.appendChild(copiedNode);
             }
         }
-        function leaveDroppable(elem : HTMLElement) {
+        function leaveDroppable(elem: HTMLElement) {
             elem.style.background = '';
         }
         // mousemove -> 드래그하면서 움직이기
@@ -150,9 +141,42 @@ class ListView {
         this.copiedNode.addEventListener('mouseup', this.dropUpHandler.bind(this));
         this.cardsTitle = dom.queryAll('.list-title');
 
-        /* DB 저장 로직, 이동된 노트가 몇 번째 인덱스에 위치하는가? */
-        console.log(Array.from(this.copiedNode.parentNode.children).indexOf(this.copiedNode));
-        
+        /* dropUp 이후 DB 저장 로직, 이동된 노트가 몇 번째 인덱스에 위치하는가? */
+        /*
+            drop 후 DB 저장과정 생각해 본 사항
+            (1) drop한 곳이 카드의 자식 몇 번째인지 indexof 등으로 계산
+            (2) db로부터 posts->card->data 배열값을 받아 온 다음,
+            (3) (1)에서 구한 인덱스 번째에 새롭게 아이템을 추가
+            (4) db update
+            // (*) 배열 아이템 형태는 {id : _, title: _, tasks: []} 
+            // data 항목을 통째로 업데이트
+        */
+        const copiedParent = this.copiedNode.parentNode;
+        const movedIdx = Array.from(copiedParent.children).indexOf(this.copiedNode);
+        const cardId = this.copiedNode.getAttribute('data'); // before
+        const copiedCardId = copiedParent.getAttribute('data'); // after
+        const copiedListId = this.copiedNode.getAttribute('data-idx');
+
+        // 기존 데이터(잔상) 삭제
+        this.model.removeTodo({cardId, id:copiedListId});
+        let data = this.model.todos;
+        let title : string = '';
+        let beforeData : Array<MovedData>;
+        data[data.length-1].forEach((element : InitData) => {
+            if (element.id == copiedCardId){
+                beforeData = element.data;
+            }
+        });
+        this.copiedNode.children.forEach((element : Element) => {
+            if(element.classList.contains('list-title'))
+                title = element.textContent!;
+        });
+        const moveData : MovedData = {
+            id: copiedListId, title : title, tasks: []
+        }
+        beforeData!.splice(movedIdx, 0, moveData);
+        console.log(beforeData!);
+        this.model.movingTodo({cardId : copiedCardId, input: beforeData!});
     }
 
     async dragAndDrop() {
@@ -165,11 +189,11 @@ class ListView {
     }
 
     // filter cards
-    async findListsHandler(e : InputEvent) {
+    async findListsHandler(e: InputEvent) {
         const { } = await this.model.getInitialData();
         const value = (e.target as HTMLInputElement).value;
-        const cardsTitleArr : Array<any> = this.cardsTitle.reduce((acc, item, idx) => {
-            let obj : ObjIndex = {};
+        const cardsTitleArr: Array<any> = this.cardsTitle.reduce((acc, item, idx) => {
+            let obj: ObjIndex = {};
             obj[idx] = {
                 current: item, title: item.textContent
             }

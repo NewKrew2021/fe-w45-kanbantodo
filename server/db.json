@@ -6,8 +6,13 @@
       "author": "roddy.chan",
       "data": [
         {
-          "id": 0,
-          "title": "히스토리 삭제기능 구현(중요도 낮음)",
+          "id": "0e86b3fb-5c09-4e51-a98b-7df9c74eb809",
+          "title": "asffdsfdss",
+          "tasks": []
+        },
+        {
+          "id": "eb4b8227-c168-4bbc-847f-df07a6fce5b3",
+          "title": "abcde",
           "tasks": []
         }
       ]
@@ -18,18 +23,13 @@
       "author": "roddy.chan",
       "data": [
         {
-          "id": 0,
-          "title": "테스트 코드 작성해 보기",
+          "id": "0dea34ff-3c5a-45aa-b688-28e3bc55aaa7",
+          "title": "sdfdf",
           "tasks": []
         },
         {
-          "id": 1,
-          "title": "코드 리팩토링하기",
-          "tasks": []
-        },
-        {
-          "id": "7739188d-fe73-452b-a73f-9cb7da29b534",
-          "title": "노트 테스트",
+          "id": "17bac6d0-c78e-4ce4-b6f4-a7bb3e344aa6",
+          "title": "히스토리 삭제 구현(나중에)",
           "tasks": []
         }
       ]
@@ -38,35 +38,13 @@
       "id": 2,
       "name": "끝난 일",
       "author": "roddy.chan",
-      "data": [
-        {
-          "id": 2,
-          "title": "TypeScript로 파일들 재작성하기",
-          "tasks": []
-        },
-        {
-          "id": 3,
-          "title": "추가/삭제/수정 기능 구현하기",
-          "tasks": []
-        },
-        {
-          "id": 4,
-          "title": "express&lowdb 활용",
-          "tasks": []
-        }
-      ]
+      "data": []
     },
     {
       "id": 3,
       "name": "추가적으로 한 일",
       "author": "roddy.chan",
-      "data": [
-        {
-          "id": 0,
-          "title": "dayjs 활용",
-          "tasks": []
-        }
-      ]
+      "data": []
     }
   ],
   "history": [
@@ -74,36 +52,29 @@
       "action": "ADD_NOTE",
       "cardName": "하는 중",
       "beforeTitle": "",
-      "afterTitle": "테스트 코드 작성해 보기",
-      "writeTime": 1612409689577
+      "afterTitle": "safdsfddsffsadfs",
+      "writeTime": 1612416312325
     },
     {
       "action": "ADD_NOTE",
       "cardName": "하는 중",
       "beforeTitle": "",
-      "afterTitle": "코드 리팩토링하기",
-      "writeTime": 1612409697959
-    },
-    {
-      "action": "ADD_CARD",
-      "cardName": "테스트용 카드",
-      "beforeTitle": "",
-      "afterTitle": "",
-      "writeTime": 1612409705778
-    },
-    {
-      "action": "REMOVE_CARD",
-      "cardName": "테스트용 카드",
-      "beforeTitle": "",
-      "afterTitle": "",
-      "writeTime": 1612409707865
+      "afterTitle": "abcde",
+      "writeTime": 1612416329176
     },
     {
       "action": "ADD_NOTE",
       "cardName": "하는 중",
       "beforeTitle": "",
-      "afterTitle": "노트 테스트",
-      "writeTime": 1612411493551
+      "afterTitle": "sdfdf",
+      "writeTime": 1612416330628
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "하는 중",
+      "beforeTitle": "",
+      "afterTitle": "asffdsfdss",
+      "writeTime": 1612416332528
     }
   ]
 }
