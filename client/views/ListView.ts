@@ -3,6 +3,12 @@
     모델을 구독하는 Observer
     구독중인 모델의 어떤 상태가 변경되면 -> 화면의 변화 발생(렌더링)
     데이터가 새롭게 추가되면, 구독 중인 ListView가 감지한다.
+
+    drop 후 DB 저장과정 생각해 본 사항
+    (1) drop한 곳이 카드의 자식 몇 번째인지 indexof 등으로 계산
+    (2) db로부터 posts->card->data 배열값을 받아 온 다음,
+    (3) (1)에서 구한 인덱스 번째에 새롭게 아이템을 추가
+    (4) db update
 */
 import { domTpl } from 'client/views/template';
 import * as dom from 'client/src/util';
@@ -135,7 +141,7 @@ class ListView {
         document.addEventListener('mousemove', this.onMouseMoveHandler);
     }
 
-    dropUpHandler() {
+    async dropUpHandler() {
         if (this.curTarget === undefined) return;
         this.curTarget.remove();
         this.copiedNode.style.opacity = "1.0";
@@ -143,10 +149,14 @@ class ListView {
         this.copiedNode.addEventListener('mousedown', this.dragDownHandler.bind(this));
         this.copiedNode.addEventListener('mouseup', this.dropUpHandler.bind(this));
         this.cardsTitle = dom.queryAll('.list-title');
+
+        /* DB 저장 로직, 이동된 노트가 몇 번째 인덱스에 위치하는가? */
+        console.log(Array.from(this.copiedNode.parentNode.children).indexOf(this.copiedNode));
+        
     }
 
     async dragAndDrop() {
-        const { } = await this.model.getInitialData();
+        await this.model.getInitialData();
         const note = dom.queryAll('.list-view');
         note.forEach(element => {
             element.addEventListener('mousedown', this.dragDownHandler.bind(this));

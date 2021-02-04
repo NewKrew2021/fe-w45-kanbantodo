@@ -26,6 +26,11 @@
           "id": 1,
           "title": "코드 리팩토링하기",
           "tasks": []
+        },
+        {
+          "id": "7739188d-fe73-452b-a73f-9cb7da29b534",
+          "title": "노트 테스트",
+          "tasks": []
         }
       ]
     },
@@ -92,6 +97,13 @@
       "beforeTitle": "",
       "afterTitle": "",
       "writeTime": 1612409707865
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "하는 중",
+      "beforeTitle": "",
+      "afterTitle": "노트 테스트",
+      "writeTime": 1612411493551
     }
   ]
 }

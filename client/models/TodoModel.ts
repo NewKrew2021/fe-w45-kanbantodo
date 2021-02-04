@@ -10,6 +10,7 @@
 */
 import Observable from './observable.js'
 import * as req from 'client/src/request';
+import * as dom from 'client/src/util'
 import { ModalState, NewCardState, NewNoteState, HistoryState } from 'client/src/interface'
 
 class TodoModel extends Observable {
@@ -61,13 +62,11 @@ class TodoModel extends Observable {
     // 리스트뷰(todo) 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
     async addTodo({ cardId, inputData }: { cardId: string, inputData: string }) {
         const res = await req.getAllData();
-        let curlen : number, listId : number = 0;
-        res.forEach(function(e : any, i : number) {
+        //let listId : string; // uuid
+        let listId : string = '';
+        res.forEach((e : any, i : number) =>{
             if (parseInt(e.id) === parseInt(cardId)) {
-                if (res[i].data.length !== 0) {
-                    curlen = res[i].data.length - 1;
-                    listId = res[i].data[curlen].id + 1;
-                }
+                listId = dom.guid();
             }
         });
         // 받은 todo값을 가공하고 넣기
