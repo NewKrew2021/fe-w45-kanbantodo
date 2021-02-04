@@ -43,6 +43,8 @@ class TodoView {
     this.render = this.render.bind(this);
     this.status = status;
     this.movingElement = null;
+    this.newTodoList = null;
+    this.isCardMoving = false;
   }
 
   createTodo(cardList, status) {
@@ -97,12 +99,13 @@ class TodoView {
       this.movingElement.style.zIndex = 1000;
 
       document.body.append(this.movingElement);
-      let newTodoList = null;
+
+      this.newTodoList = null;
 
       const onMouseMove = (event) => {
         this.movingElement.hidden = true;
         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-        newTodoList = elemBelow.closest(".todo");
+        this.newTodoList = elemBelow.closest(".todo");
         this.movingElement.hidden = false;
         this.moveAt(event.pageX, event.pageY);
       };
@@ -110,10 +113,10 @@ class TodoView {
       document.addEventListener("mousemove", onMouseMove);
 
       this.movingElement.addEventListener("mouseup", () => {
-        if (newTodoList) {
+        if (this.newTodoList) {
           this.movingElement.style = "";
 
-          newTodoList.appendChild(this.movingElement);
+          this.newTodoList.appendChild(this.movingElement);
           // log에 추가
 
           let log = {
@@ -130,7 +133,7 @@ class TodoView {
           // 기존 node 삭제
           deleteElement(originalMovingElement);
 
-          notify(updateCardStatus({ id: originalMovingElement.id, status: newTodoList.id }));
+          notify(updateCardStatus({ id: originalMovingElement.id, status: this.newTodoList.id }));
         } else {
           deleteElement(this.movingElement);
           originalMovingElement.style = null;
