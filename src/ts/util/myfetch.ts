@@ -64,6 +64,18 @@ export function myFetch(
   })
 }
 
+export async function myFetchWithData(url: string, method: string, body: object = {}) {
+  // make body and header
+  const options = {
+    method: method,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  }
+
+  // return fetched data
+  return JSON.parse(String(await myFetch(url, options)))
+}
+
 export async function myFetchGET(url: string, query: object = {}) {
   // make query-string
   if (Object.keys(query).length) {
@@ -75,15 +87,11 @@ export async function myFetchGET(url: string, query: object = {}) {
 }
 
 export async function myFetchPOST(url: string, body: object = {}) {
-  // make body and header
-  const options = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  }
+  return myFetchWithData(url, 'POST', body)
+}
 
-  // return fetched data
-  return JSON.parse(String(await myFetch(url, options)))
+export async function myFetchDELETE(url: string, body: object = {}) {
+  return myFetchWithData(url, 'DELETE', body)
 }
 
 // convert object to query-string
