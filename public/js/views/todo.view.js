@@ -46,7 +46,9 @@ class TodoView {
     this.newTodoList = null;
     this.isCardMoving = false;
     this.originalMovingElement = null;
-    this.onMouseMove = this.onMouseMove.bind(this);
+    this.mouseMoveEvent = this.mouseMoveEvent.bind(this);
+    this.mouseDownEvent = this.mouseDownEvent.bind(this);
+    this.mouseUpEvent = this.mouseUpEvent.bind(this);
   }
 
   createTodo(cardList, status) {
@@ -90,7 +92,7 @@ class TodoView {
     this.movingElement.style.top = `${pageY - this.movingElement.offsetHeight / 2}px`;
   }
 
-  onMouseMove(event) {
+  mouseMoveEvent(event) {
     if (!this.movingElement) return;
 
     this.movingElement.hidden = true;
@@ -100,22 +102,22 @@ class TodoView {
     this.moveAt(event.pageX, event.pageY);
   }
 
-  HandleDragAndDrop(updateCardStatus, notify, popUpMenuModel, notifyLog) {
-    this.element.addEventListener("mousedown", ({ target }) => {
-      if (!DRAGGABLE_ELEMENTS.includes(target.className)) return;
-      this.originalMovingElement = target.closest(".todo-card");
-      this.movingElement = this.originalMovingElement.cloneNode(true);
-      this.originalMovingElement.style.opacity = 0.5;
+  mouseDownEvent({ target }) {
+    if (!DRAGGABLE_ELEMENTS.includes(target.className)) return;
+    this.originalMovingElement = target.closest(".todo-card");
+    this.movingElement = this.originalMovingElement.cloneNode(true);
+    this.originalMovingElement.style.opacity = 0.5;
 
-      this.movingElement.style.position = "absolute";
-      this.movingElement.style.zIndex = 1000;
+    this.movingElement.style.position = "absolute";
+    this.movingElement.style.zIndex = 1000;
 
-      document.body.append(this.movingElement);
+    document.body.append(this.movingElement);
 
-      document.addEventListener("mousemove", this.onMouseMove);
-    });
+    document.addEventListener("mousemove", this.mouseMoveEvent);
+  }
 
-    document.addEventListener("mouseup", () => {
+  mouseUpEvent(updateCardStatus, notify, popUpMenuModel, notifyLog) {
+    return () => {
       if (!this.movingElement) return;
       if (this.newTodoList) {
         this.movingElement.style = "";
@@ -144,9 +146,17 @@ class TodoView {
         this.originalMovingElement.style = null;
       }
 
-      document.removeEventListener("mousemove", this.onMouseMove);
+      document.removeEventListener("mousemove", this.mouseMoveEvent);
       this.movingElement = null;
-    });
+    };
+  }
+
+  HandleDragAndDrop(updateCardStatus, notify, popUpMenuModel, notifyLog) {
+    this.element.addEventListener("mousedown", this.mouseDownEvent);
+    document.addEventListener(
+      "mouseup",
+      this.mouseUpEvent(updateCardStatus, notify, popUpMenuModel, notifyLog)
+    );
   }
 
   render(cardList, status) {
