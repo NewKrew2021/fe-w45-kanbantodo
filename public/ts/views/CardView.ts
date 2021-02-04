@@ -89,7 +89,7 @@ class CardView {
   }
 
   moveCardEvent() {
-    let prevEle:HTMLElement, prevIdx: number, curIdx: number, elePos: Array<any> = [];
+    let prevEle:HTMLElement, curEle:HTMLElement, copyEle:any, prevIdx: number, curIdx: number, moveIdx: number, elePos: Array<any> = [];
     const todoContainerEle = document.querySelectorAll("div.todo-container");
     todoContainerEle.forEach((todo, index) => {
       const pos = todo.getBoundingClientRect();
@@ -100,11 +100,16 @@ class CardView {
       const eventEle = event.target as HTMLTextAreaElement;
       const card = eventEle.className;
       if(card==="todo-cards" || card==="todo-author" || card==="card-title"){
-        const btnEle = eventEle.closest("div.todo-cards") as HTMLTextAreaElement;
         prevEle = eventEle.closest(".todo-container") as HTMLTextAreaElement;
+        const itemEle = prevEle.querySelector("div.item-container") as HTMLTextAreaElement;
+        curEle = eventEle.closest("div.todo-cards") as HTMLTextAreaElement;
+        copyEle = curEle.cloneNode(true);
+        curEle.classList.add("opacity-on")
+        itemEle.appendChild(copyEle);
+        copyEle.setAttribute("style", `position: fixed; left: ${event.clientX-gapX}px; top: ${event.clientY-gapY}px;`);
         isMoveCard = true;
-        gapX = event.clientX - btnEle.getBoundingClientRect().left;
-        gapY = event.clientY - btnEle.getBoundingClientRect().top;
+        gapX = event.clientX - curEle.getBoundingClientRect().left;
+        gapY = event.clientY - curEle.getBoundingClientRect().top;
         todoContainerEle.forEach((todo, index) => {
           if(todo === prevEle) curIdx=index;
         })
@@ -131,19 +136,42 @@ class CardView {
               const curElement = todoContainerEle[pos.idx] as HTMLTextAreaElement;
               const curTitle = curElement.querySelector("div.title-text") as HTMLTextAreaElement;
               const curTitleText = curTitle.innerHTML;
-
+              curEle.remove();
               this.model.moveCards(prevTitleText, curTitleText, card);
               this.activityModel.addActivity("moved", prevTitleText, curTitleText, card, "kevin", Date.now());
           }
         })
       }
     })
-
     document.addEventListener("mousemove", event => {
       if(isMoveCard){
-        const eventEle = event.target as HTMLTextAreaElement;
-        const btnEle = eventEle.closest("div.todo-cards") as HTMLTextAreaElement;
-        btnEle.setAttribute("style", `position: fixed; left: ${event.clientX-gapX}px; top: ${event.clientY-gapY}px;`);
+        copyEle.setAttribute("style", `position: fixed; left: ${event.clientX-gapX}px; top: ${event.clientY-gapY}px;`);
+        elePos.forEach( pos => {
+          if(event.clientX >= pos.left && event.clientX <= pos.right &&
+            event.clientY >= pos.top && event.clientY <= pos.bottom){
+              const curElement = todoContainerEle[pos.idx] as HTMLTextAreaElement;
+              const itemElement = curElement.querySelector(".item-container") as  HTMLTextAreaElement;
+              console.log(moveIdx, pos.idx);
+              if(moveIdx !== pos.idx) {
+                moveIdx = pos.idx;
+                itemElement.appendChild(curEle);
+              }
+              // const btnEle = event.target.closest("div.todo-cards") as HTMLTextAreaElement;
+              // const cardTitleEle = btnEle.querySelector("div.card-title") as HTMLTextAreaElement;
+              // const card = cardTitleEle.innerHTML;
+              // const prevElement = todoContainerEle[prevIdx] as HTMLTextAreaElement;
+              // const prevTitle = prevElement.querySelector("div.title-text") as HTMLTextAreaElement;
+              // const prevTitleText = prevTitle.innerHTML;
+              // const curElement = todoContainerEle[pos.idx] as HTMLTextAreaElement;
+              // const curTitle = curElement.querySelector("div.title-text") as HTMLTextAreaElement;
+              // const curTitleText = curTitle.innerHTML;
+              // console.log(prevTitleText, curTitleText, card)
+
+              // this.model.moveCards(prevTitleText, curTitleText, card);
+              // this.activityModel.addActivity("moved", prevTitleText, curTitleText, card, "kevin", Date.now());
+          }
+        })
+        
       }
     })
   }
