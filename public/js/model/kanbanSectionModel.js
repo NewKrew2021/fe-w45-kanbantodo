@@ -76,4 +76,21 @@ async function updateTask(sectionID,{dbID,title,newTitle,author}){
         console.error(err);
     }
 }
-export { fetchTasks , createTask, deleteTask ,updateTask };
+
+async function deleteSection(sectionID){
+    try{
+        const res = await fetch(`/section`, {
+            method: 'DELETE',
+            body: JSON.stringify({sectionID}),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        const data=await res.json();
+        
+    }catch(err){
+        console.error(err);
+    }
+}
+
+export { fetchTasks , createTask, deleteTask ,updateTask,deleteSection };

@@ -1,4 +1,5 @@
-import {fetchTasks,createTask,deleteTask,updateTask} from"../model/kanbanSectionModel";
+import {fetchTasks,createTask,deleteTask,updateTask,deleteSection} from"../model/kanbanSectionModel";
+
 
 export function initSectionController({sectionID}){
 
@@ -79,6 +80,17 @@ export function initSectionController({sectionID}){
         const dbID=taskItem.attributes.dbID.value;
         const title=taskItem.querySelector(".title").innerText;
         deleteTask(sectionID,{dbID,title,author:"justin"});
+    }
+
+    //DELETE: section deletion
+    const deleteSectionBtn=section.querySelector(".section-delete-btn");
+    deleteSectionBtn.addEventListener("click",onSectionDeleteBtnClick);
+
+    function onSectionDeleteBtnClick(e){
+        if(!e.target.className.includes("delete-btn")) return ;
+        const result = window.confirm("정말 삭제하시겠습니까?");
+        if(!result) return;
+        deleteSection(sectionID);
     }
 
     //카드 옮기기 

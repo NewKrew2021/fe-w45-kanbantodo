@@ -67,6 +67,15 @@ app.post('/section',async (req, res) =>{
     res.json({newSection});
 });
 
+app.delete('/section',async (req, res) =>{
+    const {sectionID}=req.body;    
+    const result = await db.deleteSection(sectionID);
+
+    if( result) res.json({sectionID});
+    else res.json({result,sectionID:null});
+
+});
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 })

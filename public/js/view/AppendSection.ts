@@ -20,7 +20,6 @@ export async function fetchSections(){
     }
 }
 
-
 async function addSection(){
     try{
         const res = await fetch(`/section`, {

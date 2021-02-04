@@ -158,3 +158,19 @@ async function findSections() {
 
 }
 module.exports.findSections = findSections;
+
+async function deleteSection(sectionID){
+
+    console.log("db:delete target:",sectionID);
+    const query = { sectionID };
+    const result = await sectionCollection.deleteOne(query);
+    if (result.deletedCount === 1) {
+        console.dir("Successfully deleted one document.");
+        return true;
+    } else {
+        console.log("No documents matched the query. Deleted 0 documents.");
+        return false;
+    }
+
+}
+module.exports.deleteSection = deleteSection;
