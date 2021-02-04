@@ -4,13 +4,7 @@
       "id": 0,
       "name": "해야할 일",
       "author": "roddy.chan",
-      "data": [
-        {
-          "id": 0,
-          "title": "히스토리 삭제기능 구현(중요도 낮음)",
-          "tasks": []
-        }
-      ]
+      "data": []
     },
     {
       "id": 1,
@@ -62,6 +56,12 @@
           "tasks": []
         }
       ]
+    },
+    {
+      "id": 4,
+      "name": "카드 추가 테스트",
+      "author": "roddy.chan",
+      "data": []
     }
   ],
   "history": [
@@ -169,6 +169,48 @@
       "beforeTitle": "",
       "afterTitle": "",
       "writeTime": 1612357809760
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "하는 중",
+      "beforeTitle": "",
+      "afterTitle": "코드 리팩토링",
+      "writeTime": 1612397615801
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "하는 중",
+      "beforeTitle": "",
+      "afterTitle": "코드 리팩토링",
+      "writeTime": 1612397820746
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "해야할 일",
+      "beforeTitle": "",
+      "afterTitle": "히스토리 삭제기능 구현(중요도 낮음)",
+      "writeTime": 1612397917423
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "해야할 일",
+      "beforeTitle": "",
+      "afterTitle": "히스토리 삭제 구현(나중에)",
+      "writeTime": 1612397923907
+    },
+    {
+      "action": "ADD_CARD",
+      "cardName": "카드 추가 테스트",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612398630682
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "해야할 일",
+      "beforeTitle": "",
+      "afterTitle": "히스토리 삭제 구현(나중에)",
+      "writeTime": 1612398851008
     }
   ]
 }

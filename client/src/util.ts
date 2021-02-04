@@ -3,6 +3,8 @@
     js -> typescript로 정의(완료)
 */
 
+import { HistoryState } from "./interface";
+
 function addHTML(node : HTMLElement, text : string) {
     node.innerHTML += text;
 }
@@ -46,7 +48,6 @@ function getNoteTitle({cardId, id} : {cardId : string, id : string}) : string{
     })
     return result;
 }
-
 function dfs_q(node : Element, target : string): any{
     let returnVal = undefined;
     /* dfs 탐색 */

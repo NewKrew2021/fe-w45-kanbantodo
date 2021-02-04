@@ -1,5 +1,5 @@
 /*
-    InputView.js : [+]를 누를 때 나오는 input-view
+    InputView.ts : [+]를 누를 때 나오는 input-view
     - 모델 객체를 주입받고 구독하는 [Observer] 이다.
 */
 import TodoModel from 'client/models/TodoModel';

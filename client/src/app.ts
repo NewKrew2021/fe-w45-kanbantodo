@@ -1,10 +1,8 @@
 /*
-    app.js
-    <entry point>
+    app.ts <entry point>
 */
 import ListView from 'client/views/ListView';
 import TodoModel from 'client/models/TodoModel';
-import * as _dom from 'client/src/util';
 import InputView from 'client/views/InputView';
 import ModalView from 'client/views/ModalView';
 import MenuView from 'client/views/MenuView';

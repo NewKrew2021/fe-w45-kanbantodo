@@ -68,19 +68,13 @@ class TodoModel extends Observable {
                     curlen = res[i].data.length - 1;
                     listId = res[i].data[curlen].id + 1;
                 }
-                if (res[i].data.length === 0) {
-                    listId = 0;
-                }
             }
         });
         // 받은 todo값을 가공하고 넣기
         const inputObj : NewNoteState = {
-            cardId: cardId,
-            listId: listId,
-            title: inputData
+            cardId: cardId, listId: listId, title: inputData
         }
         await req.addList(inputObj);
-        // 데이터에 추가 후 notify 한다.
         this.todos = [...this.todos, res];
         this.notify(this.todos);
     }

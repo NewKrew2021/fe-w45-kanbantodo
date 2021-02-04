@@ -1,5 +1,5 @@
 /*
-    request.js
+    request.ts
     모델에 들어갈 CRUD를 도와 주는 함수들
 */
 import { NewCardState, NewNoteState, HistoryState } from 'client/src/interface'
