@@ -1,8 +1,8 @@
 import API from "../utils/api";
+import logger from "../utils/logger";
 import Observable from "../utils/Observable";
 import { ColumnData } from "../utils/types";
 import ModalView from "../view/ModalView";
-import logger from "./ActionModel";
 
 interface TodoModel extends Observable{
     // TODO : change to TodoData;

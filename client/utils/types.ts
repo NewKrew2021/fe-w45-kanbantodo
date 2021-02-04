@@ -18,3 +18,8 @@ export interface ColumnData {
 export interface TodoData {
     columns: ColumnData;
 }
+
+export interface ActionData {
+    contentHtml: string;
+    timestamp: number;
+}

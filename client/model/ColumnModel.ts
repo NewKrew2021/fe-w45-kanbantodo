@@ -2,7 +2,7 @@ import { ColumnData } from "../utils/types";
 import API from "../utils/api";
 import Observable from "../utils/Observable";
 import ModalView from "../view/ModalView";
-import logger from "./ActionModel";
+import logger from "../utils/logger";
 
 interface ColumnModel extends Observable{
     data: ColumnData;
