@@ -88,7 +88,7 @@ $container-color : #cecece;
 
 .todo-contents {
   width: 350px;
-  margin: 5px 0 0 15px;
+  margin: 5px 0 0 0;
 }
 
 .todo-cards {
@@ -248,6 +248,10 @@ $container-color : #cecece;
 .activity-item {
   width: 100%;
   border-bottom: 1px solid $container-color;
+}
+
+.item-container {
+  margin-left: 15px;
 }
 
 .item-title {

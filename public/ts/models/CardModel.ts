@@ -33,9 +33,26 @@ class CardModel extends Observable {
     }
   }
 
-  async putCardData(todoTitle:string, newCard:string) {
+  async putCard(todoTitle:string, newCard:string) {
     try {
       const res = await fetch( URL + `/cards?todoTitle=${todoTitle}&cardTitle=${newCard}`, {
+        method: "PUT",
+      });
+      const data = await res.json();
+      this.saveCard(data);
+    } catch(err) {
+      throw err;
+    }
+  }
+
+  //
+  async putCardData(todoTitle:string, newCard:string, curIdx: number, newCardIdx:number) {
+    try {
+      let newArray = this.cards[curIdx].cards.slice(0, newCardIdx);
+      const nextArray = this.cards[curIdx].cards.slice(newCardIdx);
+      newArray.push({title:newCard, author:"kevin"})
+      newArray = [...newArray, ...nextArray];
+      const res = await fetch( URL + `/addcards?todoTitle=${todoTitle}&list=${JSON.stringify(newArray)}`, {
         method: "PUT",
       });
       const data = await res.json();
@@ -62,17 +79,20 @@ class CardModel extends Observable {
     await this.notify(this.cards);
   }
 
+  //
   async addCards(todoTitle:string, newCard:string) {
-    await this.putCardData(todoTitle, newCard);
+    await this.putCard(todoTitle, newCard);
     await this.notify(this.cards);
   }
   async deleteCard(todoTitle:string, card:string) {
     await this.deleteCardData(todoTitle, card)
     await this.notify(this.cards);
   }
-  async moveCards(prevTitle:string, curTitle:string, card:string){
+
+  //
+  async moveCards(prevTitle:string, curTitle:string, card:string, curIdx: number, newCardIdx:number){
     await this.deleteCardData(prevTitle, card);
-    await this.putCardData(curTitle, card);
+    await this.putCardData(curTitle, card, curIdx, newCardIdx);
     await this.notify(this.cards);
   }
 
