@@ -61,9 +61,9 @@ export default class ColumnController extends Controller {
     })
   }
 
-  async addNote(noteData: NoteData) {
+  async addNote({ title }: NoteData) {
     // request to server
-    const noteFetchedData = await this.requestAddNote(noteData.title)
+    const noteFetchedData = await this.requestAddNote(title)
 
     // add note
     this.addNoteWithFetchedData(noteFetchedData)
