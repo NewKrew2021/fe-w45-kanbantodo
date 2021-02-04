@@ -2,7 +2,8 @@ import Controller from './_controller'
 import NoteController from './note'
 import ColumnView, { ColumnRenderData } from '../view/column'
 import ModalController from './modal'
-import { ColumnData, NoteData } from '../../type/index'
+import { ColumnData, NoteData, NoteFetchedData } from '../../type/index'
+import { myFetchDELETE, myFetchPOST } from '../../util/index'
 
 export default class ColumnController extends Controller {
   private columnData: ColumnData
@@ -41,8 +42,10 @@ export default class ColumnController extends Controller {
     this.notifyUpdate()
   }
 
-  deleteSelf() {
-    // TODO: request to server
+  async deleteSelf() {
+    // request to server
+    await this.requestDeleteColumn()
+
     // TODO: delete value
 
     // remove view
@@ -51,17 +54,42 @@ export default class ColumnController extends Controller {
     this.notifyDelete()
   }
 
-  addNote(noteData: NoteData) {
+  async requestDeleteColumn() {
+    // request to server
+    return await myFetchDELETE('/kanban/column', {
+      columnID: this.getData().id
+    })
+  }
+
+  async addNote(noteData: NoteData) {
+    // request to server
+    const noteFetchedData = await this.requestAddNote()
+
+    // add note
+    this.addNoteWithFetchedData(noteFetchedData)
+
     this.renderData.nNote++
     this.view.render()
+  }
 
-    const noteController = new NoteController({ id: '', noteData })
-    noteController.addDeleteListener(this.removeNote.bind(this))
+  async requestAddNote() {
+    // request to server
+    return await myFetchPOST('/kanban/note', {
+      columnID: this.getData().id
+    })
+  }
 
-    // prepend note to the column
-    noteController.setWrapper(this.view.getChildrenWrapper('note'), 0)
+  addNoteWithFetchedData(noteFetchedData: NoteFetchedData) {
+    // create new note
+    const noteController = new NoteController({
+      id: noteFetchedData._id,
+      title: noteFetchedData.title
+    })
 
-    return noteController
+    // TODO: check tasks
+
+    // append note
+    noteController.setWrapper(this.view.getChildrenWrapper('note'))
   }
 
   removeNote(note: NoteController) {

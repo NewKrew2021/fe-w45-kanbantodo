@@ -1,7 +1,8 @@
 import Controller from './_controller'
 import ColumnController from './column'
 import KanbanView from '../view/kanban'
-import { KanbanData } from '../../type/index'
+import { ColumnFetchedData, KanbanData } from '../../type/index'
+import { myFetchPOST } from '../../util/index'
 
 export default class KanbanController extends Controller {
   private kanbanData: KanbanData
@@ -21,12 +22,32 @@ export default class KanbanController extends Controller {
     return this.kanbanData
   }
 
-  addColumn() {
-    const columnController = new ColumnController({ id: '', title: 'new column' })
+  async addColumn() {
+    // request to server
+    const columnFetchedData = await this.requestAddColumn()
 
-    // re-render
+    // add column
+    this.addColumnWithFetchedData(columnFetchedData)
+  }
+
+  async requestAddColumn() {
+    // request to server
+    return await myFetchPOST('/kanban/column', {
+      kanbanID: this.getData().id
+    })
+  }
+
+  addColumnWithFetchedData(columnFetchedData: ColumnFetchedData) {
+    // create new column
+    const columnController = new ColumnController({
+      id: columnFetchedData._id,
+      title: columnFetchedData.title
+    })
+
+    // add notes
+    columnFetchedData.notes.forEach(columnController.addNoteWithFetchedData.bind(columnController))
+
+    // append column to kanban
     columnController.setWrapper(this.view.getChildrenWrapper('column'))
-
-    return columnController
   }
 }
