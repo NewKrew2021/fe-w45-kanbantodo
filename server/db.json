@@ -63,8 +63,19 @@
           "id": "f35513ff-1cd2-4430-a140-2c28f152c37c",
           "title": "사용자 액션 기록 사이드바 구현",
           "tasks": []
+        },
+        {
+          "id": "c41cb3df-f2fc-4bd2-81dc-314c12774a12",
+          "title": "드래그 앤 드롭한 데이터 DB에 반영",
+          "tasks": []
         }
       ]
+    },
+    {
+      "id": 3,
+      "name": "추가적으로 한 일",
+      "author": "roddy.chan",
+      "data": []
     }
   ],
   "history": [
@@ -214,6 +225,20 @@
       "beforeTitle": "유저 액션 기록 사이드바 구현",
       "afterTitle": "사용자 액션 기록 사이드바 구현",
       "writeTime": 1612431944094
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "",
+      "afterTitle": "드래그 앤 드롭한 데이터 DB에 반영",
+      "writeTime": 1612432071628
+    },
+    {
+      "action": "ADD_CARD",
+      "cardName": "추가적으로 한 일",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612432086494
     }
   ]
 }

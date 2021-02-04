@@ -133,7 +133,6 @@ class ListView {
     }
 
     async dropUpHandler(e: Event) {
-        console.log("test");
         if (this.curTarget === undefined) return;
         this.curTarget.remove();
         this.copiedNode.style.opacity = "1.0";
@@ -194,9 +193,7 @@ class ListView {
         const value = (e.target as HTMLInputElement).value;
         const cardsTitleArr: Array<any> = this.cardsTitle.reduce((acc, item, idx) => {
             let obj: ObjIndex = {};
-            obj[idx] = {
-                current: item, title: item.textContent
-            }
+            obj[idx] = { current: item, title: item.textContent }
             acc = [...acc, obj];
             return acc;
         }, [] as Array<object>);
