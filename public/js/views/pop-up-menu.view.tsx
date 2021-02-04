@@ -59,7 +59,7 @@ class PopUpMenuView {
 
   render(logList: ILog[]) {
     if (!this.menuDetail) return;
-    this.menuDetail.innerHTML = logList
+    this.menuDetail.innerHTML = [...logList]
       .reverse()
       .reduce((acc: string, { profile, writer, content, from, to, time }) => {
         return (
