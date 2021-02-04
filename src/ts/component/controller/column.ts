@@ -63,7 +63,7 @@ export default class ColumnController extends Controller {
 
   async addNote(noteData: NoteData) {
     // request to server
-    const noteFetchedData = await this.requestAddNote()
+    const noteFetchedData = await this.requestAddNote(noteData.title)
 
     // add note
     this.addNoteWithFetchedData(noteFetchedData)
@@ -72,10 +72,11 @@ export default class ColumnController extends Controller {
     this.view.render()
   }
 
-  async requestAddNote() {
+  async requestAddNote(title: string) {
     // request to server
     return await myFetchPOST('/kanban/note', {
-      columnID: this.getData().id
+      columnID: this.getData().id,
+      title
     })
   }
 
