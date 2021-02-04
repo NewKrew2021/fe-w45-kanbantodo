@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const ObjectId = mongoose.Types.ObjectId
 
 const ColumnSchema = new mongoose.Schema({
+  kanban: {
+    type: ObjectId,
+    ref: 'Kanban',
+  },
   title: {
     type: String,
     required: true,

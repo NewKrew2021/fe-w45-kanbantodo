@@ -2,6 +2,14 @@ const mongoose = require('mongoose')
 const ObjectId = mongoose.Types.ObjectId
 
 const TaskSchema = new mongoose.Schema({
+  note: {
+    type: ObjectId,
+    ref: 'Note',
+  },
+  task: {
+    type: ObjectId,
+    ref: 'Task',
+  },
   title: {
     type: String,
     required: true
