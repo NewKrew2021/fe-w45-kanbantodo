@@ -2,17 +2,17 @@
   "posts": [
     {
       "id": 0,
-      "name": "해야할 일",
+      "name": "예정",
       "author": "roddy.chan",
       "data": [
         {
-          "id": "0e86b3fb-5c09-4e51-a98b-7df9c74eb809",
-          "title": "asffdsfdss",
+          "id": "53d96edb-d327-4c9b-9ac0-3599f8fce33a",
+          "title": "성능 최적화 공부하기",
           "tasks": []
         },
         {
-          "id": "eb4b8227-c168-4bbc-847f-df07a6fce5b3",
-          "title": "abcde",
+          "id": "1dbe9ee2-610b-47e6-9a28-db68f148dd3a",
+          "title": "루카스 강의 보기",
           "tasks": []
         }
       ]
@@ -23,13 +23,18 @@
       "author": "roddy.chan",
       "data": [
         {
-          "id": "0dea34ff-3c5a-45aa-b688-28e3bc55aaa7",
-          "title": "sdfdf",
+          "id": "a88402c2-ba4f-4dbf-9440-4264178d5a3c",
+          "title": "테스트 코드 작성하기(jest...)",
           "tasks": []
         },
         {
-          "id": "17bac6d0-c78e-4ce4-b6f4-a7bb3e344aa6",
-          "title": "히스토리 삭제 구현(나중에)",
+          "id": "64735965-689d-442e-9f85-31e84212b903",
+          "title": "테스트 코드 공부하기",
+          "tasks": []
+        },
+        {
+          "id": "431582c4-ec3f-40d4-885e-1b6b54527301",
+          "title": "코드 리팩토링하기",
           "tasks": []
         }
       ]
@@ -38,43 +43,177 @@
       "id": 2,
       "name": "끝난 일",
       "author": "roddy.chan",
-      "data": []
-    },
-    {
-      "id": 3,
-      "name": "추가적으로 한 일",
-      "author": "roddy.chan",
-      "data": []
+      "data": [
+        {
+          "id": "b64cb19c-46bd-456c-85e4-ef1a78bb5e3a",
+          "title": "webpack&babel 설정하기",
+          "tasks": []
+        },
+        {
+          "id": "513ee4a5-ad4c-4124-a9af-6a82821ed07d",
+          "title": "TypeScript로 재작성하기",
+          "tasks": []
+        },
+        {
+          "id": "696d7d11-9a43-49a1-bcfb-2f708aaeaa5c",
+          "title": "추가/삭제/수정/이동 구현하기",
+          "tasks": []
+        },
+        {
+          "id": "f35513ff-1cd2-4430-a140-2c28f152c37c",
+          "title": "사용자 액션 기록 사이드바 구현",
+          "tasks": []
+        }
+      ]
     }
   ],
   "history": [
     {
-      "action": "ADD_NOTE",
+      "action": "MOVE_NOTE",
       "cardName": "하는 중",
-      "beforeTitle": "",
-      "afterTitle": "safdsfddsffsadfs",
-      "writeTime": 1612416312325
+      "beforeTitle": "1234",
+      "afterTitle": "끝난 일",
+      "writeTime": 1612431607037
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "1234",
+      "afterTitle": "webpack&babel 설정하기",
+      "writeTime": 1612431636969
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "해야할 일",
+      "beforeTitle": "67890",
+      "afterTitle": "테스트 코드 공부하기",
+      "writeTime": 1612431703054
     },
     {
       "action": "ADD_NOTE",
       "cardName": "하는 중",
       "beforeTitle": "",
-      "afterTitle": "abcde",
-      "writeTime": 1612416329176
+      "afterTitle": "테스트 코드 작성하기(jest...)",
+      "writeTime": 1612431709782
+    },
+    {
+      "action": "MOVE_NOTE",
+      "cardName": "해야할 일",
+      "beforeTitle": "테스트 코드 공부하기",
+      "afterTitle": "하는 중",
+      "writeTime": 1612431734427
+    },
+    {
+      "action": "MOVE_NOTE",
+      "cardName": "하는 중",
+      "beforeTitle": "테스트 코드 공부하기",
+      "afterTitle": "해야할 일",
+      "writeTime": 1612431742885
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "",
+      "afterTitle": "TypeScript로 재작성하기",
+      "writeTime": 1612431764744
+    },
+    {
+      "action": "EDIT_CARD",
+      "cardName": "해야할 일",
+      "beforeTitle": "",
+      "afterTitle": "예정",
+      "writeTime": 1612431777046
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "예정",
+      "beforeTitle": "",
+      "afterTitle": "33333",
+      "writeTime": 1612431782734
     },
     {
       "action": "ADD_NOTE",
       "cardName": "하는 중",
       "beforeTitle": "",
-      "afterTitle": "sdfdf",
-      "writeTime": 1612416330628
+      "afterTitle": "코드 리팩토링하기",
+      "writeTime": 1612431797493
+    },
+    {
+      "action": "MOVE_NOTE",
+      "cardName": "예정",
+      "beforeTitle": "테스트 코드 공부하기",
+      "afterTitle": "하는 중",
+      "writeTime": 1612431825999
     },
     {
       "action": "ADD_NOTE",
-      "cardName": "하는 중",
+      "cardName": "예정",
       "beforeTitle": "",
-      "afterTitle": "asffdsfdss",
-      "writeTime": 1612416332528
+      "afterTitle": "성능 최적화 공부하기",
+      "writeTime": 1612431840253
+    },
+    {
+      "action": "MOVE_NOTE",
+      "cardName": "하는 중",
+      "beforeTitle": "테스트 코드 공부하기",
+      "afterTitle": "하는 중",
+      "writeTime": 1612431851949
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "예정",
+      "beforeTitle": "",
+      "afterTitle": "루카스 강의 보기",
+      "writeTime": 1612431880546
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "",
+      "afterTitle": "추가/삭제/수정/이동 구현하기",
+      "writeTime": 1612431893212
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "",
+      "afterTitle": "유저 액션 기록 구현",
+      "writeTime": 1612431899805
+    },
+    {
+      "action": "MOVE_NOTE",
+      "cardName": "하는 중",
+      "beforeTitle": "코드 리팩토링하기",
+      "afterTitle": "끝난 일",
+      "writeTime": 1612431912443
+    },
+    {
+      "action": "MOVE_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "코드 리팩토링하기",
+      "afterTitle": "하는 중",
+      "writeTime": 1612431918399
+    },
+    {
+      "action": "REMOVE_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "",
+      "afterTitle": "유저 액션 기록 구현",
+      "writeTime": 1612431925413
+    },
+    {
+      "action": "ADD_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "",
+      "afterTitle": "유저 액션 기록 사이드바 구현",
+      "writeTime": 1612431932336
+    },
+    {
+      "action": "EDIT_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "유저 액션 기록 사이드바 구현",
+      "afterTitle": "사용자 액션 기록 사이드바 구현",
+      "writeTime": 1612431944094
     }
   ]
 }

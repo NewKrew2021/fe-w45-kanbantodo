@@ -259,9 +259,9 @@ class ModalView {
     }
     async editNoteTitle() {
         const { } = await this.model.getInitialData();
-        const noteTitles = dom.queryAll('.list-title');
+        const noteTitles = dom.queryAll('.list-edit');
         noteTitles.forEach(element => {
-            element.addEventListener('dblclick', this.editNoteHandler.bind(this));
+            element.addEventListener('click', this.editNoteHandler.bind(this));
         })
         const closeBtn = dom.query('.btn-edit-close-modal');
         closeBtn.addEventListener('click', () => {

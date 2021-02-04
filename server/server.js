@@ -121,6 +121,7 @@ app.put('/list/edit/:cardId/:id', (req, res) => {
 app.put('/move/:cardId', (req, res)=>{
     const { cardId } = req.params;
     const { input } = req.body;
+    console.log(input);
 
     db.get('posts')
         .find({ id: parseInt(cardId) })

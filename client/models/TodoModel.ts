@@ -83,7 +83,7 @@ class TodoModel extends Observable {
         await req.removeList({ cardId, id });
         const res = await req.getAllData();
         this.todos = [...this.todos, res];
-        //this.notify(this.todos)
+        this.notify(this.todos)
     }
 
     // 리스트뷰(note item)의 타이틀 수정
@@ -102,6 +102,7 @@ class TodoModel extends Observable {
     async movingTodo({cardId, input} : {cardId: string, input: Array<MovedData>}){
         console.log(cardId, input);
         await req.moveList({cardId, input});
+        this.notify(this.todos)
     }
 
     setModalState({ cardId, id } : ModalState) {

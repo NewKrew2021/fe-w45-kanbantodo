@@ -20,7 +20,7 @@ inputview.init();
 const modalview = new ModalView(todoModel);
 modalview.init();
 
-const [MENU_SPEED, MENU_WIDTH] = ["500ms", "370px"];
+const [MENU_SPEED, MENU_WIDTH] = ["500ms", "400px"];
 const menuObj = {
     model: todoModel, speed: MENU_SPEED, width: MENU_WIDTH
 }

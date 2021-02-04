@@ -88,7 +88,6 @@ class MenuView {
         });
     }
 
-    
     async removeHistoryHandler(){
         await this.model.removeHistory();
     }

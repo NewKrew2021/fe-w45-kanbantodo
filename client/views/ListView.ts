@@ -132,33 +132,24 @@ class ListView {
         document.addEventListener('mousemove', this.onMouseMoveHandler);
     }
 
-    async dropUpHandler() {
+    async dropUpHandler(e: Event) {
+        console.log("test");
         if (this.curTarget === undefined) return;
         this.curTarget.remove();
         this.copiedNode.style.opacity = "1.0";
         document.removeEventListener('mousemove', this.onMouseMoveHandler);
-        this.copiedNode.addEventListener('mousedown', this.dragDownHandler.bind(this));
-        this.copiedNode.addEventListener('mouseup', this.dropUpHandler.bind(this));
         this.cardsTitle = dom.queryAll('.list-title');
 
-        /* dropUp 이후 DB 저장 로직, 이동된 노트가 몇 번째 인덱스에 위치하는가? */
-        /*
-            drop 후 DB 저장과정 생각해 본 사항
-            (1) drop한 곳이 카드의 자식 몇 번째인지 indexof 등으로 계산
-            (2) db로부터 posts->card->data 배열값을 받아 온 다음,
-            (3) (1)에서 구한 인덱스 번째에 새롭게 아이템을 추가
-            (4) db update
-            // (*) 배열 아이템 형태는 {id : _, title: _, tasks: []} 
-            // data 항목을 통째로 업데이트
-        */
         const copiedParent = this.copiedNode.parentNode;
         const movedIdx = Array.from(copiedParent.children).indexOf(this.copiedNode);
         const cardId = this.copiedNode.getAttribute('data'); // before
         const copiedCardId = copiedParent.getAttribute('data'); // after
         const copiedListId = this.copiedNode.getAttribute('data-idx');
+        const beforeCardName = dom.getCardName({cardId});
+        const afterCardName = dom.getCardName({cardId : copiedCardId});
 
         // 기존 데이터(잔상) 삭제
-        this.model.removeTodo({cardId, id:copiedListId});
+        await this.model.removeTodo({cardId, id: copiedListId});
         let data = this.model.todos;
         let title : string = '';
         let beforeData : Array<MovedData>;
@@ -166,7 +157,8 @@ class ListView {
             if (element.id == copiedCardId){
                 beforeData = element.data;
             }
-        });
+        }); // 옮겨간 카드의 이전 데이터 가져옴
+
         this.copiedNode.children.forEach((element : Element) => {
             if(element.classList.contains('list-title'))
                 title = element.textContent!;
@@ -174,9 +166,17 @@ class ListView {
         const moveData : MovedData = {
             id: copiedListId, title : title, tasks: []
         }
-        beforeData!.splice(movedIdx, 0, moveData);
-        console.log(beforeData!);
+        beforeData!.splice(movedIdx, 0, moveData); // 옮겨진 데이터 넣기
         this.model.movingTodo({cardId : copiedCardId, input: beforeData!});
+        this.curTarget = undefined; // dropUP 로직 종료
+
+        const historyState = {
+            cardName: beforeCardName, beforeTitle: title,
+            afterTitle: afterCardName, writeTime: Date.now(),
+            action: 'MOVE_NOTE'
+        }
+        this.model.setHistoryState(historyState);
+        this.model.addHistory({ input: historyState });
     }
 
     async dragAndDrop() {
