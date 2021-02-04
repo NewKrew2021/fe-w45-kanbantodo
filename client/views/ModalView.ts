@@ -2,7 +2,7 @@ import TodoModel from 'client/models/TodoModel';
 import * as dom from 'client/src/util';
 import { Input } from 'client/src/interface'
 /*
-    ModalView.js
+    ModalView.ts
     모달이 표시되어야 하는 뷰와 관련된 이벤트, 핸들러 등록
 */
 class ModalView {
@@ -13,6 +13,10 @@ class ModalView {
     }
 
     update() {
+        this.onEvents();
+    }
+
+    onEvents(){
         this.removeNote();
         this.removeCard();
         this.editCardTitle();
@@ -24,8 +28,7 @@ class ModalView {
     removeNoteItem() {
         const acceptBtn = dom.query('.btn-accept-modal');
         acceptBtn.addEventListener('click', () => {
-            const cardId: string = this.model.state.cardId;
-            const id = this.model.state.id;
+            const { cardId, id } = this.model.state;
             const cardName = dom.getCardName({ cardId });
             const noteName = dom.getNoteTitle({ cardId, id });
             const listViews = dom.queryAll('.list-view');
@@ -38,15 +41,12 @@ class ModalView {
             })
             this.model.removeTodo({ cardId, id });
             dom.addClass({
-                nodeList: [
-                    dom.query('.modal'), dom.query('.modal-remove'), target
-                ],
+                nodeList: [dom.query('.modal'), dom.query('.modal-remove'), target],
                 className: 'none'
             })
             const historyState = {
-                cardName: cardName, beforeTitle: '',
+                action: 'REMOVE_NOTE', cardName: cardName, beforeTitle: '',
                 afterTitle: noteName, writeTime: Date.now(),
-                action: 'REMOVE_NOTE'
             }
             this.model.setHistoryState(historyState);
             this.model.addHistory({ input: historyState });
@@ -86,21 +86,17 @@ class ModalView {
             const cardName = dom.getCardName({ cardId });
             let target;
             cards.forEach(element => {
-                if (element.getAttribute('data') === cardId) {
+                if (element.getAttribute('data') === cardId) 
                     target = element;
-                }
             })
-            this.model.removeCard({ cardId });
+            this.model.removeCard({ cardId }); // request
             dom.addClass({
-                nodeList: [
-                    dom.query('.modal'), dom.query('.modal-card-remove'), target
-                ],
+                nodeList: [dom.query('.modal'), dom.query('.modal-card-remove'), target],
                 className: 'none'
             })
-            const historyState = {
-                cardName: cardName, beforeTitle: '',
-                afterTitle: '', writeTime: Date.now(),
-                action: 'REMOVE_CARD'
+            const historyState = { // set history
+                action: 'REMOVE_CARD', cardName: cardName, beforeTitle: '',
+                afterTitle: '', writeTime: Date.now()
             }
             this.model.setHistoryState(historyState);
             this.model.addHistory({ input: historyState });
@@ -131,7 +127,7 @@ class ModalView {
         });
     }
 
-    // add card
+    // add card logic
     addNewCardItem() {
         const modalInput = dom.query('.modal-new-input');
         const writeBtn = dom.query('.btn-write-modal');
@@ -143,9 +139,8 @@ class ModalView {
                 className: 'none'
             })
             const historyState = {
-                cardName: name, beforeTitle: '',
-                afterTitle: '', writeTime: Date.now(),
-                action: 'ADD_CARD'
+                action: 'ADD_CARD', cardName: name, beforeTitle: '',
+                afterTitle: '', writeTime: Date.now()
             }
             this.model.setHistoryState(historyState);
             this.model.addHistory({ input: historyState });
@@ -153,7 +148,7 @@ class ModalView {
     }
     addNewCardHandler() {
         const modalInput = dom.query('.modal-new-input');
-        dom.removeClass({
+        dom.removeClass({ // modal open
             nodeList: [dom.query('.modal'), dom.query('.modal-new-card')],
             className: 'none'
         })
@@ -221,8 +216,7 @@ class ModalView {
         const modalInput = dom.query('.modal-edit-input');
         const saveBtn = dom.query('.btn-save-note-modal');
         saveBtn.addEventListener('click', () => {
-            const cardId = this.model.state.cardId;
-            const id = this.model.state.id;
+            const { cardId, id } = this.model.state;
             const cardName = dom.getCardName({ cardId });
             const noteName = dom.getNoteTitle({ cardId, id });
             const newTitle = modalInput.value;
@@ -265,9 +259,9 @@ class ModalView {
     }
     async editNoteTitle() {
         const { } = await this.model.getInitialData();
-        const noteTitles = dom.queryAll('.list-title');
+        const noteTitles = dom.queryAll('.list-edit');
         noteTitles.forEach(element => {
-            element.addEventListener('dblclick', this.editNoteHandler.bind(this));
+            element.addEventListener('click', this.editNoteHandler.bind(this));
         })
         const closeBtn = dom.query('.btn-edit-close-modal');
         closeBtn.addEventListener('click', () => {

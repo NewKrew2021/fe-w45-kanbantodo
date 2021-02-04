@@ -1,10 +1,8 @@
 /*
-    app.js
-    <entry point>
+    app.ts <entry point>
 */
 import ListView from 'client/views/ListView';
 import TodoModel from 'client/models/TodoModel';
-import * as _dom from 'client/src/util';
 import InputView from 'client/views/InputView';
 import ModalView from 'client/views/ModalView';
 import MenuView from 'client/views/MenuView';
@@ -22,6 +20,9 @@ inputview.init();
 const modalview = new ModalView(todoModel);
 modalview.init();
 
-const [MENU_SPEED, MENU_WIDTH] = ["500ms", "370px"];
-const menuview = new MenuView({ model: todoModel, speed: MENU_SPEED, width: MENU_WIDTH });
+const [MENU_SPEED, MENU_WIDTH] = ["500ms", "400px"];
+const menuObj = {
+    model: todoModel, speed: MENU_SPEED, width: MENU_WIDTH
+}
+const menuview = new MenuView(menuObj);
 menuview.init();

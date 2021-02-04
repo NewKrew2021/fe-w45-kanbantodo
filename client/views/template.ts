@@ -36,6 +36,7 @@ export const domTpl : MethodDictionary = {
             ).join('')} 
                 </ul>
                     <p class="author sub-title font-14"><span class="gray">Added by</span> ${author}</p>
+                    <button class="card-btn list-edit" data=${id} data-idx=${element.id}>&#8230;</button>
                     <button class="card-btn list-remove" data=${id} data-idx=${element.id}>&times;</button>
                     </div>`
         ).join('')}
@@ -46,37 +47,43 @@ export const domTpl : MethodDictionary = {
     },
     ADD_CARD({ action, afterTitle, beforeTitle, cardName, writeTime } : HistoryState) {
         return `<img class="profile" src="images/jackson.png">
-        <p class="menu-text HistoryState"><span class="menu-accent">${cardName}</span> 카드를 만들었습니다.</p>
+        <p class="menu-text HistoryState"><span class="alt alt-add">추가</span><span class="menu-accent">${cardName}</span> 카드를 만들었습니다.</p>
         <p class="menu-text time">${writeTime}</p>
         `
     },
     REMOVE_CARD({ action, afterTitle, beforeTitle, cardName, writeTime } : HistoryState) {
         return `<img class="profile" src="images/jackson.png">
-        <p class="menu-text HistoryState"><span class="menu-accent">${cardName}</span> 카드를 <span class="red">삭제</span>하였습니다.</p>
+        <p class="menu-text HistoryState"><span class="alt alt-remove">삭제</span><span class="menu-accent">${cardName}</span> 카드를 <span class="red">삭제</span>하였습니다.</p>
         <p class="menu-text time">${writeTime}</p>
         `
     },
     ADD_NOTE({ action, afterTitle, beforeTitle, cardName, writeTime } : HistoryState) {
         return `<img class="profile" src="images/jackson.png">
-        <p class="menu-text HistoryState"><span class="menu-accent">${afterTitle}</span> 노트를 <span class="menu-accent">${cardName}</span> 카드에 추가하였습니다.</p>
+        <p class="menu-text HistoryState"><span class="alt alt-add">추가</span><span class="menu-accent">${afterTitle}</span> 노트를 <span class="menu-accent">${cardName}</span> 카드에 추가하였습니다.</p>
         <p class="menu-text time">${writeTime}</p>
         `
     },
     REMOVE_NOTE({ action, afterTitle, beforeTitle, cardName, writeTime } : HistoryState) {
         return `<img class="profile" src="images/jackson.png">
-        <p class="menu-text HistoryState"><span class="menu-accent">${afterTitle}</span> 노트를 <span class="menu-accent">${cardName}</span> 카드에서 <span class="red">삭제</span>하였습니다.</p>
+        <p class="menu-text HistoryState"><span class="alt alt-remove">삭제</span><span class="menu-accent">${afterTitle}</span> 노트를 <span class="menu-accent">${cardName}</span> 카드에서 <span class="red">삭제</span>하였습니다.</p>
         <p class="menu-text time">${writeTime}</p>
         `
     },
     EDIT_CARD({ action, afterTitle, beforeTitle, cardName, writeTime } : HistoryState) {
         return `<img class="profile" src="images/jackson.png">
-        <p class="menu-text HistoryState"><span class="menu-accent">${cardName}</span> 카드의 제목을 <span class="menu-accent">${afterTitle}</span>(으)로 변경하였습니다.</p>
+        <p class="menu-text HistoryState"><span class="alt alt-edit">변경</span><span class="menu-accent">${cardName}</span> 카드의 제목을 <span class="menu-accent">${afterTitle}</span>(으)로 변경하였습니다.</p>
         <p class="menu-text time">${writeTime}</p>
         `
     },
     EDIT_NOTE({ action, afterTitle, beforeTitle, cardName, writeTime } : HistoryState) {
         return `<img class="profile" src="images/jackson.png">
-        <p class="menu-text HistoryState"><span>${cardName}</span> 카드의 <span class="menu-accent">${beforeTitle}</span> 노트를 <span class="menu-accent">${afterTitle}</span>(으)로 변경하였습니다.</p>
+        <p class="menu-text HistoryState"><span class="alt alt-edit">변경</span><span>${cardName}</span> 카드의 <span class="menu-accent">${beforeTitle}</span> 노트 제목을 <span class="menu-accent">${afterTitle}</span>(으)로 변경하였습니다.</p>
+        <p class="menu-text time">${writeTime}</p>
+        `
+    },
+    MOVE_NOTE({ action, afterTitle, beforeTitle, cardName, writeTime } : HistoryState){
+        return `<img class="profile" src="images/jackson.png">
+        <p class="menu-text HistoryState"><span class="alt alt-move">이동</span><span>${cardName}</span> 카드의 <span class="menu-accent">${beforeTitle}</span> 노트를 <span class="menu-accent">${afterTitle}</span> 카드로 옮겼습니다.</p>
         <p class="menu-text time">${writeTime}</p>
         `
     }

@@ -88,7 +88,7 @@ app.delete('/list/remove/:cardId/:id', (req, res) => {
     db.get('posts')
         .find({ id: parseInt(cardId) })
         .get('data')
-        .remove({ id: parseInt(id) })
+        .remove({ id: id })
         .write()
     res.send('list removed successfully!');
 })
@@ -111,10 +111,33 @@ app.put('/list/edit/:cardId/:id', (req, res) => {
     db.get('posts')
         .find({ id: parseInt(cardId) })
         .get('data')
-        .find({ id: parseInt(id) })
+        .find({ id: id })
         .assign({ title: title })
         .write()
     res.send('list removed successfully!');
+})
+
+// [*] 리스트를 움직일 때
+app.put('/move/:cardId', (req, res)=>{
+    const { cardId } = req.params;
+    const { input } = req.body;
+    console.log(input);
+
+    db.get('posts')
+        .find({ id: parseInt(cardId) })
+        .get('data')
+        .remove((item)=>true)
+        .write();
+
+    input.forEach(e=>{
+        db.get('posts')
+        .find({ id: parseInt(cardId) })
+        .get('data')
+        .push(e)
+        .write();
+    })
+
+    res.send('list moved successfully!');
 })
 
 // [+] 히스토리에 사용자 액션을 등록할 때
@@ -129,6 +152,14 @@ app.post('/addHistory', (req, res) => {
         })
         .write()
     res.send('Card registered successfully!')
+})
+
+// [-] 히스토리 일괄 삭제
+app.delete('/remove/history', (req, res) => {
+    db.get('history')
+        .remove((item)=>true)
+        .write()
+    res.send('History clear successfully!')
 })
 
 app.get('/getHistory', (req, res) => {

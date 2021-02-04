@@ -17,12 +17,17 @@ export interface NewCardState{
 }
 export interface NewNoteState{
     cardId: string
-    listId: number
+    listId: string
     title: string
 }
 export interface ModalState {
     cardId: string
     id: string
+}
+export interface MovedData{
+    id: string
+    title: string
+    tasks: Array<any>
 }
 export interface InitData{
     id : string

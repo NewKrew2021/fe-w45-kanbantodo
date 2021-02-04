@@ -10,7 +10,8 @@
 */
 import Observable from './observable.js'
 import * as req from 'client/src/request';
-import { ModalState, NewCardState, NewNoteState, HistoryState } from 'client/src/interface'
+import * as dom from 'client/src/util'
+import { ModalState, MovedData, NewCardState, NewNoteState, HistoryState } from 'client/src/interface'
 
 class TodoModel extends Observable {
     url: string
@@ -61,26 +62,18 @@ class TodoModel extends Observable {
     // 리스트뷰(todo) 추가할 때마다 상태가 변화하고, 그 때마다 Observer(view들)에게 알려 준다.
     async addTodo({ cardId, inputData }: { cardId: string, inputData: string }) {
         const res = await req.getAllData();
-        let curlen : number, listId : number = 0;
-        res.forEach(function(e : any, i : number) {
+        //let listId : string; uuid/
+        let listId : string = '';
+        res.forEach((e : any, i : number) =>{
             if (parseInt(e.id) === parseInt(cardId)) {
-                if (res[i].data.length !== 0) {
-                    curlen = res[i].data.length - 1;
-                    listId = res[i].data[curlen].id + 1;
-                }
-                if (res[i].data.length === 0) {
-                    listId = 0;
-                }
+                listId = dom.guid();
             }
         });
         // 받은 todo값을 가공하고 넣기
         const inputObj : NewNoteState = {
-            cardId: cardId,
-            listId: listId,
-            title: inputData
+            cardId: cardId, listId: listId, title: inputData
         }
         await req.addList(inputObj);
-        // 데이터에 추가 후 notify 한다.
         this.todos = [...this.todos, res];
         this.notify(this.todos);
     }
@@ -88,6 +81,8 @@ class TodoModel extends Observable {
     // 리스트뷰(note item) 삭제, 상태 변화, Observer에게 알려 준다.
     async removeTodo({ cardId, id } : {cardId: string, id: string}) {
         await req.removeList({ cardId, id });
+        const res = await req.getAllData();
+        this.todos = [...this.todos, res];
         this.notify(this.todos)
     }
 
@@ -101,6 +96,13 @@ class TodoModel extends Observable {
             await req.editCardTitle(input);
             this.notify(this.todos);
         }
+    }
+
+    // 노트 움직이기
+    async movingTodo({cardId, input} : {cardId: string, input: Array<MovedData>}){
+        console.log(cardId, input);
+        await req.moveList({cardId, input});
+        this.notify(this.todos)
     }
 
     setModalState({ cardId, id } : ModalState) {
@@ -130,6 +132,11 @@ class TodoModel extends Observable {
     async getHistory() {
         const data = await req.getHistory();
         return data;
+    }
+
+    async removeHistory(){
+        await req.removeAllHistory();
+        this.notify(this.history)
     }
 
     // todo 데이터 가져오기. json-server로부터 GET 요청으로 데이터를 가져올 수 있다.

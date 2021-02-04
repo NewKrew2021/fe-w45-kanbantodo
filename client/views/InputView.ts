@@ -1,10 +1,10 @@
 /*
-    InputView.js : [+]를 누를 때 나오는 input-view
+    InputView.ts : [+]를 누를 때 나오는 input-view
     - 모델 객체를 주입받고 구독하는 [Observer] 이다.
 */
 import TodoModel from 'client/models/TodoModel';
 import { HistoryState } from 'client/src/interface'
-import * as _dom from 'client/src/util';
+import * as dom from 'client/src/util';
 
 /* TodoModel을 구독하는 Observer */
 class InputView {
@@ -27,11 +27,11 @@ class InputView {
         this.onEvents();
     }
 
-    // Event handler
+    // Input & Add Event handler
     addInputHandler(e: Event) {
-        const inputArea = _dom.queryAll('.list-input');
+        const inputArea = dom.queryAll('.list-input');
         const cardId: string = (e.target as Element).getAttribute('data')!; // non-null assertion
-        const cardName: string = _dom.getCardName({ cardId });
+        const cardName: string = dom.getCardName({ cardId });
         let inputData = '';
 
         inputArea.forEach(elem => {
@@ -50,9 +50,8 @@ class InputView {
 
         })
     }
-
     removeInputHandler(e: Event) {
-        const inputArea = _dom.queryAll('.list-input');
+        const inputArea = dom.queryAll('.list-input');
         const idx = (e.target as Element).getAttribute('data');
         inputArea.forEach(elem => {
             if (elem.getAttribute('data') === idx) {
@@ -60,21 +59,10 @@ class InputView {
             }
         })
     }
-
-    toggleEvtHandler(e: Event) {
-        const inputDiv = _dom.queryAll('.input-list-view');
-        const idx = (e.target as Element).getAttribute('data');
-        inputDiv.forEach(elem => {
-            if (elem.getAttribute('data') === idx) {
-                elem.classList.toggle("none");
-            }
-        })
-    }
-
     async inputNoteData() {
         const { } = await this.model.getInitialData();
-        const inputBtn: Array<Element> = _dom.queryAll('.btn-add-list');
-        const cancelBtn: Array<Element> = _dom.queryAll('.btn-cancel-list');
+        const inputBtn: Array<Element> = dom.queryAll('.btn-add-list');
+        const cancelBtn: Array<Element> = dom.queryAll('.btn-cancel-list');
         inputBtn.forEach(elem => {
             elem.addEventListener('click', this.addInputHandler.bind(this));
         })
@@ -83,9 +71,19 @@ class InputView {
         })
     }
 
+    toggleEvtHandler(e: Event) {
+        const inputDiv = dom.queryAll('.input-list-view');
+        const idx = (e.target as Element).getAttribute('data');
+        inputDiv.forEach(elem => {
+            if (elem.getAttribute('data') === idx) {
+                elem.classList.toggle("none");
+            }
+        })
+    }
+
     async setClickBtn() {
         const { } = await this.model.getInitialData();
-        const cardBtn: Array<Element> = _dom.queryAll('.card-btn.htop-add');
+        const cardBtn: Array<Element> = dom.queryAll('.card-btn.htop-add');
         cardBtn.forEach(elem => {
             elem.addEventListener('click', this.toggleEvtHandler.bind(this))
         });
