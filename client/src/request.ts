@@ -88,6 +88,15 @@ export function getHistory() {
     }).then((res) => { return res.json() });
 }
 
+export function removeAllHistory(){
+    return fetch(`${FETCH_URL}/remove/history`, {
+        method: 'delete',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }).then((res)=> {return res })
+}
+
 export function getAllData() {
     return fetch(`${GET_ALL_DATA_URL}`, {
         method: 'get',

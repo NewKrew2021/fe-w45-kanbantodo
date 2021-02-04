@@ -131,6 +131,14 @@ app.post('/addHistory', (req, res) => {
     res.send('Card registered successfully!')
 })
 
+// [-] 히스토리 일괄 삭제
+app.delete('/remove/history', (req, res) => {
+    db.get('history')
+        .remove((item)=>true)
+        .write()
+    res.send('History clear successfully!')
+})
+
 app.get('/getHistory', (req, res) => {
     res.send(db.get('history').value())
 })

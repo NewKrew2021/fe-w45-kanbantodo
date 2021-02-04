@@ -402,6 +402,7 @@ input {
 
 .list-view:hover {
   border: 1px solid #0366d6;
+  border-left: 3px solid #3495DD;
   -webkit-box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
           box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
   background-color: #EFF8FD;
@@ -409,6 +410,7 @@ input {
 
 .list-view:focus-within {
   border: 1px solid #0366d6;
+  border-left: 3px solid #3495DD;
   -webkit-box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
           box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
   background-color: #EFF8FD;

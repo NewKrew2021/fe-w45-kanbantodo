@@ -5,9 +5,9 @@
     데이터가 새롭게 추가되면, 구독 중인 ListView가 감지한다.
 */
 import { domTpl } from 'client/views/template';
-import * as _dom from 'client/src/util';
+import * as dom from 'client/src/util';
 import TodoModel from 'client/models/TodoModel';
-import { InitData, HistoryState, ObjIndex, Droppable } from 'client/src/interface'
+import { InitData, ObjIndex, Droppable } from 'client/src/interface'
 
 /* TodoModel을 구독하는 Observer */
 class ListView {
@@ -17,7 +17,7 @@ class ListView {
     curTarget : any
     copiedNode : any
     constructor(model : TodoModel) {
-        this.cardsTitle = _dom.queryAll('.list-title')
+        this.cardsTitle = dom.queryAll('.list-title')
         this.onMouseMoveHandler;
         this.curTarget;
         this.copiedNode;
@@ -48,14 +48,14 @@ class ListView {
         }, ``);
         data.forEach((element) => {
             const allObj = { data: element, type: 'InitListView' };
-            _dom.html(_dom.query('.card-wrapper'), createHTML(allObj));
+            dom.html(dom.query('.card-wrapper'), createHTML(allObj));
         });
-        this.cardsTitle = _dom.queryAll('.list-title')
+        this.cardsTitle = dom.queryAll('.list-title')
 
         // 맨 끝에 컬럼 추가기능 area 구현하기
-        const addNewCard = _dom.create({ type: 'div', className: ['card-new', 'bold'] });
-        _dom.html(addNewCard, domTpl['NewColumn']());
-        _dom.query('.card-wrapper').appendChild(addNewCard);
+        const addNewCard = dom.create({ type: 'div', className: ['card-new', 'bold'] });
+        dom.html(addNewCard, domTpl['NewColumn']());
+        dom.query('.card-wrapper').appendChild(addNewCard);
     }
 
     /* drag and drop */
@@ -142,12 +142,12 @@ class ListView {
         document.removeEventListener('mousemove', this.onMouseMoveHandler);
         this.copiedNode.addEventListener('mousedown', this.dragDownHandler.bind(this));
         this.copiedNode.addEventListener('mouseup', this.dropUpHandler.bind(this));
-        this.cardsTitle = _dom.queryAll('.list-title');
+        this.cardsTitle = dom.queryAll('.list-title');
     }
 
     async dragAndDrop() {
         const { } = await this.model.getInitialData();
-        const note = _dom.queryAll('.list-view');
+        const note = dom.queryAll('.list-view');
         note.forEach(element => {
             element.addEventListener('mousedown', this.dragDownHandler.bind(this));
             element.addEventListener('mouseup', this.dropUpHandler.bind(this));
@@ -178,10 +178,9 @@ class ListView {
 
     // 검색으로 리스트를 찾기
     findListView() {
-        const searchBox = _dom.query('.search-input');
+        const searchBox = dom.query('.search-input');
         searchBox.addEventListener('input', this.findListsHandler.bind(this));
     }
-
 }
 
 export default ListView;

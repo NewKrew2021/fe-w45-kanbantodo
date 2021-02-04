@@ -126,6 +126,11 @@ class TodoModel extends Observable {
         return data;
     }
 
+    async removeHistory(){
+        await req.removeAllHistory();
+        this.notify(this.history)
+    }
+
     // todo 데이터 가져오기. json-server로부터 GET 요청으로 데이터를 가져올 수 있다.
     async getInitialData() {
         const data = await req.getAllData();

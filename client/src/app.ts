@@ -21,5 +21,8 @@ const modalview = new ModalView(todoModel);
 modalview.init();
 
 const [MENU_SPEED, MENU_WIDTH] = ["500ms", "370px"];
-const menuview = new MenuView({ model: todoModel, speed: MENU_SPEED, width: MENU_WIDTH });
+const menuObj = {
+    model: todoModel, speed: MENU_SPEED, width: MENU_WIDTH
+}
+const menuview = new MenuView(menuObj);
 menuview.init();

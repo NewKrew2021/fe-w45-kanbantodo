@@ -42,6 +42,7 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
+            FETCH_URL: JSON.stringify("http://localhost:5000"),
             ADD_CARD_URL: JSON.stringify("http://localhost:5000/addCard"),
             ADD_LIST_URL: JSON.stringify("http://localhost:5000/addlist"),
             EDIT_URL: JSON.stringify("http://localhost:5000/list/edit"),
