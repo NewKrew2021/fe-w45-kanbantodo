@@ -60,6 +60,7 @@ class TodoController {
       popUpMenuModel,
       this.notifyLog.bind(this)
     );
+
     this.subscribe({
       render: this.todoViewList[status].render,
       status: this.todoViewList[status].status,

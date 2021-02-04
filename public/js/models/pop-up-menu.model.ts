@@ -1,18 +1,10 @@
+import { ILog } from "@public/js/common/interface";
+
 const TODO_API_HOST = "http://localhost:8000/api/todo";
 const LOG_TYPE = "log";
 
-interface Log {
-  type: string;
-  profile: string;
-  writer: string;
-  content: string;
-  from: string;
-  to: string;
-  time: string;
-}
-
 class PopUpMenuModel {
-  logList: Log[];
+  logList: ILog[];
 
   constructor() {
     this.logList = [];
@@ -43,7 +35,7 @@ class PopUpMenuModel {
     });
   }
 
-  clusterLogData(logData: Log[]) {
+  clusterLogData(logData: ILog[]) {
     return logData.filter((log) => {
       return log.type === LOG_TYPE;
     });

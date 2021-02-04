@@ -1,25 +1,7 @@
 import { $, translateTime } from "@public/js/common/utils";
+import { ILog, IPopUpMenuTPL } from "@public/js/common/interface";
 
-const PROFILE_IMAGE: string =
-  "https://avatars.githubusercontent.com/u/37804777?s=460&u=088956f4c1a3613536ddb54dac7492b469a12ca9&v=4";
-
-interface Log {
-  type: string;
-  profile: string;
-  writer: string;
-  content: string;
-  from: string;
-  to: string;
-  time: string;
-}
-
-interface PopUpMenuTPL {
-  statusTask(content: string, card: string, todoList: string): string;
-  moveTask(content: string, from: string, to: string): string;
-  detailItem(profile: string, writer: string, time: string, taskTPL: string): string;
-}
-
-const POP_UP_MENU_TPL: PopUpMenuTPL = {
+const POP_UP_MENU_TPL: IPopUpMenuTPL = {
   statusTask(content: string, card: string, todoList: string): string {
     return `
       <span class="user-activity">${content}</span>
@@ -75,7 +57,7 @@ class PopUpMenuView {
     });
   }
 
-  render(logList: Log[]) {
+  render(logList: ILog[]) {
     if (!this.menuDetail) return;
     this.menuDetail.innerHTML = logList
       .reverse()
