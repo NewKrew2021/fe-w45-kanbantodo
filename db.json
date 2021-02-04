@@ -5320,6 +5320,22 @@
       "text": "5",
       "author": "kevin",
       "time": "1612446406528"
+    },
+    {
+      "type": "moved",
+      "from": "Done",
+      "to": "Doing",
+      "text": "1",
+      "author": "kevin",
+      "time": "1612446636678"
+    },
+    {
+      "type": "moved",
+      "from": "Doing",
+      "to": "Done",
+      "text": "1",
+      "author": "kevin",
+      "time": "1612446637791"
     }
   ]
 }
