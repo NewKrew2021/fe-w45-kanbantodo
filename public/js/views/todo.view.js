@@ -46,6 +46,7 @@ class TodoView {
     this.newTodoList = null;
     this.isCardMoving = false;
     this.originalMovingElement = null;
+    this.onMouseMove = this.onMouseMove.bind(this);
   }
 
   createTodo(cardList, status) {
@@ -89,16 +90,17 @@ class TodoView {
     this.movingElement.style.top = `${pageY - this.movingElement.offsetHeight / 2}px`;
   }
 
-  HandleDragAndDrop(updateCardStatus, notify, popUpMenuModel, notifyLog) {
-    const onMouseMove = (event) => {
-      if (!this.movingElement) return;
-      this.movingElement.hidden = true;
-      let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-      this.newTodoList = elemBelow.closest(".todo");
-      this.movingElement.hidden = false;
-      this.moveAt(event.pageX, event.pageY);
-    };
+  onMouseMove(event) {
+    if (!this.movingElement) return;
 
+    this.movingElement.hidden = true;
+    let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    this.newTodoList = elemBelow.closest(".todo");
+    this.movingElement.hidden = false;
+    this.moveAt(event.pageX, event.pageY);
+  }
+
+  HandleDragAndDrop(updateCardStatus, notify, popUpMenuModel, notifyLog) {
     this.element.addEventListener("mousedown", ({ target }) => {
       if (!DRAGGABLE_ELEMENTS.includes(target.className)) return;
       this.originalMovingElement = target.closest(".todo-card");
@@ -110,7 +112,7 @@ class TodoView {
 
       document.body.append(this.movingElement);
 
-      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mousemove", this.onMouseMove);
     });
 
     document.addEventListener("mouseup", () => {
@@ -142,7 +144,7 @@ class TodoView {
         this.originalMovingElement.style = null;
       }
 
-      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mousemove", this.onMouseMove);
       this.movingElement = null;
     });
   }
