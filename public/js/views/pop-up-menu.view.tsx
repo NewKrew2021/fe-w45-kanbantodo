@@ -1,5 +1,5 @@
 import { $, translateTime } from "@public/js/common/utils";
-import { ILog, IPopUpMenuTPL } from "@public/js/types/interface";
+import { ILog, IPopUpMenuTPL } from "@public/js/variables/interface";
 
 const POP_UP_MENU_TPL: IPopUpMenuTPL = {
   statusTask(content: string, card: string, todoList: string): string {

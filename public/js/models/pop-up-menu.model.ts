@@ -1,7 +1,5 @@
-import { ILog } from "@public/js/common/interface";
-
-const TODO_API_HOST = "http://localhost:8000/api/todo";
-const LOG_TYPE = "log";
+import { ILog } from "@public/js/variables/interface";
+import { TODO_API_HOST, LOG_TYPE } from "@public/js/variables/config";
 
 class PopUpMenuModel {
   logList: ILog[];

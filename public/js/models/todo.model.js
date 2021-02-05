@@ -1,5 +1,4 @@
-const TODO_API_HOST = "http://localhost:8000/api/todo";
-const TODO_TYPE = "todo";
+import { TODO_API_HOST, TODO_TYPE } from "@public/js/variables/config";
 
 class TodoModel {
   constructor() {

@@ -1,9 +1,8 @@
 import { $, createNewElement, deleteElement, getTime } from "@public/js/common/utils";
+import { USER, TODO_TYPE, LOG_TYPE } from "@public/js/variables/config";
 
-const USER = "puba";
 const DRAGGABLE_ELEMENTS = ["todo-card", "todo-card--content", "todo-card--writer"];
-const TODO_TYPE = "todo";
-const LOG_TYPE = "log";
+
 const PROFILE_IMAGE =
   "https://avatars.githubusercontent.com/u/37804777?s=460&u=088956f4c1a3613536ddb54dac7492b469a12ca9&v=4";
 
@@ -49,6 +48,7 @@ class TodoView {
     this.mouseMoveEvent = this.mouseMoveEvent.bind(this);
     this.mouseDownEvent = this.mouseDownEvent.bind(this);
     this.mouseUpEvent = this.mouseUpEvent.bind(this);
+    this.addLog = this.addLog.bind(this);
   }
 
   createTodo(cardList, status) {
@@ -116,6 +116,20 @@ class TodoView {
     document.addEventListener("mousemove", this.mouseMoveEvent);
   }
 
+  addLog(popUpMenuModel, notifyLog) {
+    let log = {
+      writer: USER,
+      type: LOG_TYPE,
+      content: this.movingElement.innerText.split("\n")[0],
+      from: this.originalMovingElement.closest(".todo").id,
+      to: this.movingElement.closest(".todo").id,
+      time: getTime(),
+      profile: PROFILE_IMAGE,
+    };
+    popUpMenuModel.addLog(log);
+    notifyLog(popUpMenuModel.logList);
+  }
+
   mouseUpEvent(updateCardStatus, notify, popUpMenuModel, notifyLog) {
     return () => {
       if (!this.movingElement) return;
@@ -124,17 +138,8 @@ class TodoView {
 
         this.newTodoList.appendChild(this.movingElement);
         // log에 추가
-        let log = {
-          writer: USER,
-          type: LOG_TYPE,
-          content: this.movingElement.innerText.split("\n")[0],
-          from: this.originalMovingElement.closest(".todo").id,
-          to: this.movingElement.closest(".todo").id,
-          time: getTime(),
-          profile: PROFILE_IMAGE,
-        };
-        popUpMenuModel.addLog(log);
-        notifyLog(popUpMenuModel.logList);
+        this.addLog(popUpMenuModel, notifyLog);
+
         // 기존 node 삭제
         deleteElement(this.originalMovingElement);
 
