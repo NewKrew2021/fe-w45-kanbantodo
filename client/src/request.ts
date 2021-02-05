@@ -116,3 +116,4 @@ export function getAllData() {
         }
     }).then((res) => { return res.json() });
 }
+
