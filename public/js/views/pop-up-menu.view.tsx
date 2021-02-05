@@ -1,5 +1,5 @@
 import { $, translateTime } from "@public/js/common/utils";
-import { ILog, IPopUpMenuTPL } from "@public/js/common/interface";
+import { ILog, IPopUpMenuTPL } from "@public/js/types/interface";
 
 const POP_UP_MENU_TPL: IPopUpMenuTPL = {
   statusTask(content: string, card: string, todoList: string): string {
@@ -9,6 +9,7 @@ const POP_UP_MENU_TPL: IPopUpMenuTPL = {
       <span class="activity-content__todo-list">${todoList}</span>
     `;
   },
+
   moveTask(content: string, from: string, to: string): string {
     return `
       <span class="user-activity">${content}</span>
@@ -18,6 +19,7 @@ const POP_UP_MENU_TPL: IPopUpMenuTPL = {
       <span class="to">${to}</span>
     `;
   },
+
   detailItem(profile: string, writer: string, time: string, taskTPL: string): string {
     return `
       <li class="menu-detail__item">
