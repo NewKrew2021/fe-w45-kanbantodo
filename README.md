@@ -1,5 +1,9 @@
 # fe-w45-kanbantodo
 
+## 구조
+
+![구조](./docs/image/arc.png)
+
 ## 할 일 / 한 일
 
 ### Day1
