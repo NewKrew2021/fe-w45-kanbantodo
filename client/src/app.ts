@@ -17,6 +17,7 @@ listview.init();
 const inputview = new InputView(todoModel);
 inputview.init();
 
+
 const modalview = new ModalView(todoModel);
 modalview.init();
 

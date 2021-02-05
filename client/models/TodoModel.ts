@@ -100,7 +100,6 @@ class TodoModel extends Observable {
 
     // 노트 움직이기
     async movingTodo({cardId, input} : {cardId: string, input: Array<MovedData>}){
-        console.log(cardId, input);
         await req.moveList({cardId, input});
         this.notify(this.todos)
     }

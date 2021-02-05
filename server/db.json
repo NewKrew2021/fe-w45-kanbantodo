@@ -6,6 +6,11 @@
       "author": "roddy.chan",
       "data": [
         {
+          "id": "f35513ff-1cd2-4430-a140-2c28f152c37c",
+          "title": "사용자 액션 기록 사이드바 구현",
+          "tasks": []
+        },
+        {
           "id": "53d96edb-d327-4c9b-9ac0-3599f8fce33a",
           "title": "성능 최적화 공부하기",
           "tasks": []
@@ -18,6 +23,11 @@
         {
           "id": "1dbe9ee2-610b-47e6-9a28-db68f148dd3a",
           "title": "루카스 강의 보기",
+          "tasks": []
+        },
+        {
+          "id": "ed116884-8e56-43b3-a53a-bdd66875673a",
+          "title": "마지막...",
           "tasks": []
         }
       ]
@@ -50,11 +60,6 @@
       "author": "roddy.chan",
       "data": [
         {
-          "id": "f35513ff-1cd2-4430-a140-2c28f152c37c",
-          "title": "사용자 액션 기록 사이드바 구현",
-          "tasks": []
-        },
-        {
           "id": "513ee4a5-ad4c-4124-a9af-6a82821ed07d",
           "title": "TypeScript로 재작성하기",
           "tasks": []
@@ -63,281 +68,52 @@
           "id": "64735965-689d-442e-9f85-31e84212b903",
           "title": "테스트 코드 공부하기",
           "tasks": []
-        },
-        {
-          "id": "696d7d11-9a43-49a1-bcfb-2f708aaeaa5c",
-          "title": "추가/삭제/수정/이동 구현하기",
-          "tasks": []
         }
       ]
     }
   ],
   "history": [
     {
-      "action": "MOVE_NOTE",
-      "cardName": "하는 중",
-      "beforeTitle": "코드 리팩토링하기",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612485370657
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "TypeScript로 재작성하기",
-      "afterTitle": "추가적으로 한 일",
-      "writeTime": 1612485385661
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "추가적으로 한 일",
-      "beforeTitle": "TypeScript로 재작성하기",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612485390067
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "코드 리팩토링하기",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612485393659
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "코드 리팩토링하기",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612485400083
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "코드 리팩토링하기",
-      "afterTitle": "하는 중",
-      "writeTime": 1612485404132
-    },
-    {
-      "action": "REMOVE_CARD",
-      "cardName": "추가적으로 한 일",
-      "beforeTitle": "",
-      "afterTitle": "",
-      "writeTime": 1612485419510
-    },
-    {
-      "action": "ADD_CARD",
-      "cardName": "기타",
-      "beforeTitle": "",
-      "afterTitle": "",
-      "writeTime": 1612485423499
-    },
-    {
       "action": "ADD_NOTE",
-      "cardName": "끝난 일",
+      "cardName": "예정",
       "beforeTitle": "",
-      "afterTitle": "테스트용",
-      "writeTime": 1612485437554
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "TypeScript로 재작성하기",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612486618992
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "TypeScript로 재작성하기",
-      "afterTitle": "하는 중",
-      "writeTime": 1612486625851
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "하는 중",
-      "beforeTitle": "TypeScript로 재작성하기",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612486633766
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "하는 중",
-      "beforeTitle": "테스트 코드 작성하기(jest...)",
-      "afterTitle": "하는 중",
-      "writeTime": 1612486942810
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "webpack&babel 설정하기",
-      "afterTitle": "하는 중",
-      "writeTime": 1612487179388
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "추가/삭제/수정/이동 구현하기",
-      "afterTitle": "예정",
-      "writeTime": 1612487182944
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "하는 중",
-      "beforeTitle": "테스트 코드 작성하기(jest...)",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612487186084
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "테스트용",
-      "afterTitle": "하는 중",
-      "writeTime": 1612487191140
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "하는 중",
-      "beforeTitle": "webpack&babel 설정하기",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612487193586
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "하는 중",
-      "beforeTitle": "테스트용",
-      "afterTitle": "하는 중",
-      "writeTime": 1612487201411
+      "afterTitle": "마지막",
+      "writeTime": 1612509839885
     },
     {
       "action": "EDIT_NOTE",
-      "cardName": "하는 중",
-      "beforeTitle": "테스트용",
-      "afterTitle": "dsafdfadsdsf",
-      "writeTime": 1612487204243
+      "cardName": "예정",
+      "beforeTitle": "마지막",
+      "afterTitle": "마지막...",
+      "writeTime": 1612509846809
+    },
+    {
+      "action": "MOVE_NOTE",
+      "cardName": "끝난 일",
+      "beforeTitle": "사용자 액션 기록 사이드바 구현",
+      "afterTitle": "예정",
+      "writeTime": 1612509856949
     },
     {
       "action": "REMOVE_NOTE",
-      "cardName": "하는 중",
+      "cardName": "끝난 일",
       "beforeTitle": "",
-      "afterTitle": "dsafdfadsdsf",
-      "writeTime": 1612487206493
+      "afterTitle": "추가/삭제/수정/이동 구현하기",
+      "writeTime": 1612509862024
+    },
+    {
+      "action": "ADD_CARD",
+      "cardName": "카드추가",
+      "beforeTitle": "",
+      "afterTitle": "",
+      "writeTime": 1612509866646
     },
     {
       "action": "REMOVE_CARD",
-      "cardName": "기타",
+      "cardName": "카드추가",
       "beforeTitle": "",
       "afterTitle": "",
-      "writeTime": 1612487222604
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "테스트 코드 작성하기(jest...)",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612487231788
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "webpack&babel 설정하기",
-      "afterTitle": "예정",
-      "writeTime": 1612487244748
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "테스트 코드 작성하기(jest...)",
-      "afterTitle": "하는 중",
-      "writeTime": 1612487352791
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "사용자 액션 기록 사이드바 구현",
-      "afterTitle": "하는 중",
-      "writeTime": 1612487354322
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "하는 중",
-      "beforeTitle": "테스트 코드 공부하기",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612487357509
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "드래그 앤 드롭한 데이터 DB에 반영",
-      "afterTitle": "하는 중",
-      "writeTime": 1612487360148
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "예정",
-      "beforeTitle": "추가/삭제/수정/이동 구현하기",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612487366601
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "추가/삭제/수정/이동 구현하기",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612487371914
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "하는 중",
-      "beforeTitle": "사용자 액션 기록 사이드바 구현",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612487376119
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "하는 중",
-      "beforeTitle": "드래그 앤 드롭한 데이터 DB에 반영",
-      "afterTitle": "하는 중",
-      "writeTime": 1612487542777
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "하는 중",
-      "beforeTitle": "드래그 앤 드롭한 데이터 DB에 반영",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612487544835
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "드래그 앤 드롭한 데이터 DB에 반영",
-      "afterTitle": "하는 중",
-      "writeTime": 1612487547749
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "사용자 액션 기록 사이드바 구현",
-      "afterTitle": "하는 중",
-      "writeTime": 1612487554090
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "하는 중",
-      "beforeTitle": "사용자 액션 기록 사이드바 구현",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612487555592
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "끝난 일",
-      "beforeTitle": "사용자 액션 기록 사이드바 구현",
-      "afterTitle": "하는 중",
-      "writeTime": 1612487559184
-    },
-    {
-      "action": "MOVE_NOTE",
-      "cardName": "하는 중",
-      "beforeTitle": "사용자 액션 기록 사이드바 구현",
-      "afterTitle": "끝난 일",
-      "writeTime": 1612487561070
+      "writeTime": 1612509870427
     }
   ]
 }
