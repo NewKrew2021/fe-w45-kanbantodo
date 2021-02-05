@@ -3,7 +3,7 @@ import NoteController from './note'
 import ColumnView, { ColumnRenderData } from '../view/column'
 import ModalController from './modal'
 import { ColumnData, NoteData, NoteFetchedData } from '../../type/index'
-import { myFetchDELETE, myFetchPOST } from '../../util/index'
+import { myFetchPOST, myFetchPATCH, myFetchDELETE } from '../../util/index'
 
 export default class ColumnController extends Controller {
   private columnData: ColumnData
@@ -103,15 +103,26 @@ export default class ColumnController extends Controller {
     this.view.render()
   }
 
-  editColumn({ columnName }: { columnName: string }) {
+  async editColumn({ columnName }: { columnName: string }) {
     columnName = columnName.trim()
 
     // handle exception: invalid or same name
     if (!columnName || columnName === this.columnData.title) return
 
+    // request to server
+    await this.requestEditColumn(columnName)
+
     // update column's name
     this.columnData.title = columnName
     this.view.render()
+  }
+
+  async requestEditColumn(columnName: string) {
+    // request to server
+    return await myFetchPATCH('/kanban/column', {
+      columnID: this.getData().id,
+      title: columnName
+    })
   }
 
   showEditModal() {
