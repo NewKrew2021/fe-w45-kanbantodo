@@ -90,7 +90,7 @@ export default class ColumnController extends Controller {
     // TODO: check tasks
 
     // append note
-    noteController.setWrapper(this.view.getChildrenWrapper('note'))
+    noteController.setWrapper(this.view.getChildrenWrapper('note'), 0)
   }
 
   removeNote(note: NoteController) {
