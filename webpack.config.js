@@ -1,13 +1,13 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   // entry: './public/js/main.js',
-  entry: "./app.ts",
+  entry: './app.ts',
   output: {
-    path: path.resolve(__dirname, "public/dist"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, 'public/dist'),
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -15,28 +15,28 @@ module.exports = {
         test: /\.(js|ts)x?$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
       },
       {
         test: /\.s?[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
-          "style-loader",
+          'style-loader',
           // Translates CSS into CommonJS
-          "css-loader",
+          'css-loader',
           // Compiles Sass to CSS
-          "sass-loader",
+          'sass-loader',
         ],
       },
     ],
   },
   resolve: {
-    modules: ["node_modules"],
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
+    modules: ['node_modules'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.css'],
     alias: {
-      "@public": path.resolve(__dirname, "public"),
+      '@public': path.resolve(__dirname, 'public'),
     },
   },
-  plugins: [new HtmlWebpackPlugin({ template: "public/index.html" })],
+  plugins: [new HtmlWebpackPlugin({ template: 'public/index.html' })],
 };

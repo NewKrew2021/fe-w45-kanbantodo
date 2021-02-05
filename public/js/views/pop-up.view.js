@@ -1,4 +1,4 @@
-import { $ } from "@public/js/common/utils";
+import { $ } from '@public/js/common/utils';
 
 const POP_UP_TEMPLATE = {
   popUp(title) {
@@ -18,19 +18,19 @@ const POP_UP_TEMPLATE = {
 
 class PopUpView {
   constructor() {
-    this.popUpElement = $(".pop-up");
-    this.addButton = $(".add-kanban-button");
+    this.popUpElement = $('.pop-up');
+    this.addButton = $('.add-kanban-button');
   }
 
   addOpenEvent() {
-    this.addButton.addEventListener("click", (event) => {
-      this.popUpElement.style.display = "flex";
+    this.addButton.addEventListener('click', event => {
+      this.popUpElement.style.display = 'flex';
     });
     return this;
   }
 
   render() {
-    this.popUpElement.innerHTML = POP_UP_TEMPLATE.popUp("New kanban board");
+    this.popUpElement.innerHTML = POP_UP_TEMPLATE.popUp('New kanban board');
     return this;
   }
 }

@@ -1,5 +1,4 @@
-const TODO_API_HOST = "http://localhost:8000/api/todo";
-const TODO_TYPE = "todo";
+import { TODO_API_HOST, TODO_TYPE } from '@public/js/variables/config';
 
 class TodoModel {
   constructor() {
@@ -16,7 +15,10 @@ class TodoModel {
     let res = await this.postCardData(cardData);
     let newCard = await res.json();
 
-    this.todoCardList[cardData.status] = [...this.todoCardList[cardData.status], newCard];
+    this.todoCardList[cardData.status] = [
+      ...this.todoCardList[cardData.status],
+      newCard,
+    ];
 
     return this.todoCardList;
   }
@@ -24,7 +26,9 @@ class TodoModel {
   async deleteTodo(todoData) {
     await this.deleteCardData(todoData);
 
-    this.todoCardList[todoData.status] = this.todoCardList[todoData.status].filter(({ _id }) => {
+    this.todoCardList[todoData.status] = this.todoCardList[
+      todoData.status
+    ].filter(({ _id }) => {
       return _id !== todoData.id;
     });
 
@@ -41,10 +45,10 @@ class TodoModel {
 
   postCardData(todoData) {
     return fetch(TODO_API_HOST, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(todoData),
     });
@@ -52,10 +56,10 @@ class TodoModel {
 
   deleteCardData(todoData) {
     return fetch(TODO_API_HOST, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(todoData),
     });
@@ -63,10 +67,10 @@ class TodoModel {
 
   updateCardData(todoData) {
     return fetch(TODO_API_HOST, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(todoData),
     });
@@ -76,7 +80,10 @@ class TodoModel {
     for (let todo of todoData) {
       if (todo.type !== TODO_TYPE) continue;
       if (this.todoCardList[todo.status]) {
-        this.todoCardList[todo.status] = [...this.todoCardList[todo.status], todo];
+        this.todoCardList[todo.status] = [
+          ...this.todoCardList[todo.status],
+          todo,
+        ];
         continue;
       }
       this.todoCardList[todo.status] = [todo];
