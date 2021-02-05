@@ -1,4 +1,4 @@
-import { $ } from "../common/utils";
+import { $ } from '../common/utils';
 
 class TodoController {
   constructor(logView) {
@@ -13,7 +13,7 @@ class TodoController {
 
   notify(todoCardList, status) {
     this.todoList
-      .filter((todo) => todo.status === status)
+      .filter(todo => todo.status === status)
       .forEach(({ render }) => {
         render(todoCardList[status], status);
       });
@@ -24,30 +24,36 @@ class TodoController {
   }
 
   addButtonEvent(model, view, status) {
-    view.getNewTodoData(async (cardData) => {
+    view.getNewTodoData(async cardData => {
       await model.addCard(cardData);
       this.notify(model.todoCardList, status);
     });
 
-    view.deleteTodo(async (cardData) => {
+    view.deleteTodo(async cardData => {
       await model.deleteTodo(cardData);
       this.notify(model.todoCardList, status);
     });
   }
 
   handlePopUpEvent(todoCardList, TodoView, todoModel, popUpMenuModel) {
-    const popUpElement = $(".pop-up");
+    const popUpElement = $('.pop-up');
 
-    $(".add-button", popUpElement).addEventListener("click", (event) => {
-      let status = $(".add-new-kanban__input", popUpElement).value;
+    $('.add-button', popUpElement).addEventListener('click', event => {
+      let status = $('.add-new-kanban__input', popUpElement).value;
       todoModel.todoCardList[status] = [];
-      this.createNewView(todoCardList, TodoView, todoModel, status, popUpMenuModel);
+      this.createNewView(
+        todoCardList,
+        TodoView,
+        todoModel,
+        status,
+        popUpMenuModel
+      );
 
-      popUpElement.style.display = "none";
+      popUpElement.style.display = 'none';
     });
 
-    $(".cancel-button", popUpElement).addEventListener("click", (event) => {
-      popUpElement.style.display = "none";
+    $('.cancel-button', popUpElement).addEventListener('click', event => {
+      popUpElement.style.display = 'none';
     });
   }
 
@@ -72,7 +78,13 @@ class TodoController {
 
   init(todoCardList, TodoView, todoModel, popUpMenuModel) {
     for (let status in todoCardList) {
-      this.createNewView(todoCardList, TodoView, todoModel, status, popUpMenuModel);
+      this.createNewView(
+        todoCardList,
+        TodoView,
+        todoModel,
+        status,
+        popUpMenuModel
+      );
     }
     this.handlePopUpEvent(todoCardList, TodoView, todoModel, popUpMenuModel);
 

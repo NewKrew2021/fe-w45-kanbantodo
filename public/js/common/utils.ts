@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment from 'moment';
 
 const $ = (target: string, parent = document): HTMLElement | null => {
   return parent.querySelector(target);
@@ -11,7 +11,11 @@ const translateTime = (time: string): string => {
   return moment(time).fromNow();
 };
 
-const createNewElement = (tag: string, className: string, innerText: string) => {
+const createNewElement = (
+  tag: string,
+  className: string,
+  innerText: string
+) => {
   const newElement = document.createElement(tag);
   newElement.className = className;
   newElement.innerText = innerText;

@@ -1,5 +1,5 @@
-import { $, translateTime } from "@public/js/common/utils";
-import { ILog, IPopUpMenuTPL } from "@public/js/variables/interface";
+import { $, translateTime } from '@public/js/common/utils';
+import { ILog, IPopUpMenuTPL } from '@public/js/variables/interface';
 
 const POP_UP_MENU_TPL: IPopUpMenuTPL = {
   statusTask(content: string, card: string, todoList: string): string {
@@ -20,7 +20,12 @@ const POP_UP_MENU_TPL: IPopUpMenuTPL = {
     `;
   },
 
-  detailItem(profile: string, writer: string, time: string, taskTPL: string): string {
+  detailItem(
+    profile: string,
+    writer: string,
+    time: string,
+    taskTPL: string
+  ): string {
     return `
       <li class="menu-detail__item">
         <img
@@ -45,15 +50,15 @@ class PopUpMenuView {
   menuDetail: HTMLElement | null;
 
   constructor() {
-    this.element = $(".menu-pop-up");
-    this.menuButton = $(".header__menu-button");
-    this.closeButton = $(".menu-pop-up__close-button");
-    this.menuDetail = $(".menu-detail");
+    this.element = $('.menu-pop-up');
+    this.menuButton = $('.header__menu-button');
+    this.closeButton = $('.menu-pop-up__close-button');
+    this.menuDetail = $('.menu-detail');
   }
 
   handleButtonTransition(button: HTMLElement | null, transition: string) {
     if (!button) return;
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
       if (!this.element) return;
       this.element.style.transform = transition;
     });
@@ -77,8 +82,8 @@ class PopUpMenuView {
   }
 
   init(): PopUpMenuView {
-    this.handleButtonTransition(this.menuButton, "translateX(0)");
-    this.handleButtonTransition(this.closeButton, "");
+    this.handleButtonTransition(this.menuButton, 'translateX(0)');
+    this.handleButtonTransition(this.closeButton, '');
 
     return this;
   }

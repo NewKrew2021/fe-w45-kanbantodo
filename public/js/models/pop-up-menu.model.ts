@@ -1,5 +1,5 @@
-import { ILog } from "@public/js/variables/interface";
-import { TODO_API_HOST, LOG_TYPE } from "@public/js/variables/config";
+import { ILog } from '@public/js/variables/interface';
+import { TODO_API_HOST, LOG_TYPE } from '@public/js/variables/config';
 
 class PopUpMenuModel {
   logList: ILog[];
@@ -24,17 +24,17 @@ class PopUpMenuModel {
 
   postLogData(logData: any): any {
     return fetch(TODO_API_HOST, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(logData),
     });
   }
 
   clusterLogData(logData: ILog[]) {
-    return logData.filter((log) => {
+    return logData.filter(log => {
       return log.type === LOG_TYPE;
     });
   }
