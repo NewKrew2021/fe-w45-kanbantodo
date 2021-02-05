@@ -38,11 +38,50 @@
 
 ### Day3
 
-- [ ] 리팩토링
-- [ ] 드래그앤드롭 구현
+- [x] 리팩토링
+- [x] 드래그앤드롭 구현
 - [ ] 웹팩 production 구현
-- [ ] 메뉴 창 구현
+- [x] 메뉴 창 구현
 
 ### Day4
 
+- [x] 드래그 앤 드롭 구현
+- [x] update API 생성
+- [x] 팝업 기능 생성
+- [x] 팝업을 이용해 todo list 생성 기능 구현
+
 ### Day5
+
+- [x] pull request 후 작동이 안되던 몇 가지 버그 해결
+- [x] refactoring
+
+### Day6
+
+- [x] TypeScript 모듈 설치 및 Babel & Webpack에 적용
+- [x] 기존에 있던 일부 코드를 TS에 맞춰 리팩토링
+- [x] menu 레이아웃 작성 및 나타나기, 들어가기 이벤트 추가
+- [x] webpack에 Extension을 적용하여 import할 때 확장자 명 생략
+
+### Day7
+
+- [x] log list 기능 구현
+- [x] typescript를 일부 적용 ( interface )
+- [x] 절대 경로 설정
+
+### Day8
+
+- [x] 로그 데이터 DB에 저장
+- [x] ts 설정
+
+### Day9
+
+- [x] 코드 리뷰를 반영하여 리팩토링
+- [x] sass 변수명 변경
+- [x] interface 코드 따로 분리
+- [x] 이벤트 함수들을 따로 분리
+
+### Day10
+
+- [x] 문서 작성
+- [x] 리팩토링
+- [x] 프리티어 설정
