@@ -2,6 +2,7 @@ import Controller from './_controller'
 import NoteView from '../view/note'
 import ModalController from './modal'
 import { NoteData } from '../../type/index'
+import { myFetchDELETE } from '../../util/index'
 
 export default class NoteController extends Controller {
   private noteData: NoteData
@@ -21,8 +22,10 @@ export default class NoteController extends Controller {
     return this.noteData
   }
 
-  deleteSelf() {
-    // TODO: request to server
+  async deleteSelf() {
+    // request to server
+    await this.requestDeleteNote()
+
     // TODO: delete value
 
     // remove view
@@ -31,13 +34,20 @@ export default class NoteController extends Controller {
     this.notifyDelete()
   }
 
+  async requestDeleteNote() {
+    // request to server
+    return await myFetchDELETE('/kanban/note', {
+      noteID: this.getData().id
+    })
+  }
+
   showDeleteModal() {
     new ModalController({
       renderData: {
         title: 'Delete Note',
         htmlString: `
           <p>Are you sure?</p>
-          <button class="form-component bg-orangered white" data-click-action="deleteSelf">Delete</button>
+          <button class="form-component bg-orangered white" data-click-action="deleteSelf closeModal">Delete</button>
         `
       },
       methodBindingOptions: [

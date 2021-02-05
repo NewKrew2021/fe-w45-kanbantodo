@@ -72,10 +72,14 @@ export default class View {
   }
 
   callAction(action: string, arg?: any) {
-    const targetAction = (<any>this)[action]
-    if (typeof targetAction === 'function') {
-      targetAction(arg)
-    }
+    // action is concatenation of space-separated method names
+    // call each method
+    action.split(' ').forEach(methodName => {
+      const targetAction = (<any>this)[methodName]
+      if (typeof targetAction === 'function') {
+        targetAction(arg)
+      }
+    })
   }
 
   /*

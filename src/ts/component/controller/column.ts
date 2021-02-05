@@ -3,7 +3,7 @@ import NoteController from './note'
 import ColumnView, { ColumnRenderData } from '../view/column'
 import ModalController from './modal'
 import { ColumnData, NoteData, NoteFetchedData } from '../../type/index'
-import { myFetchDELETE, myFetchPOST } from '../../util/index'
+import { myFetchPOST, myFetchPATCH, myFetchDELETE } from '../../util/index'
 
 export default class ColumnController extends Controller {
   private columnData: ColumnData
@@ -61,9 +61,9 @@ export default class ColumnController extends Controller {
     })
   }
 
-  async addNote(noteData: NoteData) {
+  async addNote({ title }: NoteData) {
     // request to server
-    const noteFetchedData = await this.requestAddNote(noteData.title)
+    const noteFetchedData = await this.requestAddNote(title)
 
     // add note
     this.addNoteWithFetchedData(noteFetchedData)
@@ -90,7 +90,7 @@ export default class ColumnController extends Controller {
     // TODO: check tasks
 
     // append note
-    noteController.setWrapper(this.view.getChildrenWrapper('note'))
+    noteController.setWrapper(this.view.getChildrenWrapper('note'), 0)
   }
 
   removeNote(note: NoteController) {
@@ -103,15 +103,26 @@ export default class ColumnController extends Controller {
     this.view.render()
   }
 
-  editColumn({ columnName }: { columnName: string }) {
+  async editColumn({ columnName }: { columnName: string }) {
     columnName = columnName.trim()
 
     // handle exception: invalid or same name
     if (!columnName || columnName === this.columnData.title) return
 
+    // request to server
+    await this.requestEditColumn(columnName)
+
     // update column's name
     this.columnData.title = columnName
     this.view.render()
+  }
+
+  async requestEditColumn(columnName: string) {
+    // request to server
+    return await myFetchPATCH('/kanban/column', {
+      columnID: this.getData().id,
+      title: columnName
+    })
   }
 
   showEditModal() {
@@ -119,7 +130,7 @@ export default class ColumnController extends Controller {
       renderData: {
         title: 'Edit Column',
         htmlString: `
-          <form data-submit-action="editColumn">
+          <form data-submit-action="editColumn closeModal">
             <div class="mb-3">
               <label for="modal-body-input">Column name</label>
               <input type="text" name="columnName" id="modal-body-input" class="w-100" placeholder="${this.columnData.title}" value="${this.columnData.title}" autofocus>
@@ -140,7 +151,7 @@ export default class ColumnController extends Controller {
         title: 'Delete Column',
         htmlString: `
           <p>Are you sure?</p>
-          <button class="form-component bg-orangered white" data-click-action="deleteSelf">Delete</button>
+          <button class="form-component bg-orangered white" data-click-action="deleteSelf closeModal">Delete</button>
         `
       },
       methodBindingOptions: [
