@@ -37,7 +37,7 @@ export default class NoteController extends Controller {
         title: 'Delete Note',
         htmlString: `
           <p>Are you sure?</p>
-          <button class="form-component bg-orangered white" data-click-action="deleteSelf">Delete</button>
+          <button class="form-component bg-orangered white" data-click-action="deleteSelf closeModal">Delete</button>
         `
       },
       methodBindingOptions: [

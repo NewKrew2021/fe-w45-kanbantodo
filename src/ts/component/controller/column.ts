@@ -119,7 +119,7 @@ export default class ColumnController extends Controller {
       renderData: {
         title: 'Edit Column',
         htmlString: `
-          <form data-submit-action="editColumn">
+          <form data-submit-action="editColumn closeModal">
             <div class="mb-3">
               <label for="modal-body-input">Column name</label>
               <input type="text" name="columnName" id="modal-body-input" class="w-100" placeholder="${this.columnData.title}" value="${this.columnData.title}" autofocus>
@@ -140,7 +140,7 @@ export default class ColumnController extends Controller {
         title: 'Delete Column',
         htmlString: `
           <p>Are you sure?</p>
-          <button class="form-component bg-orangered white" data-click-action="deleteSelf">Delete</button>
+          <button class="form-component bg-orangered white" data-click-action="deleteSelf closeModal">Delete</button>
         `
       },
       methodBindingOptions: [
